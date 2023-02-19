@@ -25,7 +25,7 @@ export default function Quadrant({ id }) {
     makeStyle()
   }, [quadrantDimensions, id, scale, builtLength, builtBreadth])
   return (
-    <div className='bg-amber-400 absolute border-2' style={style}>
+    <div className='bg-slate-700 absolute border-2' style={style}>
       <Bedroom id={id} />
     </div>
   )

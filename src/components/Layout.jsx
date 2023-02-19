@@ -7,9 +7,9 @@ export default function Layout() {
   const [hideInputs, setHideInputs] = useState(true)
   return (
     <>
-      <div className=' flex fixed top-0 right-0 w-[84%] items-center z-50'>
+      <div className=' flex fixed top-[-10px] right-[-40px] w-[84%] items-center z-50'>
         <button
-          className='text-2xl font-semibold bg-lime-400 h-[30px] rounded-lg mt-3 w-[30px] flex items-center justify-center text-gray-400'
+          className='text-2xl font-semibold bg-lime-400 h-[30px] rounded-lg mt-3 w-[30px] flex items-center justify-center text-slate-800'
           onClick={() => setHideInputs((prev) => !prev)}>
           {!hideInputs ? '<' : '>'}
         </button>

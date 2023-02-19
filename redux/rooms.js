@@ -4,8 +4,8 @@ const initialState = {
   bedrooms: [
     {
       id: 1,
-      length: 8,
-      breadth: 8,
+      length: 15,
+      breadth: 15,
       minLength: 8,
       maxLength: 20,
       minBreadth: 8,
@@ -16,7 +16,7 @@ const initialState = {
       walls: [
         {
           side: 'front',
-          length: 8,
+          length: 15,
           thickness: 6,
           hasGaps: false,
           hasDoor: true,
@@ -25,7 +25,7 @@ const initialState = {
         },
         {
           side: 'back',
-          length: 8,
+          length: 15,
           thickness: 6,
           hasGaps: false,
           hasDoor: false,
@@ -33,7 +33,7 @@ const initialState = {
         },
         {
           side: 'left',
-          length: 8,
+          length: 15,
           thickness: 6,
           hasGaps: false,
           hasDoor: false,
@@ -41,7 +41,7 @@ const initialState = {
         },
         {
           side: 'right',
-          length: 8,
+          length: 15,
           thickness: 6,
           hasGaps: false,
           hasDoor: false,

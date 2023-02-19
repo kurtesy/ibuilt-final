@@ -25,7 +25,7 @@ export default function Wall({ position, length, thickness, side, hasDoor, doorP
     makeStyle()
   }, [position, length, thickness, side])
   return (
-    <div className='bg-gray-500  absolute' style={style}>
+    <div className='bg-black  absolute' style={style}>
       {hasDoor && (
         <div
           className={`absolute bg-white flex items-end justify-center ${

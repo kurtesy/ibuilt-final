@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateRoom } from '../../redux/rooms'
 import { updateSelectedRoom } from '../../redux/common'
-
+import bedImg from '../assets/svg/kingBed.svg'
 export default function RoomControls() {
   const { selectedRoom, positions } = useSelector((state) => state.common)
   const { bedrooms } = useSelector((state) => state.rooms)
   const [position, setPosition] = useState(0)
-  const [length, setLength] = useState(8)
-  const [breadth, setBreadth] = useState(8)
+  const [length, setLength] = useState(selectedRoom?.data.length)
+  const [breadth, setBreadth] = useState(selectedRoom?.data.breadth)
   const [selectedBedroom, setSelectedBedroom] = useState(null)
   const dispatch = useDispatch()
+  console.log(selectedRoom)
   useEffect(() => {
     dispatch(updateRoom({ position, length, breadth, room: selectedRoom?.room, id: selectedRoom?.data.id }))
   }, [length, breadth, position])
@@ -25,7 +26,7 @@ export default function RoomControls() {
   return (
     <>
       {/* MIAN CONTROLS */}
-      <div className='bg-primaryLime w-full px-3 rounded-lg font-bold'>Main Controls</div>
+      <div className='bg-primaryLime w-full px-3 rounded-lg font-bold my-3'>Main Controls</div>
       <div className='w-full flex mt-2'>
         <select className='bg-slate-300 rounded-lg w-1/2 h-[32px]' onChange={handleSelectChange}>
           <option>Select Room</option>
@@ -60,7 +61,9 @@ export default function RoomControls() {
       </div>
       {/* MAIN CONTROLS END */}
       {/* ROOM CONTROLS */}
-      <div className='bg-primaryLime w-full px-3 rounded-lg font-bold'>Room Controls : Bedroom-{selectedBedroom}</div>
+      <div className='bg-primaryLime w-full px-3 rounded-lg font-bold mt-3'>
+        Room Controls : Bedroom-{selectedBedroom}
+      </div>
       <div className='w-full flex mt-2 bg-slate-900 text-primaryLime px-3 rounded-lg'>
         <div>Position</div>
       </div>
@@ -76,7 +79,11 @@ export default function RoomControls() {
           defaultValue={0}
           onChange={handleChange}
         />
-        <input input='text' className='w-1/3 border-primaryLime border-2 rounded-lg px-3 outline-none' />
+        <input
+          input='text'
+          className='w-1/3 border-primaryLime border-2 rounded-lg px-3 outline-none'
+          value={position.x}
+        />
       </div>
       <div className='mt-2 font-semibold text-sm'>Y-Direction</div>
       <div className='w-full flex gap-3 '>
@@ -90,7 +97,11 @@ export default function RoomControls() {
           defaultValue={0}
           onChange={handleChange}
         />
-        <input input='text' className='w-1/3 border-primaryLime border-2 rounded-lg px-3 outline-none' />
+        <input
+          input='number'
+          className='w-1/3 border-primaryLime border-2 rounded-lg px-3 outline-none'
+          value={position.y}
+        />
       </div>
       <div className='w-full flex mt-2 bg-slate-900 text-primaryLime px-3 rounded-lg'>
         <div>Dimensions</div>
@@ -134,6 +145,20 @@ export default function RoomControls() {
         />
       </div>
       {/* ROOM CONTROLS END */}
+      {/* ICONS */}
+      <div className='bg-primaryLime w-full px-3 rounded-lg font-bold mt-3'>Icons : Bed</div>
+      <div className='mt-3 flex flex-wrap w-full items-center justify-center gap-6'>
+        <img src={bedImg} alt='bed' className='w-20' />
+        <img src={bedImg} alt='bed' className='w-20' />
+        <img src={bedImg} alt='bed' className='w-20' />
+        <img src={bedImg} alt='bed' className='w-20' />
+        <img src={bedImg} alt='bed' className='w-20' />
+        <img src={bedImg} alt='bed' className='w-20' />
+        <img src={bedImg} alt='bed' className='w-20' />
+        <img src={bedImg} alt='bed' className='w-20' />
+        <img src={bedImg} alt='bed' className='w-20' />
+      </div>
+      {/* ICONS END */}
     </>
   )
 }
