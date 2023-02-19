@@ -4,6 +4,7 @@ import Loader from './Loader'
 import { useSelector } from 'react-redux'
 import Builtup from './Builtup'
 import PlotInputs from './PlotInputs'
+import ZoomControls from './ZoomControls'
 export default function Drawing() {
   const { plotLength, plotBreadth } = useSelector((state) => state.plot)
   const [loading, setLoading] = useState(false)
@@ -14,20 +15,17 @@ export default function Drawing() {
   if (!(plotLength && plotBreadth))
     return (
       <div className='flex items-center justify-center w-full'>
-        (
         <div className='text-lg w-full h-full flex items-center justify-center'>
           <div>Please Enter Dimensions</div>
         </div>
-        )
       </div>
     )
   if (loading) return <Loader />
   else
     return (
-      <>
-        <div className='flex items-center justify-center w-full'>
-          <Plot />
-        </div>
-      </>
+      <div className='flex items-center justify-center w-full relative'>
+        <Plot />
+        <ZoomControls />
+      </div>
     )
 }

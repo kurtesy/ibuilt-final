@@ -22,7 +22,9 @@ export default function Builtup() {
   return (
     <div className='bg-gray-400' style={style}>
       <Quadrant id={1} />
-      {/* <Quadrant id={2} /> */}
+      <Quadrant id={2} />
+      <Quadrant id={3} />
+      <Quadrant id={4} />
     </div>
   )
 }

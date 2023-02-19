@@ -42,7 +42,7 @@ export default function Bedroom({ id }) {
           doorPosition={wall.doorPosition}
         />
       ))}
-      {selectedRoom?.toiletRequired ? <Toilet id={1} /> : null}
+      <Toilet id={1} />
       <span className='text-xs m-6'>
         {selectedRoom?.length}
         <sup className=''></sup> X {selectedRoom?.breadth} ft

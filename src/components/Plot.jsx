@@ -27,7 +27,7 @@ export default function Plot() {
   }, [plotLength, plotBreadth, scale])
 
   return (
-    <div className='w-[82%] bg-red-300 relative ' style={style}>
+    <div className='w-[calc(100%-400px)] bg-red-300 relative' style={style}>
       <Builtup />
     </div>
   )

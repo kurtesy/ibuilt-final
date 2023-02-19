@@ -35,8 +35,11 @@ const plotSlice = createSlice({
       state.builtArea = parseFloat(
         parseFloat(action.payload.builtLength) * parseFloat(action.payload.builtBreadth)
       ).toFixed(2)
+    },
+    changeScale: (state, action) => {
+      state.scale = action.payload.scale
     }
   }
 })
-export const { setPlotDetails, setBuiltup } = plotSlice.actions
+export const { setPlotDetails, setBuiltup, changeScale } = plotSlice.actions
 export default plotSlice.reducer

@@ -95,6 +95,100 @@ const initialState = {
           position: { top: 0, bottom: undefined, left: undefined, right: 0 }
         }
       ]
+    },
+    {
+      id: 3,
+      length: 8,
+      breadth: 8,
+      minLength: 8,
+      maxLength: 20,
+      minBreadth: 8,
+      maxBreadth: 20,
+      area: 0,
+      position: { x: 0, y: 0 },
+      toiletRequired: 1,
+      walls: [
+        {
+          side: 'front',
+          length: 8,
+          thickness: 6,
+          hasGaps: false,
+          hasDoor: true,
+          doorPosition: { top: 0, right: 18 },
+          position: { top: undefined, bottom: 0, left: 0, right: undefined }
+        },
+        {
+          side: 'back',
+          length: 8,
+          thickness: 6,
+          hasGaps: false,
+          hasDoor: false,
+          position: { top: 0, bottom: undefined, left: 0, right: undefined }
+        },
+        {
+          side: 'left',
+          length: 8,
+          thickness: 6,
+          hasGaps: false,
+          hasDoor: false,
+          position: { top: 0, bottom: undefined, left: 0, right: undefined }
+        },
+        {
+          side: 'right',
+          length: 8,
+          thickness: 6,
+          hasGaps: false,
+          hasDoor: false,
+          position: { top: 0, bottom: undefined, left: undefined, right: 0 }
+        }
+      ]
+    },
+    {
+      id: 4,
+      length: 8,
+      breadth: 8,
+      minLength: 8,
+      maxLength: 20,
+      minBreadth: 8,
+      maxBreadth: 20,
+      area: 0,
+      position: { x: 0, y: 0 },
+      toiletRequired: 1,
+      walls: [
+        {
+          side: 'front',
+          length: 8,
+          thickness: 6,
+          hasGaps: false,
+          hasDoor: true,
+          doorPosition: { top: 0, right: 18 },
+          position: { top: undefined, bottom: 0, left: 0, right: undefined }
+        },
+        {
+          side: 'back',
+          length: 8,
+          thickness: 6,
+          hasGaps: false,
+          hasDoor: false,
+          position: { top: 0, bottom: undefined, left: 0, right: undefined }
+        },
+        {
+          side: 'left',
+          length: 8,
+          thickness: 6,
+          hasGaps: false,
+          hasDoor: false,
+          position: { top: 0, bottom: undefined, left: 0, right: undefined }
+        },
+        {
+          side: 'right',
+          length: 8,
+          thickness: 6,
+          hasGaps: false,
+          hasDoor: false,
+          position: { top: 0, bottom: undefined, left: undefined, right: 0 }
+        }
+      ]
     }
   ],
   toilets: [
