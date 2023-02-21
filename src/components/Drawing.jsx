@@ -19,12 +19,12 @@ export default function Drawing() {
   if (!(plotLength && plotBreadth))
     return (
       <div className='flex items-center justify-center w-full'>
-        <div className='text-lg w-full h-full flex items-center justify-center'>
+        <div className='text-lg w-full h-full flex items-center justify-center text-primaryLime '>
           <div>Please Enter Dimensions</div>
         </div>
       </div>
     )
-  if (loading) return <Loader />
+  // if (loading) return <Loader />
   else
     return (
       <div className='flex items-center justify-center w-full relative'>

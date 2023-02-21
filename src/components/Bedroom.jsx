@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateSelectedRoom } from '../../redux/common'
 import Wall from './Wall'
-import Toilet from './Toilet'
+// import Toilet from './Toilet'
 import bedImg from '../assets/svg/kingBed.svg'
 export default function Bedroom({ id }) {
   const [selectedRoom, setSelectedRoom] = useState(null)
@@ -28,12 +28,8 @@ export default function Bedroom({ id }) {
     e.stopPropagation()
     dispatch(updateSelectedRoom({ room: 'bedrooms', data: selectedRoom }))
   }
-  console.log(selectedRoom)
   return (
-    <div
-      className='bg-white cursor-pointer absolute flex items-center justify- z-50'
-      onClick={handleClick}
-      style={style}>
+    <div className='bg-white cursor-pointer absolute  ' onClick={handleClick} style={style}>
       {selectedRoom?.walls.map((wall) => (
         <Wall
           key={selectedRoom.id}
@@ -45,7 +41,7 @@ export default function Bedroom({ id }) {
           doorPosition={wall.doorPosition}
         />
       ))}
-      <Toilet id={1} />
+      {/* <Toilet id={1} /> */}
       <span className='text-xs m-6'>
         {selectedRoom?.length}
         <sup className=''></sup> X {selectedRoom?.breadth} ft

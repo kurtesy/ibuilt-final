@@ -9,6 +9,7 @@ const commonSlice = createSlice({
   initialState,
   reducers: {
     updateSelectedRoom: (state, action) => {
+      console.log(action.payload)
       state.selectedRoom = action.payload
     },
     updatePositions: (state, action) => {

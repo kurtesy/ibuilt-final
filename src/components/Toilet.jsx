@@ -27,7 +27,6 @@ export default function Toilet({ id }) {
     e.stopPropagation()
     dispatch(updateSelectedRoom({ room: 'toilets', data: selectedRoom }))
   }
-  console.log(selectedRoom)
   return (
     <div
       className='bg-white cursor-pointer absolute flex items-center justify-center '

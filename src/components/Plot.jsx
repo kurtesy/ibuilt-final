@@ -17,8 +17,8 @@ export default function Plot() {
     makeStyle()
     const x = []
     const y = []
-    const deltaX = plotLength / 18
-    const deltaY = plotBreadth / 18
+    const deltaX = parseFloat(parseFloat(plotLength) / 18)
+    const deltaY = parseFloat(parseFloat(plotBreadth) / 18)
     for (let i = 0; i < 9; i++) {
       x.push(Math.floor(i * deltaX * scale))
       y.push(Math.floor(i * deltaY * scale))

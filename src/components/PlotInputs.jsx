@@ -8,7 +8,13 @@ export default function PlotInputs({ setHideInputs }) {
   const [type, setType] = useState('2 BHK')
   const [openPlotModal, setOpenPlotModal] = useState(false)
   const [activeStyle, setActiveStyle] = useState({})
+  const [area, setArea] = useState(0)
   const dispatch = useDispatch()
+  useEffect(() => {
+    if (!plotDimensions.length || !plotDimensions.breadth) setArea(0)
+    else setArea((parseFloat(plotDimensions.length) * parseFloat(plotDimensions.breadth)).toFixed(2))
+  }, [plotDimensions])
+
   const handleBuild = () => {
     setOpenPlotModal(false)
     setHideInputs(true)
@@ -32,31 +38,29 @@ export default function PlotInputs({ setHideInputs }) {
           </button>
           {/* PLOT INPUTS MODAL */}
           {openPlotModal && (
-            <div className='w-[600px] h-[400px] bg-lime-300 absolute top-[50px] rounded-lg shadow-2xl p-3 z-10'>
+            <div className='w-[600px] h-[400px] bg-lime-300 absolute top-[50px] rounded-lg shadow-2xl p-3 z-50'>
               <label className='px-3 font-semibold text-lg text-gray-700'>Plot Details</label>
               <div className='flex w-full gap-2 p-3'>
                 <input
-                  className='w-[40%] h-[48px] px-3 outline-none rounded-lg'
+                  className='w-[35%] h-[48px] px-3 outline-none rounded-lg'
                   placeholder='Length(ft)'
                   type='number'
                   name='length'
                   onChange={(e) => setPlotDimensions({ ...plotDimensions, [e.target.name]: e.target.value })}
                 />
                 <input
-                  className='w-[40%] h-[48px] px-3 outline-none rounded-lg'
+                  className='w-[35%] h-[48px] px-3 outline-none rounded-lg'
                   placeholder='Breadth(ft)'
                   type='number'
                   name='breadth'
                   onChange={(e) => setPlotDimensions({ ...plotDimensions, [e.target.name]: e.target.value })}
                 />
-                <input
-                  className='w-[20%] h-[48px] px-3 outline-none rounded-lg'
-                  placeholder='Scale'
-                  type='number'
-                  name='scale'
-                  defaultValue={20}
-                  onChange={(e) => setScale(e.target.value)}
-                />
+                <div className='flex items-center w-[30%]'>
+                  <label className='text-lg'>
+                    Area: <span className='font-semibold'>{area}</span>
+                    sqft.
+                  </label>
+                </div>
               </div>
               <div>
                 <label className='px-3 font-semibold text-lg text-gray-700'>SetBacks</label>

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Bedroom from './Bedroom'
+import { updateRoom } from '../../redux/rooms'
 
 export default function Quadrant({ id }) {
   const [quadrantDimensions, setQuadrantDimensions] = useState({ length: 0, breadth: 0 })
   const { scale, builtLength, builtBreadth } = useSelector((state) => state.plot)
   const [style, setStyle] = useState({})
+  const dispatch = useDispatch()
 
   const makeStyle = () => {
     let currStyle = {}
@@ -24,8 +26,18 @@ export default function Quadrant({ id }) {
   useEffect(() => {
     makeStyle()
   }, [quadrantDimensions, id, scale, builtLength, builtBreadth])
+  useEffect(() => {
+    dispatch(
+      updateRoom({
+        id,
+        length: quadrantDimensions.length,
+        breadth: quadrantDimensions.breadth,
+        position: { x: 0, y: 0 }
+      })
+    )
+  }, [quadrantDimensions])
   return (
-    <div className='bg-slate-700 absolute border-2' style={style}>
+    <div className='bg-slate-700 absolute border-2 ' style={style}>
       <Bedroom id={id} />
     </div>
   )

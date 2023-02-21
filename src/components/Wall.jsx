@@ -4,6 +4,7 @@ import doorImg from '../assets/svg/door.svg'
 export default function Wall({ position, length, thickness, side, hasDoor, doorPosition }) {
   const { scale } = useSelector((state) => state.plot)
   const [style, setStyle] = useState({})
+  // console.log({ position, length, thickness, side, hasDoor, doorPosition })
   const makeStyle = () => {
     const currStyle = {}
     if (position.top !== undefined) currStyle['top'] = position.top
