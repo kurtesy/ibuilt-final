@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateSelectedRoom } from '../../redux/common'
 import Wall from './Wall'
@@ -25,11 +25,14 @@ export default function Bedroom({ id }) {
     )
   }, [id, selectedRoom, bedrooms])
   const handleClick = (e) => {
+    ref.current.style.zIndex = 99
+    ref.current.style.backgroundColor = 'green'
     e.stopPropagation()
     dispatch(updateSelectedRoom({ room: 'bedrooms', data: selectedRoom }))
   }
+  const ref = useRef()
   return (
-    <div className='bg-white cursor-pointer absolute  ' onClick={handleClick} style={style}>
+    <div className='bg-white cursor-pointer absolute' onClick={handleClick} style={style} ref={ref}>
       {selectedRoom?.walls.map((wall) => (
         <Wall
           key={selectedRoom.id}
