@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Quadrant from './Quadrant'
+import Bedroom from './Bedroom'
 
 export default function Builtup() {
   const { builtLength, builtBreadth, scale, setbacks } = useSelector((state) => state.plot)
@@ -21,8 +22,8 @@ export default function Builtup() {
 
   return (
     <div className='bg-gray-400 ' style={style}>
-      <Quadrant id={1} />
       <Quadrant id={2} />
+      <Quadrant id={1} />
     </div>
   )
 }
