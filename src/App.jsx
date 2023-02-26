@@ -9,7 +9,7 @@ export default function App() {
   useEffect(() => {
     setCurrentWidth(width)
   }, [width])
-  console.log(currentWidth)
+
   return (
     <>
       {width <= 1024 ? (

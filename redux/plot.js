@@ -5,12 +5,12 @@ const initialState = {
   plotLength: 0,
   plotBreadth: 0,
   plotArea: 0,
-  scale: 0,
+  scale: 10,
   setbacks: {
-    front: 0,
-    back: 0,
-    left: 0,
-    right: 0
+    front: 4.6,
+    back: 1.6,
+    left: 1.6,
+    right: 1.6
   },
   builtLength: 0,
   builtBreadth: 0,
@@ -21,15 +21,15 @@ const plotSlice = createSlice({
   initialState,
   reducers: {
     setPlotDetails: (state, action) => {
-      const { plotDimensions, scale, type, setbacks } = action.payload
-      state.plotLength = plotDimensions.length
-      state.plotBreadth = plotDimensions.breadth
-      state.scale = scale
-      state.type = type
-      state.setbacks = setbacks
-      state.plotArea = parseFloat(parseFloat(plotDimensions.length) * parseFloat(plotDimensions.breadth)).toFixed(2)
+      if (action.payload.length) state.plotLength = action.payload.length
+      if (action.payload.breadth) state.plotBreadth = action.payload.breadth
+      if (action.payload.scale) state.scale = scale
+      if (action.payload.type) state.type = type
+      if (action.payload.setbacks) state.setbacks = setbacks
+      state.plotArea = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
     },
     setBuiltup: (state, action) => {
+      console.log(action.payload)
       state.builtLength = parseFloat(action.payload.builtLength).toFixed(2)
       state.builtBreadth = parseFloat(action.payload.builtBreadth).toFixed(2)
       state.builtArea = parseFloat(

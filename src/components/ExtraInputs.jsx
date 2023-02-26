@@ -7,7 +7,7 @@ export default function ExtraInputs() {
     <div className='relative'>
       <button
         className='h-10 px-3 rounded-xl shadow-xl hover:scale-110 duration-300 font-semibold text-slate-800 bg-primaryLime'
-        onClick={() => setOpenModal(true)}>
+        onClick={() => setOpenModal((prev) => !prev)}>
         Built-up
       </button>
       {openModal && <SetbacksModal />}
