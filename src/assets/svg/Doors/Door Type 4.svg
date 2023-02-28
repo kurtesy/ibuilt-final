@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 379.39 283.93">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #baa188;
+        stroke-width: 1.2px;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke-width: .5px;
+      }
+    </style>
+  </defs>
+  <path class="cls-2" d="m142.24,238.57c0-73.06-53.03-132.29-118.67-132.29"/>
+  <path class="cls-2" d="m142.24,238.57C142.24,107.4,237.59.63,355.44.63"/>
+  <rect class="cls-1" x=".6" y="233.12" width="21.07" height="5.24" transform="translate(22.27 471.49) rotate(180)"/>
+  <rect class="cls-1" x=".6" y="278.09" width="21.07" height="5.24" transform="translate(22.27 561.43) rotate(180)"/>
+  <polygon class="cls-1" points="23.63 238.36 23.63 250.15 27.55 250.15 27.55 278.09 23.63 278.09 9.64 278.09 9.64 238.36 23.63 238.36"/>
+  <rect class="cls-1" x="357.72" y="233.12" width="21.07" height="5.24"/>
+  <rect class="cls-1" x="357.72" y="278.09" width="21.07" height="5.24"/>
+  <polygon class="cls-1" points="355.76 238.36 355.76 250.15 351.84 250.15 351.84 278.09 355.76 278.09 369.75 278.09 369.75 238.36 355.76 238.36"/>
+  <rect class="cls-1" x="23.57" y="106.28" width="12.16" height="132.29" transform="translate(59.31 344.86) rotate(180)"/>
+  <rect class="cls-1" x="343.69" y=".6" width="12.16" height="237.97" transform="translate(699.54 239.17) rotate(180)"/>
+</svg>

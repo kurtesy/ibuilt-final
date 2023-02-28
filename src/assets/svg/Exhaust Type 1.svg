@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 371.76 244.12">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e6e7e8;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 {
+        stroke-width: .03px;
+      }
+
+      .cls-1, .cls-2, .cls-7 {
+        stroke: #b2b2b2;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-9 {
+        fill: #ff564a;
+        mix-blend-mode: multiply;
+      }
+
+      .cls-10 {
+        isolation: isolate;
+      }
+
+      .cls-2 {
+        fill: #c4c6c7;
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6, .cls-8 {
+        stroke: #9d9d9c;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-5 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-6 {
+        fill: url(#linear-gradient-5);
+      }
+
+      .cls-7 {
+        fill: #f1f2f2;
+      }
+
+      .cls-8 {
+        fill: url(#linear-gradient-4);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="2426.68" y1="122.05" x2="2242.31" y2="122.05" gradientTransform="translate(2427.95) rotate(-180) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d9d9d9"/>
+      <stop offset="1" stop-color="#b3b3b3"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="2057.52" y1="122.05" x2="2241.91" y2="122.05" gradientTransform="translate(2427.95) rotate(-180) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".5" stop-color="#ececec"/>
+      <stop offset="1" stop-color="#d6d6d6"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="2426.68" y1="61.52" x2="2057.52" y2="61.52" gradientTransform="translate(2427.95) rotate(-180) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e3e3e3"/>
+      <stop offset="1" stop-color="#dbdbdb"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="2057.52" y1="182.6" x2="2426.68" y2="182.6" xlink:href="#linear-gradient-3"/>
+    <linearGradient id="linear-gradient-5" x1="2353.21" y1="85.82" x2="2503.13" y2="85.82" gradientTransform="translate(2613.09) rotate(-180) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".3" stop-color="#f9f9f9"/>
+      <stop offset=".67" stop-color="#e9e9e9"/>
+      <stop offset="1" stop-color="#d6d6d6"/>
+    </linearGradient>
+  </defs>
+  <g class="cls-10">
+    <g id="Layer_1" data-name="Layer 1">
+      <g>
+        <polygon class="cls-4" points="1.27 122.07 1.27 .97 93.46 61.51 185.65 122.07 93.46 182.59 1.27 243.13 1.27 122.07"/>
+        <polygon class="cls-3" points="370.43 122.07 370.43 .97 278.24 61.51 186.04 122.07 278.24 182.59 370.43 243.13 370.43 122.07"/>
+        <polygon class="cls-5" points="370.43 .97 1.27 .97 185.65 122.07 186.04 122.07 370.43 .97"/>
+        <polygon class="cls-8" points="370.43 243.14 1.27 243.14 185.65 122.07 186.04 122.07 370.43 243.14"/>
+        <rect class="cls-6" x="109.95" y=".97" width="149.93" height="169.7"/>
+        <rect class="cls-7" x="246.84" y="2.18" width="13.04" height="168.49"/>
+        <rect class="cls-2" x="109.95" y="2.18" width="13.05" height="168.49"/>
+        <polygon class="cls-1" points="247.42 154.84 122.41 154.84 109.95 170.67 259.88 170.67 247.42 154.84"/>
+        <path class="cls-9" d="m371.76,243.14s-.06-.04-.06-.04V.97c0-.07-.12-.09-.14-.16-.01-.06.09-.11.06-.17-.06-.12-.26-.11-.38-.2-.11-.11-.11-.28-.3-.34-.09-.04-.19.04-.3.03-.09-.02-.12-.12-.22-.12H1.27c-.11,0-.13.11-.23.12-.1,0-.19-.07-.3-.03-.18.06-.17.23-.3.34-.11.09-.32.09-.38.2-.03.06.07.11.06.17-.02.07-.13.09-.13.16v242.16c0,.08.11.1.13.17,0,0-.09.12-.06.18.06.12.28.12.4.21.11.1.1.27.28.33.15.05.33.08.49.09l.04.02h369.22c.05,0,.08-.04.13-.05.11-.02.22-.02.33-.05l.06-.06c.42-.16.75-.43.75-.81Z"/>
+      </g>
+    </g>
+  </g>
+</svg>
