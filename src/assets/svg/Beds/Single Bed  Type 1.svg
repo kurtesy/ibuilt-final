@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 75.25 183.81">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        mix-blend-mode: multiply;
+      }
+
+      .cls-5 {
+        fill: #fafaf8;
+      }
+
+      .cls-6 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-7 {
+        fill: #939598;
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-4);
+      }
+
+      .cls-8 {
+        mask: url(#mask-2);
+      }
+
+      .cls-9 {
+        isolation: isolate;
+      }
+
+      .cls-10 {
+        mask: url(#mask-3);
+      }
+
+      .cls-11 {
+        fill: none;
+        stroke: #26281e;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: .72px;
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-12 {
+        filter: url(#luminosity-noclip);
+      }
+
+      .cls-13 {
+        mask: url(#mask-1);
+      }
+
+      .cls-14 {
+        mask: url(#mask);
+      }
+
+      .cls-15 {
+        fill: #def0fa;
+      }
+
+      .cls-16 {
+        filter: url(#luminosity-noclip-3);
+      }
+
+      .cls-17 {
+        fill: #26281e;
+      }
+    </style>
+    <filter id="luminosity-noclip" x=".36" y="5.64" width="71.12" height="12.58" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-color="#fff" result="bg"/>
+      <feBlend in="SourceGraphic" in2="bg"/>
+    </filter>
+    <filter id="luminosity-noclip-2" x=".36" y="-8283.41" width="71.12" height="32766" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-color="#fff" result="bg"/>
+      <feBlend in="SourceGraphic" in2="bg"/>
+    </filter>
+    <mask id="mask-1" x=".36" y="-8283.41" width="71.12" height="32766" maskUnits="userSpaceOnUse"/>
+    <linearGradient id="linear-gradient" x1="-2406.58" y1="303.46" x2="-2406.58" y2="290.88" gradientTransform="translate(2442.5 -285.23)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <mask id="mask" x=".36" y="5.64" width="71.12" height="12.58" maskUnits="userSpaceOnUse">
+      <g class="cls-12">
+        <g class="cls-13">
+          <rect class="cls-2" x=".36" y="5.64" width="71.12" height="12.58"/>
+        </g>
+      </g>
+    </mask>
+    <linearGradient id="linear-gradient-2" x1="-2406.58" y1="303.46" x2="-2406.58" y2="290.88" gradientTransform="translate(2442.5 -285.23)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#000"/>
+    </linearGradient>
+    <filter id="luminosity-noclip-3" x=".36" y="162.02" width="71.12" height="12.58" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-color="#fff" result="bg"/>
+      <feBlend in="SourceGraphic" in2="bg"/>
+    </filter>
+    <filter id="luminosity-noclip-4" x=".36" y="-8283.41" width="71.12" height="32766" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-color="#fff" result="bg"/>
+      <feBlend in="SourceGraphic" in2="bg"/>
+    </filter>
+    <mask id="mask-3" x=".36" y="-8283.41" width="71.12" height="32766" maskUnits="userSpaceOnUse"/>
+    <linearGradient id="linear-gradient-3" y1="-289.98" y2="-302.57" gradientTransform="translate(2442.5 -127.97) scale(1 -1)" xlink:href="#linear-gradient"/>
+    <mask id="mask-2" x=".36" y="162.02" width="71.12" height="12.58" maskUnits="userSpaceOnUse">
+      <g class="cls-16">
+        <g class="cls-10">
+          <rect class="cls-1" x=".36" y="162.02" width="71.12" height="12.58"/>
+        </g>
+      </g>
+    </mask>
+    <linearGradient id="linear-gradient-4" y1="-289.98" y2="-302.57" gradientTransform="translate(2442.5 -127.97) scale(1 -1)" xlink:href="#linear-gradient-2"/>
+  </defs>
+  <g class="cls-9">
+    <g id="Layer_1" data-name="Layer 1">
+      <g>
+        <g>
+          <rect class="cls-7" x="4.13" y="178.37" width="71.12" height="5.44"/>
+          <rect class="cls-7" x="4.13" y="65.28" width="71.12" height="113.09"/>
+          <path class="cls-7" d="m75.25,9.42v55.87H4.13V9.42h71.12Zm-9.21,41.07V17.27H14.85v33.22h51.18Z"/>
+          <rect class="cls-7" x="4.13" y="4.13" width="71.12" height="5.28"/>
+          <rect class="cls-7" x="14.85" y="17.27" width="51.18" height="33.22"/>
+        </g>
+        <g>
+          <g>
+            <rect class="cls-15" x=".36" y="174.6" width="71.12" height="5.44"/>
+            <rect class="cls-6" x=".36" y="61.51" width="71.12" height="113.09"/>
+            <path class="cls-5" d="m71.48,5.64v55.87H.36V5.64h71.12Zm-9.21,41.07V13.5H11.08v33.22h51.18Z"/>
+            <rect class="cls-15" x=".36" y=".36" width="71.12" height="5.28"/>
+            <rect class="cls-6" x="11.08" y="13.5" width="51.18" height="33.22"/>
+          </g>
+          <g>
+            <path class="cls-17" d="m71.83,174.6c0,.2-.16.36-.36.36H.36c-.2,0-.36-.16-.36-.36s.16-.36.36-.36h71.12c.2,0,.36.16.36.36Z"/>
+            <path class="cls-17" d="m71.83.36v179.68c0,.2-.16.36-.36.36H.36c-.2,0-.36-.16-.36-.36s.16-.36.36-.36h70.76V.36c0-.2.16-.36.36-.36s.36.16.36.36Z"/>
+            <path class="cls-17" d="m71.83,5.64c0,.2-.16.36-.36.36H.36c-.2,0-.36-.16-.36-.36s.16-.36.36-.36h71.12c.2,0,.36.16.36.36Z"/>
+            <path class="cls-17" d="m71.83.36c0,.2-.16.36-.36.36H.72v179.32c0,.2-.16.36-.36.36s-.36-.16-.36-.36V.36c0-.2.16-.36.36-.36h71.12c.2,0,.36.16.36.36Z"/>
+            <path class="cls-17" d="m71.83,61.51c0,.2-.16.36-.36.36H.36c-.2,0-.36-.16-.36-.36s.16-.36.36-.36h71.12c.2,0,.36.16.36.36Z"/>
+            <rect class="cls-11" x="11.08" y="13.5" width="51.18" height="33.22"/>
+          </g>
+        </g>
+        <g class="cls-14">
+          <rect class="cls-4" x=".36" y="5.64" width="71.12" height="12.58"/>
+        </g>
+        <g class="cls-8">
+          <rect class="cls-3" x=".36" y="162.02" width="71.12" height="12.58"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
