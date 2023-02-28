@@ -1,14 +1,37 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import Bedroom from './Bedroom'
+import { updateRoomData } from '../../redux/rooms'
 
 export default function Built() {
   const { builtLength, builtBreadth, scale, setbacks } = useSelector((state) => state.plot)
-  console.log(parseInt(setbacks.back * scale))
+  const { addedRooms } = useSelector((state) => state.rooms)
+  const [style, setStyle] = useState({})
+  const [selectedItems, setSelectedItems] = useState([])
+  const makeStyle = () => {
+    const width = Math.floor(parseFloat(builtLength) * parseInt(scale))
+    const height = Math.floor(parseFloat(builtBreadth) * parseInt(scale))
+    const top = setbacks.back * scale
+    const left = setbacks.left * scale
+    setStyle({ width, height, top, left })
+  }
+  useEffect(() => {
+    makeStyle()
+  }, [builtLength, builtBreadth, scale, setbacks, selectedItems])
+  useEffect(() => {
+    setSelectedItems(addedRooms)
+  }, [addedRooms])
+  console.log(selectedItems)
   return (
-    <div
-      className={`bg-gray-600 absolute top-[${parseInt(setbacks.back * scale)}px] left-[${parseInt(
-        setbacks.left * scale
-      )}px]`}
-      style={{ width: builtLength * scale, height: builtBreadth * scale }}></div>
+    <div className='bg-gray-600 absolute' style={style}>
+      {selectedItems?.map((item) => item.roomType === 'bedroom' && <Bedroom location='NW' id={item.position} />)}
+      {selectedItems?.map((item) => item.roomType === 'living' && <div>LIVING</div>)}
+      {selectedItems?.map((item) => item.roomType === 'kitchen' && <div>KITCHEN</div>)}
+      {selectedItems?.map((item) => item.roomType === 'drawing' && <div>DRAWING</div>)}
+      {selectedItems?.map((item) => item.roomType === 'sitout' && <div>SITOUT</div>)}
+      {selectedItems?.map((item) => item.roomType === 'store' && <div>STORE</div>)}
+      {selectedItems?.map((item) => item.roomType === 'office' && <div>OFFICE</div>)}
+      {selectedItems?.map((item) => item.roomType === 'media' && <div>MEDIA</div>)}
+    </div>
   )
 }

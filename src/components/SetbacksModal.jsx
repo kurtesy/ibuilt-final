@@ -10,7 +10,7 @@ export default function SetbacksModal() {
   const [left, setLeft] = useState(setbacks.left)
   const [right, setRight] = useState(setbacks.right)
   return (
-    <div className='absolute bg-white top-12 left-20 p-3 shadow-2xl rounded-lg flex flex-col gap-3'>
+    <div className='absolute bg-[#d9fc3595] top-12 left-20 p-3 shadow-lg rounded-lg flex flex-col gap-3 shadow-gray-500'>
       <div className='flex w-full gap-3'>
         <InputWithLabel label='Front' value={front} setValue={setFront} min={0} max={5} />
         <InputWithLabel label='Back' value={back} setValue={setBack} min={0} max={5} />

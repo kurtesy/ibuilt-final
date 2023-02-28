@@ -4,6 +4,7 @@ import Plot from './Plot'
 import { useSelector } from 'react-redux'
 import ZoomControls from './ZoomControls'
 
+
 export default function MainArea() {
   const [show, setShow] = useState(false)
   const [showMainBtn, setShowMainBtn] = useState(true)

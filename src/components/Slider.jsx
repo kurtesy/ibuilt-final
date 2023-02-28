@@ -1,35 +1,52 @@
 import React, { useState } from 'react'
 
-const Slider = ({ min, max, left, right, dimension }) => {
-  const [value, setValue] = useState(0)
+const Slider = ({ min, max, left, right, dimension, value, setValue }) => {
   const handleChange = (event) => {
-    setValue(parseInt(event.target.value))
+    setValue(parseFloat(event.target.value))
   }
+  console.log(value)
   return (
     <div className='flex flex-col gap-3 bg-slate-700 p-3 rounded-xl shadow-2xl'>
-      <input
-        type='range'
-        min={min}
-        max={max}
-        step='1'
-        value={value}
-        onChange={handleChange}
-        className='flex w-full accent-slate-200 cursor-pointer'
-        defaultValue={0}
-      />
+      <div className='flex gap-1'>
+        <input
+          type='range'
+          min={min}
+          max={max}
+          step={0.01}
+          value={value}
+          onChange={handleChange}
+          className='flex w-full flex-1 accent-slate-200 cursor-pointer'
+          defaultValue={0}
+        />
+        <input
+          type='text'
+          className='w-16 rounded-md px-2 outline-none'
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+      </div>
       <div className='flex w-full justify-between'>
         {!dimension && (
           <>
-            <div className='bg-red-500 p-2 text-xs font-bold rounded-lg text-white w-8 h-6 justify-center flex items-center'>
+            <div
+              className='bg-red-500 p-2 text-xs font-bold rounded-lg text-white w-8 h-6 justify-center flex items-center cursor-pointer'
+              onClick={() => setValue((prev) => prev - 1)}>
               {left}
             </div>
 
-            <div className='bg-green-500 p-2 text-xs font-bold rounded-lg text-white w-8 h-6 justify-center flex items-center'>
+            <div
+              className='bg-green-500 p-2 text-xs font-bold rounded-lg text-white w-8 h-6 justify-center flex items-center cursor-pointer'
+              onClick={() => setValue(0)}>
               0
             </div>
           </>
         )}
-        <div className='bg-blue-500 p-2 text-xs font-bold rounded-lg text-white w-auto h-6  flex items-center justify-center'>
+        <div
+          className='bg-blue-500 p-2 text-xs font-bold rounded-lg text-white w-auto h-6  flex items-center justify-center cursor-pointer'
+          onClick={() => {
+            if (dimension) setValue(initialValue)
+            else setValue((prev) => prev + 1)
+          }}>
           {dimension ? dimension : right}
         </div>
       </div>

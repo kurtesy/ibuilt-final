@@ -1,634 +1,356 @@
 import { createSlice } from '@reduxjs/toolkit'
-
 const initialState = {
-  bedrooms: [
+  currentPosition: '',
+  currentRoom: '',
+  selectedRoom: { id: null, roomType: '' },
+  addedRooms: [],
+  bedRooms: [
     {
-      id: 1,
-      length: 0,
-      breadth: 0,
-      minLength: 5,
-      maxLength: 20,
-      minBreadth: 5,
-      maxBreadth: 20,
-      position: { x: 0, y: 0 },
+      id: 'nw',
+      length: null,
+      breadth: null,
+      maxDim: 20,
+      minDim: 8,
+      area: 0,
+      position: { top: 0, left: 0 },
       walls: [
         {
-          position: { top: undefined, left: 0, bottom: 0, right: undefined },
-          length: 0,
-          thickness: 6,
           side: 'front',
-          hasDoor: false,
-          doorPosition: { top: 0, right: 18 }
-        },
-        {
-          position: { top: undefined, left: 0, top: 0, right: undefined },
-          length: 0,
+          length: null,
           thickness: 6,
-          side: 'back',
-          hasDoor: false,
-          doorPosition: { top: 0, right: 18 }
-        },
-        {
-          position: { top: undefined, left: 0, top: 0, right: undefined },
-          length: 0,
-          thickness: 6,
-          side: 'left',
-          hasDoor: false,
-          doorPosition: { top: 0, right: 18 }
-        },
-        {
-          position: { top: undefined, left: undefined, top: 0, right: 0 },
-          length: 0,
-          thickness: 6,
-          side: 'right',
-          hasDoor: false,
-          doorPosition: { top: 0, right: 18 }
-        }
-      ],
-      balcony: {
-        includes: true,
-        type: {
-          1: {
-            length: 0,
-            breadth: 0,
-            minLength: 3.2,
-            maxLength: 12,
-            position: { right: 0, top: 0 },
-            walls: [
-              {
-                position: { top: undefined, left: 0, bottom: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'front',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'back',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'left',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: undefined, top: 0, right: 0 },
-                length: 0,
-                thickness: 6,
-                side: 'right',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              }
-            ]
-          }, // BALCONY ONLY,
-          2: {
-            length: 0,
-            breadth: 0,
-            minLength: 3.2,
-            maxLength: 12,
-            position: { right: 0, top: 0 },
-            wash: { position: { left: 0, right: 0 }, icon: 'default' },
-            walls: [
-              {
-                position: { top: undefined, left: 0, bottom: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'front',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'back',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'left',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: undefined, top: 0, right: 0 },
-                length: 0,
-                thickness: 6,
-                side: 'right',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              }
-            ]
-          } // BALCONY + WASH
-        }
-      },
-      bath: {
-        includes: true,
-        type: {
-          1: {
-            length: 0,
-            breadth: 0,
-            minLength: 3.2,
-            maxLength: 8,
-            minBreadth: 3.2,
-            maxBreadth: 8,
-            position: { top: 0, left: 0 },
-            wc: { position: { top: 0, left: 0 }, icon: 'default' },
-            walls: [
-              {
-                position: { top: undefined, left: 0, bottom: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'front',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'back',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'left',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: undefined, top: 0, right: 0 },
-                length: 0,
-                thickness: 6,
-                side: 'right',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              }
-            ]
-          }, //WC ONLY
-          2: {
-            length: 0,
-            breadth: 0,
-            minLength: 3.2,
-            maxLength: 8,
-            minBreadth: 3.2,
-            maxBreadth: 8,
-            position: { top: 0, left: 0 },
-            bath: { position: { top: 0, left: 0 }, icon: 'default' },
-            walls: [
-              {
-                position: { top: undefined, left: 0, bottom: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'front',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'back',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'left',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: undefined, top: 0, right: 0 },
-                length: 0,
-                thickness: 6,
-                side: 'right',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              }
-            ]
-          }, //BATH ONLY
-          3: {
-            length: 0,
-            breadth: 0,
-            minLength: 3.2,
-            maxLength: 12,
-            minBreadth: 3.2,
-            maxBreadth: 12,
-            position: { top: 0, left: 0 },
-            wc: { position: { top: 0, left: 0 }, icon: 'default' },
-            bath: { position: { bottom: 0, right: 0 }, icon: 'default' },
-            walls: [
-              {
-                position: { top: undefined, left: 0, bottom: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'front',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'back',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'left',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: undefined, top: 0, right: 0 },
-                length: 0,
-                thickness: 6,
-                side: 'right',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              }
-            ]
-          } //WC+BATH+WASH
-        }
-      },
-      store: {
-        includes: true,
-        length: 0,
-        breadth: 0,
-        minLength: 3.2,
-        maxLength: 12,
-        minBreadth: 3.2,
-        maxBreadth: 12,
-        position: { top: 0, left: 0 },
-        walls: [
-          {
-            position: { top: undefined, left: 0, bottom: 0, right: undefined },
-            length: 0,
-            thickness: 6,
-            side: 'front',
-            hasDoor: false,
-            doorPosition: { top: 0, right: 18 }
+          direction: 0,
+          area: 0,
+          position: { bottom: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
           },
-          {
-            position: { top: undefined, left: 0, top: 0, right: undefined },
-            length: 0,
-            thickness: 6,
-            side: 'back',
-            hasDoor: false,
-            doorPosition: { top: 0, right: 18 }
-          },
-          {
-            position: { top: undefined, left: 0, top: 0, right: undefined },
-            length: 0,
-            thickness: 6,
-            side: 'left',
-            hasDoor: false,
-            doorPosition: { top: 0, right: 18 }
-          },
-          {
-            position: { top: undefined, left: undefined, top: 0, right: 0 },
-            length: 0,
-            thickness: 6,
-            side: 'right',
-            hasDoor: false,
-            doorPosition: { top: 0, right: 18 }
+          opening: {
+            includes: true,
+            length: 1.8,
+            position: { right: 18 }
           }
-        ]
-      }
+        },
+        {
+          side: 'back',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { right: 18 }
+          }
+        },
+        {
+          side: 'left',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { right: 18 }
+          }
+        },
+        {
+          side: 'right',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, right: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          },
+          opening: {
+            includes: true,
+            length: 1.8,
+            position: { right: 18 }
+          }
+        }
+      ]
     },
     {
-      id: 2,
-      length: 0,
-      breadth: 0,
-      minLength: 5,
-      maxLength: 20,
-      minBreadth: 5,
-      maxBreadth: 20,
-      position: { x: 0, y: 0 },
+      id: 'ne',
+      length: null,
+      breadth: null,
+      maxDim: 20,
+      minDim: 8,
+      area: 0,
+      position: { top: 0, right: 0 },
       walls: [
         {
-          position: { top: undefined, left: 0, bottom: 0, right: undefined },
-          length: 0,
-          thickness: 6,
           side: 'front',
-          hasDoor: false,
-          doorPosition: { top: 0, right: 18 }
-        },
-        {
-          position: { top: undefined, left: 0, top: 0, right: undefined },
-          length: 0,
+          length: null,
           thickness: 6,
-          side: 'back',
-          hasDoor: false,
-          doorPosition: { top: 0, right: 18 }
-        },
-        {
-          position: { top: undefined, left: 0, top: 0, right: undefined },
-          length: 0,
-          thickness: 6,
-          side: 'left',
-          hasDoor: false,
-          doorPosition: { top: 0, right: 18 }
-        },
-        {
-          position: { top: undefined, left: undefined, top: 0, right: 0 },
-          length: 0,
-          thickness: 6,
-          side: 'right',
-          hasDoor: false,
-          doorPosition: { top: 0, right: 18 }
-        }
-      ],
-      balcony: {
-        includes: true,
-        type: {
-          1: {
-            length: 0,
-            breadth: 0,
-            minLength: 3.2,
-            maxLength: 12,
-            position: { right: 0, top: 0 },
-            walls: [
-              {
-                position: { top: undefined, left: 0, bottom: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'front',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'back',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'left',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: undefined, top: 0, right: 0 },
-                length: 0,
-                thickness: 6,
-                side: 'right',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              }
-            ]
-          }, // BALCONY ONLY,
-          2: {
-            length: 0,
-            breadth: 0,
-            minLength: 3.2,
-            maxLength: 12,
-            position: { right: 0, top: 0 },
-            wash: { position: { left: 0, right: 0 }, icon: 'default' },
-            walls: [
-              {
-                position: { top: undefined, left: 0, bottom: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'front',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'back',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'left',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: undefined, top: 0, right: 0 },
-                length: 0,
-                thickness: 6,
-                side: 'right',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              }
-            ]
-          } // BALCONY + WASH
-        }
-      },
-      bath: {
-        includes: true,
-        type: {
-          1: {
-            length: 0,
-            breadth: 0,
-            minLength: 3.2,
-            maxLength: 8,
-            minBreadth: 3.2,
-            maxBreadth: 8,
-            position: { top: 0, left: 0 },
-            wc: { position: { top: 0, left: 0 }, icon: 'default' },
-            walls: [
-              {
-                position: { top: undefined, left: 0, bottom: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'front',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'back',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'left',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: undefined, top: 0, right: 0 },
-                length: 0,
-                thickness: 6,
-                side: 'right',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              }
-            ]
-          }, //WC ONLY
-          2: {
-            length: 0,
-            breadth: 0,
-            minLength: 3.2,
-            maxLength: 8,
-            minBreadth: 3.2,
-            maxBreadth: 8,
-            position: { top: 0, left: 0 },
-            bath: { position: { top: 0, left: 0 }, icon: 'default' },
-            walls: [
-              {
-                position: { top: undefined, left: 0, bottom: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'front',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'back',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'left',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: undefined, top: 0, right: 0 },
-                length: 0,
-                thickness: 6,
-                side: 'right',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              }
-            ]
-          }, //BATH ONLY
-          3: {
-            length: 0,
-            breadth: 0,
-            minLength: 3.2,
-            maxLength: 12,
-            minBreadth: 3.2,
-            maxBreadth: 12,
-            position: { top: 0, left: 0 },
-            wc: { position: { top: 0, left: 0 }, icon: 'default' },
-            bath: { position: { bottom: 0, right: 0 }, icon: 'default' },
-            walls: [
-              {
-                position: { top: undefined, left: 0, bottom: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'front',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'back',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: 0, top: 0, right: undefined },
-                length: 0,
-                thickness: 6,
-                side: 'left',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              },
-              {
-                position: { top: undefined, left: undefined, top: 0, right: 0 },
-                length: 0,
-                thickness: 6,
-                side: 'right',
-                hasDoor: false,
-                doorPosition: { top: 0, right: 18 }
-              }
-            ]
-          } //WC+BATH+WASH
-        }
-      },
-      store: {
-        includes: true,
-        length: 0,
-        breadth: 0,
-        minLength: 3.2,
-        maxLength: 12,
-        minBreadth: 3.2,
-        maxBreadth: 12,
-        position: { top: 0, left: 0 },
-        walls: [
-          {
-            position: { top: undefined, left: 0, bottom: 0, right: undefined },
-            length: 0,
-            thickness: 6,
-            side: 'front',
-            hasDoor: false,
-            doorPosition: { top: 0, right: 18 }
-          },
-          {
-            position: { top: undefined, left: 0, top: 0, right: undefined },
-            length: 0,
-            thickness: 6,
-            side: 'back',
-            hasDoor: false,
-            doorPosition: { top: 0, right: 18 }
-          },
-          {
-            position: { top: undefined, left: 0, top: 0, right: undefined },
-            length: 0,
-            thickness: 6,
-            side: 'left',
-            hasDoor: false,
-            doorPosition: { top: 0, right: 18 }
-          },
-          {
-            position: { top: undefined, left: undefined, top: 0, right: 0 },
-            length: 0,
-            thickness: 6,
-            side: 'right',
-            hasDoor: false,
-            doorPosition: { top: 0, right: 18 }
+          direction: 0,
+          area: 0,
+          position: { bottom: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
           }
-        ]
-      }
+        },
+        {
+          side: 'back',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'left',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'right',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, right: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        }
+      ]
+    },
+    {
+      id: 'sw',
+      length: null,
+      breadth: null,
+      maxDim: 20,
+      minDim: 8,
+      area: 0,
+      position: { bottom: 0, left: 0 },
+      walls: [
+        {
+          side: 'front',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { bottom: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'back',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'left',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'right',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, right: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        }
+      ]
+    },
+    {
+      id: 'se',
+      length: null,
+      breadth: null,
+      maxDim: 20,
+      minDim: 8,
+      area: 0,
+      position: { bottom: 0, right: 0 },
+      walls: [
+        {
+          side: 'front',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { bottom: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'back',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'left',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'right',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, right: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        }
+      ]
+    }
+  ],
+  toilets: [
+    {
+      id: 'nw',
+      type: {
+        wcOnly: { maxDim: 5, minDim: 3, length: null, breadth: null, position: { top: 0, left: 0 } },
+        bathOnly: { maxDim: 8, minDim: 4, length: null, breadth: null, position: { top: 0, left: 0 } },
+        wcBath: { maxDim: 8, minDim: 4, length: null, breadth: null, position: { top: 0, left: 0 } }
+      },
+      walls: [
+        {
+          side: 'front',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { bottom: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'back',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'left',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'right',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        }
+      ]
+    }
+  ],
+  Balconies: [
+    {
+      id: 'nw',
+      includes: false,
+      maxDim: 15,
+      minDim: 3,
+      length: null,
+      breadth: null,
+      position: { right: 0, top: 0 }
     }
   ]
 }
@@ -636,54 +358,77 @@ const roomsSlice = createSlice({
   name: 'rooms',
   initialState,
   reducers: {
-    updateRoom: (state, action) => {
-      const { id } = action.payload
-      console.log(action.payload)
-      if (action.payload.length) {
-        //update length
-        state.bedrooms[id - 1].length =
-          parseFloat(action.payload.length) <= parseFloat(state.bedrooms[id - 1]?.maxLength)
-            ? parseFloat(action.payload.length)
-            : parseFloat(state.bedrooms[id - 1]?.maxLength)
+    setCurrentPosition: (state, action) => {
+      state.currentPosition = action.payload.position
+    },
+    setCurrentRoom: (state, action) => {
+      state.currentRoom = action.payload.room
+    },
+    setSelectedRoomId: (state, action) => {
+      state.selectedRoom.id = action.payload.selectedId
+      state.selectedRoom.roomType = action.payload.roomType
+    },
+    updateRoomData: (state, action) => {
+      const { id, roomType } = action.payload
+      if (roomType === 'bedroom') {
+        const currentBedroom = state.bedRooms.filter((room) => room.id === id)[0]
 
-        //update front wall
-        state.bedrooms[id - 1].walls[0].length =
-          parseFloat(action.payload.length) <= parseFloat(state.bedrooms[id - 1].maxLength)
-            ? parseFloat(action.payload.length)
-            : parseFloat(state.bedrooms[id - 1].maxLength)
+        //If both length and breadth are privided update length,breadth and area, walls lengths
+        if (action.payload.length && action.payload.breadth) {
+          //update room dimensions
+          currentBedroom.length = parseFloat(action.payload.length).toFixed(2)
+          currentBedroom.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          //update area
+          currentBedroom.area = parseFloat(
+            parseFloat(action.payload.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          //update wall dimensions
+          //Front Wall
+          currentBedroom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          //Back Wall
+          currentBedroom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          //Left Wall
+          currentBedroom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          //Right Wall
+          currentBedroom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
 
-        //update back wall
-        state.bedrooms[id - 1].walls[1].length =
-          parseFloat(action.payload.length) <= parseFloat(state.bedrooms[id - 1].maxLength)
-            ? parseFloat(action.payload.length)
-            : parseFloat(state.bedrooms[id - 1].maxLength)
+        //If only one dimension provided, update dimension, area and wall lengths
+        if (action.payload.length && !action.payload.breadth) {
+          currentBedroom.length = parseFloat(action.payload.length).toFixed(2)
+          currentBedroom.area = parseFloat(
+            parseFloat(currentBedroom.breadth) * parseFloat(action.payload.length)
+          ).toFixed(2)
+          currentBedroom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          currentBedroom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+        }
+        if (action.payload.breadth && !action.payload.length) {
+          currentBedroom.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentBedroom.area = parseFloat(
+            parseFloat(currentBedroom.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          currentBedroom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentBedroom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        if (action.payload.position) {
+          currentBedroom.position = action.payload.position
+        }
+
+        state.bedRooms = state.bedRooms.filter((room) => room.id !== id)
+        state.bedRooms.push(currentBedroom)
       }
-      //update breadth
-      if (action.payload.breadth) {
-        //update breadth
-        state.bedrooms[id - 1].breadth =
-          parseFloat(action.payload.breadth) <= parseFloat(state.bedrooms[id - 1].maxBreadth)
-            ? parseFloat(action.payload.breadth)
-            : parseFloat(state.bedrooms[id - 1].maxBreadth)
-        //update left wall
-        state.bedrooms[id - 1].walls[2].length =
-          parseFloat(action.payload.breadth) <= parseFloat(state.bedrooms[id - 1].maxBreadth)
-            ? parseFloat(action.payload.breadth)
-            : parseFloat(state.bedrooms[id - 1].maxBreadth)
-        //update right wall
-        state.bedrooms[id - 1].walls[3].length =
-          parseFloat(action.payload.breadth) <= parseFloat(state.bedrooms[id - 1].maxBreadth)
-            ? parseFloat(action.payload.breadth)
-            : parseFloat(state.bedrooms[id - 1].maxBreadth)
-      }
-      //update x
-      if (action.payload.position.x) state.bedrooms[id - 1].position.x = action.payload.position.x
-      //update y
-      if (action.payload.position.y) state.bedrooms[id - 1].position.y = action.payload.position.y
+    },
+    addRoomToPlot: (state, action) => {
+      const { position, roomType } = action.payload
+      state.addedRooms.forEach((item, index) => {
+        if (item.position === position) state.addedRooms = state.addedRooms.filter((item) => item.position !== position)
+      })
+      state.addedRooms.push({ position, roomType })
     }
-  }
+  },
+  updateOpening: (state, action) => {}
 })
-  
-
-export const { updateRoom } = roomsSlice.actions
+export const { setCurrentPosition, setCurrentRoom, setSelectedRoomId, updateRoomData, addRoomToPlot } =
+  roomsSlice.actions
 export default roomsSlice.reducer

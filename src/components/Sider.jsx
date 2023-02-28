@@ -1,15 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PositionSelector from './PositionSelector'
 import RoomSelector from './RoomSelector'
 import Submenu from './Submenu'
 import DirectionControls from './DirectionControls'
 import DimensionControls from './DimensionControls'
+import { useDispatch } from 'react-redux'
+import { addRoomToPlot } from '../../redux/rooms'
 
 export default function Sider() {
   const [position, setPosition] = useState('')
   const [room, setRoom] = useState('')
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (position !== '' && room !== '') dispatch(addRoomToPlot({ position, roomType: room }))
+  }, [position, room])
   return (
-    <div className='w-[350px] h-full bg-slate-800 p-3 flex flex-col gap-3'>
+    <div className='w-[350px] h-full bg-slate-800 p-3 flex flex-col gap-3 overflow-y-scroll'>
       {/* title */}
       <div className='text-2xl font-semibold text-center bg-white rounded-full drop-shadow-2xl bg-gradient-to-r from-slate-800 to-lime-500 bg-clip-text text-transparent'>
         iBuiltup

@@ -1,21 +1,45 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setCurrentRoom } from '../../redux/rooms'
 export default function RoomSelector({ room, setRoom, position }) {
+  const dispatch = useDispatch()
   return (
     <div className='w-full'>
       <select
-        className='w-full bg-primaryLime rounded-lg px-3 h-[32px] font-semibold text-slate-800 cursor-pointer'
+        className='w-full bg-slate-400 outline-none rounded-lg px-3 h-[32px] font-semibold text-slate-800 cursor-pointer'
         value={room}
-        disabled={position === ''}
-        onChange={(e) => setRoom(e.target.value)}>
-        <option value=''>Select Room</option>
-        <option value='bedroom'>Bed Room</option>
-        <option value='living'>Living Room</option>
-        <option value='kitchen'>Kitchen</option>
-        <option value='drawingroom'>Drawing Room</option>
-        <option value='store'>Store</option>
-        <option value='sitout'>Study</option>
-        <option value='office'>Office</option>
-        <option value='media'>Media</option>
+        // disabled={position === ''}
+        onChange={(e) => {
+          dispatch(setCurrentRoom({ room: e.target.value }))
+          setRoom(e.target.value)
+        }}>
+        <option className='bg-gray-700' value=''>
+          Select Room
+        </option>
+        <option className='bg-primaryLime' value='bedroom'>
+          Bed Room
+        </option>
+        <option className='bg-primaryLime' value='living'>
+          Living Room
+        </option>
+        <option className='bg-primaryLime' value='kitchen'>
+          Kitchen
+        </option>
+        <option className='bg-primaryLime' value='drawing'>
+          Drawing Room
+        </option>
+        <option className='bg-primaryLime' value='store'>
+          Store
+        </option>
+        <option className='bg-primaryLime' value='sitout'>
+          Sitout
+        </option>
+        <option className='bg-primaryLime' value='office'>
+          Office
+        </option>
+        <option className='bg-primaryLime' value='media'>
+          Media
+        </option>
       </select>
     </div>
   )

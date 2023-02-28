@@ -16,7 +16,7 @@ export default function Plot() {
   }, [plotLength, plotBreadth, setbacks, scale])
 
   return (
-    <div className='bg-white relative' style={{ width: plotLength * scale, height: plotBreadth * scale }}>
+    <div className='bg-amber-600 relative' style={{ width: plotLength * scale, height: plotBreadth * scale }}>
       <Built />
     </div>
   )

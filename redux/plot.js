@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  type: '',
+  type: '2BHK',
+  facing: 'S',
   plotLength: 0,
   plotBreadth: 0,
   plotArea: 0,
@@ -14,7 +15,8 @@ const initialState = {
   },
   builtLength: 0,
   builtBreadth: 0,
-  builtArea: 0
+  builtArea: 0,
+  rooms: []
 }
 const plotSlice = createSlice({
   name: 'plot',
@@ -29,7 +31,6 @@ const plotSlice = createSlice({
       state.plotArea = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
     },
     setBuiltup: (state, action) => {
-      console.log(action.payload)
       state.builtLength = parseFloat(action.payload.builtLength).toFixed(2)
       state.builtBreadth = parseFloat(action.payload.builtBreadth).toFixed(2)
       state.builtArea = parseFloat(
@@ -38,8 +39,14 @@ const plotSlice = createSlice({
     },
     changeScale: (state, action) => {
       state.scale = action.payload.scale
+    },
+    updateType: (state, action) => {
+      state.type = action.payload.type
+    },
+    updateFacing: (state, action) => {
+      state.facing = action.payload.facing
     }
   }
 })
-export const { setPlotDetails, setBuiltup, changeScale } = plotSlice.actions
+export const { setPlotDetails, setBuiltup, changeScale, updateType, updateFacing } = plotSlice.actions
 export default plotSlice.reducer
