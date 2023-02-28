@@ -3,6 +3,7 @@ import MainArea from './components/MainArea'
 import Sider from './components/Sider'
 import React, { useEffect, useState } from 'react'
 import DisplayScreenWidthError from './components/DisplayScreenWidthError'
+import PremiumButton from './components/PremiumButton'
 export default function App() {
   const [_, width] = useWindowSize()
   const [currentWidth, setCurrentWidth] = useState(width)
@@ -15,7 +16,7 @@ export default function App() {
       {width <= 1024 ? (
         <DisplayScreenWidthError />
       ) : (
-        <div className='w-screen h-screen bg-black flex'>
+        <div className='w-screen h-screen bg-black flex '>
           <Sider />
           <MainArea />
         </div>

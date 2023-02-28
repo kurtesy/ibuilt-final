@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import locationMap from '../constants/locationMapping'
 import { setSelectedRoomId, updateRoomData } from '../../redux/rooms'
+import flooring from '../assets/svg/Flooring/Wooden Flooring Type 1.svg'
 import Wall from './Wall'
 export default function Bedroom({ location, id }) {
   const currentBedroom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === id)[0])
@@ -18,8 +19,8 @@ export default function Bedroom({ location, id }) {
     currStyle['width'] = Math.floor(length * scale)
     currStyle['height'] = Math.floor(breadth * scale)
     if (isActive && selectedRoom.id === id) {
-      currStyle['zIndex'] = 99
-      currStyle['backgroundColor'] = '#aaff00'
+      currStyle['zIndex'] = 40
+      currStyle['backgroundColor'] = 'black'
     } else {
       currStyle['zIndex'] = 1
       currStyle['backgroundColor'] = '#fff'
@@ -52,7 +53,7 @@ export default function Bedroom({ location, id }) {
   }, [builtBreadth, builtLength])
 
   return (
-    <div style={style} className='absolute cursor-pointer' id={id} onClick={handleClick}>
+    <div style={style} className='absolute cursor-pointer bg-woodenFlooring' id={id} onClick={handleClick}>
       {currentBedroom.walls.map((wall) => (
         <Wall
           length={wall.length}

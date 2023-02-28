@@ -5,6 +5,9 @@ module.exports = {
     extend: {
       colors: {
         primaryLime: '#d9fc35'
+      },
+      backgroundImage: {
+        woodenFlooring: 'url("/src/assets/svg/Flooring/Wooden Flooring Type 1.svg")'
       }
     }
   },
