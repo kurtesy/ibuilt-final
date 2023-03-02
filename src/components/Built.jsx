@@ -21,10 +21,9 @@ export default function Built() {
   useEffect(() => {
     setSelectedItems(addedRooms)
   }, [addedRooms])
-  console.log(selectedItems)
   return (
     <div className='bg-gray-600 absolute' style={style}>
-      {selectedItems?.map((item) => item.roomType === 'bedroom' && <Bedroom location='NW' id={item.position} />)}
+      {selectedItems?.map((item) => item.roomType === 'bedroom' && <Bedroom id={item.position} />)}
       {selectedItems?.map((item) => item.roomType === 'living' && <div>LIVING</div>)}
       {selectedItems?.map((item) => item.roomType === 'kitchen' && <div>KITCHEN</div>)}
       {selectedItems?.map((item) => item.roomType === 'drawing' && <div>DRAWING</div>)}

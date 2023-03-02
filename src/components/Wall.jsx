@@ -31,7 +31,7 @@ export default function Wall({ length, thickness, position, door, side, directio
     setStyle(currStyle)
     setOpeningStyle({ ...currOpeningStyle, ...opening?.position })
   }
-  console.log(openingStyle)
+  // console.log(openingStyle)
   useEffect(() => {
     makeStyle()
   }, [scale, length, thickness, position, door, side, direction, opening])

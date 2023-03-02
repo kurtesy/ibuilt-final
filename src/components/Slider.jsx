@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
-const Slider = ({ min, max, left, right, dimension, value, setValue }) => {
+const Slider = ({ min, max, dimension, value, setValue, direction }) => {
   const handleChange = (event) => {
     setValue(parseFloat(event.target.value))
   }
-  console.log(value)
+
   return (
     <div className='flex flex-col gap-3 bg-slate-700 p-3 rounded-xl shadow-2xl'>
       <div className='flex gap-1'>
@@ -16,12 +16,13 @@ const Slider = ({ min, max, left, right, dimension, value, setValue }) => {
           value={value}
           onChange={handleChange}
           className='flex w-full flex-1 accent-slate-200 cursor-pointer'
-          defaultValue={0}
+          defaultValue={value}
         />
         <input
           type='text'
           className='w-16 rounded-md px-2 outline-none'
           value={value}
+          defaultValue={value}
           onChange={(e) => setValue(e.target.value)}
         />
       </div>
@@ -31,7 +32,7 @@ const Slider = ({ min, max, left, right, dimension, value, setValue }) => {
             <div
               className='bg-red-500 p-2 text-xs font-bold rounded-lg text-white w-8 h-6 justify-center flex items-center cursor-pointer'
               onClick={() => setValue((prev) => prev - 1)}>
-              {left}
+              {direction.from}
             </div>
 
             <div
@@ -47,7 +48,7 @@ const Slider = ({ min, max, left, right, dimension, value, setValue }) => {
             if (dimension) setValue(initialValue)
             else setValue((prev) => prev + 1)
           }}>
-          {dimension ? dimension : right}
+          {dimension ? dimension : direction.to}
         </div>
       </div>
     </div>

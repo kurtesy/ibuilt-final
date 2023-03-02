@@ -2,10 +2,11 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import locationMap from '../constants/locationMapping'
-import { setSelectedRoomId, updateRoomData } from '../../redux/rooms'
+import { setCurrentPosition, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import flooring from '../assets/svg/Flooring/Wooden Flooring Type 1.svg'
 import Wall from './Wall'
-export default function Bedroom({ location, id }) {
+import Toilet from './Toilet'
+export default function Bedroom({ id }) {
   const currentBedroom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === id)[0])
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
@@ -33,13 +34,14 @@ export default function Bedroom({ location, id }) {
   }, [currentBedroom])
 
   const handleClick = () => {
+    // e.stopPropagation()
     dispatch(setSelectedRoomId({ selectedId: id, roomType: 'bedroom' }))
     setIsActive(true)
   }
 
   useEffect(() => {
     makeStyle()
-  }, [length, breadth, location, selectedRoom, isActive, currentBedroom])
+  }, [length, breadth, selectedRoom, isActive, currentBedroom])
 
   useEffect(() => {
     dispatch(
@@ -54,6 +56,7 @@ export default function Bedroom({ location, id }) {
 
   return (
     <div style={style} className='absolute cursor-pointer bg-woodenFlooring' id={id} onClick={handleClick}>
+      <Toilet id={id} />
       {currentBedroom.walls.map((wall) => (
         <Wall
           length={wall.length}

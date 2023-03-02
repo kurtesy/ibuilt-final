@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentRoom } from '../../redux/rooms'
 export default function RoomSelector({ room, setRoom, position }) {
+  const { currentPosition } = useSelector((state) => state.rooms)
   const dispatch = useDispatch()
   return (
     <div className='w-full'>
@@ -10,7 +11,7 @@ export default function RoomSelector({ room, setRoom, position }) {
         value={room}
         // disabled={position === ''}
         onChange={(e) => {
-          dispatch(setCurrentRoom({ room: e.target.value }))
+          if (currentPosition) dispatch(setCurrentRoom({ id: currentPosition, room: e.target.value }))
           setRoom(e.target.value)
         }}>
         <option className='bg-gray-700' value=''>

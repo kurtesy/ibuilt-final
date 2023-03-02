@@ -6,27 +6,59 @@ import { updateRoomData } from '../../redux/rooms'
 export default function DimensionControls() {
   const dispatch = useDispatch()
   const { selectedRoom } = useSelector((state) => state.rooms)
-  const currentRoom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === selectedRoom.id)[0])
+  
+  const currentBedRoom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === selectedRoom.id)[0])
+  const currentToilet = useSelector((state) => state.rooms.toilets.filter((room) => room.id === selectedRoom.id)[0])
+  const [currentSelection, setCurrentSelection] = useState(null)
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
   useEffect(() => {
-    if (currentRoom) {
-      setLength(currentRoom.length < currentRoom.maxDim ? currentRoom.length : currentRoom.maxDim)
-      setBreadth(currentRoom.breadth < currentRoom.maxDim ? currentRoom.breadth : currentRoom.maxDim)
+    if (selectedRoom.roomType === 'toilet') {
+      console.log('toilet selected')
+      setCurrentSelection(currentToilet)
+    } else if (selectedRoom.roomType === 'bedroom') {
+      setCurrentSelection(currentBedRoom)
+      console.log('bedroom selected')
+    } else {
+      setCurrentSelection(null)
+      console.log('nothing selected')
     }
-  }, [currentRoom])
+  }, [selectedRoom])
+  console.log(currentSelection)
+  useEffect(() => {
+    if (currentSelection) {
+      setLength(currentSelection.length <= currentSelection.maxDim ? currentSelection.length : currentSelection.maxDim)
+      setBreadth(
+        currentSelection.breadth <= currentSelection.maxDim ? currentSelection.breadth : currentSelection.maxDim
+      )
+    }
+  }, [currentSelection])
 
   useEffect(() => {
     dispatch(updateRoomData({ ...selectedRoom, length, breadth }))
-  }, [length, breadth])
+  }, [length, breadth, selectedRoom])
 
   return (
     <>
       <div className='font-bold h-[32px] flex items-center text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800'>
         Dimensions
       </div>
-      <Slider min={3.5} max={20} dimension='Length' value={length} setValue={setLength} />
-      <Slider min={3.5} max={20} dimension='Breadth' value={breadth} setValue={setBreadth} />
+      <Slider
+        min={currentSelection?.minDim}
+        max={currentSelection?.maxDim}
+        dimension='Length'
+        value={length}
+        defaultValue={length}
+        setValue={setLength}
+      />
+      <Slider
+        min={currentSelection?.minDim}
+        max={currentSelection?.maxDim}
+        dimension='Breadth'
+        value={breadth}
+        defaultValue={breadth}
+        setValue={setBreadth}
+      />
     </>
   )
 }
