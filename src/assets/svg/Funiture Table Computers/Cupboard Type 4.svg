@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 277.46 166.92">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #7e828e;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill-rule: evenodd;
+      }
+
+      .cls-4, .cls-2 {
+        fill: #ddd3cc;
+        mix-blend-mode: multiply;
+      }
+
+      .cls-5 {
+        isolation: isolate;
+      }
+
+      .cls-6 {
+        fill: #4b4f5e;
+      }
+
+      .cls-7 {
+        fill: #d84464;
+      }
+
+      .cls-8 {
+        fill: #a3a5ad;
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient);
+        mix-blend-mode: color-dodge;
+        opacity: .2;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="-155.52" y1="5.09" x2="-161.46" y2="147.04" gradientTransform="translate(337.94) skewX(-41.11)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#775c44"/>
+      <stop offset=".15" stop-color="#6e553e"/>
+      <stop offset=".39" stop-color="#564231"/>
+      <stop offset=".69" stop-color="#2f241a"/>
+      <stop offset="1" stop-color="#000"/>
+    </linearGradient>
+  </defs>
+  <g class="cls-5">
+    <g id="Layer_1" data-name="Layer 1">
+      <polygon class="cls-3" points="82.47 166.92 10.5 166.92 0 95.53 112.95 0 277.46 .47 82.47 166.92"/>
+      <path class="cls-2" d="m66.27,123.58v-4.03c1.54-.2,2.72-1.26,2.72-2.56s-1.18-2.36-2.72-2.56v-36.33H23.52v88.62h42.75v-38.02c1.54-.2,2.72-1.26,2.72-2.56s-1.18-2.36-2.72-2.56Z"/>
+      <path class="cls-2" d="m62.76,123.58v-4.03c1.54-.2,2.72-1.26,2.72-2.56s-1.18-2.36-2.72-2.56v-36.33H20v88.62h42.75v-38.02c1.54-.2,2.72-1.26,2.72-2.56s-1.18-2.36-2.72-2.56Z"/>
+      <g>
+        <ellipse class="cls-6" cx="57.56" cy="116.99" rx="3.22" ry="2.6"/>
+        <ellipse class="cls-6" cx="57.56" cy="126.14" rx="3.22" ry="2.6"/>
+        <g>
+          <rect class="cls-7" x="40.52" y="78.1" width="17.55" height="88.62"/>
+          <rect class="cls-8" x="15.32" y="78.1" width="39.63" height="88.62"/>
+        </g>
+        <polygon class="cls-1" points="16.73 165.81 16.73 83.8 53.88 165.81 16.73 165.81"/>
+      </g>
+      <g>
+        <rect class="cls-4" x="15.31" y="78.14" width="42.74" height="9"/>
+        <rect class="cls-4" x="15.31" y="78.14" width="42.74" height="4.03"/>
+      </g>
+      <g>
+        <rect class="cls-4" x="15.31" y="78.04" width="11.14" height="88.73"/>
+        <rect class="cls-4" x="15.31" y="78.04" width="4.98" height="88.73"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.68 88.73">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #7e828e;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-3, .cls-2 {
+        fill: #ddd3cc;
+        mix-blend-mode: multiply;
+      }
+
+      .cls-4 {
+        isolation: isolate;
+      }
+
+      .cls-5 {
+        fill: #4b4f5e;
+      }
+
+      .cls-6 {
+        fill: #d84464;
+      }
+
+      .cls-7 {
+        fill: #a3a5ad;
+      }
+    </style>
+  </defs>
+  <g class="cls-4">
+    <g id="Layer_1" data-name="Layer 1">
+      <path class="cls-2" d="m50.96,45.54v-4.03c1.54-.2,2.72-1.26,2.72-2.56s-1.18-2.36-2.72-2.56V.06H8.21v88.62h42.75v-38.02c1.54-.2,2.72-1.26,2.72-2.56s-1.18-2.36-2.72-2.56Z"/>
+      <path class="cls-2" d="m47.45,45.54v-4.03c1.54-.2,2.72-1.26,2.72-2.56s-1.18-2.36-2.72-2.56V.06H4.69v88.62h42.75v-38.02c1.54-.2,2.72-1.26,2.72-2.56s-1.18-2.36-2.72-2.56Z"/>
+      <g>
+        <ellipse class="cls-5" cx="42.25" cy="38.95" rx="3.22" ry="2.6"/>
+        <ellipse class="cls-5" cx="42.25" cy="48.1" rx="3.22" ry="2.6"/>
+        <g>
+          <rect class="cls-6" x="25.21" y=".06" width="17.55" height="88.62"/>
+          <rect class="cls-7" x="0" y=".06" width="39.63" height="88.62"/>
+        </g>
+        <polygon class="cls-1" points="1.42 87.77 1.42 5.77 38.57 87.77 1.42 87.77"/>
+      </g>
+      <g>
+        <rect class="cls-3" x="0" y=".1" width="42.74" height="9"/>
+        <rect class="cls-3" x="0" y=".1" width="42.74" height="4.03"/>
+      </g>
+      <g>
+        <rect class="cls-3" width="11.14" height="88.73"/>
+        <rect class="cls-3" width="4.98" height="88.73"/>
+      </g>
+    </g>
+  </g>
+</svg>
