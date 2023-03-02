@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 166.61 466.63">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #7e828e;
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #ddd3cc;
+        mix-blend-mode: multiply;
+      }
+
+      .cls-3 {
+        isolation: isolate;
+      }
+
+      .cls-4 {
+        fill: #4b4f5e;
+      }
+
+      .cls-5 {
+        fill: #e5576f;
+      }
+
+      .cls-6 {
+        fill: #a3a5ad;
+      }
+    </style>
+  </defs>
+  <g class="cls-3">
+    <g id="Layer_1" data-name="Layer 1">
+      <g>
+        <ellipse class="cls-4" cx="53.56" cy="282.11" rx="8.5" ry="6.22"/>
+        <ellipse class="cls-4" cx="53.56" cy="303.96" rx="8.5" ry="6.22"/>
+      </g>
+      <g>
+        <ellipse class="cls-4" cx="53.56" cy="121.04" rx="8.5" ry="6.22"/>
+        <ellipse class="cls-4" cx="53.56" cy="142.89" rx="8.5" ry="6.22"/>
+      </g>
+      <g>
+        <rect class="cls-5" x="52.23" y=".57" width="46.27" height="464.28"/>
+        <rect class="cls-6" x="60.46" y=".57" width="104.47" height="464.28"/>
+      </g>
+      <polygon class="cls-1" points="161.2 462.65 161.2 14.18 63.26 462.65 161.2 462.65"/>
+      <g>
+        <polygon class="cls-2" points="25.75 445.16 166.61 445.16 166.61 466.63 0 466.63 25.75 445.16"/>
+        <polygon class="cls-2" points="25.75 457.02 166.61 457.02 166.61 466.63 0 466.63 25.75 457.02"/>
+      </g>
+      <g>
+        <rect class="cls-2" x="136.35" y="0" width="29.36" height="465.7"/>
+        <rect class="cls-2" x="152.57" y="0" width="13.14" height="465.7"/>
+      </g>
+    </g>
+  </g>
+</svg>

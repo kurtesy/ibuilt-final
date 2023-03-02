@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 331.028 331.386">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: #1d1d1b;
+      }
+    </style>
+  </defs>
+  <g>
+    <rect class="cls-1" x="1.5" y="1.858" width="328.028" height="328.028"/>
+    <path class="cls-2" d="m331.028,331.386H0V.358h331.028v331.028Zm-328.028-3h325.028V3.358H3v325.028Z"/>
+  </g>
+  <g>
+    <line class="cls-1" x1="1.5" y1="1.858" x2="328.321" y2="328.679"/>
+    <rect class="cls-2" x="163.411" y="-65.829" width="3" height="462.195" transform="translate(-68.561 165.016) rotate(-45)"/>
+  </g>
+  <g>
+    <line class="cls-1" x1="1.5" y1="97.582" x2="329.528" y2="233.455"/>
+    <rect class="cls-2" x="164.014" y="-12.009" width="3" height="355.055" transform="translate(-50.744 255.092) rotate(-67.5)"/>
+  </g>
+  <rect class="cls-2" x="1.501" y="163.769" width="328.028" height="3"/>
+  <g>
+    <line class="cls-1" x1="1.5" y1="232.955" x2="328.321" y2="97.582"/>
+    <rect class="cls-2" x="-11.963" y="163.769" width="353.748" height="3" transform="translate(-50.705 75.719) rotate(-22.508)"/>
+  </g>
+  <g>
+    <line class="cls-1" x1="1.5" y1="328.679" x2="328.321" y2="1.858"/>
+    <rect class="cls-2" x="-66.187" y="163.769" width="462.195" height="3" transform="translate(-68.561 165.016) rotate(-45)"/>
+  </g>
+  <g>
+    <line class="cls-1" x1="97.155" y1="328.847" x2="232.598" y2="1.858"/>
+    <rect class="cls-2" x="-12.089" y="163.852" width="353.93" height="3" transform="translate(-50.996 254.373) rotate(-67.493)"/>
+  </g>
+  <rect class="cls-2" x="163.411" y="1.858" width="3" height="328.028"/>
+  <g>
+    <line class="cls-1" x1="233.098" y1="329.886" x2="96.692" y2=".574"/>
+    <rect class="cls-2" x="163.395" y="-12.992" width="3" height="356.444" transform="translate(-50.679 75.68) rotate(-22.5)"/>
+  </g>
+  <g>
+    <rect class="cls-1" x="165.514" y="1.858" width="164.014" height="164.014"/>
+    <path class="cls-2" d="m331.028,167.372h-167.014V.358h167.014v167.014Zm-164.014-3h161.014V3.358h-161.014v161.014Z"/>
+  </g>
+  <g>
+    <path class="cls-2" d="m164.962,274.795c-59.745,0-108.351-48.606-108.351-108.351s48.606-108.351,108.351-108.351v3c-58.091,0-105.351,47.26-105.351,105.351s47.26,105.351,105.351,105.351c52.439,0,97.312-39.118,104.381-90.993l2.973.405c-7.27,53.353-53.422,93.587-107.354,93.587Z"/>
+    <polygon class="cls-2" points="258.099 196.947 260.724 198.403 270.263 181.223 273.999 200.515 276.943 199.945 271.641 172.561 258.099 196.947"/>
+  </g>
+</svg>
