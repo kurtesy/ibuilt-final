@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateRoomData } from '../../redux/rooms'
 export default function BedroomSubmenu() {
   const [bathType, setBathType] = useState('')
+  const [isWardrobeChecked, setIswardrobeChecked] = useState(false)
+  const [isBalconyChecked, setIsbalconyChecked] = useState(false)
   const { currentPosition } = useSelector((state) => state.rooms)
   const dispatch = useDispatch()
   const handleSelectBathType = (e) => {
@@ -10,9 +12,17 @@ export default function BedroomSubmenu() {
   }
 
   useEffect(() => {
+    dispatch(updateRoomData({ id: currentPosition, roomType: 'bedroom', wardrobe: isWardrobeChecked }))
+  }, [isWardrobeChecked])
+  useEffect(() => {
+    dispatch(updateRoomData({ id: currentPosition, roomType: 'bedroom', balcony: isBalconyChecked }))
+  }, [isBalconyChecked])
+
+  useEffect(() => {
     if (currentPosition) dispatch(updateRoomData({ id: currentPosition, roomType: 'toilet', bathType }))
   }, [currentPosition, bathType])
-
+  console.log('wardrobe==> ' + isWardrobeChecked)
+  console.log('balcony==> ' + isBalconyChecked)
   return (
     <div className='bg-slate-800 w-[150px]  p-3 gap-4 rounded-lg flex flex-col shadow-2xl text-primaryLime'>
       <div className='flex items-center justify-between gap-2'>
@@ -57,11 +67,21 @@ export default function BedroomSubmenu() {
       </div>
       <div className='h-[1px] bg-primaryLime w-full' />
       <div className='flex items-center justify-between gap-2'>
-        <input type='checkbox' className='w-4 h-full cursor-pointer hover:scale-115' />
+        <input
+          type='checkbox'
+          className='w-4 h-full cursor-pointer hover:scale-115'
+          checked={isBalconyChecked}
+          onChange={() => setIsbalconyChecked((prev) => !prev)}
+        />
         <div className='h-full w-full text-xs'>Balcony</div>
       </div>
       <div className='flex items-center justify-between gap-2'>
-        <input type='checkbox' className='w-4 h-full cursor-pointer hover:scale-115' />
+        <input
+          type='checkbox'
+          className='w-4 h-full cursor-pointer hover:scale-115'
+          checked={isWardrobeChecked}
+          onChange={() => setIswardrobeChecked((prev) => !prev)}
+        />
         <div className='h-full w-full text-xs'>Wardrobe</div>
       </div>
     </div>

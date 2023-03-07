@@ -1,10 +1,10 @@
 import React from 'react'
-import robo from '../assets/svg/robo.png'
+// import robo from '../assets/svg/robo.png'
 export default function DisplayScreenWidthError() {
   return (
     <div className='w-screen h-screen bg-slate-800 text-slate-400 flex flex-col items-center justify-center text-2xl relative'>
       <div className='absolute w-screen h-screen '>
-        <img src={robo} alt='robo' className='w-screen h-screen -z-50 opacity-20' />
+        {/* <img src={robo} alt='robo' className='w-screen h-screen -z-50 opacity-20' /> */}
       </div>
       <div className='text-4xl text-primaryLime'>Oh no!</div>
       <div className='text-center my-6 text-xl italic text-lime-500'>

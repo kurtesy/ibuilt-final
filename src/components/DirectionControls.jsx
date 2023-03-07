@@ -2,7 +2,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Slider from './Slider'
 import React, { useEffect, useState } from 'react'
 import { updateRoomData } from '../../redux/rooms'
-
+import { RiAnticlockwise2Fill, RiClockwise2Fill } from 'react-icons/ri'
+import { BiReset } from 'react-icons/bi'
 export default function DirectionControls() {
   const dispatch = useDispatch()
   const { selectedRoom } = useSelector((state) => state.rooms)
@@ -15,6 +16,7 @@ export default function DirectionControls() {
   const [maxX, setMaxX] = useState(0)
   const [maxY, setMaxY] = useState(0)
   const [position, setPosition] = useState({})
+  const [rotation, setRotation] = useState(0)
   const [currentSelection, setCurrentSelection] = useState(null)
   useEffect(() => {
     if (selectedRoom.roomType === 'bedroom' && currentSelection) {
@@ -52,8 +54,20 @@ export default function DirectionControls() {
   useEffect(() => {
     dispatch(updateRoomData({ ...selectedRoom, position }))
   }, [position])
+  const handleRotateClockwise = () => {
+    if (rotation === 270) setRotation(0)
+    else setRotation((prev) => prev + 90)
+  }
+  const handleRotateAntiClockwise = () => {
+    if (rotation === -270) setRotation(0)
+    else setRotation((prev) => prev - 90)
+  }
 
-  console.log(position)
+  useEffect(() => {
+    if (selectedRoom.roomType === 'toilet')
+      dispatch(updateRoomData({ id: selectedRoom.id, roomType: 'toilet', rotated: rotation }))
+  }, [rotation])
+
   return (
     <>
       <div className='font-bold h-[32px] flex items-center text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800'>
@@ -73,6 +87,23 @@ export default function DirectionControls() {
         setValue={setY}
         direction={position.bottom !== undefined ? { from: 'S', to: 'N' } : { from: 'N', to: 'S' }}
       />
+      <div className='flex bg-slate-700 py-3 rounded-xl shadow-2xl items-center justify-between px-6'>
+        <RiAnticlockwise2Fill
+          size={32}
+          className='text-white cursor-pointer hover:scale-110 hover:rotate-[-90deg] duration-300 hover:text-red-500'
+          onClick={handleRotateAntiClockwise}
+        />
+        <BiReset
+          size={32}
+          className='text-white cursor-pointer hover:scale-110 hover:rotate-[-180deg] duration-300 hover:text-green-500'
+          onClick={() => setRotation(0)}
+        />
+        <RiClockwise2Fill
+          size={32}
+          className='text-white cursor-pointer hover:scale-110 hover:rotate-[90deg] duration-300 hover:text-blue-500'
+          onClick={handleRotateClockwise}
+        />
+      </div>
     </>
   )
 }

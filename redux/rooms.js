@@ -15,6 +15,91 @@ const initialState = {
       area: 0,
       position: { top: 0, left: 0 },
       hasToilet: true,
+      hasWardrobe: false,
+      hasBalcony: false,
+      walls: [
+        {
+          side: 'front',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { bottom: 0, left: 0 },
+          door: {
+            includes: true,
+            position: { right: 18 },
+            type: 'default'
+          },
+          opening: {
+            includes: true,
+            length: 1.8,
+            position: { right: 18 }
+          }
+        },
+        {
+          side: 'back',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { right: 18 }
+          }
+        },
+        {
+          side: 'left',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { right: 18 }
+          }
+        },
+        {
+          side: 'right',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, right: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          },
+          opening: {
+            includes: true,
+            length: 1.8,
+            position: { right: 18 }
+          }
+        }
+      ]
+    },
+    {
+      id: 'ne',
+      length: null,
+      breadth: null,
+      maxDim: 20,
+      minDim: 8,
+      area: 0,
+      position: { top: 0, right: 0 },
       walls: [
         {
           side: 'front',
@@ -25,6 +110,198 @@ const initialState = {
           position: { bottom: 0, left: 0 },
           door: {
             includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'back',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'left',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'right',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, right: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        }
+      ]
+    },
+    {
+      id: 'sw',
+      length: null,
+      breadth: null,
+      maxDim: 20,
+      minDim: 8,
+      area: 0,
+      position: { bottom: 0, left: 0 },
+      walls: [
+        {
+          side: 'front',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { bottom: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'back',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'left',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'right',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, right: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        }
+      ]
+    },
+    {
+      id: 'se',
+      length: null,
+      breadth: null,
+      maxDim: 20,
+      minDim: 8,
+      area: 0,
+      position: { bottom: 0, right: 0 },
+      walls: [
+        {
+          side: 'front',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { bottom: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'back',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'left',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'right',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, right: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        }
+      ]
+    }
+  ],
+  livingRooms: [
+    {
+      id: 'nw',
+      length: null,
+      breadth: null,
+      maxDim: 20,
+      minDim: 8,
+      area: 0,
+      position: { top: 0, left: 0 },
+      hasToilet: true,
+      walls: [
+        {
+          side: 'front',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { bottom: 0, left: 0 },
+          door: {
+            includes: true,
             position: { right: 18 },
             type: 'default'
           },
@@ -288,6 +565,7 @@ const initialState = {
       breadth: null,
       maxDim: null,
       minDim: null,
+      rotated: 0,
       area: 0,
       position: { top: 0, left: 0 },
       walls: [
@@ -336,7 +614,7 @@ const initialState = {
           thickness: 6,
           direction: 1,
           area: 0,
-          position: { top: 0, left: 0 },
+          position: { top: 0, right: 0 },
           door: {
             includes: false,
             position: { right: 18 },
@@ -400,7 +678,7 @@ const initialState = {
           thickness: 6,
           direction: 1,
           area: 0,
-          position: { top: 0, left: 0 },
+          position: { top: 0, right: 0 },
           door: {
             includes: false,
             position: { right: 18 },
@@ -464,7 +742,7 @@ const initialState = {
           thickness: 6,
           direction: 1,
           area: 0,
-          position: { top: 0, left: 0 },
+          position: { top: 0, right: 0 },
           door: {
             includes: false,
             position: { right: 18 },
@@ -528,7 +806,7 @@ const initialState = {
           thickness: 6,
           direction: 1,
           area: 0,
-          position: { top: 0, left: 0 },
+          position: { top: 0, right: 0 },
           door: {
             includes: false,
             position: { right: 18 },
@@ -568,7 +846,12 @@ const roomsSlice = createSlice({
       const { id, roomType } = action.payload
       if (roomType === 'bedroom') {
         const currentBedroom = state.bedRooms.filter((room) => room.id === id)[0]
-
+        if (action.payload.balcony !== undefined) {
+          currentBedroom.hasBalcony = action.payload.balcony
+        }
+        if (action.payload.wardrobe !== undefined) {
+          currentBedroom.hasWardrobe = action.payload.wardrobe
+        }
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
@@ -618,6 +901,9 @@ const roomsSlice = createSlice({
       if (roomType === 'toilet') {
         // bathTypeDimensions
         const currentToilet = state.toilets.filter((room) => room.id === id)[0]
+        if (action.payload.rotated !== undefined) {
+          currentToilet.rotated = action.payload.rotated
+        }
         if (action.payload.bathType) {
           currentToilet.type = parseInt(action.payload.bathType)
           const dimensions = bathTypeDimensions.filter(
@@ -627,6 +913,10 @@ const roomsSlice = createSlice({
           currentToilet.minDim = dimensions.minDims
           currentToilet.length = dimensions.length
           currentToilet.breadth = dimensions.breadth
+          currentToilet.walls[0].length = dimensions.length
+          currentToilet.walls[1].length = dimensions.length
+          currentToilet.walls[2].length = dimensions.breadth
+          currentToilet.walls[3].length = dimensions.breadth
         }
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {

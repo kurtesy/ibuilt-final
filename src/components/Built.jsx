@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Bedroom from './Bedroom'
 import { updateRoomData } from '../../redux/rooms'
+import LivingRoom from './LivingRoom'
 
 export default function Built() {
   const { builtLength, builtBreadth, scale, setbacks } = useSelector((state) => state.plot)
@@ -24,7 +25,7 @@ export default function Built() {
   return (
     <div className='bg-gray-600 absolute' style={style}>
       {selectedItems?.map((item) => item.roomType === 'bedroom' && <Bedroom id={item.position} />)}
-      {selectedItems?.map((item) => item.roomType === 'living' && <div>LIVING</div>)}
+      {selectedItems?.map((item) => item.roomType === 'living' && <LivingRoom id={item.position} />)}
       {selectedItems?.map((item) => item.roomType === 'kitchen' && <div>KITCHEN</div>)}
       {selectedItems?.map((item) => item.roomType === 'drawing' && <div>DRAWING</div>)}
       {selectedItems?.map((item) => item.roomType === 'sitout' && <div>SITOUT</div>)}

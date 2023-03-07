@@ -3,14 +3,11 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import locationMap from '../constants/locationMapping'
 import { setCurrentPosition, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
-import bed56 from '../assets/svg/Beds/King Bed Type 056.svg'
 import flooring from '../assets/svg/Flooring/Wooden Flooring Type 1.svg'
 import Wall from './Wall'
 import Toilet from './Toilet'
-import Wardrobe from './Wardrobe'
-import Balcony from './Balcony'
-export default function Bedroom({ id }) {
-  const currentBedroom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === id)[0])
+export default function LivingRoom({ id }) {
+  const currentLivingroom = useSelector((state) => state.rooms.livingRooms.filter((room) => room.id === id)[0])
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
   const { scale, builtLength, builtBreadth } = useSelector((state) => state.plot)
@@ -24,27 +21,27 @@ export default function Bedroom({ id }) {
     currStyle['height'] = Math.floor(breadth * scale)
     if (isActive && selectedRoom.id === id) {
       currStyle['zIndex'] = 40
-      currStyle['backgroundColor'] = 'cyan'
+      currStyle['backgroundColor'] = 'black'
     } else {
       currStyle['zIndex'] = 1
       currStyle['backgroundColor'] = '#fff'
     }
-    setStyle({ ...currStyle, ...currentBedroom.position })
+    setStyle({ ...currStyle, ...currentLivingroom.position })
   }
   useEffect(() => {
-    setLength(currentBedroom?.length)
-    setBreadth(currentBedroom?.breadth)
-  }, [currentBedroom])
+    setLength(currentLivingroom?.length)
+    setBreadth(currentLivingroom?.breadth)
+  }, [currentLivingroom])
 
   const handleClick = () => {
     // e.stopPropagation()
-    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'bedroom' }))
+    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'living' }))
     setIsActive(true)
   }
 
   useEffect(() => {
     makeStyle()
-  }, [length, breadth, selectedRoom, isActive, currentBedroom])
+  }, [length, breadth, selectedRoom, isActive, currentLivingroom])
 
   useEffect(() => {
     dispatch(
@@ -58,11 +55,9 @@ export default function Bedroom({ id }) {
   }, [builtBreadth, builtLength])
 
   return (
-    <div style={style} className='absolute cursor-pointer bg-slate-400 ' id={id} onClick={handleClick}>
+    <div style={style} className='absolute cursor-pointer bg-woodenFlooring' id={id} onClick={handleClick}>
       <Toilet id={id} />
-      <img src={bed56} className='h-[150px] w-[150px] bottom-0 absolute rotate-[-90deg]' />
-
-      {currentBedroom.walls.map((wall) => (
+      {currentLivingroom.walls.map((wall) => (
         <Wall
           length={wall.length}
           thickness={wall.thickness}
@@ -75,8 +70,6 @@ export default function Bedroom({ id }) {
           opening={wall.opening}
         />
       ))}
-      {currentBedroom.hasWardrobe && <Wardrobe />}
-      {currentBedroom.hasBalcony && <Balcony id={currentBedroom.id} />}
     </div>
   )
 }

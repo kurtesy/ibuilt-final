@@ -1,43 +1,50 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-
-export default function Wall({ length, thickness, position, door, side, direction, opening }) {
+import doorImg from '../assets/svg/Door/Door Type 1.svg'
+export default function Wall({ position, length, thickness, side, hasDoor, doorPosition }) {
   const { scale } = useSelector((state) => state.plot)
   const [style, setStyle] = useState({})
-  const [openingStyle, setOpeningStyle] = useState({})
-
   const makeStyle = () => {
     const currStyle = {}
-    const currOpeningStyle = {}
-    if (direction === 0) {
-      currStyle['width'] = Math.floor(parseFloat(length) * scale)
-      currStyle['height'] = thickness
-      if (opening?.includes) {
-        currOpeningStyle['width'] = Math.floor(parseFloat(opening?.length) * scale)
-        currOpeningStyle['height'] = thickness
-      } else {
-        currOpeningStyle['height'] = Math.floor(parseFloat(opening?.length) * scale)
-        currOpeningStyle['width'] = thickness
-      }
-    } else {
-      currStyle['height'] = Math.floor(parseFloat(length) * scale)
-      currStyle['width'] = thickness
-    }
     if (position.top !== undefined) currStyle['top'] = position.top
     else currStyle['bottom'] = position.bottom
     if (position.left !== undefined) currStyle['left'] = position.left
     else currStyle['right'] = position.right
+
+    if (side === 'front' || side === 'back') {
+      currStyle['width'] = Math.ceil(length * scale)
+      currStyle['height'] = thickness
+    } else {
+      currStyle['height'] = Math.ceil(length * scale)
+      currStyle['width'] = thickness
+    }
     setStyle(currStyle)
-    setOpeningStyle({ ...currOpeningStyle, ...opening?.position })
   }
-  // console.log(openingStyle)
+  // console.log(doorPosition)
   useEffect(() => {
     makeStyle()
-  }, [scale, length, thickness, position, door, side, direction, opening])
+  }, [position, length, thickness, side])
   return (
-    <div className='absolute bg-gray-500' style={style}>
-      {/* <div className='bg-white absolute' style={openingStyle}></div> */}
+    <div className='bg-black  absolute' style={style}>
+      {hasDoor && (
+        <div
+          className={`absolute bg-white flex items-end justify-center ${
+            side === 'left' || side === 'right' ? 'h-[30px] w-[30px]' : 'h-[6px] w-[30px]'
+          }`}
+          style={doorPosition}>
+          {
+            <img
+              src={doorImg}
+              alt='door'
+              style={
+                side === 'left' || side === 'right'
+                  ? { transform: 'scaleX(-1) ', rotate: '-90deg', width: '100%', height: '100%' }
+                  : {}
+              }
+            />
+          }
+        </div>
+      )}
     </div>
   )
 }
