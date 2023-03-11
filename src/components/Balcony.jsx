@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { components } from '../assets'
+import RightClickPopup from './RightContext'
 export default function Balcony({ id }) {
   const currentToilet = useSelector((state) => state.rooms.toilets.filter((room) => room.id === id)[0])
   const currentBedroom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === id)[0])
@@ -17,8 +19,15 @@ export default function Balcony({ id }) {
   }, [currentToilet, currentBedroom])
 
   return (
-    <div
-      className='absolute bg-balconyOrange bg-cover'
-      style={{ ...position, width: length * scale - 6, height: breadth * scale }}></div>
+    <>
+      <div className='absolute' style={{ ...position, width: length * scale - 6, height: breadth * scale }}>
+        <div
+          className='w-full h-full top-0 left-0'
+          style={{ backgroundImage: `url("${components.balcony_flooring_list[0].icon}")` }}
+        />
+        {/* <img className='w-full h-full' src={components.balcony_flooring_list[0].icon} />
+      </div> */}
+      </div>
+    </>
   )
 }

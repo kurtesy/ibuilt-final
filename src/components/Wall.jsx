@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import doorImg from '../assets/svg/Door/Door Type 1.svg'
 export default function Wall({ position, length, thickness, side, hasDoor, doorPosition }) {
   const { scale } = useSelector((state) => state.plot)
   const [style, setStyle] = useState({})
@@ -33,15 +32,15 @@ export default function Wall({ position, length, thickness, side, hasDoor, doorP
           }`}
           style={doorPosition}>
           {
-            <img
-              src={doorImg}
-              alt='door'
-              style={
-                side === 'left' || side === 'right'
-                  ? { transform: 'scaleX(-1) ', rotate: '-90deg', width: '100%', height: '100%' }
-                  : {}
-              }
-            />
+            // <img
+            //   src={doorImg}
+            //   alt='door'
+            //   style={
+            //     side === 'left' || side === 'right'
+            //       ? { transform: 'scaleX(-1) ', rotate: '-90deg', width: '100%', height: '100%' }
+            //       : {}
+            //   }
+            // />
           }
         </div>
       )}

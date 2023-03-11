@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import locationMap from '../constants/locationMapping'
 import { setCurrentPosition, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
-import flooring from '../assets/svg/Flooring/Wooden Flooring Type 1.svg'
 import Wall from './Wall'
 import Toilet from './Toilet'
 export default function LivingRoom({ id }) {

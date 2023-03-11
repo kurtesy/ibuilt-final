@@ -3,8 +3,6 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import locationMap from '../constants/locationMapping'
 import { setCurrentPosition, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
-import bed56 from '../assets/svg/Beds/King Bed Type 056.svg'
-import flooring from '../assets/svg/Flooring/Wooden Flooring Type 1.svg'
 import Wall from './Wall'
 import Toilet from './Toilet'
 import Wardrobe from './Wardrobe'
@@ -24,7 +22,7 @@ export default function Bedroom({ id }) {
     currStyle['height'] = Math.floor(breadth * scale)
     if (isActive && selectedRoom.id === id) {
       currStyle['zIndex'] = 40
-      currStyle['backgroundColor'] = 'cyan'
+      currStyle['backgroundColor'] = 'rgba(150,150,250,0.7)'
     } else {
       currStyle['zIndex'] = 1
       currStyle['backgroundColor'] = '#fff'
@@ -60,7 +58,7 @@ export default function Bedroom({ id }) {
   return (
     <div style={style} className='absolute cursor-pointer bg-slate-400 ' id={id} onClick={handleClick}>
       <Toilet id={id} />
-      <img src={bed56} className='h-[150px] w-[150px] bottom-0 absolute rotate-[-90deg]' />
+      {/* <img src={bed56} className='h-[150px] w-[150px] bottom-0 absolute rotate-[-90deg]' /> */}
 
       {currentBedroom.walls.map((wall) => (
         <Wall
