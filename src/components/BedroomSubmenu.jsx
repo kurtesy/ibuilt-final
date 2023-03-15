@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateRoomData } from '../../redux/rooms'
-export default function BedroomSubmenu() {
+export default function BedroomSubmenu({ id }) {
   const [bathType, setBathType] = useState('')
   const [isWardrobeChecked, setIswardrobeChecked] = useState(false)
   const [isBalconyChecked, setIsbalconyChecked] = useState(false)
-  const { currentPosition } = useSelector((state) => state.rooms)
+
   const dispatch = useDispatch()
   const handleSelectBathType = (e) => {
     setBathType(e.target.value)
   }
 
   useEffect(() => {
-    dispatch(updateRoomData({ id: currentPosition, roomType: 'bedroom', wardrobe: isWardrobeChecked }))
+    dispatch(updateRoomData({ id, roomType: 'bedroom', wardrobe: isWardrobeChecked }))
   }, [isWardrobeChecked])
   useEffect(() => {
-    dispatch(updateRoomData({ id: currentPosition, roomType: 'bedroom', balcony: isBalconyChecked }))
+    dispatch(updateRoomData({ id, roomType: 'bedroom', balcony: isBalconyChecked }))
   }, [isBalconyChecked])
 
   useEffect(() => {
-    if (currentPosition) dispatch(updateRoomData({ id: currentPosition, roomType: 'toilet', bathType }))
-  }, [currentPosition, bathType])
+    if (id) dispatch(updateRoomData({ id, roomType: 'toilet', bathType }))
+  }, [id, bathType])
   console.log('wardrobe==> ' + isWardrobeChecked)
   console.log('balcony==> ' + isBalconyChecked)
   return (

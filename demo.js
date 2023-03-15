@@ -1,12 +1,20 @@
-const arr = [
-  { pos: 'x', value: '12' },
-  { pos: 'y', value: '10' },
-  { pos: 'z', value: '-15' }
+const addedRooms = [
+  { position: 'nw', roomType: 'bedroom' },
+  { position: 'nw', roomType: 'living' },
+  { position: 'nw', roomType: 'kitchen' },
+  { position: 'nw', roomType: 'pooja' },
+  { position: 'nw', roomType: 'office' }
 ]
-let foundIndex
-arr.forEach((item, index) => {
-  if (item.pos === 'y') foundIndex = index
-})
-console.log(foundIndex)
-arr.splice(foundIndex, 1)
-console.log(arr)
+
+function deleteRoom(position, roomType) {
+  let indexOfDeleted
+  addedRooms.forEach((room, index) => {
+    if (room.position === position && room.roomType === roomType) {
+      indexOfDeleted = index
+    }
+  })
+  addedRooms.splice(indexOfDeleted, 1)
+  console.log(addedRooms)
+}
+
+deleteRoom('nw', 'living')

@@ -816,6 +816,265 @@ const initialState = {
       ]
     }
   ],
+  commonToilets: [
+    {
+      id: 'nw',
+      type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
+      length: 5,
+      breadth: 4,
+      maxDim: null,
+      minDim: null,
+      rotated: 0,
+      area: 0,
+      position: { top: 0, left: 0 },
+      walls: [
+        {
+          side: 'front',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { bottom: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'back',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'left',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'right',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, right: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        }
+      ]
+    },
+    {
+      id: 'ne',
+      type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
+      length: null,
+      breadth: null,
+      maxDim: null,
+      minDim: null,
+      area: 0,
+      position: { top: 0, left: 0 },
+      walls: [
+        {
+          side: 'front',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { bottom: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'back',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'left',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'right',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, right: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        }
+      ]
+    },
+    {
+      id: 'sw',
+      type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
+      length: null,
+      breadth: null,
+      maxDim: null,
+      minDim: null,
+      area: 0,
+      position: { top: 0, left: 0 },
+      walls: [
+        {
+          side: 'front',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { bottom: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'back',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'left',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'right',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, right: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        }
+      ]
+    },
+    {
+      id: 'se',
+      type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
+      length: null,
+      breadth: null,
+      maxDim: null,
+      minDim: null,
+      area: 0,
+      position: { top: 0, left: 0 },
+      walls: [
+        {
+          side: 'front',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { bottom: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'back',
+          length: null,
+          thickness: 6,
+          direction: 0,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'left',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, left: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        },
+        {
+          side: 'right',
+          length: null,
+          thickness: 6,
+          direction: 1,
+          area: 0,
+          position: { top: 0, right: 0 },
+          door: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
+          }
+        }
+      ]
+    }
+  ],
   Balconies: [
     {
       id: 'nw',
@@ -897,7 +1156,6 @@ const roomsSlice = createSlice({
         state.bedRooms = state.bedRooms.filter((room) => room.id !== id)
         state.bedRooms.push(currentBedroom)
       }
-      // console.log(action.payload)
       if (roomType === 'toilet') {
         // bathTypeDimensions
         const currentToilet = state.toilets.filter((room) => room.id === id)[0]
@@ -963,17 +1221,151 @@ const roomsSlice = createSlice({
         state.toilets = state.toilets.filter((room) => room.id !== id)
         state.toilets.push(currentToilet)
       }
+      if (roomType === 'living') {
+        console.log(action.payload)
+        const currentLivingRoom = state.livingRooms.filter((room) => room.id === id)[0]
+        if (action.payload.commonBath !== undefined) {
+          currentLivingRoom.hasCommonBath = action.payload.hasCommonBath
+        }
+        if (action.payload.sitout !== undefined) {
+          currentLivingRoom.hasSitout = action.payload.sitout
+        }
+        //If both length and breadth are privided update length,breadth and area, walls lengths
+        if (action.payload.length && action.payload.breadth) {
+          //update room dimensions
+          currentLivingRoom.length = parseFloat(action.payload.length).toFixed(2)
+          currentLivingRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          //update area
+          currentLivingRoom.area = parseFloat(
+            parseFloat(action.payload.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          //update wall dimensions
+          //Front Wall
+          currentLivingRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          //Back Wall
+          currentLivingRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          //Left Wall
+          currentLivingRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          //Right Wall
+          currentLivingRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        //If only one dimension provided, update dimension, area and wall lengths
+        if (action.payload.length && !action.payload.breadth) {
+          currentLivingRoom.length = parseFloat(action.payload.length).toFixed(2)
+          currentLivingRoom.area = parseFloat(
+            parseFloat(currentLivingRoom.breadth) * parseFloat(action.payload.length)
+          ).toFixed(2)
+          currentLivingRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          currentLivingRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+        }
+        if (action.payload.breadth && !action.payload.length) {
+          currentLivingRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentLivingRoom.area = parseFloat(
+            parseFloat(currentLivingRoom.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          currentLivingRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentLivingRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        if (action.payload.position) {
+          currentLivingRoom.position = action.payload.position
+        }
+
+        state.livingRooms = state.livingRooms.filter((room) => room.id !== id)
+        state.livingRooms.push(currentLivingRoom)
+      }
+      if (roomType === 'commonToilet') {
+        // bathTypeDimensions
+        const currentToilet = state.commonToilets.filter((room) => room.id === id)[0]
+        if (action.payload.rotated !== undefined) {
+          currentToilet.rotated = action.payload.rotated
+        }
+        if (action.payload.bathType) {
+          currentToilet.type = parseInt(action.payload.bathType)
+          const dimensions = bathTypeDimensions.filter(
+            (roomType) => roomType.type === parseInt(action.payload.bathType)
+          )[0]
+          currentToilet.maxDim = dimensions.maxDims
+          currentToilet.minDim = dimensions.minDims
+          currentToilet.length = dimensions.length
+          currentToilet.breadth = dimensions.breadth
+          currentToilet.walls[0].length = dimensions.length
+          currentToilet.walls[1].length = dimensions.length
+          currentToilet.walls[2].length = dimensions.breadth
+          currentToilet.walls[3].length = dimensions.breadth
+        }
+        //If both length and breadth are privided update length,breadth and area, walls lengths
+        if (action.payload.length && action.payload.breadth) {
+          //update room dimensions
+          currentToilet.length = parseFloat(action.payload.length).toFixed(2)
+          currentToilet.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          //update area
+          currentToilet.area = parseFloat(
+            parseFloat(action.payload.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          //update wall dimensions
+          //Front Wall
+          currentToilet.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          //Back Wall
+          currentToilet.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          //Left Wall
+          currentToilet.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          //Right Wall
+          currentToilet.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        //If only one dimension provided, update dimension, area and wall lengths
+        if (action.payload.length && !action.payload.breadth) {
+          currentToilet.length = parseFloat(action.payload.length).toFixed(2)
+          currentToilet.area = parseFloat(
+            parseFloat(currentToilet.breadth) * parseFloat(action.payload.length)
+          ).toFixed(2)
+          currentToilet.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          currentToilet.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+        }
+        if (action.payload.breadth && !action.payload.length) {
+          currentToilet.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentToilet.area = parseFloat(
+            parseFloat(currentToilet.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          currentToilet.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentToilet.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        if (action.payload.position) {
+          currentToilet.position = action.payload.position
+        }
+
+        state.toilets = state.toilets.filter((room) => room.id !== id)
+        state.toilets.push(currentToilet)
+      }
     },
     addRoomToPlot: (state, action) => {
       const { position, roomType } = action.payload
-      state.addedRooms.forEach((item, index) => {
-        if (item.position === position) state.addedRooms = state.addedRooms.filter((item) => item.position !== position)
+      const filteredRooms = state.addedRooms.filter((room) => {
+        if (room.position === position && room.roomType === roomType) return room
       })
-      state.addedRooms.push({ position, roomType })
+      if (filteredRooms.length === 0) state.addedRooms.push({ position, roomType })
+    },
+    removeRoomFromPlot: (state, action) => {
+      const { position, roomType } = action.payload
+      let indexOfDeleted
+      state.addedRooms.forEach((room, index) => {
+        if (room.position === position && room.roomType === roomType) {
+          indexOfDeleted = index
+        }
+      })
+      state.addedRooms.splice(indexOfDeleted, 1)
     }
-  },
-  updateOpening: (state, action) => {}
+  }
 })
-export const { setCurrentPosition, setCurrentRoom, setSelectedRoomId, updateRoomData, addRoomToPlot } =
-  roomsSlice.actions
+export const {
+  setCurrentPosition,
+  setCurrentRoom,
+  setSelectedRoomId,
+  updateRoomData,
+  addRoomToPlot,
+  removeRoomFromPlot
+} = roomsSlice.actions
 export default roomsSlice.reducer

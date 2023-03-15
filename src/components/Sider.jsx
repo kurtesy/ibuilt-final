@@ -4,19 +4,16 @@ import RoomSelector from './RoomSelector'
 import Submenu from './Submenu'
 import DirectionControls from './DirectionControls'
 import DimensionControls from './DimensionControls'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addRoomToPlot } from '../../redux/rooms'
 import PremiumButton from './PremiumButton'
+import MultiSelectComponent from './MultiSelectComponent'
 
 export default function Sider() {
-  const [position, setPosition] = useState('')
-  const [room, setRoom] = useState('')
   // premium controls tobe implemented
-  const [premium, setPremium] = useState(false)
+  const [premium, setPremium] = useState(true)
   const dispatch = useDispatch()
-  useEffect(() => {
-    if (position !== '' && room !== '') dispatch(addRoomToPlot({ position, roomType: room }))
-  }, [position, room])
+  const { selectedRoom } = useSelector((state) => state.rooms)
   return (
     <div className='w-[350px] h-full bg-slate-800 p-3 flex flex-col gap-3 overflow-y-scroll relative'>
       {/* title */}
@@ -32,14 +29,15 @@ export default function Sider() {
       {premium && (
         <>
           <div className='flex w-full justify-between gap-3 px-3 '>
-            <div className='flex flex-col gap-3'>
+            <div className='flex flex-col gap-3 w-full'>
               {/* select position */}
-              <PositionSelector position={position} setPosition={setPosition} setRoom={setRoom} />
+              {/* <PositionSelector position={position} setPosition={setPosition} setRoom={setRoom} /> */}
               {/* select room */}
-              <RoomSelector room={room} setRoom={setRoom} position={position} />
+              {/* <RoomSelector room={room} setRoom={setRoom} position={position} /> */}
+              <MultiSelectComponent />
             </div>
             {/* submenu */}
-            <Submenu room={room} />
+            {/* <Submenu roomType={selectedRoom.roomType} id={selectedRoom.id} /> */}
           </div>
           <div className='h-[1px] bg-primaryLime w-full' />
           {/* direction movement */}

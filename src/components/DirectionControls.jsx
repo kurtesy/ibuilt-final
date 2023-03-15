@@ -3,6 +3,12 @@ import Slider from './Slider'
 import React, { useEffect, useState } from 'react'
 import { updateRoomData } from '../../redux/rooms'
 import { RiAnticlockwise2Fill, RiClockwise2Fill } from 'react-icons/ri'
+import {
+  BsFillArrowLeftCircleFill,
+  BsFillArrowRightCircleFill,
+  BsFillArrowUpCircleFill,
+  BsFillArrowDownCircleFill
+} from 'react-icons/bs'
 import { BiReset } from 'react-icons/bi'
 export default function DirectionControls() {
   const dispatch = useDispatch()
@@ -73,20 +79,8 @@ export default function DirectionControls() {
       <div className='font-bold h-[32px] flex items-center text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800'>
         Direction
       </div>
-      <Slider
-        min={0}
-        max={maxX}
-        value={x}
-        setValue={setX}
-        direction={position.right !== undefined ? { from: 'E', to: 'W' } : { from: 'W', to: 'E' }}
-      />
-      <Slider
-        min={0}
-        max={maxY}
-        value={y}
-        setValue={setY}
-        direction={position.bottom !== undefined ? { from: 'S', to: 'N' } : { from: 'N', to: 'S' }}
-      />
+      <Slider min={0} max={maxX} value={x} setValue={setX} direction={{ from: '-', to: '+' }} />
+      <Slider min={0} max={maxY} value={y} setValue={setY} direction={{ from: '-', to: '+' }} />
       <div className='flex bg-slate-700 py-3 rounded-xl shadow-2xl items-center justify-between px-6'>
         <RiAnticlockwise2Fill
           size={32}

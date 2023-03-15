@@ -3,18 +3,21 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import locationMap from '../constants/locationMapping'
 import { setCurrentPosition, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
+import { positions } from '../constants/facingAndPosition'
 import Wall from './Wall'
 import Toilet from './Toilet'
 import Wardrobe from './Wardrobe'
 import Balcony from './Balcony'
 export default function Bedroom({ id }) {
   const currentBedroom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === id)[0])
+  const { facing } = useSelector((state) => state.plot)
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
   const { scale, builtLength, builtBreadth } = useSelector((state) => state.plot)
   const { selectedRoom } = useSelector((state) => state.rooms)
   const [style, setStyle] = useState({})
   const [isActive, setIsActive] = useState(false)
+
   const dispatch = useDispatch()
   const makeStyle = () => {
     const currStyle = {}
@@ -30,10 +33,19 @@ export default function Bedroom({ id }) {
     setStyle({ ...currStyle, ...currentBedroom.position })
   }
   useEffect(() => {
+    dispatch(
+      updateRoomData({
+        id,
+        roomType: 'bedroom',
+        position: positions[facing.toString()][id.toString()]
+      })
+    )
+  }, [facing])
+  useEffect(() => {
     setLength(currentBedroom?.length)
     setBreadth(currentBedroom?.breadth)
   }, [currentBedroom])
-
+  console.log(currentBedroom)
   const handleClick = () => {
     // e.stopPropagation()
     dispatch(setSelectedRoomId({ selectedId: id, roomType: 'bedroom' }))
@@ -42,7 +54,7 @@ export default function Bedroom({ id }) {
 
   useEffect(() => {
     makeStyle()
-  }, [length, breadth, selectedRoom, isActive, currentBedroom])
+  }, [length, breadth, selectedRoom, isActive, currentBedroom, facing])
 
   useEffect(() => {
     dispatch(
@@ -73,7 +85,7 @@ export default function Bedroom({ id }) {
           opening={wall.opening}
         />
       ))}
-      {currentBedroom.hasWardrobe && <Wardrobe />}
+      {currentBedroom.hasWardrobe && <Wardrobe id={currentBedroom.id} />}
       {currentBedroom.hasBalcony && <Balcony id={currentBedroom.id} />}
     </div>
   )

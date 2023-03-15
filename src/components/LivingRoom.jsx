@@ -5,8 +5,10 @@ import locationMap from '../constants/locationMapping'
 import { setCurrentPosition, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import Wall from './Wall'
 import Toilet from './Toilet'
+import CommonToilet from './CommonToilet'
 export default function LivingRoom({ id }) {
   const currentLivingroom = useSelector((state) => state.rooms.livingRooms.filter((room) => room.id === id)[0])
+
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
   const { scale, builtLength, builtBreadth } = useSelector((state) => state.plot)
@@ -20,7 +22,7 @@ export default function LivingRoom({ id }) {
     currStyle['height'] = Math.floor(breadth * scale)
     if (isActive && selectedRoom.id === id) {
       currStyle['zIndex'] = 40
-      currStyle['backgroundColor'] = 'black'
+      currStyle['backgroundColor'] = 'rgba(150,150,250,0.7)'
     } else {
       currStyle['zIndex'] = 1
       currStyle['backgroundColor'] = '#fff'
@@ -46,7 +48,7 @@ export default function LivingRoom({ id }) {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'bedroom',
+        roomType: 'living',
         length: parseFloat(builtLength / 2) < 20 ? parseFloat(builtLength / 2) : 20,
         breadth: parseFloat(builtBreadth / 2) ? parseFloat(builtBreadth / 2) : 20
       })
@@ -55,7 +57,7 @@ export default function LivingRoom({ id }) {
 
   return (
     <div style={style} className='absolute cursor-pointer bg-woodenFlooring' id={id} onClick={handleClick}>
-      <Toilet id={id} />
+      <CommonToilet id={id} />
       {currentLivingroom.walls.map((wall) => (
         <Wall
           length={wall.length}

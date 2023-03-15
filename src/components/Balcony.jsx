@@ -10,19 +10,35 @@ export default function Balcony({ id }) {
   const [breadth, setBreadth] = useState(0)
   const [position, setPosition] = useState({})
   useEffect(() => {
-    if (id === 'nw') {
+    if (id === 'nw' || 'ne') {
       setPosition({ top: 0, right: 6 })
-      if (currentToilet.length) setLength(parseFloat(currentBedroom.length) - parseFloat(currentToilet.length))
-      else setLength(parseFloat(currentBedroom.length) - 6 / scale)
+      if (currentToilet.length)
+        setLength(
+          (parseFloat(currentBedroom.length) - parseFloat(currentToilet.length)) * scale -
+            6 -
+            currentToilet.position.left
+        )
+      else setLength(parseFloat(currentBedroom.length) * scale - 6)
+      setBreadth(currentToilet.breadth ? currentToilet.breadth : 3)
+    }
+    if (id === 'sw') {
+      setPosition({ top: 0, right: 6 })
+      if (currentToilet.length)
+        setLength(
+          (parseFloat(currentBedroom.length) - parseFloat(currentToilet.length)) * scale -
+            6 -
+            currentToilet.position.left
+        )
+      else setLength(parseFloat(currentBedroom.length) * scale - 6)
       setBreadth(currentToilet.breadth ? currentToilet.breadth : 3)
     }
   }, [currentToilet, currentBedroom])
 
   return (
     <>
-      <div className='absolute' style={{ ...position, width: length * scale - 6, height: breadth * scale }}>
+      <div className='absolute' style={{ ...position, width: length, height: breadth * scale }}>
         <div
-          className='w-full h-full top-0 left-0'
+          className='w-full h-full top-0 left-0 -z-50'
           style={{ backgroundImage: `url("${components.balcony_flooring_list[0].icon}")` }}
         />
         {/* <img className='w-full h-full' src={components.balcony_flooring_list[0].icon} />

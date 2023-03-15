@@ -18,7 +18,7 @@ export default function RoomSelector({ room, setRoom, position }) {
           Select Room
         </option>
         <option className='bg-primaryLime' value='bedroom'>
-          Bed Room
+          <input type='checkbox' className='w-2 h-2' /> Bed Room
         </option>
         <option className='bg-primaryLime' value='living'>
           Living Room

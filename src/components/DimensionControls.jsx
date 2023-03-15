@@ -9,6 +9,7 @@ export default function DimensionControls() {
   
   const currentBedRoom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === selectedRoom.id)[0])
   const currentToilet = useSelector((state) => state.rooms.toilets.filter((room) => room.id === selectedRoom.id)[0])
+  const currentLiving = useSelector((state) => state.rooms.livingRooms.filter((room) => room.id === selectedRoom.id)[0])
   const [currentSelection, setCurrentSelection] = useState(null)
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
@@ -19,6 +20,9 @@ export default function DimensionControls() {
     } else if (selectedRoom.roomType === 'bedroom') {
       setCurrentSelection(currentBedRoom)
       console.log('bedroom selected')
+    } else if (selectedRoom.roomType === 'living') {
+      setCurrentSelection(currentBedRoom)
+      console.log('living selected')
     } else {
       setCurrentSelection(null)
       console.log('nothing selected')

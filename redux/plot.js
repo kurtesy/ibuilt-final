@@ -16,7 +16,7 @@ const initialState = {
   builtLength: 0,
   builtBreadth: 0,
   builtArea: 0,
-  rooms: []
+  rooms: { nw: [], ne: [], sw: [], se: [] }
 }
 const plotSlice = createSlice({
   name: 'plot',
@@ -45,8 +45,20 @@ const plotSlice = createSlice({
     },
     updateFacing: (state, action) => {
       state.facing = action.payload.facing
+    },
+    addRooom: (state, action) => {
+      const { location, data } = action.payload
+      data.forEach((room) => {
+        state.rooms[location.toString()].push(room)
+      })
+    },
+    removeRoom: (state, action) => {
+      const { location, id } = action.payload
+      const filteredRooms = state.rooms[location.toString()].filter((room) => room.id !== id)
+      state.rooms[location.toString()] = filteredRooms
     }
   }
 })
-export const { setPlotDetails, setBuiltup, changeScale, updateType, updateFacing } = plotSlice.actions
+export const { setPlotDetails, setBuiltup, changeScale, updateType, updateFacing, addRooom, removeRoom } =
+  plotSlice.actions
 export default plotSlice.reducer
