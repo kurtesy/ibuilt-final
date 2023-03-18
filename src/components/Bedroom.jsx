@@ -54,7 +54,7 @@ export default function Bedroom({ id }) {
 
   useEffect(() => {
     makeStyle()
-  }, [length, breadth, selectedRoom, isActive, currentBedroom, facing])
+  }, [length, breadth, selectedRoom, isActive, currentBedroom, facing, scale])
 
   useEffect(() => {
     dispatch(

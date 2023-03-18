@@ -11,6 +11,7 @@ export default function InputWithLabel({ label, value, setValue, min, max }) {
         onChange={(e) => setValue(e.target.value)}
         min={min}
         max={max}
+        onFocus={(e) => e.target.select()}
       />
       <select className='h-full bg-transparent text-primaryLime bg-slate-800 flex items-center justify-center font-semibold outline-none'>
         <option className='bg-slate-800'>ft</option>

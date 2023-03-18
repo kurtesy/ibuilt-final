@@ -32,7 +32,7 @@ export default function Balcony({ id }) {
       else setLength(parseFloat(currentBedroom.length) * scale - 6)
       setBreadth(currentToilet.breadth ? currentToilet.breadth : 3)
     }
-  }, [currentToilet, currentBedroom])
+  }, [currentToilet, currentBedroom, scale])
 
   return (
     <>

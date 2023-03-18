@@ -3,10 +3,11 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   type: '2BHK',
   facing: 'S',
+  isGeneratingPlot: true,
   plotLength: 0,
   plotBreadth: 0,
   plotArea: 0,
-  scale: 10,
+  scale: 20,
   setbacks: {
     front: 4.6,
     back: 1.6,
@@ -56,9 +57,20 @@ const plotSlice = createSlice({
       const { location, id } = action.payload
       const filteredRooms = state.rooms[location.toString()].filter((room) => room.id !== id)
       state.rooms[location.toString()] = filteredRooms
+    },
+    toggleGeneratePlot: (state, action) => {
+      state.isGeneratingPlot = action.payload.isGenerating
     }
   }
 })
-export const { setPlotDetails, setBuiltup, changeScale, updateType, updateFacing, addRooom, removeRoom } =
-  plotSlice.actions
+export const {
+  setPlotDetails,
+  setBuiltup,
+  changeScale,
+  updateType,
+  updateFacing,
+  addRooom,
+  removeRoom,
+  toggleGeneratePlot
+} = plotSlice.actions
 export default plotSlice.reducer

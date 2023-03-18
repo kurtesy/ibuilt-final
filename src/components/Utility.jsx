@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setCurrentRoom, setSelectedRoomId } from '../../redux/rooms'
+import { setCurrentRoom, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import Wall from './Wall'
 
-export default function Toilet({ id, type }) {
-  const currentToilet = useSelector((state) => state.rooms.toilets.filter((room) => room.id === id)[0])
+export default function Utility({ id }) {
+  const currentUtility = useSelector((state) => state.rooms.utility)
+
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
   const [rotation, setRotation] = useState(0)
@@ -19,9 +20,6 @@ export default function Toilet({ id, type }) {
     currStyle['width'] = Math.floor(length * scale)
     currStyle['height'] = Math.floor(breadth * scale)
     currStyle['rotate'] = `${rotation}deg`
-    if (rotation) {
-      currStyle['transform'] = `translate(-50%,-50%)`
-    }
     if (isActive && selectedRoom.id === id) {
       currStyle['zIndex'] = 42
       currStyle['backgroundColor'] = '#yellow'
@@ -29,28 +27,37 @@ export default function Toilet({ id, type }) {
       currStyle['zIndex'] = 10
       currStyle['backgroundColor'] = '#fff'
     }
-    setStyle({ ...currStyle, ...currentToilet.position })
+    setStyle({ ...currStyle, ...currentUtility.position })
   }
   useEffect(() => {
-    setLength(currentToilet?.length)
-    setBreadth(currentToilet?.breadth)
-  }, [currentToilet])
-  console.log('rotation==>' + rotation)
+    setLength(currentUtility?.length)
+    setBreadth(currentUtility?.breadth)
+  }, [currentUtility])
+
   const handleClick = (e) => {
     e.stopPropagation()
-    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'toilet' }))
+    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'utility' }))
     setIsActive(true)
   }
   useEffect(() => {
-    setRotation(currentToilet.rotated)
-  }, [currentToilet])
+    setRotation(currentUtility.rotated)
+  }, [currentUtility])
   useEffect(() => {
     makeStyle()
-  }, [length, breadth, location, selectedRoom, isActive, currentToilet, scale])
-
+  }, [length, breadth, location, selectedRoom, isActive, currentUtility])
+  useEffect(() => {
+    dispatch(
+      updateRoomData({
+        id,
+        roomType: 'utility',
+        length,
+        breadth
+      })
+    )
+  }, [length, breadth])
   return (
     <div style={style} className='bg-bathFullType13 relative' onClick={handleClick}>
-      {currentToilet.walls.map((wall) => (
+      {currentUtility.walls.map((wall) => (
         <Wall
           length={wall.length}
           thickness={wall.thickness}

@@ -929,7 +929,138 @@ const initialState = {
       breadth: null,
       position: { right: 0, bottom: 0 }
     }
-  ]
+  ],
+  kitchen: {
+    id: '',
+    length: null,
+    breadth: null,
+    maxDim: 12,
+    minDim: 4,
+    rotated: 0,
+    area: 0,
+    hasStore: false,
+    hasUtility: false,
+    position: { bottom: 0, right: 0 },
+    walls: [
+      {
+        side: 'front',
+        length: null,
+        thickness: 6,
+        direction: 0,
+        area: 0,
+        position: { bottom: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      },
+      {
+        side: 'back',
+        length: null,
+        thickness: 6,
+        direction: 0,
+        area: 0,
+        position: { top: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      },
+      {
+        side: 'left',
+        length: null,
+        thickness: 6,
+        direction: 1,
+        area: 0,
+        position: { top: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      },
+      {
+        side: 'right',
+        length: null,
+        thickness: 6,
+        direction: 1,
+        area: 0,
+        position: { top: 0, right: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      }
+    ]
+  },
+  utility: {
+    id: '',
+    type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
+    length: 3,
+    breadth: 3,
+    maxDim: 12,
+    minDim: 4,
+    rotated: 0,
+    area: 0,
+    position: { top: 0, left: 0 },
+    walls: [
+      {
+        side: 'front',
+        length: null,
+        thickness: 6,
+        direction: 0,
+        area: 0,
+        position: { bottom: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      },
+      {
+        side: 'back',
+        length: null,
+        thickness: 6,
+        direction: 0,
+        area: 0,
+        position: { top: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      },
+      {
+        side: 'left',
+        length: null,
+        thickness: 6,
+        direction: 1,
+        area: 0,
+        position: { top: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      },
+      {
+        side: 'right',
+        length: null,
+        thickness: 6,
+        direction: 1,
+        area: 0,
+        position: { top: 0, right: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      }
+    ]
+  }
 }
 const roomsSlice = createSlice({
   name: 'rooms',
@@ -1187,6 +1318,114 @@ const roomsSlice = createSlice({
         }
         console.log('direction controls=>', action.payload)
         state.commonToilet = currentToilet
+      }
+      if (roomType === 'kitchen') {
+        // bathTypeDimensions
+        const currentKitchen = state.kitchen
+        currentKitchen.id = id
+        if (action.payload.store !== undefined) {
+          currentKitchen.hasStore = action.payload.store
+        }
+        if (action.payload.utility !== undefined) {
+          currentKitchen.hasUtility = action.payload.utility
+        }
+        if (action.payload.rotated !== undefined) {
+          currentKitchen.rotated = action.payload.rotated
+        }
+        //If both length and breadth are privided update length,breadth and area, walls lengths
+        if (action.payload.length && action.payload.breadth) {
+          //update room dimensions
+          currentKitchen.length = parseFloat(action.payload.length).toFixed(2)
+          currentKitchen.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          //update area
+          currentKitchen.area = parseFloat(
+            parseFloat(action.payload.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          //update wall dimensions
+          //Front Wall
+          currentKitchen.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          //Back Wall
+          currentKitchen.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          //Left Wall
+          currentKitchen.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          //Right Wall
+          currentKitchen.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        //If only one dimension provided, update dimension, area and wall lengths
+        if (action.payload.length && !action.payload.breadth) {
+          currentKitchen.length = parseFloat(action.payload.length).toFixed(2)
+          currentKitchen.area = parseFloat(
+            parseFloat(currentKitchen.breadth) * parseFloat(action.payload.length)
+          ).toFixed(2)
+          currentKitchen.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          currentKitchen.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+        }
+        if (action.payload.breadth && !action.payload.length) {
+          currentKitchen.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentKitchen.area = parseFloat(
+            parseFloat(currentKitchen.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          currentKitchen.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentKitchen.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        if (action.payload.position) {
+          currentKitchen.position = action.payload.position
+        }
+        console.log('direction controls=>', action.payload)
+        state.kitchen = currentKitchen
+      }
+      if (roomType === 'utility') {
+        const currentUtility = state.utility
+        currentUtility.id = id
+        if (action.payload.rotated !== undefined) {
+          currentUtility.rotated = action.payload.rotated
+        }
+
+        //If both length and breadth are privided update length,breadth and area, walls lengths
+        if (action.payload.length && action.payload.breadth) {
+          //update room dimensions
+          currentUtility.length = parseFloat(action.payload.length).toFixed(2)
+          currentUtility.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          //update area
+          currentUtility.area = parseFloat(
+            parseFloat(action.payload.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          //update wall dimensions
+          //Front Wall
+          currentUtility.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          //Back Wall
+          currentUtility.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          //Left Wall
+          currentUtility.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          //Right Wall
+          currentUtility.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        //If only one dimension provided, update dimension, area and wall lengths
+        if (action.payload.length && !action.payload.breadth) {
+          currentUtility.length = parseFloat(action.payload.length).toFixed(2)
+          currentUtility.area = parseFloat(
+            parseFloat(currentUtility.breadth) * parseFloat(action.payload.length)
+          ).toFixed(2)
+          currentUtility.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          currentUtility.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+        }
+        if (action.payload.breadth && !action.payload.length) {
+          currentUtility.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentUtility.area = parseFloat(
+            parseFloat(currentUtility.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          currentUtility.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentUtility.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        if (action.payload.position) {
+          currentUtility.position = action.payload.position
+        }
+        console.log('direction controls=>', action.payload)
+        state.utility = currentUtility
       }
     },
     addRoomToPlot: (state, action) => {

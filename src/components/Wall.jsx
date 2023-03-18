@@ -22,7 +22,7 @@ export default function Wall({ position, length, thickness, side, hasDoor, doorP
   // console.log(doorPosition)
   useEffect(() => {
     makeStyle()
-  }, [position, length, thickness, side])
+  }, [position, length, thickness, side, scale])
   return (
     <div className='bg-gray-400 absolute z-10 hover:bg-green-400' style={style}>
       {hasDoor && (

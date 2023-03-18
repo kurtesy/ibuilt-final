@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SetbacksModal from './SetbacksModal'
 
-export default function ExtraInputs() {
+export default function ExtraInputs({ dimensions, setShow, setLoading }) {
   const [openModal, setOpenModal] = useState(false)
   return (
     <div className='relative'>
@@ -10,7 +10,7 @@ export default function ExtraInputs() {
         onClick={() => setOpenModal((prev) => !prev)}>
         Built-up
       </button>
-      {openModal && <SetbacksModal />}
+      {openModal && <SetbacksModal dimensions={dimensions} setShow={setShow} setLoading={setLoading} />}
     </div>
   )
 }

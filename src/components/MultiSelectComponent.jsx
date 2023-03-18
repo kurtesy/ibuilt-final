@@ -62,7 +62,7 @@ export default function MultiSelectComponent() {
       <div className='w-full flex gap-3 justify-between'>
         <div className='flex flex-col gap-3 w-1/2'>
           <select
-            className='w-full font-bold h-[32px] flex items-center justify-between text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-lg drop-shadow-2xl text-slate-800 text-xs'
+            className='w-full outline-none font-bold h-[32px] flex items-center justify-between text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-lg drop-shadow-2xl text-slate-800 text-xs'
             onChange={(e) => setPosition(e.target.value)}>
             <option value={null}>Select Location</option>
             <option value='nw'>North West</option>
@@ -74,7 +74,7 @@ export default function MultiSelectComponent() {
             <select
               onChange={handleChange}
               ref={ref}
-              className='w-full font-bold h-[32px] flex items-center justify-between text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-lg drop-shadow-2xl text-slate-800 text-xs'>
+              className='w-full outline-none font-bold h-[32px] flex items-center justify-between text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-lg drop-shadow-2xl text-slate-800 text-xs'>
               <option value={null}>Select Room</option>
               {options.map((room, index) => (
                 <option value={room.value} key={index}>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Bedroom from './Bedroom'
 import { setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import LivingRoom from './LivingRoom'
+import Kitchen from './Kitchen'
 
 export default function Built() {
   const { builtLength, builtBreadth, scale, setbacks } = useSelector((state) => state.plot)
@@ -34,7 +35,7 @@ export default function Built() {
     >
       {selectedItems?.map((item) => item.roomType === 'bedroom' && <Bedroom id={item.position} />)}
       {selectedItems?.map((item) => item.roomType === 'living' && <LivingRoom id={item.position} />)}
-      {selectedItems?.map((item) => item.roomType === 'kitchen' && <div>KITCHEN</div>)}
+      {selectedItems?.map((item) => item.roomType === 'kitchen' && <Kitchen id='se' />)}
       {selectedItems?.map((item) => item.roomType === 'drawing' && <div>DRAWING</div>)}
       {selectedItems?.map((item) => item.roomType === 'sitout' && <div>SITOUT</div>)}
       {selectedItems?.map((item) => item.roomType === 'store' && <div>STORE</div>)}

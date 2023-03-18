@@ -23,7 +23,11 @@ export default function DirectionControls() {
   const currentLivingroom = useSelector(
     (state) => state.rooms.livingRooms.filter((room) => room.id === selectedRoom.id)[0]
   )
+
   const { commonToilet } = useSelector((state) => state.rooms)
+  const { kitchen } = useSelector((state) => state.rooms)
+  const { utility } = useSelector((state) => state.rooms)
+
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
   const [maxX, setMaxX] = useState(0)
@@ -60,17 +64,30 @@ export default function DirectionControls() {
       else setX(currentSelection.position.right)
       setMaxX((containedLivingRoom?.length - currentSelection.length) * scale)
       setMaxY((containedLivingRoom?.breadth - currentSelection.breadth) * scale)
+    } else if (selectedRoom.roomType === 'kitchen' && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
+      else setY(currentSelection.position.bottom)
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
+      else setX(currentSelection.position.right)
+      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale)
+      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale)
+    } else if (selectedRoom.roomType === 'utility' && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
+      else setY(currentSelection.position.bottom)
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
+      else setX(currentSelection.position.right)
+      setMaxX((kitchen?.length - currentSelection.length) * scale)
+      setMaxY((kitchen?.breadth - currentSelection.breadth) * scale)
     }
   }, [currentSelection])
-
-  console.log('plotLength===>' + plotLength)
   console.log('currentSelection===>' + JSON.stringify(currentSelection))
-
   useEffect(() => {
     if (selectedRoom.roomType === 'bedroom') setCurrentSelection(currentBedRoom)
     else if (selectedRoom.roomType === 'toilet') setCurrentSelection(currentToilet)
     else if (selectedRoom.roomType === 'living') setCurrentSelection(currentLivingroom)
     else if (selectedRoom.roomType === 'commonToilet') setCurrentSelection(commonToilet)
+    else if (selectedRoom.roomType === 'kitchen') setCurrentSelection(kitchen)
+    else if (selectedRoom.roomType === 'utility') setCurrentSelection(kitchen)
     else setCurrentSelection(null)
   }, [selectedRoom])
   useEffect(() => {
@@ -118,7 +135,7 @@ export default function DirectionControls() {
       </div>
       <Slider min={0} max={maxX} value={x} setValue={setX} direction={{ from: '-', to: '+' }} />
       <Slider min={0} max={maxY} value={y} setValue={setY} direction={{ from: '-', to: '+' }} />
-      <div className='flex bg-slate-700 py-3 rounded-xl shadow-2xl items-center justify-between px-6'>
+      {/* <div className='flex bg-slate-700 py-3 rounded-xl shadow-2xl items-center justify-between px-6'>
         <RiAnticlockwise2Fill
           size={32}
           className='text-white cursor-pointer hover:scale-110 hover:rotate-[-90deg] duration-300 hover:text-red-500'
@@ -134,7 +151,7 @@ export default function DirectionControls() {
           className='text-white cursor-pointer hover:scale-110 hover:rotate-[90deg] duration-300 hover:text-blue-500'
           onClick={handleRotateClockwise}
         />
-      </div>
+      </div> */}
     </>
   )
 }

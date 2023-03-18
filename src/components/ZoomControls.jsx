@@ -15,10 +15,10 @@ export default function ZoomControls() {
     dispatch(changeScale({ scale: currScale }))
   }, [currScale])
   return (
-    <div className='absolute right-2 top-2 '>
+    <div className='absolute right-2 bottom-2 '>
       <div className='bg-slate-700  rounded-lg shadow-xl'>
-        <AiFillPlusSquare size={48} className='text-primaryLime hover:cursor-pointer' onClick={handleIncreaseScale} />
-        <AiFillMinusSquare size={48} className='text-primaryLime  hover:cursor-pointer' onClick={handleDecreaseScale} />
+        <AiFillPlusSquare size={32} className='text-primaryLime hover:cursor-pointer' onClick={handleIncreaseScale} />
+        <AiFillMinusSquare size={32} className='text-primaryLime  hover:cursor-pointer' onClick={handleDecreaseScale} />
       </div>
     </div>
   )
