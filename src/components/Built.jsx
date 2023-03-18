@@ -19,7 +19,7 @@ export default function Built() {
   }
   useEffect(() => {
     makeStyle()
-  }, [builtLength, builtBreadth, scale, setbacks, selectedItems])
+  }, [builtLength, builtBreadth, scale, setbacks, selectedItems, addedRooms])
   useEffect(() => {
     setSelectedItems(addedRooms)
   }, [addedRooms])

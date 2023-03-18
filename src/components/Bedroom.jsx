@@ -45,7 +45,7 @@ export default function Bedroom({ id }) {
     setLength(currentBedroom?.length)
     setBreadth(currentBedroom?.breadth)
   }, [currentBedroom])
-  console.log(currentBedroom)
+
   const handleClick = () => {
     // e.stopPropagation()
     dispatch(setSelectedRoomId({ selectedId: id, roomType: 'bedroom' }))

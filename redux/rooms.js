@@ -3,7 +3,7 @@ import bathTypeDimensions from '../src/constants/toiletDimensions'
 const initialState = {
   currentPosition: '',
   currentRoom: {},
-  selectedRoom: { id: null, roomType: '' },
+  selectedRoom: { id: null, roomType: null },
   addedRooms: [],
   bedRooms: [
     {
@@ -892,7 +892,7 @@ const initialState = {
       }
     ]
   },
-  Balconies: [
+  balconies: [
     {
       id: 'nw',
       includes: false,
@@ -1198,6 +1198,7 @@ const roomsSlice = createSlice({
     },
     removeRoomFromPlot: (state, action) => {
       const { position, roomType } = action.payload
+      console.log('Delete===>' + position, roomType)
       let indexOfDeleted
       state.addedRooms.forEach((room, index) => {
         if (room.position === position && room.roomType === roomType) {

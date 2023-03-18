@@ -15,7 +15,7 @@ export default function Sider() {
   const dispatch = useDispatch()
   const { selectedRoom } = useSelector((state) => state.rooms)
   return (
-    <div className='w-[350px] h-full bg-slate-800 p-3 flex flex-col gap-3 overflow-y-scroll relative'>
+    <div className='w-[400px] h-full bg-slate-800 p-3 flex flex-col gap-3 relative scrollbar-thin scrollbar-thumb-primaryLime scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-slate-800 overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full'>
       {/* title */}
       <div className='text-2xl font-semibold text-center bg-white rounded-full drop-shadow-2xl bg-gradient-to-r from-slate-800 to-lime-500 bg-clip-text text-transparent'>
         iBuiltup
@@ -35,10 +35,19 @@ export default function Sider() {
               {/* select room */}
               {/* <RoomSelector room={room} setRoom={setRoom} position={position} /> */}
               <MultiSelectComponent />
+              {/* <div className='font-bold h-[32px] flex items-center text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800'>
+                <pre>Selected Room- </pre>
+                <span className='text-[#5865F2]'>
+                  {selectedRoom.roomType[0].toUpperCase() + selectedRoom.roomType.substring(1)} -{' '}
+                  {selectedRoom.id.toUpperCase()}
+                </span>
+              </div> */}
             </div>
+
             {/* submenu */}
             {/* <Submenu roomType={selectedRoom.roomType} id={selectedRoom.id} /> */}
           </div>
+
           <div className='h-[1px] bg-primaryLime w-full' />
           {/* direction movement */}
           <DirectionControls />

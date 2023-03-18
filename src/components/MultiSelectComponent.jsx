@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addRoomToPlot, removeRoomFromPlot, setSelectedRoomId } from '../../redux/rooms'
 import { FiEdit } from 'react-icons/fi'
@@ -9,14 +9,19 @@ export default function MultiSelectComponent() {
   const [roomType, setRoomType] = useState([])
   const [data, setData] = useState([])
   const { addedRooms } = useSelector((state) => state.rooms)
-  const [thisRooms, setThisRooms] = useState([])
+  const [activeStyle, setActiveStyle] = useState({})
+  const [activeIndex, setActiveIndex] = useState(-1)
   const dispatch = useDispatch()
   const { selectedRoom } = useSelector((state) => state.rooms)
+  const inActiveClass = `bg-slate-900 rounded-md flex items-center text-primaryLime justify-end gap-2 h-8 px-2 font-thin`
+  const activeClass = `bg-primaryLime rounded-md flex items-center text-slate-900 justify-end gap-2 h-8 px-2 font-bold`
+  const ref = useRef(null)
   useEffect(() => {
     setData(addedRooms)
   }, [addedRooms])
+
   useEffect(() => {
-    if (position) setThisRooms(addedRooms.filter((room) => room.position === position))
+    ref.current.selectedIndex = 0
   }, [position])
   useEffect(() => {
     if (position !== null) {
@@ -27,22 +32,20 @@ export default function MultiSelectComponent() {
       }
     }
   }, [roomType])
-  useEffect(() => {
-    setRoomType([])
-  }, [position])
 
   const handleChange = (e) => {
-    setRoomType([...roomType, { position, roomType: e.target.value }])
+    if (e.target.value !== 'none') setRoomType([...roomType, { position, roomType: e.target.value }])
   }
   const handleDelete = (position, roomType) => {
     console.log('called handleDElete: ', position, roomType)
     dispatch(removeRoomFromPlot({ position, roomType }))
-    dispatch(setSelectedRoomId({ id: '', roomType: null }))
+    dispatch(setSelectedRoomId({ id: null, roomType: null }))
   }
-  const handleEdit = (position, roomType) => {
-    console.log('edit ', position, roomType)
+  const handleEdit = (index, position, roomType) => {
+    setActiveIndex(index)
     dispatch(setSelectedRoomId({ selectedId: position, roomType }))
   }
+  console.log(activeIndex)
   const options = [
     { label: 'Bedroom', value: 'bedroom' },
     { label: 'Livingroom', value: 'living' },
@@ -56,9 +59,11 @@ export default function MultiSelectComponent() {
   ]
   return (
     <div className='flex flex-col w-full gap-3'>
-      <div className='w-full flex gap-3'>
+      <div className='w-full flex gap-3 justify-between'>
         <div className='flex flex-col gap-3 w-1/2'>
-          <select className='w-full' onChange={(e) => setPosition(e.target.value)}>
+          <select
+            className='w-full font-bold h-[32px] flex items-center justify-between text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-lg drop-shadow-2xl text-slate-800 text-xs'
+            onChange={(e) => setPosition(e.target.value)}>
             <option value={null}>Select Location</option>
             <option value='nw'>North West</option>
             <option value='ne'>North East</option>
@@ -66,8 +71,11 @@ export default function MultiSelectComponent() {
             <option value='se'>South East</option>
           </select>
           <div className='w-full'>
-            <select onChange={handleChange}>
-              <option>Select Room</option>
+            <select
+              onChange={handleChange}
+              ref={ref}
+              className='w-full font-bold h-[32px] flex items-center justify-between text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-lg drop-shadow-2xl text-slate-800 text-xs'>
+              <option value={null}>Select Room</option>
               {options.map((room, index) => (
                 <option value={room.value} key={index}>
                   {room.label}
@@ -77,12 +85,14 @@ export default function MultiSelectComponent() {
           </div>
         </div>
         <div className='flex flex-col h-auto gap-1 w-1/2 border-2 p-1 rounded-md bg-white'>
-          {data.map((room) => (
-            <div className='bg-slate-900 rounded-md flex items-center text-primaryLime justify-end gap-2 h-8 px-2'>
-              <div className='flex items-center text-xs rounded-md font-semibold cursor-pointer'>
+          {data.map((room, index) => (
+            <div className={activeIndex === index ? activeClass : inActiveClass} key={index}>
+              <div className='flex items-center text-xs rounded-md  cursor-pointer'>
                 {room.position}/{room.roomType}
               </div>
-              <div className='cursor-pointer text-blue-500' onClick={() => handleEdit(room.position, room.roomType)}>
+              <div
+                className='cursor-pointer text-blue-500'
+                onClick={() => handleEdit(index, room.position, room.roomType)}>
                 <FiEdit size={16} />
               </div>
               <div className='cursor-pointer text-red-500' onClick={() => handleDelete(room.position, room.roomType)}>

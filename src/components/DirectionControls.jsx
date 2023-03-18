@@ -102,8 +102,19 @@ export default function DirectionControls() {
 
   return (
     <>
-      <div className='font-bold h-[32px] flex items-center text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800'>
-        Direction
+      <div className='font-bold h-[32px] flex justify-between items-center text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800'>
+        Direction-{' '}
+        <span className='text-xs '>
+          Selected Room-
+          <span className='text-[#5865F2] '>
+            {selectedRoom.roomType === null
+              ? ' None'
+              : selectedRoom?.roomType[0]?.toUpperCase() +
+                selectedRoom?.roomType?.substring(1) +
+                '-' +
+                selectedRoom?.id?.toUpperCase()}
+          </span>
+        </span>
       </div>
       <Slider min={0} max={maxX} value={x} setValue={setX} direction={{ from: '-', to: '+' }} />
       <Slider min={0} max={maxY} value={y} setValue={setY} direction={{ from: '-', to: '+' }} />

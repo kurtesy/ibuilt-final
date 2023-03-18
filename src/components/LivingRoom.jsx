@@ -56,6 +56,7 @@ export default function LivingRoom({ id }) {
 
   return (
     <div style={style} className='absolute cursor-pointer bg-woodenFlooring' id={id} onClick={handleClick}>
+      <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>LIVING ROOM - {id?.toUpperCase()}</div>
       {currentLivingroom.walls.map((wall) => (
         <Wall
           length={wall.length}
