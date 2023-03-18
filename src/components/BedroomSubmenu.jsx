@@ -14,6 +14,7 @@ export default function BedroomSubmenu({ id }) {
   useEffect(() => {
     dispatch(updateRoomData({ id, roomType: 'bedroom', wardrobe: isWardrobeChecked }))
   }, [isWardrobeChecked])
+
   useEffect(() => {
     dispatch(updateRoomData({ id, roomType: 'bedroom', balcony: isBalconyChecked }))
   }, [isBalconyChecked])
@@ -21,8 +22,7 @@ export default function BedroomSubmenu({ id }) {
   useEffect(() => {
     if (id) dispatch(updateRoomData({ id, roomType: 'toilet', bathType }))
   }, [id, bathType])
-  console.log('wardrobe==> ' + isWardrobeChecked)
-  console.log('balcony==> ' + isBalconyChecked)
+
   return (
     <div className='bg-slate-800 w-[150px]  p-3 gap-4 rounded-lg flex flex-col shadow-2xl text-primaryLime'>
       <div className='flex items-center justify-between gap-2'>

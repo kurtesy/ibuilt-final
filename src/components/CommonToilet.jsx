@@ -4,7 +4,8 @@ import { setCurrentRoom, setSelectedRoomId } from '../../redux/rooms'
 import Wall from './Wall'
 
 export default function CommonToilet({ id }) {
-  const currentToilet = useSelector((state) => state.rooms.commonToilets.filter((room) => room.id === id)[0])
+  const currentToilet = useSelector((state) => state.rooms.commonToilet)
+
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
   const [rotation, setRotation] = useState(0)
@@ -33,6 +34,7 @@ export default function CommonToilet({ id }) {
     setBreadth(currentToilet?.breadth)
   }, [currentToilet])
   console.log('rotation==>' + rotation)
+
   const handleClick = (e) => {
     e.stopPropagation()
     dispatch(setSelectedRoomId({ selectedId: id, roomType: 'commonToilet' }))

@@ -71,7 +71,7 @@ export default function Bedroom({ id }) {
     <div style={style} className='absolute cursor-pointer bg-slate-400 ' id={id} onClick={handleClick}>
       <Toilet id={id} />
       {/* <img src={bed56} className='h-[150px] w-[150px] bottom-0 absolute rotate-[-90deg]' /> */}
-
+      <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>BED ROOM - {id.toUpperCase()}</div>
       {currentBedroom.walls.map((wall) => (
         <Wall
           length={wall.length}

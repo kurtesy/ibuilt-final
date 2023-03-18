@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import locationMap from '../constants/locationMapping'
 import { setCurrentPosition, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import Wall from './Wall'
-import Toilet from './Toilet'
 import CommonToilet from './CommonToilet'
 export default function LivingRoom({ id }) {
   const currentLivingroom = useSelector((state) => state.rooms.livingRooms.filter((room) => room.id === id)[0])
@@ -57,7 +56,6 @@ export default function LivingRoom({ id }) {
 
   return (
     <div style={style} className='absolute cursor-pointer bg-woodenFlooring' id={id} onClick={handleClick}>
-      <CommonToilet id={id} />
       {currentLivingroom.walls.map((wall) => (
         <Wall
           length={wall.length}
@@ -71,6 +69,9 @@ export default function LivingRoom({ id }) {
           opening={wall.opening}
         />
       ))}
+      {currentLivingroom.hasToilet && <CommonToilet id={currentLivingroom.id} />}
+      {currentLivingroom.hasWash && <div>WASH</div>}
+      {currentLivingroom.hasSitout && <div>SITOUT</div>}
     </div>
   )
 }

@@ -17,6 +17,13 @@ export default function DirectionControls() {
   const currentBedRoom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === selectedRoom.id)[0])
   const currentToilet = useSelector((state) => state.rooms.toilets.filter((room) => room.id === selectedRoom.id)[0])
   const containedBedRoom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === selectedRoom.id)[0])
+  const containedLivingRoom = useSelector(
+    (state) => state.rooms.livingRooms.filter((room) => room.id === selectedRoom.id)[0]
+  )
+  const currentLivingroom = useSelector(
+    (state) => state.rooms.livingRooms.filter((room) => room.id === selectedRoom.id)[0]
+  )
+  const { commonToilet } = useSelector((state) => state.rooms)
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
   const [maxX, setMaxX] = useState(0)
@@ -39,12 +46,31 @@ export default function DirectionControls() {
       else setX(currentSelection.position.right)
       setMaxX((containedBedRoom?.length - currentSelection.length) * scale)
       setMaxY((containedBedRoom?.breadth - currentSelection.breadth) * scale)
+    } else if (selectedRoom.roomType === 'living' && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
+      else setY(currentSelection.position.bottom)
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
+      else setX(currentSelection.position.right)
+      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale)
+      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale)
+    } else if (selectedRoom.roomType === 'commonToilet' && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
+      else setY(currentSelection.position.bottom)
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
+      else setX(currentSelection.position.right)
+      setMaxX((containedLivingRoom?.length - currentSelection.length) * scale)
+      setMaxY((containedLivingRoom?.breadth - currentSelection.breadth) * scale)
     }
   }, [currentSelection])
+
+  console.log('plotLength===>' + plotLength)
+  console.log('currentSelection===>' + JSON.stringify(currentSelection))
 
   useEffect(() => {
     if (selectedRoom.roomType === 'bedroom') setCurrentSelection(currentBedRoom)
     else if (selectedRoom.roomType === 'toilet') setCurrentSelection(currentToilet)
+    else if (selectedRoom.roomType === 'living') setCurrentSelection(currentLivingroom)
+    else if (selectedRoom.roomType === 'commonToilet') setCurrentSelection(commonToilet)
     else setCurrentSelection(null)
   }, [selectedRoom])
   useEffect(() => {
