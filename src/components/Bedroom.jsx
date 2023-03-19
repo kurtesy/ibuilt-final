@@ -17,7 +17,7 @@ export default function Bedroom({ id }) {
   const { selectedRoom } = useSelector((state) => state.rooms)
   const [style, setStyle] = useState({})
   const [isActive, setIsActive] = useState(false)
-
+  const [rightClicked, setRightClicked] = useState(false)
   const dispatch = useDispatch()
   const makeStyle = () => {
     const currStyle = {}
@@ -67,9 +67,30 @@ export default function Bedroom({ id }) {
     )
   }, [builtBreadth, builtLength])
 
+  const handleContextMenu = (e) => {
+    e.preventDefault()
+    setRightClicked(true)
+  }
+  const handleDelete = (id) => {
+    dispatch()
+  }
+
   return (
     <div style={style} className='absolute cursor-pointer bg-slate-400 ' id={id} onClick={handleClick}>
       <Toilet id={id} />
+      {currentBedroom.icons &&
+        currentBedroom.icons.map((icon, index) => (
+          <>
+            <img
+              src={icon.src}
+              key={index}
+              className='w-16 inline-block'
+              onClick={(e) => handleDelete(e, icon.id)}
+              onContextMenu={handleContextMenu}
+            />
+            {rightClicked && <span className='bg-red-500 text-xs p-1 rounded-lg'>Delete</span>}
+          </>
+        ))}
       {/* <img src={bed56} className='h-[150px] w-[150px] bottom-0 absolute rotate-[-90deg]' /> */}
       <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>BED ROOM - {id.toUpperCase()}</div>
       {currentBedroom.walls.map((wall) => (

@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   type: '2BHK',
   facing: 'S',
-  isGeneratingPlot: true,
+  isGeneratingPlot: false,
   plotLength: 0,
   plotBreadth: 0,
   plotArea: 0,
@@ -60,6 +60,30 @@ const plotSlice = createSlice({
     },
     toggleGeneratePlot: (state, action) => {
       state.isGeneratingPlot = action.payload.isGenerating
+    },
+    saveCurrentPlotState: (state, action) => {
+      const type = state.type
+      const facing = state.facing
+      const plotLength = state.plotLength
+      const plotBreadth = state.plotBreadth
+      const scale = state.scale
+      const setbacks = state.setbacks
+
+      window.localStorage.setItem('type', JSON.stringify(type))
+      window.localStorage.setItem('facing', JSON.stringify(facing))
+      window.localStorage.setItem('plotLength', JSON.stringify(plotLength))
+      window.localStorage.setItem('plotBreadth', JSON.stringify(plotBreadth))
+      window.localStorage.setItem('scale', JSON.stringify(scale))
+      window.localStorage.setItem('setbacks', JSON.stringify(setbacks))
+    },
+    restorePreviousPlotState: (state, action) => {
+      const { type, facing, plotLength, plotBreadth, scale, setbacks } = action.payload
+      if (type) state.type = type
+      if (facing) state.facing = facing
+      if (plotLength) state.plotLength = plotLength
+      if (plotBreadth) state.plotBreadth = plotBreadth
+      if (scale) state.scale = scale
+      if (setbacks) state.setbacks = setbacks
     }
   }
 })
@@ -71,6 +95,8 @@ export const {
   updateFacing,
   addRooom,
   removeRoom,
-  toggleGeneratePlot
+  toggleGeneratePlot,
+  saveCurrentPlotState,
+  restorePreviousPlotState
 } = plotSlice.actions
 export default plotSlice.reducer

@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import ZoomControls from './ZoomControls'
 import PositionPointer from './PositionPointer'
 import Loader from './Loader'
+import CurrentSaveButton from './CurrentSaveButton'
 
 export default function MainArea({ isSiderOpen }) {
   const [show, setShow] = useState(false)
@@ -23,6 +24,7 @@ export default function MainArea({ isSiderOpen }) {
       <UserInputs show={show} setShow={setShow} setLoading={setLoading} isSiderOpen={isSiderOpen} />
       <PositionPointer />
       <PositionPointer isBottom={true} />
+      <CurrentSaveButton />
       {showMainBtn && (
         <button
           className='bg-primaryLime h-12 px-2 rounded-xl shadow-2xl text-slate-800 font-semibold hover:scale-110 duration-300 shadow-white animate-pulse'

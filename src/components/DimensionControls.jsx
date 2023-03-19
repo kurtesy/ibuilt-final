@@ -3,15 +3,17 @@ import Slider from './Slider'
 import React, { useEffect, useState } from 'react'
 import { updateRoomData } from '../../redux/rooms'
 
+
 export default function DimensionControls() {
   const dispatch = useDispatch()
   const { selectedRoom } = useSelector((state) => state.rooms)
-  
+
   const currentBedRoom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === selectedRoom.id)[0])
   const currentToilet = useSelector((state) => state.rooms.toilets.filter((room) => room.id === selectedRoom.id)[0])
   const currentLiving = useSelector((state) => state.rooms.livingRooms.filter((room) => room.id === selectedRoom.id)[0])
+
   const { commonToilet } = useSelector((state) => state.rooms)
-  const { kitchen, utility } = useSelector((state) => state.rooms)
+  const { kitchen, utility, store } = useSelector((state) => state.rooms)
   const [currentSelection, setCurrentSelection] = useState(null)
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
@@ -34,6 +36,9 @@ export default function DimensionControls() {
     } else if (selectedRoom.roomType === 'utility') {
       setCurrentSelection(utility)
       console.log('kitchen selected')
+    } else if (selectedRoom.roomType === 'store') {
+      setCurrentSelection(store)
+      console.log('store selected')
     } else {
       setCurrentSelection(null)
       console.log('nothing selected')
@@ -56,7 +61,7 @@ export default function DimensionControls() {
   return (
     <>
       <div className='font-bold h-[32px] flex items-center justify-between text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800'>
-        Dimensions-{' '}
+        Manage Dimensions
         <span className='text-xs '>
           Selected Room-
           <span className='text-[#5865F2] '>

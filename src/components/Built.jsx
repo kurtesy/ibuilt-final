@@ -38,7 +38,7 @@ export default function Built() {
       {selectedItems?.map((item) => item.roomType === 'kitchen' && <Kitchen id='se' />)}
       {selectedItems?.map((item) => item.roomType === 'drawing' && <div>DRAWING</div>)}
       {selectedItems?.map((item) => item.roomType === 'sitout' && <div>SITOUT</div>)}
-      {selectedItems?.map((item) => item.roomType === 'store' && <div>STORE</div>)}
+      {/* {selectedItems?.map((item) => item.roomType === 'store' && <div>STORE</div>)} */}
       {selectedItems?.map((item) => item.roomType === 'office' && <div>OFFICE</div>)}
       {selectedItems?.map((item) => item.roomType === 'media' && <div>MEDIA</div>)}
     </div>

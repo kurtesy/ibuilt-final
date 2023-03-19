@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentRoom, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import Wall from './Wall'
 
-export default function Utility({ id }) {
-  const currentUtility = useSelector((state) => state.rooms.utility)
+export default function Store({ id }) {
+  const currentStore = useSelector((state) => state.rooms.store)
 
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
@@ -27,29 +27,29 @@ export default function Utility({ id }) {
       currStyle['zIndex'] = 10
       currStyle['backgroundColor'] = '#fff'
     }
-    setStyle({ ...currStyle, ...currentUtility.position })
+    setStyle({ ...currStyle, ...currentStore.position })
   }
   useEffect(() => {
-    setLength(currentUtility?.length)
-    setBreadth(currentUtility?.breadth)
-  }, [currentUtility])
+    setLength(currentStore?.length)
+    setBreadth(currentStore?.breadth)
+  }, [currentStore])
 
   const handleClick = (e) => {
     e.stopPropagation()
-    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'utility' }))
+    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'store' }))
     setIsActive(true)
   }
   useEffect(() => {
-    setRotation(currentUtility.rotated)
-  }, [currentUtility])
+    setRotation(currentStore.rotated)
+  }, [currentStore])
   useEffect(() => {
     makeStyle()
-  }, [length, breadth, location, selectedRoom, isActive, currentUtility])
+  }, [length, breadth, location, selectedRoom, isActive, currentStore])
   useEffect(() => {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'utility',
+        roomType: 'store',
         length,
         breadth
       })
@@ -57,8 +57,8 @@ export default function Utility({ id }) {
   }, [length, breadth])
   return (
     <div style={style} className='bg-bathFullType13 relative' onClick={handleClick}>
-      <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>Utility</div>
-      {currentUtility.walls.map((wall) => (
+      <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>Store</div>
+      {currentStore.walls.map((wall) => (
         <Wall
           length={wall.length}
           thickness={wall.thickness}

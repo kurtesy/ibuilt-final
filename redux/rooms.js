@@ -5,6 +5,7 @@ const initialState = {
   currentRoom: {},
   selectedRoom: { id: null, roomType: null },
   addedRooms: [],
+  selectedIcon: { id: null, type: null, variant: null },
   bedRooms: [
     {
       id: 'nw',
@@ -17,6 +18,7 @@ const initialState = {
       hasToilet: true,
       hasWardrobe: false,
       hasBalcony: false,
+      icons: [],
       walls: [
         {
           side: 'front',
@@ -1002,7 +1004,72 @@ const initialState = {
     length: 3,
     breadth: 3,
     maxDim: 12,
-    minDim: 4,
+    minDim: 3,
+    rotated: 0,
+    area: 0,
+    position: { top: 0, right: 0 },
+    walls: [
+      {
+        side: 'front',
+        length: null,
+        thickness: 6,
+        direction: 0,
+        area: 0,
+        position: { bottom: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      },
+      {
+        side: 'back',
+        length: null,
+        thickness: 6,
+        direction: 0,
+        area: 0,
+        position: { top: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      },
+      {
+        side: 'left',
+        length: null,
+        thickness: 6,
+        direction: 1,
+        area: 0,
+        position: { top: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      },
+      {
+        side: 'right',
+        length: null,
+        thickness: 6,
+        direction: 1,
+        area: 0,
+        position: { top: 0, right: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      }
+    ]
+  },
+  store: {
+    id: '',
+    type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
+    length: 3,
+    breadth: 3,
+    maxDim: 8,
+    minDim: 3,
     rotated: 0,
     area: 0,
     position: { top: 0, left: 0 },
@@ -1060,7 +1127,10 @@ const initialState = {
         }
       }
     ]
-  }
+  },
+  icons: [
+    // type, variant, id
+  ]
 }
 const roomsSlice = createSlice({
   name: 'rooms',
@@ -1080,6 +1150,9 @@ const roomsSlice = createSlice({
       const { id, roomType } = action.payload
       if (roomType === 'bedroom') {
         const currentBedroom = state.bedRooms.filter((room) => room.id === id)[0]
+        if (action.payload.icon !== undefined) {
+          currentBedroom.icons.push(icon)
+        }
         if (action.payload.balcony !== undefined) {
           currentBedroom.hasBalcony = action.payload.balcony
         }
@@ -1427,6 +1500,57 @@ const roomsSlice = createSlice({
         console.log('direction controls=>', action.payload)
         state.utility = currentUtility
       }
+      if (roomType === 'store') {
+        const currentStore = state.store
+        currentStore.id = id
+        if (action.payload.rotated !== undefined) {
+          currentStore.rotated = action.payload.rotated
+        }
+
+        //If both length and breadth are privided update length,breadth and area, walls lengths
+        if (action.payload.length && action.payload.breadth) {
+          //update room dimensions
+          currentStore.length = parseFloat(action.payload.length).toFixed(2)
+          currentStore.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          //update area
+          currentStore.area = parseFloat(
+            parseFloat(action.payload.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          //update wall dimensions
+          //Front Wall
+          currentStore.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          //Back Wall
+          currentStore.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          //Left Wall
+          currentStore.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          //Right Wall
+          currentStore.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        //If only one dimension provided, update dimension, area and wall lengths
+        if (action.payload.length && !action.payload.breadth) {
+          currentStore.length = parseFloat(action.payload.length).toFixed(2)
+          currentStore.area = parseFloat(parseFloat(currentStore.breadth) * parseFloat(action.payload.length)).toFixed(
+            2
+          )
+          currentStore.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          currentStore.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+        }
+        if (action.payload.breadth && !action.payload.length) {
+          currentStore.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentStore.area = parseFloat(parseFloat(currentStore.length) * parseFloat(action.payload.breadth)).toFixed(
+            2
+          )
+          currentStore.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentStore.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        if (action.payload.position) {
+          currentStore.position = action.payload.position
+        }
+        console.log('direction controls=>', action.payload)
+        state.store = currentStore
+      }
     },
     addRoomToPlot: (state, action) => {
       const { position, roomType } = action.payload
@@ -1445,6 +1569,78 @@ const roomsSlice = createSlice({
         }
       })
       state.addedRooms.splice(indexOfDeleted, 1)
+    },
+    saveCurrentRoomsState: (state, action) => {
+      const bedRoomsData = state.bedRooms
+      const livingRoomsData = state.livingRooms
+      const toiletsData = state.toilets
+      const commonToiletData = state.commonToilet
+      const kitchenData = state.kitchen
+      const storeData = state.store
+      const addedRoomsData = state.addedRooms
+      const balconiesData = state.balconies
+      const utilityData = state.utility
+
+      window.localStorage.setItem('bedRoomsData', JSON.stringify(bedRoomsData))
+      window.localStorage.setItem('livingRoomsData', JSON.stringify(livingRoomsData))
+      window.localStorage.setItem('toiletsData', JSON.stringify(toiletsData))
+      window.localStorage.setItem('commonToiletData', JSON.stringify(commonToiletData))
+      window.localStorage.setItem('kitchenData', JSON.stringify(kitchenData))
+      window.localStorage.setItem('storeData', JSON.stringify(storeData))
+      window.localStorage.setItem('addedRoomsData', JSON.stringify(addedRoomsData))
+      window.localStorage.setItem('balconiesData', JSON.stringify(balconiesData))
+      window.localStorage.setItem('utilityData', JSON.stringify(utilityData))
+    },
+    restorePreviousRoomsState: (state, action) => {
+      const {
+        bedRoomsData,
+        livingRoomsData,
+        toiletsData,
+        commonToiletData,
+        kitchenData,
+        storeData,
+        addedRoomsData,
+        balconiesData,
+        utilityData
+      } = action.payload
+      if (addedRoomsData) state.addedRooms = addedRoomsData
+      if (bedRoomsData) state.bedRooms = bedRoomsData
+      if (livingRoomsData) state.livingRooms = livingRoomsData
+      if (toiletsData) state.toilets = toiletsData
+      if (commonToiletData) state.commonToilet = commonToiletData
+      if (kitchenData) state.kitchen = kitchenData
+      if (storeData) state.store = storeData
+      if (addedRoomsData) state.addedRooms = addedRoomsData
+      if (balconiesData) state.balconies = balconiesData
+      if (utilityData) state.utility = utilityData
+    },
+    setSelectedIcon: (state, action) => {
+      //id,type,variant
+      state.selectedIcon = action.payload
+    },
+    changeIconVariant: (state, action) => {
+      const { id, variant } = action.payload
+      const currentSelection = state.icons.filter((icon) => icon.id === id)[0]
+      currentSelection.variant = variant
+      state.icons = state.icons.filter((icon) => icon.id !== id)
+      state.icons.push(currentSelection)
+    },
+    addIcontoList: (state, action) => {
+      console.log(action.payload)
+      state.icons.push(action.payload.icon)
+      // bedroom - nw - beds - 1
+      const room = action.payload.icon.id.split('-')[0]
+      const roomId = action.payload.icon.id.split('-')[1]
+      console.log(room, roomId)
+      if (room === 'bedroom') {
+        const currentRoom = state.bedRooms.filter((room) => room.id === roomId)[0]
+        console.log(JSON.stringify(currentRoom))
+        currentRoom.icons.push({ id: action.payload.icon.id, src: action.payload.icon.src })
+      }
+    },
+    removeIcon: (state, action) => {
+      const { id } = action.payload
+      state.icons = state.icons.filter((icon) => icon.id !== id)
     }
   }
 })
@@ -1454,6 +1650,12 @@ export const {
   setSelectedRoomId,
   updateRoomData,
   addRoomToPlot,
-  removeRoomFromPlot
+  removeRoomFromPlot,
+  saveCurrentRoomsState,
+  restorePreviousRoomsState,
+  addIcontoList,
+  removeIcon,
+  changeIconVariant,
+  setSelectedIcon
 } = roomsSlice.actions
 export default roomsSlice.reducer

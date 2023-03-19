@@ -39,7 +39,7 @@ export default function Balcony({ id }) {
       <div className='absolute' style={{ ...position, width: length, height: breadth * scale }}>
         <div
           className='w-full h-full top-0 left-0 -z-50'
-          style={{ backgroundImage: `url("${components.balcony_flooring_list[0].icon}")` }}
+          style={{ backgroundImage: `url("${components.balcony[0].icon}")` }}
         />
         {/* <img className='w-full h-full' src={components.balcony_flooring_list[0].icon} />
       </div> */}

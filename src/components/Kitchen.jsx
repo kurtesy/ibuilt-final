@@ -4,6 +4,7 @@ import { setCurrentRoom, setSelectedRoomId, updateRoomData } from '../../redux/r
 import Wall from './Wall'
 import Utility from './Utility'
 import { positions } from '../constants/facingAndPosition'
+import Store from './Store'
 export default function Kitchen({ id }) {
   const currentKitchen = useSelector((state) => state.rooms.kitchen)
 
@@ -69,7 +70,9 @@ export default function Kitchen({ id }) {
 
   return (
     <div style={style} className='bg-bathFullType13 absolute cursor-pointer' onClick={handleClick}>
+      <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>Kitchen</div>
       {currentKitchen.hasUtility && <Utility id={currentKitchen.id} />}
+      {currentKitchen.hasStore && <Store id={currentKitchen.id} isInside={true} />}
       {currentKitchen.walls.map((wall) => (
         <Wall
           length={wall.length}
