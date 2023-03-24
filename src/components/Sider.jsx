@@ -32,13 +32,13 @@ export default function Sider({ isSiderOpen }) {
       {!premium && <PremiumButton setPremium={setPremium} />}
       {premium && (
         <>
-          <div className='flex w-full justify-between gap-3 px-3 '>
+          <div className='flex w-full justify-between gap-3 '>
             <div className='flex flex-col gap-3 w-full'>
               {/* select position */}
               {/* <PositionSelector position={position} setPosition={setPosition} setRoom={setRoom} /> */}
               {/* select room */}
               {/* <RoomSelector room={room} setRoom={setRoom} position={position} /> */}
-              <MultiSelectComponent />
+              <MultiSelectComponent isSiderOpen={isSiderOpen} />
               {/* <div className='font-bold h-[32px] flex items-center text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800'>
                 <pre>Selected Room- </pre>
                 <span className='text-[#5865F2]'>
