@@ -91,6 +91,7 @@ export default function MultiSelectComponent({ isSiderOpen }) {
   const filteredOptions = options.filter((opt, i) => i <= index)
   const [rooms, setRooms] = useState([])
   const [currentRoom, setCurrentRoom] = useState('')
+  const [active, setActive] = useState(false)
   return (
     <div className='flex relative'>
       <div className='flex flex-col w-full gap-3'>
@@ -103,6 +104,8 @@ export default function MultiSelectComponent({ isSiderOpen }) {
             setRooms={setRooms}
             currentRoom={currentRoom}
             setCurrentRoom={setCurrentRoom}
+            selected={active}
+            setSelected={setActive}
           />
         ))}
 
