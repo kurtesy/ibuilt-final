@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-export default function Wall({ position, length, thickness, side, hasDoor, doorPosition, added }) {
+export default function Wall({ position, length, thickness, side, hasDoor, doorPosition, added, id, opening }) {
   const { scale } = useSelector((state) => state.plot)
   const [style, setStyle] = useState({})
   const makeStyle = () => {
@@ -27,7 +27,7 @@ export default function Wall({ position, length, thickness, side, hasDoor, doorP
     <>
       {added ? (
         <div className='bg-slate-800 absolute z-10 hover:bg-green-400' style={style}>
-          {hasDoor && (
+          {opening.includes && (
             <div
               className={`absolute bg-white flex items-end justify-center ${
                 side === 'left' || side === 'right' ? 'h-[30px] w-[30px]' : 'h-[6px] w-[30px]'

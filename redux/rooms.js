@@ -5,6 +5,7 @@ const initialState = {
   currentRoom: {},
   selectedRoom: { id: null, roomType: null },
   addedRooms: [],
+  selectedWall: null,
   selectedIcon: { id: null, type: null, variant: null },
   bedRooms: [
     {
@@ -29,12 +30,12 @@ const initialState = {
           area: 0,
           position: { bottom: 0, left: 0 },
           door: {
-            includes: true,
+            includes: false,
             position: { right: 18 },
             type: 'default'
           },
           opening: {
-            includes: true,
+            includes: false,
             length: 1.8,
             position: { right: 18 }
           }
@@ -91,7 +92,7 @@ const initialState = {
             type: 'default'
           },
           opening: {
-            includes: true,
+            includes: false,
             length: 1.8,
             position: { right: 18 }
           }
@@ -1729,11 +1730,70 @@ const roomsSlice = createSlice({
         filteredRooms.push(currentRoom)
         state.bedRooms = filteredRooms
       }
+    },
+
+    // updateWall: (state, action) => {
+    //   const { id } = action.payload
+    //   console.log('payload: ' + JSON.stringify(action.payload))
+    //   const currentRoomType = id.split('-')[0]
+    //   const currentDirection = id.split('-')[1]
+    //   const currentWallSide = id.split('-')[2]
+    //   console.log('currentRoomType: ' + currentRoomType)
+    //   if (currentRoomType === 'bedroom') {
+    //     const currentBedroom = state.bedRooms.filter((room) => room.id === currentDirection)[0]
+    //     const currentWall = currentBedroom.walls.filter((wall) => wall.side == currentWallSide)[0]
+    //     const filteredWalls = currentBedroom.walls.filter((wall) => wall.side !== currentWallSide)
+    //     if (action.payload.hasOpening !== undefined) {
+    //       // opening.includes
+    //       currentWall.opening.includes = action.payload.hasOpening
+    //       filteredWalls.push(currentWall)
+    //       currentBedroom.walls = filteredWalls
+
+    //       console.log('currenrtbedtroom walls' + JSON.stringify(currentBedroom))
+    //     }
+    //     state.bedRooms = state.bedRooms.filter((room) => room.id !== currentDirection)
+    //     console.log('state.bedrooms' + state.bedRooms.length)
+    //     state.bedRooms.push(currentBedroom)
+    //     console.log('currenrtbedtroom walls after' + JSON.stringify(currentBedroom))
+    //     console.log('state.bedrooms' + state.bedRooms.length)
+    //   }
+    // },
+    updateWall: (state, action) => {
+      const { id } = action.payload
+      const [currentRoomType, currentDirection, currentWallSide] = id.split('-')
+
+      if (currentRoomType !== 'bedroom') {
+        return state
+      }
+
+      const bedRooms = state.bedRooms.map((bedroom) => {
+        if (bedroom.id === currentDirection) {
+          const walls = bedroom.walls.map((wall) => {
+            if (wall.side === currentWallSide) {
+              const hasOpening = action.payload.hasOpening
+              return { ...wall, opening: { ...wall.opening, includes: hasOpening } }
+            }
+            return wall
+          })
+
+          return { ...bedroom, walls }
+        }
+        console.log('bedroom: ' + JSON.stringify(bedroom))
+        return bedroom
+      })
+
+      return { ...state, bedRooms }
+    },
+    setSelectedWall: (state, action) => {
+      const { id } = action.payload
+      state.selectedWall = id
     }
   }
 })
 export const {
   setCurrentPosition,
+  updateWall,
+  setSelectedWall,
   setCurrentRoom,
   setSelectedRoomId,
   updateRoomData,

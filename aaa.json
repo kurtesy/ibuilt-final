@@ -1,0 +1,226 @@
+[
+  {
+    "id": "ne",
+    "length": null,
+    "breadth": null,
+    "maxDim": 20,
+    "minDim": 8,
+    "area": 0,
+    "position": { "top": 0, "right": 0 },
+    "walls": [
+      {
+        "added": false,
+        "side": "front",
+        "length": null,
+        "thickness": 6,
+        "direction": 0,
+        "area": 0,
+        "position": { "bottom": 0, "left": 0 },
+        "door": { "includes": true, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": true, "length": 1.8, "position": { "right": 18 } }
+      },
+      {
+        "added": false,
+        "side": "back",
+        "length": null,
+        "thickness": 6,
+        "direction": 0,
+        "area": 0,
+        "position": { "top": 0, "left": 0 },
+        "door": { "includes": false, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": false, "length": 1.8, "position": { "right": 18 } }
+      },
+      {
+        "added": false,
+        "side": "left",
+        "length": null,
+        "thickness": 6,
+        "direction": 1,
+        "area": 0,
+        "position": { "top": 0, "left": 0 },
+        "door": { "includes": false, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": false, "length": 1.8, "position": { "right": 18 } }
+      },
+      {
+        "added": false,
+        "side": "right",
+        "length": null,
+        "thickness": 6,
+        "direction": 1,
+        "area": 0,
+        "position": { "top": 0, "right": 0 },
+        "door": { "includes": false, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": true, "length": 1.8, "position": { "right": 18 } }
+      }
+    ]
+  },
+  {
+    "id": "sw",
+    "length": null,
+    "breadth": null,
+    "maxDim": 20,
+    "minDim": 8,
+    "area": 0,
+    "position": { "bottom": 0, "left": 0 },
+    "walls": [
+      {
+        "added": false,
+        "side": "front",
+        "length": null,
+        "thickness": 6,
+        "direction": 0,
+        "area": 0,
+        "position": { "bottom": 0, "left": 0 },
+        "door": { "includes": true, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": true, "length": 1.8, "position": { "right": 18 } }
+      },
+      {
+        "added": false,
+        "side": "back",
+        "length": null,
+        "thickness": 6,
+        "direction": 0,
+        "area": 0,
+        "position": { "top": 0, "left": 0 },
+        "door": { "includes": false, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": false, "length": 1.8, "position": { "right": 18 } }
+      },
+      {
+        "added": false,
+        "side": "left",
+        "length": null,
+        "thickness": 6,
+        "direction": 1,
+        "area": 0,
+        "position": { "top": 0, "left": 0 },
+        "door": { "includes": false, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": false, "length": 1.8, "position": { "right": 18 } }
+      },
+      {
+        "added": false,
+        "side": "right",
+        "length": null,
+        "thickness": 6,
+        "direction": 1,
+        "area": 0,
+        "position": { "top": 0, "right": 0 },
+        "door": { "includes": false, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": true, "length": 1.8, "position": { "right": 18 } }
+      }
+    ]
+  },
+  {
+    "id": "se",
+    "length": null,
+    "breadth": null,
+    "maxDim": 20,
+    "minDim": 8,
+    "area": 0,
+    "position": { "bottom": 0, "right": 0 },
+    "walls": [
+      {
+        "added": false,
+        "side": "front",
+        "length": null,
+        "thickness": 6,
+        "direction": 0,
+        "area": 0,
+        "position": { "bottom": 0, "left": 0 },
+        "door": { "includes": true, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": true, "length": 1.8, "position": { "right": 18 } }
+      },
+      {
+        "added": false,
+        "side": "back",
+        "length": null,
+        "thickness": 6,
+        "direction": 0,
+        "area": 0,
+        "position": { "top": 0, "left": 0 },
+        "door": { "includes": false, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": false, "length": 1.8, "position": { "right": 18 } }
+      },
+      {
+        "added": false,
+        "side": "left",
+        "length": null,
+        "thickness": 6,
+        "direction": 1,
+        "area": 0,
+        "position": { "top": 0, "left": 0 },
+        "door": { "includes": false, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": false, "length": 1.8, "position": { "right": 18 } }
+      },
+      {
+        "added": false,
+        "side": "right",
+        "length": null,
+        "thickness": 6,
+        "direction": 1,
+        "area": 0,
+        "position": { "top": 0, "right": 0 },
+        "door": { "includes": false, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": true, "length": 1.8, "position": { "right": 18 } }
+      }
+    ]
+  },
+  {
+    "id": "nw",
+    "length": "20.00",
+    "breadth": "14.40",
+    "maxDim": 20,
+    "minDim": 8,
+    "area": "288.00",
+    "position": { "top": 0, "left": 0 },
+    "hasToilet": true,
+    "hasWardrobe": false,
+    "hasBalcony": false,
+    "icons": [],
+    "walls": [
+      {
+        "added": false,
+        "side": "back",
+        "length": "20.00",
+        "thickness": 6,
+        "direction": 0,
+        "area": 0,
+        "position": { "top": 0, "left": 0 },
+        "door": { "includes": false, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": false, "length": 1.8, "position": { "right": 18 } }
+      },
+      {
+        "added": false,
+        "side": "left",
+        "length": "14.40",
+        "thickness": 6,
+        "direction": 1,
+        "area": 0,
+        "position": { "top": 0, "left": 0 },
+        "door": { "includes": false, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": false, "length": 1.8, "position": { "right": 18 } }
+      },
+      {
+        "added": false,
+        "side": "right",
+        "length": "14.40",
+        "thickness": 6,
+        "direction": 1,
+        "area": 0,
+        "position": { "top": 0, "right": 0 },
+        "door": { "includes": false, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": false, "length": 1.8, "position": { "right": 18 } }
+      },
+      {
+        "added": true,
+        "side": "front",
+        "length": "20.00",
+        "thickness": 6,
+        "direction": 0,
+        "area": 0,
+        "position": { "bottom": 0, "left": 0 },
+        "door": { "includes": false, "position": { "right": 18 }, "type": "default" },
+        "opening": { "includes": true, "length": 1.8, "position": { "right": 18 } }
+      }
+    ]
+  }
+]

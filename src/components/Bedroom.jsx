@@ -95,6 +95,7 @@ export default function Bedroom({ id }) {
       <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>BED ROOM - {id.toUpperCase()}</div>
       {currentBedroom.walls.map((wall) => (
         <Wall
+          id={`bedroom-${id}-${wall.side}`}
           added={wall.added}
           length={wall.length}
           thickness={wall.thickness}

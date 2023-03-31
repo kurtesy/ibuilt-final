@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addWallToRoom } from '../../redux/rooms'
-
+import { addWallToRoom, setSelectedWall, updateWall } from '../../redux/rooms'
+import { BsPencilFill } from 'react-icons/bs'
+import WallEditor from './WallEditor'
 export default function WallControls() {
   const { selectedRoom } = useSelector((state) => state.rooms)
   const [isLeftwallChecked, setIsLeftWallChecked] = useState(false)
@@ -9,7 +10,12 @@ export default function WallControls() {
   const [isFrontwallChecked, setIsFrontWallChecked] = useState(false)
   const [isBackwallChecked, setIsBackWallChecked] = useState(false)
   const [side, setSide] = useState(null)
+  const { selectedWall } = useSelector((state) => state.rooms)
   const dispatch = useDispatch()
+  const handleEditWall = (side) => {
+    console.log('Clicked: ' + side)
+    dispatch(setSelectedWall({ id: `${selectedRoom.roomType}-${selectedRoom.id}-${side}` }))
+  }
   useEffect(() => {
     if (side) {
       let status
@@ -23,7 +29,7 @@ export default function WallControls() {
   return (
     <>
       <div className='font-bold h-[32px] flex items-center justify-between text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800'>
-        Manage Dimensions
+        Manage Walls
         <span className='text-xs '>
           Selected Room-
           <span className='text-[#5865F2] '>
@@ -48,6 +54,12 @@ export default function WallControls() {
             }}
           />
           <label>Left</label>
+          {isLeftwallChecked && (
+            <BsPencilFill
+              className='text-xs text-blue-500 cursor-pointer hover:scale-125'
+              onClick={() => handleEditWall('left')}
+            />
+          )}
         </div>
         <div className='flex gap-2 text-lg items-center font-semibold text-primaryLime'>
           <input
@@ -60,6 +72,12 @@ export default function WallControls() {
             }}
           />
           <label>Right</label>
+          {isRightwallChecked && (
+            <BsPencilFill
+              className='text-xs text-blue-500 cursor-pointer hover:scale-125'
+              onClick={() => handleEditWall('right')}
+            />
+          )}
         </div>
         <div className='flex gap-2 text-lg items-center font-semibold text-primaryLime'>
           <input
@@ -72,6 +90,12 @@ export default function WallControls() {
             }}
           />
           <label>Front</label>
+          {isFrontwallChecked && (
+            <BsPencilFill
+              className='text-xs text-blue-500 cursor-pointer hover:scale-125'
+              onClick={() => handleEditWall('front')}
+            />
+          )}
         </div>
         <div className='flex gap-2 text-lg items-center font-semibold text-primaryLime'>
           <input
@@ -84,12 +108,15 @@ export default function WallControls() {
             }}
           />
           <label>Back</label>
+          {isBackwallChecked && (
+            <BsPencilFill
+              className='text-xs text-blue-500 cursor-pointer hover:scale-125'
+              onClick={() => handleEditWall('back')}
+            />
+          )}
         </div>
       </div>
-      <div>
-        <label>Added Walls: </label>
-        <div></div>
-      </div>
+      {selectedWall && <WallEditor />}
     </>
   )
 }
