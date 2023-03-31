@@ -25,7 +25,7 @@ export default function Bedroom({ id }) {
     currStyle['height'] = Math.floor(breadth * scale)
     if (isActive && selectedRoom.id === id) {
       currStyle['zIndex'] = 40
-      currStyle['backgroundColor'] = 'rgba(150,150,250,0.7)'
+      currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 1
       currStyle['backgroundColor'] = '#fff'
@@ -95,6 +95,7 @@ export default function Bedroom({ id }) {
       <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>BED ROOM - {id.toUpperCase()}</div>
       {currentBedroom.walls.map((wall) => (
         <Wall
+          added={wall.added}
           length={wall.length}
           thickness={wall.thickness}
           position={wall.position}

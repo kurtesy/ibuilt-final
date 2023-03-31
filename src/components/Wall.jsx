@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-export default function Wall({ position, length, thickness, side, hasDoor, doorPosition }) {
+export default function Wall({ position, length, thickness, side, hasDoor, doorPosition, added }) {
   const { scale } = useSelector((state) => state.plot)
   const [style, setStyle] = useState({})
   const makeStyle = () => {
@@ -24,26 +24,30 @@ export default function Wall({ position, length, thickness, side, hasDoor, doorP
     makeStyle()
   }, [position, length, thickness, side, scale])
   return (
-    <div className='bg-gray-400 absolute z-10 hover:bg-green-400' style={style}>
-      {hasDoor && (
-        <div
-          className={`absolute bg-white flex items-end justify-center ${
-            side === 'left' || side === 'right' ? 'h-[30px] w-[30px]' : 'h-[6px] w-[30px]'
-          }`}
-          style={doorPosition}>
-          {
-            // <img
-            //   src={doorImg}
-            //   alt='door'
-            //   style={
-            //     side === 'left' || side === 'right'
-            //       ? { transform: 'scaleX(-1) ', rotate: '-90deg', width: '100%', height: '100%' }
-            //       : {}
-            //   }
-            // />
-          }
+    <>
+      {added ? (
+        <div className='bg-slate-800 absolute z-10 hover:bg-green-400' style={style}>
+          {hasDoor && (
+            <div
+              className={`absolute bg-white flex items-end justify-center ${
+                side === 'left' || side === 'right' ? 'h-[30px] w-[30px]' : 'h-[6px] w-[30px]'
+              }`}
+              style={doorPosition}>
+              {
+                // <img
+                //   src={doorImg}
+                //   alt='door'
+                //   style={
+                //     side === 'left' || side === 'right'
+                //       ? { transform: 'scaleX(-1) ', rotate: '-90deg', width: '100%', height: '100%' }
+                //       : {}
+                //   }
+                // />
+              }
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      ) : null}
+    </>
   )
 }

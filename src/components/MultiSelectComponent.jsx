@@ -116,7 +116,7 @@ export default function MultiSelectComponent({ isSiderOpen }) {
           {reverse && <BsChevronCompactUp className='text-primaryLime font-semibold animate-ping' />}
         </button>
       </div>
-      {isSiderOpen && <EditSaveDeleteComponent />}
+      {/* {isSiderOpen && <EditSaveDeleteComponent />} */}
       {/* <div className='w-full flex gap-3 justify-between'>
         <div className='flex flex-col gap-3 w-1/2'>
           <select

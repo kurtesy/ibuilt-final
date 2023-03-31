@@ -33,6 +33,16 @@ export default function Built() {
       //   dispatch(setSelectedRoomId({ selectedId: null, roomType: '' }))
       // }}
     >
+      {/* outer walls */}
+      {/* top */}
+      <div className='w-full h-[9px] bg-slate-800 z-50 absolute top-0 left-0' />
+      {/* bottom */}
+      <div className='w-full h-[9px] bg-slate-800 z-50 absolute bottom-0 left-0' />
+      {/* left */}
+      <div className='h-[calc(100%-18px)] w-[9px] bg-slate-800 z-50 absolute top-[9px] left-0' />
+      {/* right */}
+      <div className='h-[calc(100%-18px)] w-[9px] bg-slate-800 z-50 absolute top-[9px] right-0' />
+
       {selectedItems?.map((item) => item.roomType === 'bedroom' && <Bedroom id={item.position} />)}
       {selectedItems?.map((item) => item.roomType === 'living' && <LivingRoom id={item.position} />)}
       {selectedItems?.map((item) => item.roomType === 'kitchen' && <Kitchen id='se' />)}

@@ -9,6 +9,7 @@ import { addRoomToPlot } from '../../redux/rooms'
 import PremiumButton from './PremiumButton'
 import MultiSelectComponent from './MultiSelectComponent'
 import IconsList from './IconsList'
+import WallControls from './WallControls'
 
 export default function Sider({ isSiderOpen }) {
   // premium controls tobe implemented
@@ -57,6 +58,7 @@ export default function Sider({ isSiderOpen }) {
           <DirectionControls />
           {/* change dimensions */}
           <DimensionControls />
+          <WallControls />
           <IconsList />
         </>
       )}
