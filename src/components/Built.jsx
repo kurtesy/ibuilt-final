@@ -4,6 +4,7 @@ import Bedroom from './Bedroom'
 import { setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import LivingRoom from './LivingRoom'
 import Kitchen from './Kitchen'
+import WindowComp from './WindowComp'
 
 export default function Built() {
   const { builtLength, builtBreadth, scale, setbacks } = useSelector((state) => state.plot)
@@ -35,7 +36,9 @@ export default function Built() {
     >
       {/* outer walls */}
       {/* top */}
-      <div className='w-full h-[9px] bg-slate-800 z-50 absolute top-0 left-0' />
+      <div className='w-full h-[9px] bg-slate-800 z-50 absolute top-0 left-0'>
+        <WindowComp side='back' position={{ left: '50%' }} />
+      </div>
       {/* bottom */}
       <div className='w-full h-[9px] bg-slate-800 z-50 absolute bottom-0 left-0' />
       {/* left */}

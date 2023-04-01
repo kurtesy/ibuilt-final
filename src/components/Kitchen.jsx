@@ -40,8 +40,8 @@ export default function Kitchen({ id }) {
       updateRoomData({
         id,
         roomType: 'kitchen',
-        // position: positions[facing.toString()][id.toString()]
-        position: { bottom: 0, right: 0 }
+        position: positions[facing.toString()][id.toString()]
+        // position: { bottom: 0, right: 0 }
       })
     )
   }, [facing])
@@ -75,14 +75,14 @@ export default function Kitchen({ id }) {
       {currentKitchen.hasStore && <Store id={currentKitchen.id} isInside={true} />}
       {currentKitchen.walls.map((wall) => (
         <Wall
+          id={`kitchen-${id}-${wall.side}`}
+          added={wall.added}
           length={wall.length}
           thickness={wall.thickness}
           position={wall.position}
           door={wall.door}
-          hasDoor={wall.door.includes}
-          doorPosition={wall.door.position}
           side={wall.side}
-          direction={wall.direction}
+          window={wall.window}
           opening={wall.opening}
         />
       ))}

@@ -101,10 +101,8 @@ export default function Bedroom({ id }) {
           thickness={wall.thickness}
           position={wall.position}
           door={wall.door}
-          hasDoor={wall.door.includes}
-          doorPosition={wall.door.position}
           side={wall.side}
-          direction={wall.direction}
+          window={wall.window}
           opening={wall.opening}
         />
       ))}
