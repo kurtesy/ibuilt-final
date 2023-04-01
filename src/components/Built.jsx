@@ -5,7 +5,9 @@ import { setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import LivingRoom from './LivingRoom'
 import Kitchen from './Kitchen'
 import WindowComp from './WindowComp'
-
+import Pooja from './Pooja'
+import Drawing from './Drawing'
+import Dining from './Dining'
 export default function Built() {
   const { builtLength, builtBreadth, scale, setbacks } = useSelector((state) => state.plot)
   const { addedRooms } = useSelector((state) => state.rooms)
@@ -48,8 +50,10 @@ export default function Built() {
 
       {selectedItems?.map((item) => item.roomType === 'bedroom' && <Bedroom id={item.position} />)}
       {selectedItems?.map((item) => item.roomType === 'living' && <LivingRoom id={item.position} />)}
-      {selectedItems?.map((item) => item.roomType === 'kitchen' && <Kitchen id='se' />)}
-      {selectedItems?.map((item) => item.roomType === 'drawing' && <div>DRAWING</div>)}
+      {selectedItems?.map((item) => item.roomType === 'kitchen' && <Kitchen id={item.position} />)}
+      {selectedItems?.map((item) => item.roomType === 'drawing' && <Drawing id={item.position} />)}
+      {selectedItems?.map((item) => item.roomType === 'dining' && <Dining id={item.position} />)}
+      {selectedItems?.map((item) => item.roomType === 'pooja' && <Pooja id={item.position} />)}
       {selectedItems?.map((item) => item.roomType === 'sitout' && <div>SITOUT</div>)}
       {/* {selectedItems?.map((item) => item.roomType === 'store' && <div>STORE</div>)} */}
       {selectedItems?.map((item) => item.roomType === 'office' && <div>OFFICE</div>)}

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import locationMap from '../constants/locationMapping'
-import { setCurrentPosition, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
+import { removeRoomFromPlot, setCurrentPosition, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import { positions } from '../constants/facingAndPosition'
 import Wall from './Wall'
 import Toilet from './Toilet'
@@ -71,12 +71,20 @@ export default function Bedroom({ id }) {
     e.preventDefault()
     setRightClicked(true)
   }
-  const handleDelete = (id) => {
-    dispatch()
+  const handleDeSelect = (e) => {
+    e.preventDefault()
+    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
+    setIsActive(false)
   }
 
   return (
-    <div style={style} className='absolute cursor-pointer bg-slate-400 ' id={id} onClick={handleClick}>
+    <div
+      style={style}
+      tabIndex={0}
+      className='absolute cursor-pointer bg-slate-400 '
+      id={id}
+      onClick={handleClick}
+      onContextMenu={handleDeSelect}>
       <Toilet id={id} />
       {currentBedroom.icons &&
         currentBedroom.icons.map((icon, index) => (

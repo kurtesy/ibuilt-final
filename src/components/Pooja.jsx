@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setCurrentRoom, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
+import { setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import Wall from './Wall'
+import { positions } from '../constants/facingAndPosition'
+export default function Dining({ id }) {
+  const currentPooja = useSelector((state) => state.rooms.pooja)
 
-export default function Store({ id }) {
-  const currentStore = useSelector((state) => state.rooms.store)
-
-  const [length, setLength] = useState(0)
-  const [breadth, setBreadth] = useState(0)
+  const [length, setLength] = useState(6)
+  const [breadth, setBreadth] = useState(10)
   const [rotation, setRotation] = useState(0)
-  const { scale } = useSelector((state) => state.plot)
+  const { scale, facing } = useSelector((state) => state.plot)
   const { selectedRoom } = useSelector((state) => state.rooms)
   const [style, setStyle] = useState({})
   const [isActive, setIsActive] = useState(false)
@@ -27,40 +27,51 @@ export default function Store({ id }) {
       currStyle['zIndex'] = 10
       currStyle['backgroundColor'] = '#fff'
     }
-    setStyle({ ...currStyle, ...currentStore.position })
+    setStyle({ ...currStyle, ...currentPooja.position })
   }
   useEffect(() => {
-    setLength(currentStore?.length)
-    setBreadth(currentStore?.breadth)
-  }, [currentStore])
-
-  const handleClick = (e) => {
-    e.stopPropagation()
-    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'store' }))
-    setIsActive(true)
-  }
-  useEffect(() => {
-    setRotation(currentStore.rotated)
-  }, [currentStore])
-  useEffect(() => {
-    makeStyle()
-  }, [length, breadth, location, selectedRoom, isActive, currentStore])
+    setLength(currentPooja?.length)
+    setBreadth(currentPooja?.breadth)
+  }, [currentPooja])
   useEffect(() => {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'store',
+        roomType: 'pooja',
+        position: positions[facing.toString()][id.toString()]
+        // position: { bottom: 0, right: 0 }
+      })
+    )
+  }, [facing])
+  const handleClick = (e) => {
+    e.stopPropagation()
+    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'pooja' }))
+    setIsActive(true)
+  }
+  useEffect(() => {
+    setRotation(currentPooja.rotated)
+  }, [currentPooja])
+  useEffect(() => {
+    makeStyle()
+  }, [length, breadth, location, selectedRoom, isActive, currentPooja, facing])
+
+  useEffect(() => {
+    dispatch(
+      updateRoomData({
+        id,
+        roomType: 'pooja',
         length,
         breadth
       })
     )
   }, [length, breadth])
+
   return (
-    <div style={style} className='bg-bathFullType13 relative' onClick={handleClick}>
-      <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>Store</div>
-      {currentStore.walls.map((wall) => (
+    <div style={style} className='bg-bathFullType13 absolute cursor-pointer' onClick={handleClick}>
+      <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>Pooja</div>
+      {currentPooja.walls.map((wall) => (
         <Wall
-          id={`store-${id}-${wall.side}`}
+          id={`pooja-${id}-${wall.side}`}
           added={wall.added}
           length={wall.length}
           thickness={wall.thickness}

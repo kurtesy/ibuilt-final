@@ -60,14 +60,14 @@ export default function Utility({ id }) {
       <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>Utility</div>
       {currentUtility.walls.map((wall) => (
         <Wall
+          id={`utility-${id}-${wall.side}`}
+          added={wall.added}
           length={wall.length}
           thickness={wall.thickness}
           position={wall.position}
           door={wall.door}
-          hasDoor={wall.door.includes}
-          doorPosition={wall.door.position}
           side={wall.side}
-          direction={wall.direction}
+          window={wall.window}
           opening={wall.opening}
         />
       ))}

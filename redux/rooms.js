@@ -1212,6 +1212,7 @@ const initialState = {
     position: { top: 0, right: 0 },
     walls: [
       {
+        added: false,
         side: 'front',
         length: null,
         thickness: 6,
@@ -1222,9 +1223,20 @@ const initialState = {
           includes: false,
           position: { right: 18 },
           type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { right: 18 }
+        },
+        window: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
         }
       },
       {
+        added: false,
         side: 'back',
         length: null,
         thickness: 6,
@@ -1235,9 +1247,15 @@ const initialState = {
           includes: false,
           position: { right: 18 },
           type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { right: 18 }
         }
       },
       {
+        added: false,
         side: 'left',
         length: null,
         thickness: 6,
@@ -1246,11 +1264,17 @@ const initialState = {
         position: { top: 0, left: 0 },
         door: {
           includes: false,
-          position: { right: 18 },
+          position: { top: 18 },
           type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { top: 18 }
         }
       },
       {
+        added: false,
         side: 'right',
         length: null,
         thickness: 6,
@@ -1259,8 +1283,13 @@ const initialState = {
         position: { top: 0, right: 0 },
         door: {
           includes: false,
-          position: { right: 18 },
+          position: { top: 18 },
           type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { top: 18 }
         }
       }
     ]
@@ -1277,6 +1306,7 @@ const initialState = {
     position: { top: 0, left: 0 },
     walls: [
       {
+        added: false,
         side: 'front',
         length: null,
         thickness: 6,
@@ -1287,9 +1317,20 @@ const initialState = {
           includes: false,
           position: { right: 18 },
           type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { right: 18 }
+        },
+        window: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
         }
       },
       {
+        added: false,
         side: 'back',
         length: null,
         thickness: 6,
@@ -1300,9 +1341,15 @@ const initialState = {
           includes: false,
           position: { right: 18 },
           type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { right: 18 }
         }
       },
       {
+        added: false,
         side: 'left',
         length: null,
         thickness: 6,
@@ -1311,11 +1358,17 @@ const initialState = {
         position: { top: 0, left: 0 },
         door: {
           includes: false,
-          position: { right: 18 },
+          position: { top: 18 },
           type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { top: 18 }
         }
       },
       {
+        added: false,
         side: 'right',
         length: null,
         thickness: 6,
@@ -1324,8 +1377,295 @@ const initialState = {
         position: { top: 0, right: 0 },
         door: {
           includes: false,
+          position: { top: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { top: 18 }
+        }
+      }
+    ]
+  },
+  dining: {
+    id: '',
+    type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
+    length: 8,
+    breadth: 8,
+    maxDim: 12,
+    minDim: 3,
+    rotated: 0,
+    area: 0,
+    position: { top: 0, right: 0 },
+    walls: [
+      {
+        added: false,
+        side: 'front',
+        length: null,
+        thickness: 6,
+        direction: 0,
+        area: 0,
+        position: { bottom: 0, left: 0 },
+        door: {
+          includes: false,
           position: { right: 18 },
           type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { right: 18 }
+        },
+        window: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      },
+      {
+        added: false,
+        side: 'back',
+        length: null,
+        thickness: 6,
+        direction: 0,
+        area: 0,
+        position: { top: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { right: 18 }
+        }
+      },
+      {
+        added: false,
+        side: 'left',
+        length: null,
+        thickness: 6,
+        direction: 1,
+        area: 0,
+        position: { top: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { top: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { top: 18 }
+        }
+      },
+      {
+        added: false,
+        side: 'right',
+        length: null,
+        thickness: 6,
+        direction: 1,
+        area: 0,
+        position: { top: 0, right: 0 },
+        door: {
+          includes: false,
+          position: { top: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { top: 18 }
+        }
+      }
+    ]
+  },
+  drawing: {
+    id: '',
+    type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
+    length: 8,
+    breadth: 8,
+    maxDim: 12,
+    minDim: 3,
+    rotated: 0,
+    area: 0,
+    position: { top: 0, right: 0 },
+    walls: [
+      {
+        added: false,
+        side: 'front',
+        length: null,
+        thickness: 6,
+        direction: 0,
+        area: 0,
+        position: { bottom: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { right: 18 }
+        },
+        window: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      },
+      {
+        added: false,
+        side: 'back',
+        length: null,
+        thickness: 6,
+        direction: 0,
+        area: 0,
+        position: { top: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { right: 18 }
+        }
+      },
+      {
+        added: false,
+        side: 'left',
+        length: null,
+        thickness: 6,
+        direction: 1,
+        area: 0,
+        position: { top: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { top: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { top: 18 }
+        }
+      },
+      {
+        added: false,
+        side: 'right',
+        length: null,
+        thickness: 6,
+        direction: 1,
+        area: 0,
+        position: { top: 0, right: 0 },
+        door: {
+          includes: false,
+          position: { top: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { top: 18 }
+        }
+      }
+    ]
+  },
+  pooja: {
+    id: '',
+    type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
+    length: 8,
+    breadth: 8,
+    maxDim: 12,
+    minDim: 3,
+    rotated: 0,
+    area: 0,
+    position: { top: 0, right: 0 },
+    walls: [
+      {
+        added: false,
+        side: 'front',
+        length: null,
+        thickness: 6,
+        direction: 0,
+        area: 0,
+        position: { bottom: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { right: 18 }
+        },
+        window: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      },
+      {
+        added: false,
+        side: 'back',
+        length: null,
+        thickness: 6,
+        direction: 0,
+        area: 0,
+        position: { top: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { right: 18 }
+        }
+      },
+      {
+        added: false,
+        side: 'left',
+        length: null,
+        thickness: 6,
+        direction: 1,
+        area: 0,
+        position: { top: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { top: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { top: 18 }
+        }
+      },
+      {
+        added: false,
+        side: 'right',
+        length: null,
+        thickness: 6,
+        direction: 1,
+        area: 0,
+        position: { top: 0, right: 0 },
+        door: {
+          includes: false,
+          position: { top: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { top: 18 }
         }
       }
     ]
@@ -1753,13 +2093,178 @@ const roomsSlice = createSlice({
         console.log('direction controls=>', action.payload)
         state.store = currentStore
       }
+      if (roomType === 'dining') {
+        const currentDining = state.dining
+        currentDining.id = id
+        if (action.payload.rotated !== undefined) {
+          currentDining.rotated = action.payload.rotated
+        }
+
+        //If both length and breadth are privided update length,breadth and area, walls lengths
+        if (action.payload.length && action.payload.breadth) {
+          //update room dimensions
+          currentDining.length = parseFloat(action.payload.length).toFixed(2)
+          currentDining.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          //update area
+          currentDining.area = parseFloat(
+            parseFloat(action.payload.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          //update wall dimensions
+          //Front Wall
+          currentDining.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          //Back Wall
+          currentDining.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          //Left Wall
+          currentDining.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          //Right Wall
+          currentDining.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        //If only one dimension provided, update dimension, area and wall lengths
+        if (action.payload.length && !action.payload.breadth) {
+          currentDining.length = parseFloat(action.payload.length).toFixed(2)
+          currentDining.area = parseFloat(
+            parseFloat(currentDining.breadth) * parseFloat(action.payload.length)
+          ).toFixed(2)
+          currentDining.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          currentDining.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+        }
+        if (action.payload.breadth && !action.payload.length) {
+          currentDining.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentDining.area = parseFloat(
+            parseFloat(currentDining.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          currentDining.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentDining.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        if (action.payload.position) {
+          currentDining.position = action.payload.position
+        }
+        console.log('direction controls=>', action.payload)
+        state.dining = currentDining
+      }
+      if (roomType === 'drawing') {
+        const currentDrawing = state.drawing
+        currentDrawing.id = id
+        if (action.payload.rotated !== undefined) {
+          currentDrawing.rotated = action.payload.rotated
+        }
+
+        //If both length and breadth are privided update length,breadth and area, walls lengths
+        if (action.payload.length && action.payload.breadth) {
+          //update room dimensions
+          currentDrawing.length = parseFloat(action.payload.length).toFixed(2)
+          currentDrawing.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          //update area
+          currentDrawing.area = parseFloat(
+            parseFloat(action.payload.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          //update wall dimensions
+          //Front Wall
+          currentDrawing.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          //Back Wall
+          currentDrawing.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          //Left Wall
+          currentDrawing.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          //Right Wall
+          currentDrawing.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        //If only one dimension provided, update dimension, area and wall lengths
+        if (action.payload.length && !action.payload.breadth) {
+          currentDrawing.length = parseFloat(action.payload.length).toFixed(2)
+          currentDrawing.area = parseFloat(
+            parseFloat(currentDrawing.breadth) * parseFloat(action.payload.length)
+          ).toFixed(2)
+          currentDrawing.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          currentDrawing.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+        }
+        if (action.payload.breadth && !action.payload.length) {
+          currentDrawing.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentDrawing.area = parseFloat(
+            parseFloat(currentDrawing.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          currentDrawing.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentDrawing.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        if (action.payload.position) {
+          currentDrawing.position = action.payload.position
+        }
+        console.log('direction controls=>', action.payload)
+        state.drawing = currentDrawing
+      }
+      if (roomType === 'pooja') {
+        const currentPooja = state.pooja
+        currentPooja.id = id
+        if (action.payload.rotated !== undefined) {
+          currentPooja.rotated = action.payload.rotated
+        }
+
+        //If both length and breadth are privided update length,breadth and area, walls lengths
+        if (action.payload.length && action.payload.breadth) {
+          //update room dimensions
+          currentPooja.length = parseFloat(action.payload.length).toFixed(2)
+          currentPooja.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          //update area
+          currentPooja.area = parseFloat(
+            parseFloat(action.payload.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          //update wall dimensions
+          //Front Wall
+          currentPooja.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          //Back Wall
+          currentPooja.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          //Left Wall
+          currentPooja.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          //Right Wall
+          currentPooja.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        //If only one dimension provided, update dimension, area and wall lengths
+        if (action.payload.length && !action.payload.breadth) {
+          currentPooja.length = parseFloat(action.payload.length).toFixed(2)
+          currentPooja.area = parseFloat(parseFloat(currentPooja.breadth) * parseFloat(action.payload.length)).toFixed(
+            2
+          )
+          currentPooja.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          currentPooja.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+        }
+        if (action.payload.breadth && !action.payload.length) {
+          currentPooja.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentPooja.area = parseFloat(parseFloat(currentPooja.length) * parseFloat(action.payload.breadth)).toFixed(
+            2
+          )
+          currentPooja.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentPooja.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        if (action.payload.position) {
+          currentPooja.position = action.payload.position
+        }
+        console.log('direction controls=>', action.payload)
+        state.pooja = currentPooja
+      }
     },
     addRoomToPlot: (state, action) => {
       const { position, roomType } = action.payload
-      const filteredRooms = state.addedRooms.filter((room) => {
-        if (room.position === position && room.roomType === roomType) return room
-      })
-      if (filteredRooms.length === 0) state.addedRooms.push({ position, roomType })
+      if (
+        roomType === 'kitchen' ||
+        roomType === 'drawing' ||
+        roomType === 'dining' ||
+        roomType === 'pooja' ||
+        roomType === 'commonToilet'
+      ) {
+        const filteredRooms = state.addedRooms.filter((room) => room.roomType == roomType)
+        if (filteredRooms.length === 0) state.addedRooms.push({ position, roomType })
+      } else {
+        const filteredRooms = state.addedRooms.filter((room) => {
+          if (room.position === position && room.roomType === roomType) return room
+        })
+        if (filteredRooms.length === 0) state.addedRooms.push({ position, roomType })
+      }
+      
     },
     removeRoomFromPlot: (state, action) => {
       const { position, roomType } = action.payload
@@ -1869,8 +2374,37 @@ const roomsSlice = createSlice({
         currentWall.added = status
         state.kitchen = currentRoom
       }
+      if (roomType === 'utility') {
+        const currentRoom = state.utility
+        const currentWall = currentRoom.walls.filter((wall) => wall.side === side)[0]
+        currentWall.added = status
+        state.utility = currentRoom
+      }
+      if (roomType === 'store') {
+        const currentRoom = state.store
+        const currentWall = currentRoom.walls.filter((wall) => wall.side === side)[0]
+        currentWall.added = status
+        state.store = currentRoom
+      }
+      if (roomType === 'drawing') {
+        const currentDrawing = state.drawing
+        const currentWall = currentDrawing.walls.filter((wall) => wall.side === side)[0]
+        currentWall.added = status
+        state.drawing = currentDrawing
+      }
+      if (roomType === 'dining') {
+        const currentDining = state.dining
+        const currentWall = currentDining.walls.filter((wall) => wall.side === side)[0]
+        currentWall.added = status
+        state.dining = currentDining
+      }
+      if (roomType === 'pooja') {
+        const currentPooja = state.pooja
+        const currentWall = currentPooja.walls.filter((wall) => wall.side === side)[0]
+        currentWall.added = status
+        state.dining = currentPooja
+      }
     },
-
     updateWall: (state, action) => {
       const { id } = action.payload
       console.log('payload: ' + JSON.stringify(action.payload))
@@ -2060,8 +2594,267 @@ const roomsSlice = createSlice({
         }
         state.kitchen = currentKitchen
       }
+      if (currentRoomType === 'utility') {
+        const currentUtility = state.utility
+        const currentWall = currentUtility.walls.filter((wall) => wall.side == currentWallSide)[0]
+        const filteredWalls = currentUtility.walls.filter((wall) => wall.side !== currentWallSide)
+        if (action.payload.hasOpening !== undefined) {
+          // opening.includes
+          currentWall.opening.includes = action.payload.hasOpening
+          filteredWalls.push(currentWall)
+          currentUtility.walls = filteredWalls
+        }
+        if (action.payload.hasDoor !== undefined) {
+          // opening.includes
+          currentWall.door.includes = action.payload.hasDoor
+          filteredWalls.push(currentWall)
+          currentUtility.walls = filteredWalls
+        }
+        if (action.payload.hasWindow !== undefined) {
+          currentWall.window.includes = action.payload.hasWindow
+          filteredWalls.push(currentWall)
+          currentUtility.walls = filteredWalls
+        }
+        if (action.payload.openingLength !== undefined) {
+          currentWall.opening.length = parseFloat(action.payload.openingLength)
+          filteredWalls.push(currentWall)
+          currentUtility.walls = filteredWalls
+        }
+        if (action.payload.openingPosition !== undefined) {
+          const { openingPosition } = action.payload
+          let pos
+          if (currentWallSide === 'front' || currentWallSide === 'back') {
+            pos = { right: parseInt(openingPosition) }
+          } else {
+            pos = { top: parseInt(openingPosition) }
+          }
+          currentWall.opening.position = pos
+          filteredWalls.push(currentWall)
+          currentUtility.walls = filteredWalls
+        }
+        if (action.payload.doorPosition !== undefined) {
+          const { doorPosition } = action.payload
+          let pos
+          if (currentWallSide === 'front' || currentWallSide === 'back') {
+            pos = { right: parseInt(doorPosition) }
+          } else {
+            pos = { top: parseInt(doorPosition) }
+          }
+          currentWall.door.position = pos
+          filteredWalls.push(currentWall)
+          currentUtility.walls = filteredWalls
+        }
+        state.utility = currentUtility
+      }
+      if (currentRoomType === 'store') {
+        const currentStore = state.store
+        const currentWall = currentStore.walls.filter((wall) => wall.side == currentWallSide)[0]
+        const filteredWalls = currentStore.walls.filter((wall) => wall.side !== currentWallSide)
+        if (action.payload.hasOpening !== undefined) {
+          // opening.includes
+          currentWall.opening.includes = action.payload.hasOpening
+          filteredWalls.push(currentWall)
+          currentStore.walls = filteredWalls
+        }
+        if (action.payload.hasDoor !== undefined) {
+          // opening.includes
+          currentWall.door.includes = action.payload.hasDoor
+          filteredWalls.push(currentWall)
+          currentStore.walls = filteredWalls
+        }
+        if (action.payload.hasWindow !== undefined) {
+          currentWall.window.includes = action.payload.hasWindow
+          filteredWalls.push(currentWall)
+          currentStore.walls = filteredWalls
+        }
+        if (action.payload.openingLength !== undefined) {
+          currentWall.opening.length = parseFloat(action.payload.openingLength)
+          filteredWalls.push(currentWall)
+          currentStore.walls = filteredWalls
+        }
+        if (action.payload.openingPosition !== undefined) {
+          const { openingPosition } = action.payload
+          let pos
+          if (currentWallSide === 'front' || currentWallSide === 'back') {
+            pos = { right: parseInt(openingPosition) }
+          } else {
+            pos = { top: parseInt(openingPosition) }
+          }
+          currentWall.opening.position = pos
+          filteredWalls.push(currentWall)
+          currentStore.walls = filteredWalls
+        }
+        if (action.payload.doorPosition !== undefined) {
+          const { doorPosition } = action.payload
+          let pos
+          if (currentWallSide === 'front' || currentWallSide === 'back') {
+            pos = { right: parseInt(doorPosition) }
+          } else {
+            pos = { top: parseInt(doorPosition) }
+          }
+          currentWall.door.position = pos
+          filteredWalls.push(currentWall)
+          currentStore.walls = filteredWalls
+        }
+        state.store = currentStore
+      }
+      if (currentRoomType === 'dining') {
+        const currentDining = state.dining
+        const currentWall = currentDining.walls.filter((wall) => wall.side == currentWallSide)[0]
+        const filteredWalls = currentDining.walls.filter((wall) => wall.side !== currentWallSide)
+        if (action.payload.hasOpening !== undefined) {
+          // opening.includes
+          currentWall.opening.includes = action.payload.hasOpening
+          filteredWalls.push(currentWall)
+          currentDining.walls = filteredWalls
+        }
+        if (action.payload.hasDoor !== undefined) {
+          // opening.includes
+          currentWall.door.includes = action.payload.hasDoor
+          filteredWalls.push(currentWall)
+          currentDining.walls = filteredWalls
+        }
+        if (action.payload.hasWindow !== undefined) {
+          currentWall.window.includes = action.payload.hasWindow
+          filteredWalls.push(currentWall)
+          currentDining.walls = filteredWalls
+        }
+        if (action.payload.openingLength !== undefined) {
+          currentWall.opening.length = parseFloat(action.payload.openingLength)
+          filteredWalls.push(currentWall)
+          currentDining.walls = filteredWalls
+        }
+        if (action.payload.openingPosition !== undefined) {
+          const { openingPosition } = action.payload
+          let pos
+          if (currentWallSide === 'front' || currentWallSide === 'back') {
+            pos = { right: parseInt(openingPosition) }
+          } else {
+            pos = { top: parseInt(openingPosition) }
+          }
+          currentWall.opening.position = pos
+          filteredWalls.push(currentWall)
+          currentDining.walls = filteredWalls
+        }
+        if (action.payload.doorPosition !== undefined) {
+          const { doorPosition } = action.payload
+          let pos
+          if (currentWallSide === 'front' || currentWallSide === 'back') {
+            pos = { right: parseInt(doorPosition) }
+          } else {
+            pos = { top: parseInt(doorPosition) }
+          }
+          currentWall.door.position = pos
+          filteredWalls.push(currentWall)
+          currentDining.walls = filteredWalls
+        }
+        state.dining = currentDining
+      }
+      if (currentRoomType === 'drawing') {
+        const currentDrawing = state.drawing
+        const currentWall = currentDrawing.walls.filter((wall) => wall.side == currentWallSide)[0]
+        const filteredWalls = currentDrawing.walls.filter((wall) => wall.side !== currentWallSide)
+        if (action.payload.hasOpening !== undefined) {
+          // opening.includes
+          currentWall.opening.includes = action.payload.hasOpening
+          filteredWalls.push(currentWall)
+          currentDrawing.walls = filteredWalls
+        }
+        if (action.payload.hasDoor !== undefined) {
+          // opening.includes
+          currentWall.door.includes = action.payload.hasDoor
+          filteredWalls.push(currentWall)
+          currentDrawing.walls = filteredWalls
+        }
+        if (action.payload.hasWindow !== undefined) {
+          currentWall.window.includes = action.payload.hasWindow
+          filteredWalls.push(currentWall)
+          currentDrawing.walls = filteredWalls
+        }
+        if (action.payload.openingLength !== undefined) {
+          currentWall.opening.length = parseFloat(action.payload.openingLength)
+          filteredWalls.push(currentWall)
+          currentDrawing.walls = filteredWalls
+        }
+        if (action.payload.openingPosition !== undefined) {
+          const { openingPosition } = action.payload
+          let pos
+          if (currentWallSide === 'front' || currentWallSide === 'back') {
+            pos = { right: parseInt(openingPosition) }
+          } else {
+            pos = { top: parseInt(openingPosition) }
+          }
+          currentWall.opening.position = pos
+          filteredWalls.push(currentWall)
+          currentDrawing.walls = filteredWalls
+        }
+        if (action.payload.doorPosition !== undefined) {
+          const { doorPosition } = action.payload
+          let pos
+          if (currentWallSide === 'front' || currentWallSide === 'back') {
+            pos = { right: parseInt(doorPosition) }
+          } else {
+            pos = { top: parseInt(doorPosition) }
+          }
+          currentWall.door.position = pos
+          filteredWalls.push(currentWall)
+          currentDrawing.walls = filteredWalls
+        }
+        state.drawing = currentDrawing
+      }
+      if (currentRoomType === 'pooja') {
+        const currentPooja = state.pooja
+        const currentWall = currentPooja.walls.filter((wall) => wall.side == currentWallSide)[0]
+        const filteredWalls = currentPooja.walls.filter((wall) => wall.side !== currentWallSide)
+        if (action.payload.hasOpening !== undefined) {
+          // opening.includes
+          currentWall.opening.includes = action.payload.hasOpening
+          filteredWalls.push(currentWall)
+          currentPooja.walls = filteredWalls
+        }
+        if (action.payload.hasDoor !== undefined) {
+          // opening.includes
+          currentWall.door.includes = action.payload.hasDoor
+          filteredWalls.push(currentWall)
+          currentPooja.walls = filteredWalls
+        }
+        if (action.payload.hasWindow !== undefined) {
+          currentWall.window.includes = action.payload.hasWindow
+          filteredWalls.push(currentWall)
+          currentPooja.walls = filteredWalls
+        }
+        if (action.payload.openingLength !== undefined) {
+          currentWall.opening.length = parseFloat(action.payload.openingLength)
+          filteredWalls.push(currentWall)
+          currentPooja.walls = filteredWalls
+        }
+        if (action.payload.openingPosition !== undefined) {
+          const { openingPosition } = action.payload
+          let pos
+          if (currentWallSide === 'front' || currentWallSide === 'back') {
+            pos = { right: parseInt(openingPosition) }
+          } else {
+            pos = { top: parseInt(openingPosition) }
+          }
+          currentWall.opening.position = pos
+          filteredWalls.push(currentWall)
+          currentPooja.walls = filteredWalls
+        }
+        if (action.payload.doorPosition !== undefined) {
+          const { doorPosition } = action.payload
+          let pos
+          if (currentWallSide === 'front' || currentWallSide === 'back') {
+            pos = { right: parseInt(doorPosition) }
+          } else {
+            pos = { top: parseInt(doorPosition) }
+          }
+          currentWall.door.position = pos
+          filteredWalls.push(currentWall)
+          currentPooja.walls = filteredWalls
+        }
+        state.pooja = currentPooja
+      }
     },
-
     setSelectedWall: (state, action) => {
       const { id } = action.payload
       state.selectedWall = id

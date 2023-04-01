@@ -6,18 +6,25 @@ import ZoomControls from './ZoomControls'
 import PositionPointer from './PositionPointer'
 import Loader from './Loader'
 import CurrentSaveButton from './CurrentSaveButton'
+import ConfirmationModal from './ConfirmationModal'
 
 export default function MainArea({ isSiderOpen }) {
   const [show, setShow] = useState(false)
   const [showMainBtn, setShowMainBtn] = useState(true)
   const { plot } = useSelector((state) => state)
   const [loading, setLoading] = useState(false)
+  const [openDeleteConfirmation, setOpenDeleteConfirmation] = useState(false)
   useEffect(() => {
     if (plot.plotLength && plot.plotBreadth) setShowMainBtn(false)
   }, [plot.plotLength, plot.plotBreadth])
 
+  const handleDelete = (e) => {
+    if (e.key === 'Delete') setOpenDeleteConfirmation(true)
+  }
   return (
     <div
+      tabIndex={0}
+      onKeyDown={handleDelete}
       className={` relative h-full flex items-center justify-center  ${
         isSiderOpen ? 'w-[calc(100%-400px)] left-[400px]' : 'w-full'
       }`}>
@@ -38,6 +45,7 @@ export default function MainArea({ isSiderOpen }) {
       {/* {loading ? <Loader /> : plot.plotLength && plot.plotBreadth && <Plot isSiderOpen={isSiderOpen} />} */}
       {plot.plotLength && plot.plotBreadth && <Plot isSiderOpen={isSiderOpen} />}
       <ZoomControls />
+      {openDeleteConfirmation && <ConfirmationModal setOpenDeleteConfirmation={setOpenDeleteConfirmation} />}
     </div>
   )
 }

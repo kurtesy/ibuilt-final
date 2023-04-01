@@ -74,8 +74,10 @@ export default function MultiSelectComponent({ isSiderOpen }) {
     { label: 'Livingroom', value: 'living' },
     { label: 'Kitchen', value: 'kitchen' },
 
-    { label: 'Pooja', value: 'pooja' },
     { label: 'Drawing', value: 'drawing' },
+    { label: 'Dining', value: 'dining' },
+    { label: 'Pooja', value: 'pooja' },
+
     { label: 'Sitout', value: 'sitout' },
 
     { label: 'Store', value: 'store' },

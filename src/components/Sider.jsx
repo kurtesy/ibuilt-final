@@ -54,12 +54,14 @@ export default function Sider({ isSiderOpen }) {
           </div>
 
           <div className='h-[1px] bg-primaryLime w-full' />
-          {/* direction movement */}
-          <DirectionControls />
-          {/* change dimensions */}
-          <DimensionControls />
-          <WallControls />
-          <IconsList />
+          {selectedRoom.id && selectedRoom.roomType && (
+            <>
+              <DirectionControls />
+              <DimensionControls />
+              <WallControls />
+              <IconsList />
+            </>
+          )}
         </>
       )}
     </div>
