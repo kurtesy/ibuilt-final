@@ -22,12 +22,18 @@ export default function Store({ id }) {
     currStyle['rotate'] = `${rotation}deg`
     if (isActive && selectedRoom.id === id) {
       currStyle['zIndex'] = 42
-      currStyle['backgroundColor'] = '#yellow'
+      currStyle['backgroundColor'] = 'rgba(250,150,150,0.8)'
     } else {
       currStyle['zIndex'] = 10
       currStyle['backgroundColor'] = '#fff'
     }
     setStyle({ ...currStyle, ...currentStore.position })
+  }
+
+  const handleDeSelect = (e) => {
+    e.preventDefault()
+    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
+    setIsActive(false)
   }
   useEffect(() => {
     setLength(currentStore?.length)
@@ -56,7 +62,7 @@ export default function Store({ id }) {
     )
   }, [length, breadth])
   return (
-    <div style={style} className='bg-bathFullType13 relative' onClick={handleClick}>
+    <div style={style} className='bg-bathFullType13 relative' onClick={handleClick} onContextMenu={handleDeSelect}>
       <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>Store</div>
       {currentStore.walls.map((wall) => (
         <Wall

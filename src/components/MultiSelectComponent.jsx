@@ -78,16 +78,15 @@ export default function MultiSelectComponent({ isSiderOpen }) {
     { label: 'Dining', value: 'dining' },
     { label: 'Pooja', value: 'pooja' },
 
-    { label: 'Sitout', value: 'sitout' },
-
-    { label: 'Store', value: 'store' },
-    { label: 'Office', value: 'office' },
-    { label: 'Media', value: 'media' },
-
-    { label: 'Parking', value: 'parking' },
     { label: 'Stair Case', value: 'staircase' },
-    { label: 'Lift', value: 'lift' },
-    { label: 'Duct/Shaft', value: 'duct' }
+    { label: 'Parking', value: 'parking' },
+    { label: 'Media', value: 'media' },
+    { label: 'Sitout', value: 'sitout' }
+
+    // { label: 'Store', value: 'store' },
+    // { label: 'Office', value: 'office' },
+    // { label: 'Lift', value: 'lift' },
+    // { label: 'Duct/Shaft', value: 'duct' }
   ]
 
   const filteredOptions = options.filter((opt, i) => i <= index)

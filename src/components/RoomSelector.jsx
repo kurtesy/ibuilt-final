@@ -26,14 +26,14 @@ export default function RoomSelector({
   }, [id])
   console.log('selected: ' + selected)
   return (
-    <div className='w-full flex items-center justify-start'>
-      <div className='w-full flex  items-center justify-start rounded-lg shadow-2xl'>
+    <div className='w-full flex items-center justify-start '>
+      <div className='w-full flex gap-2 items-center justify-start rounded-lg shadow-2xl'>
         <div
           className={`flex gap-1 border-[1px] p-1 rounded-lg  w-[90px]  hover:bg-primaryLime ${
             selected && currentRoom === value ? 'bg-primaryLime animate-pulse' : 'bg-slate-900'
           }`}>
           <button
-            className='text-primaryLime bg-slate-900 px-2 flex items-center h-8 rounded-md shadow-xl text-xs w-full'
+            className='text-primaryLime bg-slate-900 px-2 flex items-center h-8 rounded-md shadow-xl text-xs w-[80px]'
             name={value}
             onClick={handleRoomSelect}>
             {label}

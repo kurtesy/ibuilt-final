@@ -21,7 +21,7 @@ export default function LivingRoom({ id }) {
     currStyle['height'] = Math.floor(breadth * scale)
     if (isActive && selectedRoom.id === id) {
       currStyle['zIndex'] = 40
-      currStyle['backgroundColor'] = 'rgba(150,150,250,0.7)'
+      currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 1
       currStyle['backgroundColor'] = '#fff'
@@ -43,6 +43,11 @@ export default function LivingRoom({ id }) {
     makeStyle()
   }, [length, breadth, selectedRoom, isActive, currentLivingroom])
 
+  const handleDeSelect = (e) => {
+    e.preventDefault()
+    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
+    setIsActive(false)
+  }
   useEffect(() => {
     dispatch(
       updateRoomData({
@@ -55,7 +60,12 @@ export default function LivingRoom({ id }) {
   }, [builtBreadth, builtLength])
 
   return (
-    <div style={style} className='absolute cursor-pointer bg-woodenFlooring' id={id} onClick={handleClick}>
+    <div
+      style={style}
+      className='absolute cursor-pointer bg-woodenFlooring'
+      id={id}
+      onClick={handleClick}
+      onContextMenu={handleDeSelect}>
       <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>LIVING ROOM - {id?.toUpperCase()}</div>
       {currentLivingroom.walls.map((wall) => (
         <Wall

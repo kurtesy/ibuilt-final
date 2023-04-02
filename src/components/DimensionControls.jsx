@@ -69,7 +69,7 @@ export default function DimensionControls() {
 
   return (
     <>
-      <div className='font-bold h-[32px] flex items-center justify-between text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800'>
+      <div className='font-bold  flex justify-between items-center text-left p-1 px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800 text-xs'>
         Manage Dimensions
         <span className='text-xs '>
           Selected Room-

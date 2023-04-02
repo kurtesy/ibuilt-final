@@ -24,7 +24,7 @@ export default function Kitchen({ id }) {
     currStyle['rotate'] = `${rotation}deg`
     if (isActive && selectedRoom.id === id) {
       currStyle['zIndex'] = 42
-      currStyle['backgroundColor'] = '#yellow'
+      currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 10
       currStyle['backgroundColor'] = '#fff'
@@ -35,6 +35,13 @@ export default function Kitchen({ id }) {
     setLength(currentKitchen?.length)
     setBreadth(currentKitchen?.breadth)
   }, [currentKitchen])
+
+  const handleDeSelect = (e) => {
+    e.preventDefault()
+    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
+    setIsActive(false)
+  }
+
   useEffect(() => {
     dispatch(
       updateRoomData({
@@ -69,7 +76,11 @@ export default function Kitchen({ id }) {
   }, [length, breadth])
 
   return (
-    <div style={style} className='bg-bathFullType13 absolute cursor-pointer' onClick={handleClick}>
+    <div
+      style={style}
+      className='bg-bathFullType13 absolute cursor-pointer'
+      onClick={handleClick}
+      onContextMenu={handleDeSelect}>
       <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>Kitchen</div>
       {currentKitchen.hasUtility && <Utility id={currentKitchen.id} />}
       {currentKitchen.hasStore && <Store id={currentKitchen.id} isInside={true} />}

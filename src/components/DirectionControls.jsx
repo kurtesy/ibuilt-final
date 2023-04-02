@@ -148,7 +148,7 @@ export default function DirectionControls() {
 
   return (
     <>
-      <div className='font-bold h-[32px] flex justify-between items-center text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800'>
+      <div className='font-bold  flex justify-between items-center text-left p-1 px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800 text-xs'>
         Manage Position
         <span className='text-xs '>
           Selected Room-
@@ -162,8 +162,8 @@ export default function DirectionControls() {
           </span>
         </span>
       </div>
-      <Slider min={0} max={maxX} value={x} setValue={setX} direction={{ from: '-', to: '+' }} />
-      <Slider min={0} max={maxY} value={y} setValue={setY} direction={{ from: '-', to: '+' }} />
+      <Slider min={0} max={maxX} value={x} setValue={setX} direction={{ from: '-', to: '+' }} type='horizontal' />
+      <Slider min={0} max={maxY} value={y} setValue={setY} direction={{ from: '-', to: '+' }} type='vertical' />
       {/* <div className='flex bg-slate-700 py-3 rounded-xl shadow-2xl items-center justify-between px-6'>
         <RiAnticlockwise2Fill
           size={32}

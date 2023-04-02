@@ -14,6 +14,12 @@ export default function Toilet({ id, type }) {
   const [isActive, setIsActive] = useState(false)
 
   const dispatch = useDispatch()
+
+  const handleDeSelect = (e) => {
+    e.preventDefault()
+    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
+    setIsActive(false)
+  }
   const makeStyle = () => {
     const currStyle = {}
     currStyle['width'] = Math.floor(length * scale)
@@ -24,7 +30,7 @@ export default function Toilet({ id, type }) {
     }
     if (isActive && selectedRoom.id === id) {
       currStyle['zIndex'] = 42
-      currStyle['backgroundColor'] = '#yellow'
+      currStyle['backgroundColor'] = 'rgba(250,150,150,0.8)'
     } else {
       currStyle['zIndex'] = 10
       currStyle['backgroundColor'] = '#fff'
@@ -35,7 +41,7 @@ export default function Toilet({ id, type }) {
     setLength(currentToilet?.length)
     setBreadth(currentToilet?.breadth)
   }, [currentToilet])
-  console.log('rotation==>' + rotation)
+
   const handleClick = (e) => {
     e.stopPropagation()
     dispatch(setSelectedRoomId({ selectedId: id, roomType: 'toilet' }))
@@ -49,17 +55,17 @@ export default function Toilet({ id, type }) {
   }, [length, breadth, location, selectedRoom, isActive, currentToilet, scale])
 
   return (
-    <div style={style} className='bg-bathFullType13 relative' onClick={handleClick}>
+    <div style={style} className='bg-bathFullType13 relative' onClick={handleClick} onContextMenu={handleDeSelect}>
       {currentToilet.walls.map((wall) => (
         <Wall
+          id={`toilet-${id}-${wall.side}`}
+          added={wall.added}
           length={wall.length}
           thickness={wall.thickness}
           position={wall.position}
           door={wall.door}
-          hasDoor={wall.door.includes}
-          doorPosition={wall.door.position}
           side={wall.side}
-          direction={wall.direction}
+          window={wall.window}
           opening={wall.opening}
         />
       ))}

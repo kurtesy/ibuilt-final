@@ -756,6 +756,7 @@ const initialState = {
       position: { top: 0, left: 0 },
       walls: [
         {
+          added: false,
           side: 'front',
           length: null,
           thickness: 6,
@@ -766,9 +767,20 @@ const initialState = {
             includes: false,
             position: { right: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { right: 18 }
+          },
+          window: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
           }
         },
         {
+          added: false,
           side: 'back',
           length: null,
           thickness: 6,
@@ -779,9 +791,15 @@ const initialState = {
             includes: false,
             position: { right: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { right: 18 }
           }
         },
         {
+          added: false,
           side: 'left',
           length: null,
           thickness: 6,
@@ -790,11 +808,17 @@ const initialState = {
           position: { top: 0, left: 0 },
           door: {
             includes: false,
-            position: { right: 18 },
+            position: { top: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { top: 18 }
           }
         },
         {
+          added: false,
           side: 'right',
           length: null,
           thickness: 6,
@@ -803,8 +827,13 @@ const initialState = {
           position: { top: 0, right: 0 },
           door: {
             includes: false,
-            position: { right: 18 },
+            position: { top: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { top: 18 }
           }
         }
       ]
@@ -820,6 +849,7 @@ const initialState = {
       position: { top: 0, left: 0 },
       walls: [
         {
+          added: false,
           side: 'front',
           length: null,
           thickness: 6,
@@ -830,9 +860,20 @@ const initialState = {
             includes: false,
             position: { right: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { right: 18 }
+          },
+          window: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
           }
         },
         {
+          added: false,
           side: 'back',
           length: null,
           thickness: 6,
@@ -843,9 +884,15 @@ const initialState = {
             includes: false,
             position: { right: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { right: 18 }
           }
         },
         {
+          added: false,
           side: 'left',
           length: null,
           thickness: 6,
@@ -854,11 +901,17 @@ const initialState = {
           position: { top: 0, left: 0 },
           door: {
             includes: false,
-            position: { right: 18 },
+            position: { top: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { top: 18 }
           }
         },
         {
+          added: false,
           side: 'right',
           length: null,
           thickness: 6,
@@ -867,8 +920,13 @@ const initialState = {
           position: { top: 0, right: 0 },
           door: {
             includes: false,
-            position: { right: 18 },
+            position: { top: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { top: 18 }
           }
         }
       ]
@@ -884,6 +942,7 @@ const initialState = {
       position: { top: 0, left: 0 },
       walls: [
         {
+          added: false,
           side: 'front',
           length: null,
           thickness: 6,
@@ -894,9 +953,20 @@ const initialState = {
             includes: false,
             position: { right: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { right: 18 }
+          },
+          window: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
           }
         },
         {
+          added: false,
           side: 'back',
           length: null,
           thickness: 6,
@@ -907,9 +977,15 @@ const initialState = {
             includes: false,
             position: { right: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { right: 18 }
           }
         },
         {
+          added: false,
           side: 'left',
           length: null,
           thickness: 6,
@@ -918,11 +994,17 @@ const initialState = {
           position: { top: 0, left: 0 },
           door: {
             includes: false,
-            position: { right: 18 },
+            position: { top: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { top: 18 }
           }
         },
         {
+          added: false,
           side: 'right',
           length: null,
           thickness: 6,
@@ -931,8 +1013,13 @@ const initialState = {
           position: { top: 0, right: 0 },
           door: {
             includes: false,
-            position: { right: 18 },
+            position: { top: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { top: 18 }
           }
         }
       ]
@@ -948,6 +1035,7 @@ const initialState = {
       position: { top: 0, left: 0 },
       walls: [
         {
+          added: false,
           side: 'front',
           length: null,
           thickness: 6,
@@ -958,9 +1046,20 @@ const initialState = {
             includes: false,
             position: { right: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { right: 18 }
+          },
+          window: {
+            includes: false,
+            position: { right: 18 },
+            type: 'default'
           }
         },
         {
+          added: false,
           side: 'back',
           length: null,
           thickness: 6,
@@ -971,9 +1070,15 @@ const initialState = {
             includes: false,
             position: { right: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { right: 18 }
           }
         },
         {
+          added: false,
           side: 'left',
           length: null,
           thickness: 6,
@@ -982,11 +1087,17 @@ const initialState = {
           position: { top: 0, left: 0 },
           door: {
             includes: false,
-            position: { right: 18 },
+            position: { top: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { top: 18 }
           }
         },
         {
+          added: false,
           side: 'right',
           length: null,
           thickness: 6,
@@ -995,8 +1106,13 @@ const initialState = {
           position: { top: 0, right: 0 },
           door: {
             includes: false,
-            position: { right: 18 },
+            position: { top: 18 },
             type: 'default'
+          },
+          opening: {
+            includes: false,
+            length: 1.8,
+            position: { top: 18 }
           }
         }
       ]
@@ -2264,7 +2380,6 @@ const roomsSlice = createSlice({
         })
         if (filteredRooms.length === 0) state.addedRooms.push({ position, roomType })
       }
-      
     },
     removeRoomFromPlot: (state, action) => {
       const { position, roomType } = action.payload
@@ -2367,6 +2482,14 @@ const roomsSlice = createSlice({
         const filteredRooms = state.livingRooms.filter((room) => room.id !== id)
         filteredRooms.push(currentRoom)
         state.livingRooms = filteredRooms
+      }
+      if (roomType === 'toilet') {
+        const currentRoom = state.toilets.filter((room) => room.id === id)[0]
+        const currentWall = currentRoom.walls.filter((wall) => wall.side === side)[0]
+        currentWall.added = status
+        const filteredRooms = state.livingRooms.filter((room) => room.id !== id)
+        filteredRooms.push(currentRoom)
+        state.toilets = filteredRooms
       }
       if (roomType === 'kitchen') {
         const currentRoom = state.kitchen
@@ -2542,6 +2665,71 @@ const roomsSlice = createSlice({
         console.log('currenrtbedtroom walls after' + JSON.stringify(currentLivingRoom))
         console.log('state.bedrooms' + state.livingRooms.length)
       }
+      //TOILET
+       if (currentRoomType === 'toilet') {
+         const currentToilet = state.toilets.filter((room) => room.id === currentDirection)[0]
+         const currentWall = currentToilet.walls.filter((wall) => wall.side == currentWallSide)[0]
+         const filteredWalls = currentToilet.walls.filter((wall) => wall.side !== currentWallSide)
+         if (action.payload.hasOpening !== undefined) {
+           // opening.includes
+           currentWall.opening.includes = action.payload.hasOpening
+           filteredWalls.push(currentWall)
+           currentToilet.walls = filteredWalls
+           console.log('currenrtbedtroom walls' + JSON.stringify(currentToilet))
+         }
+         if (action.payload.hasDoor !== undefined) {
+           // opening.includes
+           currentWall.door.includes = action.payload.hasDoor
+           filteredWalls.push(currentWall)
+           currentToilet.walls = filteredWalls
+           console.log('currenrtbedtroom walls' + JSON.stringify(currentToilet))
+         }
+         if (action.payload.hasWindow !== undefined) {
+           currentWall.window.includes = action.payload.hasWindow
+           filteredWalls.push(currentWall)
+           currentToilet.walls = filteredWalls
+           console.log('currenrtbedtroom walls' + JSON.stringify(currentToilet))
+         }
+         if (action.payload.openingLength !== undefined) {
+           currentWall.opening.length = parseFloat(action.payload.openingLength)
+           filteredWalls.push(currentWall)
+           currentToilet.walls = filteredWalls
+           console.log('currenrtbedtroom walls' + JSON.stringify(currentToilet))
+         }
+         if (action.payload.openingPosition !== undefined) {
+           const { openingPosition } = action.payload
+           console.log('action position: ', JSON.stringify(openingPosition))
+           let pos
+           if (currentWallSide === 'front' || currentWallSide === 'back') {
+             pos = { right: parseInt(openingPosition) }
+           } else {
+             pos = { top: parseInt(openingPosition) }
+           }
+           currentWall.opening.position = pos
+           filteredWalls.push(currentWall)
+           currentToilet.walls = filteredWalls
+           console.log('currenrtbedtroom walls' + JSON.stringify(currentToilet))
+         }
+         if (action.payload.doorPosition !== undefined) {
+           const { doorPosition } = action.payload
+           console.log('action position: ', JSON.stringify(doorPosition))
+           let pos
+           if (currentWallSide === 'front' || currentWallSide === 'back') {
+             pos = { right: parseInt(doorPosition) }
+           } else {
+             pos = { top: parseInt(doorPosition) }
+           }
+           currentWall.door.position = pos
+           filteredWalls.push(currentWall)
+           currentToilet.walls = filteredWalls
+           console.log('currenrtbedtroom walls' + JSON.stringify(currentToilet))
+         }
+         state.toilets = state.toilets.filter((room) => room.id !== currentDirection)
+         console.log('state.bedrooms' + state.toilets.length)
+         state.toilets.push(currentToilet)
+         console.log('currenrtbedtroom walls after' + JSON.stringify(currentToilet))
+         console.log('state.bedrooms' + state.toilets.length)
+       }
       if (currentRoomType === 'kitchen') {
         const currentKitchen = state.kitchen
         const currentWall = currentKitchen.walls.filter((wall) => wall.side == currentWallSide)[0]

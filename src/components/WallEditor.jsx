@@ -11,7 +11,98 @@ export default function WallEditor() {
   const [openingLength, setOpeningLength] = useState(0)
   const [openingPosition, setOpeningPosition] = useState(18)
   const [doorPosition, setDoorPosition] = useState(18)
+
   const dispatch = useDispatch()
+  const [currentWall, setCurrentWall] = useState({})
+  const { bedRooms, selectedRoom, toilets, livingRooms, kitchen, utility, store, pooja, dining, drawing } = useSelector(
+    (state) => state.rooms
+  )
+
+  useEffect(() => {
+    console.log('selectedWall: ' + selectedWall)
+    const [room, id, side] = selectedWall.split('-')
+    if (room === 'bedroom') {
+      const currentRoom = bedRooms.find((room) => room.id === id)
+      currentRoom?.walls?.forEach((wall) => {
+        if (wall.side === side) {
+          setCurrentWall(wall)
+        }
+      })
+    }
+    if (room === 'living') {
+      const currentRoom = livingRooms.find((room) => room.id === id)
+      currentRoom?.walls?.forEach((wall) => {
+        if (wall.side === side) {
+          setCurrentWall(wall)
+        }
+      })
+    }
+    if (room === 'toilet') {
+      const currentRoom = toilets.find((room) => room.id === id)
+      currentRoom?.walls?.forEach((wall) => {
+        if (wall.side === side) {
+          setCurrentWall(wall)
+        }
+      })
+    }
+    if (room === 'kitchen') {
+      const currentRoom = kitchen
+      currentRoom?.walls?.forEach((wall) => {
+        if (wall.side === side) {
+          setCurrentWall(wall)
+        }
+      })
+    }
+    if (room === 'utility') {
+      const currentRoom = utility
+      currentRoom?.walls?.forEach((wall) => {
+        if (wall.side === side) {
+          setCurrentWall(wall)
+        }
+      })
+    }
+    if (room === 'store') {
+      const currentRoom = store
+      currentRoom?.walls?.forEach((wall) => {
+        if (wall.side === side) {
+          setCurrentWall(wall)
+        }
+      })
+    }
+    if (room === 'drawing') {
+      const currentRoom = drawing
+      currentRoom?.walls?.forEach((wall) => {
+        if (wall.side === side) {
+          setCurrentWall(wall)
+        }
+      })
+    }
+    if (room === 'dining') {
+      const currentRoom = dining
+      currentRoom?.walls?.forEach((wall) => {
+        if (wall.side === side) {
+          setCurrentWall(wall)
+        }
+      })
+    }
+    if (room === 'pooja') {
+      const currentRoom = pooja
+      currentRoom?.walls?.forEach((wall) => {
+        if (wall.side === side) {
+          setCurrentWall(wall)
+        }
+      })
+    }
+  }, [selectedWall, selectedRoom])
+  useEffect(() => {
+    if (currentWall?.opening?.includes) {
+      setIsOpeningChecked(true)
+    } else setIsOpeningChecked(false)
+    if (currentWall?.door?.includes) {
+      setIsDoorChecked(true)
+    } else setIsDoorChecked(false)
+  }, [currentWall])
+
   useEffect(() => {
     dispatch(updateWall({ id: selectedWall, hasOpening: isOpeningChecked }))
   }, [isOpeningChecked])
@@ -19,9 +110,6 @@ export default function WallEditor() {
   useEffect(() => {
     dispatch(updateWall({ id: selectedWall, hasDoor: isDoorChecked }))
   }, [isDoorChecked])
-  // useEffect(() => {
-  //   dispatch(updateWall({ id: selectedWall, hasWindow: isWindowChecked }))
-  // }, [isWindowChecked])
 
   useEffect(() => {
     dispatch(updateWall({ id: selectedWall, openingLength: openingLength }))
@@ -29,17 +117,17 @@ export default function WallEditor() {
 
   useEffect(() => {
     dispatch(updateWall({ id: selectedWall, openingPosition }))
-  }, [openingPosition])
+  }, [openingPosition, currentWall])
   useEffect(() => {
     dispatch(updateWall({ id: selectedWall, doorPosition }))
-  }, [doorPosition])
+  }, [doorPosition, currentWall])
 
   return (
-    <div className='bg-slate-900 text-white p-3 rounded-lg'>
+    <div className='bg-slate-900 text-white p-3 rounded-lg text-xs'>
       {/* OPENING */}
       <div className='flex w-full flex-col'>
         <div className='flex gap-2 items-center'>
-          <input type='checkbox' value={isOpeningChecked} onChange={() => setIsOpeningChecked((prev) => !prev)} />
+          <input type='checkbox' checked={isOpeningChecked} onChange={() => setIsOpeningChecked((prev) => !prev)} />
           <label>Opening</label>
         </div>
         {isOpeningChecked && (
@@ -50,6 +138,7 @@ export default function WallEditor() {
                 type='range'
                 className='flex-1'
                 onChange={(e) => setOpeningLength(e.target.value)}
+                defaultValue={currentWall?.opening.length}
                 min={0}
                 max={10}
                 step={0.1}
@@ -73,7 +162,7 @@ export default function WallEditor() {
       {/* DOOR */}
       <div className='flex w-full flex-col'>
         <div className='flex gap-2 items-center'>
-          <input type='checkbox' value={isDoorChecked} onChange={() => setIsDoorChecked((prev) => !prev)} />
+          <input type='checkbox' checked={isDoorChecked} onChange={() => setIsDoorChecked((prev) => !prev)} />
           <label>Door</label>
         </div>
         {isDoorChecked && (

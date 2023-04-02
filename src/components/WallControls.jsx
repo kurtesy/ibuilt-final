@@ -9,13 +9,63 @@ export default function WallControls() {
   const [isRightwallChecked, setIsRighttWallChecked] = useState(false)
   const [isFrontwallChecked, setIsFrontWallChecked] = useState(false)
   const [isBackwallChecked, setIsBackWallChecked] = useState(false)
+  const [currentRoom, setCurrentRoom] = useState({})
   const [side, setSide] = useState(null)
   const { selectedWall } = useSelector((state) => state.rooms)
   const dispatch = useDispatch()
+  const { bedRooms, livingRooms, balconies, kitchen, utility, store, drawing, dining, pooja, toilets } = useSelector(
+    (state) => state.rooms
+  )
   const handleEditWall = (side) => {
-    console.log('Clicked: ' + side)
     dispatch(setSelectedWall({ id: `${selectedRoom.roomType}-${selectedRoom.id}-${side}` }))
   }
+  useEffect(() => {
+    if (!isBackwallChecked || !isFrontwallChecked || !isRightwallChecked || !isLeftwallChecked)
+      dispatch(setSelectedWall({ id: `` }))
+  }, [isBackwallChecked, isFrontwallChecked, isLeftwallChecked, isRightwallChecked])
+  useEffect(() => {
+    if (selectedRoom.roomType === 'bedroom') {
+      const room = bedRooms.filter((room) => room.id === selectedRoom.id)[0]
+      setCurrentRoom(room)
+    }
+    if (selectedRoom.roomType === 'living') {
+      const room = livingRooms.filter((room) => room.id === selectedRoom.id)[0]
+      setCurrentRoom(room)
+    }
+    if (selectedRoom.roomType === 'toilet') {
+      const room = toilets.filter((room) => room.id === selectedRoom.id)[0]
+      setCurrentRoom(room)
+    }
+    if (selectedRoom.roomType === 'kitchen') setCurrentRoom(kitchen)
+    if (selectedRoom.roomType === 'drawing') setCurrentRoom(drawing)
+    if (selectedRoom.roomType === 'dining') setCurrentRoom(dining)
+    if (selectedRoom.roomType === 'pooja') setCurrentRoom(pooja)
+    if (selectedRoom.roomType === 'store') setCurrentRoom(store)
+    if (selectedRoom.roomType === 'utility') setCurrentRoom(utility)
+  }, [selectedRoom])
+  useEffect(() => {
+    if (currentRoom) {
+      currentRoom?.walls?.forEach((wall) => {
+        if (wall.side === 'front') {
+          if (wall.added) setIsFrontWallChecked(true)
+          else setIsFrontWallChecked(false)
+        }
+        if (wall.side === 'back') {
+          if (wall.added) setIsBackWallChecked(true)
+          else setIsBackWallChecked(false)
+        }
+        if (wall.side === 'left') {
+          if (wall.added) setIsLeftWallChecked(true)
+          else setIsLeftWallChecked(false)
+        }
+        if (wall.side === 'right') {
+          if (wall.added) setIsRighttWallChecked(true)
+          else setIsRighttWallChecked(false)
+        }
+      })
+    }
+  }, [currentRoom, selectedRoom])
+  console.log('Current Room: ' + JSON.stringify(currentRoom))
   useEffect(() => {
     if (side) {
       let status
@@ -28,7 +78,7 @@ export default function WallControls() {
   }, [side, isRightwallChecked, isBackwallChecked, isFrontwallChecked, isLeftwallChecked])
   return (
     <>
-      <div className='font-bold h-[32px] flex items-center justify-between text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800'>
+      <div className='font-bold  flex justify-between items-center text-left p-1 px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800 text-xs'>
         Manage Walls
         <span className='text-xs '>
           Selected Room-
@@ -42,8 +92,8 @@ export default function WallControls() {
           </span>
         </span>
       </div>
-      <div className='flex items-center justify-between'>
-        <div className='flex gap-2 text-lg items-center font-semibold text-primaryLime'>
+      <div className='flex items-center justify-evenly gap-3 text-xs '>
+        <div className='flex gap-2 items-center font-semibold text-primaryLime w-[80px]'>
           <input
             type='checkbox'
             checked={isLeftwallChecked}
@@ -61,7 +111,7 @@ export default function WallControls() {
             />
           )}
         </div>
-        <div className='flex gap-2 text-lg items-center font-semibold text-primaryLime'>
+        <div className='flex gap-2  items-center font-semibold text-primaryLime w-[80px]'>
           <input
             type='checkbox'
             value='right'
@@ -79,7 +129,7 @@ export default function WallControls() {
             />
           )}
         </div>
-        <div className='flex gap-2 text-lg items-center font-semibold text-primaryLime'>
+        <div className='flex gap-2  items-center font-semibold text-primaryLime w-[80px]'>
           <input
             type='checkbox'
             checked={isFrontwallChecked}
@@ -97,7 +147,7 @@ export default function WallControls() {
             />
           )}
         </div>
-        <div className='flex gap-2 text-lg items-center font-semibold text-primaryLime'>
+        <div className='flex gap-2  items-center font-semibold text-primaryLime w-[80px]'>
           <input
             type='checkbox'
             value='back'
