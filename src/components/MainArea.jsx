@@ -7,7 +7,7 @@ import PositionPointer from './PositionPointer'
 import Loader from './Loader'
 import CurrentSaveButton from './CurrentSaveButton'
 import ConfirmationModal from './ConfirmationModal'
-
+import Particles from '../components/Particles'
 export default function MainArea({ isSiderOpen }) {
   const [show, setShow] = useState(false)
   const [showMainBtn, setShowMainBtn] = useState(true)
@@ -28,6 +28,7 @@ export default function MainArea({ isSiderOpen }) {
       className={` relative h-full flex items-center justify-center  ${
         isSiderOpen ? 'w-[calc(100%-400px)] left-[400px]' : 'w-full'
       }`}>
+      {!plot.plotLength && !plot.plotBreadth && <Particles />}
       <UserInputs show={show} setShow={setShow} setLoading={setLoading} isSiderOpen={isSiderOpen} />
       <PositionPointer />
       <PositionPointer isBottom={true} />
