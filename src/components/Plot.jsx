@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Built from './Built'
 import { changeScale, setBuiltup } from '../../redux/plot'
 
-export default function Plot({ isSiderOpen }) {
+export default function Plot({ isSiderOpen, plotref }) {
   const { plotLength, plotBreadth, scale, setbacks } = useSelector((state) => state.plot)
   const [zoomLevel, setZoomLevel] = useState(20)
   const dispatch = useDispatch()
@@ -29,7 +29,8 @@ export default function Plot({ isSiderOpen }) {
     <div
       className={`bg-white absolute ${isSiderOpen ? '' : ''}`}
       style={{ width: plotLength * scale, height: plotBreadth * scale }}
-      onWheel={handleWheel}>
+      onWheel={handleWheel}
+      ref={plotref}>
       <Built />
     </div>
   )

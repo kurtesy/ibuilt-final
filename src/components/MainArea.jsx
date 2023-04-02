@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import UserInputs from './UserInputs'
 import Plot from './Plot'
 import { useSelector } from 'react-redux'
@@ -8,6 +8,7 @@ import Loader from './Loader'
 import CurrentSaveButton from './CurrentSaveButton'
 import ConfirmationModal from './ConfirmationModal'
 import Particles from '../components/Particles'
+import SaveAsPdfButton from './SaveAsPdfButton'
 export default function MainArea({ isSiderOpen }) {
   const [show, setShow] = useState(false)
   const [showMainBtn, setShowMainBtn] = useState(true)
@@ -21,6 +22,7 @@ export default function MainArea({ isSiderOpen }) {
   const handleDelete = (e) => {
     if (e.key === 'Delete') setOpenDeleteConfirmation(true)
   }
+  const plotref = useRef()
   return (
     <div
       tabIndex={0}
@@ -33,6 +35,7 @@ export default function MainArea({ isSiderOpen }) {
       <PositionPointer />
       <PositionPointer isBottom={true} />
       <CurrentSaveButton />
+      <SaveAsPdfButton plotref={plotref} />
       {showMainBtn && (
         <button
           className='bg-primaryLime h-12 px-2 rounded-xl shadow-2xl text-slate-800 font-semibold hover:scale-110 duration-300 shadow-white animate-pulse'
@@ -43,7 +46,11 @@ export default function MainArea({ isSiderOpen }) {
           Please Enter Dimensions
         </button>
       )}
-      {loading ? <Loader /> : plot.plotLength && plot.plotBreadth && <Plot isSiderOpen={isSiderOpen} />}
+      {loading ? (
+        <Loader />
+      ) : (
+        plot.plotLength && plot.plotBreadth && <Plot isSiderOpen={isSiderOpen} plotref={plotref} />
+      )}
       {/* {plot.plotLength && plot.plotBreadth && <Plot isSiderOpen={isSiderOpen} />} */}
       <ZoomControls />
       {openDeleteConfirmation && <ConfirmationModal setOpenDeleteConfirmation={setOpenDeleteConfirmation} />}

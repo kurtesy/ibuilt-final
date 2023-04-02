@@ -8,6 +8,8 @@ import Toilet from './Toilet'
 import Wardrobe from './Wardrobe'
 import Balcony from './Balcony'
 import { components } from '../assets'
+import { AiOutlineSave } from 'react-icons/ai'
+import { saveBedRoom } from '../helpers/outputControls'
 export default function Bedroom({ id }) {
   const currentBedroom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === id)[0])
   const { facing } = useSelector((state) => state.plot)
@@ -18,6 +20,7 @@ export default function Bedroom({ id }) {
   const [style, setStyle] = useState({})
   const [isActive, setIsActive] = useState(false)
   const [rightClicked, setRightClicked] = useState(false)
+  const [hovered, setHovered] = useState(false)
   const dispatch = useDispatch()
   const makeStyle = () => {
     const currStyle = {}
@@ -84,13 +87,22 @@ export default function Bedroom({ id }) {
       className='absolute cursor-pointer bg-slate-400 '
       id={id}
       onClick={handleClick}
-      onContextMenu={handleDeSelect}>
+      onContextMenu={handleDeSelect}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}>
+      {selectedRoom.id && hovered && (
+        <AiOutlineSave
+          size={32}
+          className='text-green-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 bottom-0'
+          onClick={() => saveBedRoom(selectedRoom)}
+        />
+      )}
       <Toilet id={id} />
       {/* BG */}
-      <div
+      {/* <div
         className='w-full h-full absolute top-0 left-0  -z-50'
         style={{ backgroundImage: `url("${components.defaults[0].icon}")` }}
-      />
+      /> */}
       {currentBedroom.icons &&
         currentBedroom.icons.map((icon, index) => (
           <>
