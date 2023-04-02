@@ -14,7 +14,7 @@ export default function Toilet({ id }) {
   const { selectedRoom } = useSelector((state) => state.rooms)
   const [style, setStyle] = useState({})
   const [isActive, setIsActive] = useState(false)
-  const [bgNum, setBgNum] = useState(5)
+  const [bgNum, setBgNum] = useState(4)
   const dispatch = useDispatch()
   useEffect(() => {
     setType(currentToilet.type)
@@ -65,10 +65,10 @@ export default function Toilet({ id }) {
   }, [length, breadth, location, selectedRoom, isActive, currentToilet, scale])
 
   return (
-    <div style={style} className='bg-bathFullType13 relative' onClick={handleClick} onContextMenu={handleDeSelect}>
+    <div style={style} className='relative' onClick={handleClick} onContextMenu={handleDeSelect}>
       {/* BG */}
       <div
-        className='w-full h-full absolute top-0 left-0  -z-50'
+        className='w-full h-full absolute top-0 left-0 bg-cover  -z-50'
         style={type > 0 ? { backgroundImage: `url("${components.defaults[bgNum].icon}")` } : {}}
         // type=1 wc only =>5
         // type=2 half bath =>4
