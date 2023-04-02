@@ -21,7 +21,7 @@ export default function SetbacksModal({ dimensions, setShow, setLoading }) {
       if (length && breadth) {
         setLoading(false)
       }
-    }, 0)
+    }, 5000)
   }
   return (
     <div className='absolute bg-[#d9fc3599] top-12 left-20 p-3 shadow-lg rounded-lg flex flex-col gap-3 shadow-gray-500'>
