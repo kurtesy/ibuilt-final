@@ -1,0 +1,8 @@
+Lets use white and black with yellow border for - 
+
+Manage Position
+Manage Dimensions
+Manage Walls ( also please add - plot wall - light grey or suitable)
+
+
+Text on the keypad - (room keypad) to white from Primary lime - tehy turn primary lime anyways as it gets clicked.

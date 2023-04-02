@@ -7,6 +7,7 @@ import Wall from './Wall'
 import Toilet from './Toilet'
 import Wardrobe from './Wardrobe'
 import Balcony from './Balcony'
+import { components } from '../assets'
 export default function Bedroom({ id }) {
   const currentBedroom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === id)[0])
   const { facing } = useSelector((state) => state.plot)
@@ -85,6 +86,11 @@ export default function Bedroom({ id }) {
       onClick={handleClick}
       onContextMenu={handleDeSelect}>
       <Toilet id={id} />
+      {/* BG */}
+      <div
+        className='w-full h-full absolute top-0 left-0  -z-50'
+        style={{ backgroundImage: `url("${components.defaults[0].icon}")` }}
+      />
       {currentBedroom.icons &&
         currentBedroom.icons.map((icon, index) => (
           <>
@@ -92,7 +98,7 @@ export default function Bedroom({ id }) {
               src={icon.src}
               key={index}
               className='w-16 inline-block'
-              onClick={(e) => handleDelete(e, icon.id)}
+              onClick={(e) => {}}
               onContextMenu={handleContextMenu}
             />
             {rightClicked && <span className='bg-red-500 text-xs p-1 rounded-lg'>Delete</span>}

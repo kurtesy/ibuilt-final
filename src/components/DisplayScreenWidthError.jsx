@@ -8,7 +8,10 @@ export default function DisplayScreenWidthError() {
       </div>
       <div className='text-4xl text-primaryLime'>Oh no!</div>
       <div className='text-center my-6 text-xl italic text-lime-500'>
-        <q> Your screen is feeling a bit shy and not quite up to the task of displaying our application properly! </q>
+        <q>
+          This is a test program for reference only and works only on devices with resolution equal to or more than
+          1280x800 i.e. a laptop or similar. We'll be back on your phone as soon as possible. Namaskaram!{' '}
+        </q>
       </div>
       {/* <div className=' px-6'>
         It's okay, we won't judge - we all have our "screen size" limitations. But fear not, we're not ones to

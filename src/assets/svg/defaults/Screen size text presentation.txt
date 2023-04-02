@@ -1,0 +1,1 @@
+This is a test program for reference only and works only on devices with resolution equal to or more than 1280x800 i.e. a laptop or similar. We'll be back on your phone as soon as possible. Namaskaram!

@@ -64,7 +64,7 @@ export default function App() {
   }
   return (
     <>
-      {width <= 1024 ? (
+      {width < 1280 ? (
         <DisplayScreenWidthError />
       ) : (
         <div className='w-screen h-screen bg-black flex '>
