@@ -32,10 +32,15 @@ export default function MainArea({ isSiderOpen }) {
       }`}>
       {!plot.plotLength && !plot.plotBreadth && <Particles />}
       <UserInputs show={show} setShow={setShow} setLoading={setLoading} isSiderOpen={isSiderOpen} />
-      <PositionPointer />
-      <PositionPointer isBottom={true} />
-      <CurrentSaveButton />
-      <SaveAsPdfButton plotref={plotref} />
+      {plot.plotLength && plot.plotBreadth && (
+        <>
+          <PositionPointer />
+          <PositionPointer isBottom={true} />
+          <CurrentSaveButton />
+          <SaveAsPdfButton plotref={plotref} />
+          <ZoomControls />
+        </>
+      )}
       {showMainBtn && (
         <button
           className='bg-primaryLime h-12 px-2 rounded-xl shadow-2xl text-slate-800 font-semibold hover:scale-110 duration-300 shadow-white animate-pulse'
@@ -52,7 +57,7 @@ export default function MainArea({ isSiderOpen }) {
         plot.plotLength && plot.plotBreadth && <Plot isSiderOpen={isSiderOpen} plotref={plotref} />
       )}
       {/* {plot.plotLength && plot.plotBreadth && <Plot isSiderOpen={isSiderOpen} />} */}
-      <ZoomControls />
+
       {openDeleteConfirmation && <ConfirmationModal setOpenDeleteConfirmation={setOpenDeleteConfirmation} />}
     </div>
   )
