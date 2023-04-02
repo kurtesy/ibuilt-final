@@ -29,7 +29,7 @@ export default function Wall({ position, length, thickness, side, door, added, w
   return (
     <>
       {added ? (
-        <div className='bg-black border-[1px] border-black absolute z-10 hover:bg-green-400' style={style}>
+        <div className='bg-slate-200 border-[1px] border-black absolute z-10 hover:bg-green-400' style={style}>
           {opening.includes && <Opening length={opening.length} position={opening.position} side={side} />}
           {door.includes && <Door position={door.position} side={side} />}
           {/* {window.includes && <WindowComp position={window.position} side={side} />} */}
