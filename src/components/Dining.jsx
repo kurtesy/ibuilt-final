@@ -22,7 +22,7 @@ export default function Dining({ id }) {
     currStyle['rotate'] = `${rotation}deg`
     if (isActive && selectedRoom.id === id) {
       currStyle['zIndex'] = 42
-      currStyle['backgroundColor'] = '#yellow'
+      currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 10
       currStyle['backgroundColor'] = '#fff'
@@ -53,7 +53,7 @@ export default function Dining({ id }) {
   }, [currentDining])
   useEffect(() => {
     makeStyle()
-  }, [length, breadth, location, selectedRoom, isActive, currentDining, facing])
+  }, [length, breadth, selectedRoom, isActive, currentDining, facing])
 
   useEffect(() => {
     dispatch(

@@ -80,7 +80,7 @@ export default function Pooja({ id }) {
       onContextMenu={handleDeSelect}>
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
         <p style={{ fontSize: Math.min(currentPooja.length, currentPooja.breadth) * 1.1 }}>
-          CURRENT POOJA - {id.toUpperCase()}
+          POOJA - {id.toUpperCase()}
           <br />
           {currentPooja.length} X {currentPooja.breadth}
         </p>

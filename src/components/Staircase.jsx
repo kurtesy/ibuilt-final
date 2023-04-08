@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSelectedRoomId, updateRoomData } from '../../redux/rooms'
+import { setSelectedRoomId, updateRoomData, setRoomRotation } from '../../redux/rooms'
 import Wall from './Wall'
 import { positions } from '../constants/facingAndPosition'
+import stairImg from '../assets/svg/defaults/Stairs Type 3.svg'
+import { AiOutlineRotateRight } from 'react-icons/ai'
 export default function Staircase({ id }) {
   const currentStaircase = useSelector((state) => state.rooms.stairCase)
-
+  const [hovered, setHovered] = useState(false)
   const [length, setLength] = useState(6)
   const [breadth, setBreadth] = useState(10)
+  const { rotated } = currentStaircase
   const [rotation, setRotation] = useState(0)
+  console.log('Rotating: ' + rotated)
   const { scale, facing } = useSelector((state) => state.plot)
   const { selectedRoom } = useSelector((state) => state.rooms)
   const [style, setStyle] = useState({})
@@ -19,13 +23,16 @@ export default function Staircase({ id }) {
     const currStyle = {}
     currStyle['width'] = Math.floor(length * scale)
     currStyle['height'] = Math.floor(breadth * scale)
-    currStyle['rotate'] = `${rotation}deg`
+    currStyle['rotate'] = `${rotated}deg`
+    if (rotated > 0) {
+      currStyle['transform'] = `translate(-${length / 2},-${breadth / 2})`
+    }
     if (isActive && selectedRoom.id === id) {
       currStyle['zIndex'] = 50
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 50
-      currStyle['backgroundColor'] = 'red'
+      currStyle['backgroundColor'] = '#fff'
     }
     setStyle({ ...currStyle, ...currentStaircase.position })
   }
@@ -53,12 +60,10 @@ export default function Staircase({ id }) {
     dispatch(setSelectedRoomId({ selectedId: id, roomType: 'stairCase' }))
     setIsActive(true)
   }
-  useEffect(() => {
-    setRotation(currentStaircase.rotated)
-  }, [currentStaircase])
+
   useEffect(() => {
     makeStyle()
-  }, [length, breadth, location, selectedRoom, isActive, currentStaircase, facing])
+  }, [length, breadth, location, selectedRoom, isActive, currentStaircase, facing, rotation])
 
   useEffect(() => {
     dispatch(
@@ -70,9 +75,22 @@ export default function Staircase({ id }) {
       })
     )
   }, [length, breadth])
-
+  const handleRotate = () => {
+    if (rotation === 270) setRotation(0)
+    else setRotation((prev) => prev + 90)
+  }
+  useEffect(() => {
+    dispatch(setRoomRotation({ roomType: 'stairCase', id, rotation }))
+  }, [rotation])
   return (
-    <div style={style} className='bg-bathFullType13 absolute cursor-pointer bg-amber-400 ' onClick={handleClick}>
+    <div
+      style={style}
+      className={`bg-bathFullType13 absolute cursor-pointer `}
+      onClick={handleClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}>
+      {hovered && <AiOutlineRotateRight size={24} className='absolute right-0 top-[-24px]' onClick={handleRotate} />}
+      <img src={stairImg} alt='stair' className='w-full h-full' />
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
         <p style={{ fontSize: Math.min(currentStaircase.length, currentStaircase.breadth) * 1.1 }}>
           STAIRCASE - {id.toUpperCase()}

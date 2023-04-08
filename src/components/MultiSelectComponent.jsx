@@ -48,20 +48,6 @@ export default function MultiSelectComponent({ isSiderOpen }) {
   //   setActiveIndex(index)
   //   dispatch(setSelectedRoomId({ selectedId: position, roomType }))
   // }
-  function handleShowHideList() {
-    let rem = index % 3
-    console.log('rem: ' + rem)
-    console.log('length: ' + options.length)
-    console.log('index: ' + index)
-    if (index >= 2 && !reverse) {
-      if ((index + 1) % 3 === 0) {
-        if (index >= options.length - 1) setIndex(options.length - 1)
-        else setIndex((prev) => prev + 3)
-      } else setIndex((prev) => prev + (rem - 1))
-    }
-
-    if (index > 2 && reverse) setIndex((prev) => prev - 3)
-  }
 
   console.log('index==>' + index)
   useEffect(() => {
@@ -90,14 +76,13 @@ export default function MultiSelectComponent({ isSiderOpen }) {
     // { label: 'Duct/Shaft', value: 'duct' }
   ]
 
-  const filteredOptions = options.filter((opt, i) => i <= index)
   const [rooms, setRooms] = useState([])
   const [currentRoom, setCurrentRoom] = useState('')
   const [active, setActive] = useState(false)
   return (
     <div className='flex relative'>
       <div className='flex flex-col w-full gap-3'>
-        {filteredOptions.map((room, index) => (
+        {options.map((room, index) => (
           <RoomandPositionSelector
             key={index}
             value={room.value}
@@ -110,13 +95,6 @@ export default function MultiSelectComponent({ isSiderOpen }) {
             setSelected={setActive}
           />
         ))}
-
-        <button
-          className='w-2/3 flex items-center justify-center bg-slate-900 rounded-md shadow-xl'
-          onClick={handleShowHideList}>
-          {!reverse && <BsChevronCompactDown className='text-primaryLime font-semibold animate-ping' />}
-          {reverse && <BsChevronCompactUp className='text-primaryLime font-semibold animate-ping' />}
-        </button>
       </div>
       {/* {isSiderOpen && <EditSaveDeleteComponent />} */}
       {/* <div className='w-full flex gap-3 justify-between'>

@@ -1283,11 +1283,20 @@ const roomsSlice = createSlice({
     setSelectedWall: (state, action) => {
       const { id } = action.payload
       state.selectedWall = id
+    },
+    setRoomRotation: (state, action) => {
+      const { rotation, roomType, id } = action.payload
+      if (roomType === 'stairCase') {
+        const currentRoom = state.stairCase
+        currentRoom.rotated = rotation
+        state.stairCase = currentRoom
+      }
     }
   }
 })
 export const {
   setCurrentPosition,
+  setRoomRotation,
   updateWall,
   setSelectedWall,
   setCurrentRoom,
