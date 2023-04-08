@@ -5,9 +5,10 @@ import locationMap from '../constants/locationMapping'
 import { setCurrentPosition, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import Wall from './Wall'
 import CommonToilet from './CommonToilet'
+import { positions } from '../constants/facingAndPosition'
 export default function LivingRoom({ id }) {
   const currentLivingroom = useSelector((state) => state.rooms.livingRooms.filter((room) => room.id === id)[0])
-
+  const { facing } = useSelector((state) => state.plot)
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
   const { scale, builtLength, builtBreadth } = useSelector((state) => state.plot)
@@ -28,6 +29,15 @@ export default function LivingRoom({ id }) {
     }
     setStyle({ ...currStyle, ...currentLivingroom.position })
   }
+  useEffect(() => {
+    dispatch(
+      updateRoomData({
+        id,
+        roomType: 'living',
+        position: positions[facing.toString()][id.toString()]
+      })
+    )
+  }, [facing])
   useEffect(() => {
     setLength(currentLivingroom?.length)
     setBreadth(currentLivingroom?.breadth)

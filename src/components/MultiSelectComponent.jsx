@@ -73,6 +73,7 @@ export default function MultiSelectComponent({ isSiderOpen }) {
     { label: 'Bedroom', value: 'bedroom' },
     { label: 'Livingroom', value: 'living' },
     { label: 'Kitchen', value: 'kitchen' },
+    { label: 'C.Toilet', value: 'commonToilet' },
 
     { label: 'Drawing', value: 'drawing' },
     { label: 'Dining', value: 'dining' },
