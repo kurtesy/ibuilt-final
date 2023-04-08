@@ -35,22 +35,8 @@ export default function Sider({ isSiderOpen }) {
         <>
           <div className='flex w-full justify-between gap-3 '>
             <div className='flex flex-col gap-3 w-full'>
-              {/* select position */}
-              {/* <PositionSelector position={position} setPosition={setPosition} setRoom={setRoom} /> */}
-              {/* select room */}
-              {/* <RoomSelector room={room} setRoom={setRoom} position={position} /> */}
               <MultiSelectComponent isSiderOpen={isSiderOpen} />
-              {/* <div className='font-bold h-[32px] flex items-center text-left px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800'>
-                <pre>Selected Room- </pre>
-                <span className='text-[#5865F2]'>
-                  {selectedRoom.roomType[0].toUpperCase() + selectedRoom.roomType.substring(1)} -{' '}
-                  {selectedRoom.id.toUpperCase()}
-                </span>
-              </div> */}
             </div>
-
-            {/* submenu */}
-            {/* <Submenu roomType={selectedRoom.roomType} id={selectedRoom.id} /> */}
           </div>
 
           <div className='h-[1px] bg-primaryLime w-full' />

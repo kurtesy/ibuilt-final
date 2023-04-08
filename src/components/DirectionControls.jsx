@@ -24,7 +24,9 @@ export default function DirectionControls() {
     (state) => state.rooms.livingRooms.filter((room) => room.id === selectedRoom.id)[0]
   )
 
-  const { commonToilet, kitchen, utility, store, drawing, dining, pooja } = useSelector((state) => state.rooms)
+  const { commonToilet, kitchen, utility, store, drawing, dining, pooja, stairCase } = useSelector(
+    (state) => state.rooms
+  )
 
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
@@ -55,13 +57,6 @@ export default function DirectionControls() {
       else setX(currentSelection.position.right)
       setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale)
       setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale)
-    } else if (selectedRoom.roomType === 'commonToilet' && currentSelection) {
-      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
-      else setY(currentSelection.position.bottom)
-      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
-      else setX(currentSelection.position.right)
-      setMaxX((containedLivingRoom?.length - currentSelection.length) * scale)
-      setMaxY((containedLivingRoom?.breadth - currentSelection.breadth) * scale)
     } else if (selectedRoom.roomType === 'kitchen' && currentSelection) {
       if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
       else setY(currentSelection.position.bottom)
@@ -90,6 +85,13 @@ export default function DirectionControls() {
       else setX(currentSelection.position.right)
       setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale)
       setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale)
+    } else if (selectedRoom.roomType === 'stairCase' && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
+      else setY(currentSelection.position.bottom)
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
+      else setX(currentSelection.position.right)
+      setMaxX((plotLength - currentSelection.length) * scale)
+      setMaxY((plotBreadth - currentSelection.breadth) * scale)
     } else if (selectedRoom.roomType === 'drawing' && currentSelection) {
       if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
       else setY(currentSelection.position.bottom)
@@ -104,6 +106,13 @@ export default function DirectionControls() {
       else setX(currentSelection.position.right)
       setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale)
       setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale)
+    } else if (selectedRoom.roomType === 'commonToilet' && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
+      else setY(currentSelection.position.bottom)
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
+      else setX(currentSelection.position.right)
+      setMaxX((plotLength - currentSelection.length) * scale)
+      setMaxY((plotBreadth - currentSelection.breadth) * scale)
     }
   }, [currentSelection])
   useEffect(() => {
@@ -115,6 +124,7 @@ export default function DirectionControls() {
     else if (selectedRoom.roomType === 'utility') setCurrentSelection(utility)
     else if (selectedRoom.roomType === 'store') setCurrentSelection(utility)
     else if (selectedRoom.roomType === 'pooja') setCurrentSelection(pooja)
+    else if (selectedRoom.roomType === 'stairCase') setCurrentSelection(stairCase)
     else if (selectedRoom.roomType === 'drawing') setCurrentSelection(drawing)
     else if (selectedRoom.roomType === 'dining') setCurrentSelection(dining)
     else setCurrentSelection(null)

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import Wall from './Wall'
 import { positions } from '../constants/facingAndPosition'
-export default function Dining({ id }) {
+export default function Drawing({ id }) {
   const currentDrawing = useSelector((state) => state.rooms.drawing)
 
   const [length, setLength] = useState(6)
@@ -22,12 +22,18 @@ export default function Dining({ id }) {
     currStyle['rotate'] = `${rotation}deg`
     if (isActive && selectedRoom.id === id) {
       currStyle['zIndex'] = 42
-      currStyle['backgroundColor'] = '#yellow'
+      currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 10
       currStyle['backgroundColor'] = '#fff'
     }
     setStyle({ ...currStyle, ...currentDrawing.position })
+  }
+
+  const handleDeSelect = (e) => {
+    e.preventDefault()
+    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
+    setIsActive(false)
   }
   useEffect(() => {
     setLength(currentDrawing?.length)
@@ -67,8 +73,18 @@ export default function Dining({ id }) {
   }, [length, breadth])
 
   return (
-    <div style={style} className='bg-bathFullType13 absolute cursor-pointer' onClick={handleClick}>
-      <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>Drawing</div>
+    <div
+      style={style}
+      className='bg-bathFullType13 absolute cursor-pointer'
+      onClick={handleClick}
+      onContextMenu={handleDeSelect}>
+      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
+        <p style={{ fontSize: Math.min(currentDrawing.length, currentDrawing.breadth) * 1.1 }}>
+          DRAWING - {id.toUpperCase()}
+          <br />
+          {currentDrawing.length} X {currentDrawing.breadth}
+        </p>
+      </div>
       {currentDrawing.walls.map((wall) => (
         <Wall
           id={`drawing-${id}-${wall.side}`}

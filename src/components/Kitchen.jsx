@@ -31,6 +31,7 @@ export default function Kitchen({ id }) {
     }
     setStyle({ ...currStyle, ...currentKitchen.position })
   }
+
   useEffect(() => {
     setLength(currentKitchen?.length)
     setBreadth(currentKitchen?.breadth)
@@ -81,7 +82,13 @@ export default function Kitchen({ id }) {
       className='bg-bathFullType13 absolute cursor-pointer'
       onClick={handleClick}
       onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>Kitchen</div>
+      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
+        <p style={{ fontSize: Math.min(currentKitchen.length, currentKitchen.breadth) * 1.1 }}>
+          KITCHEN - {id.toUpperCase()}
+          <br />
+          {currentKitchen.length} X {currentKitchen.breadth}
+        </p>
+      </div>
       {currentKitchen.hasUtility && <Utility id={currentKitchen.id} />}
       {currentKitchen.hasStore && <Store id={currentKitchen.id} isInside={true} />}
       {currentKitchen.walls.map((wall) => (

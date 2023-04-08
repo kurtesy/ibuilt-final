@@ -64,7 +64,13 @@ export default function Utility({ id }) {
   }, [length, breadth])
   return (
     <div style={style} className='bg-bathFullType13 relative' onClick={handleClick} onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>Utility</div>
+      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
+        <p style={{ fontSize: Math.min(currentUtility.length, currentUtility.breadth) * 1.1 }}>
+          UTILITY - {id.toUpperCase()}
+          <br />
+          {currentUtility.length} X {currentUtility.breadth}
+        </p>
+      </div>
       {currentUtility.walls.map((wall) => (
         <Wall
           id={`utility-${id}-${wall.side}`}

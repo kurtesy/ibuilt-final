@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import Wall from './Wall'
 import { positions } from '../constants/facingAndPosition'
-export default function Pooja({ id }) {
-  const currentPooja = useSelector((state) => state.rooms.pooja)
+export default function Staircase({ id }) {
+  const currentStaircase = useSelector((state) => state.rooms.stairCase)
 
   const [length, setLength] = useState(6)
   const [breadth, setBreadth] = useState(10)
@@ -21,29 +21,28 @@ export default function Pooja({ id }) {
     currStyle['height'] = Math.floor(breadth * scale)
     currStyle['rotate'] = `${rotation}deg`
     if (isActive && selectedRoom.id === id) {
-      currStyle['zIndex'] = 42
+      currStyle['zIndex'] = 50
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
-      currStyle['zIndex'] = 10
-      currStyle['backgroundColor'] = '#fff'
+      currStyle['zIndex'] = 50
+      currStyle['backgroundColor'] = 'red'
     }
-    setStyle({ ...currStyle, ...currentPooja.position })
+    setStyle({ ...currStyle, ...currentStaircase.position })
   }
-
   const handleDeSelect = (e) => {
     e.preventDefault()
     dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
     setIsActive(false)
   }
   useEffect(() => {
-    setLength(currentPooja?.length)
-    setBreadth(currentPooja?.breadth)
-  }, [currentPooja])
+    setLength(currentStaircase?.length)
+    setBreadth(currentStaircase?.breadth)
+  }, [currentStaircase])
   useEffect(() => {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'pooja',
+        roomType: 'stairCase',
         position: positions[facing.toString()][id.toString()]
         // position: { bottom: 0, right: 0 }
       })
@@ -51,21 +50,21 @@ export default function Pooja({ id }) {
   }, [facing])
   const handleClick = (e) => {
     e.stopPropagation()
-    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'pooja' }))
+    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'stairCase' }))
     setIsActive(true)
   }
   useEffect(() => {
-    setRotation(currentPooja.rotated)
-  }, [currentPooja])
+    setRotation(currentStaircase.rotated)
+  }, [currentStaircase])
   useEffect(() => {
     makeStyle()
-  }, [length, breadth, location, selectedRoom, isActive, currentPooja, facing])
+  }, [length, breadth, location, selectedRoom, isActive, currentStaircase, facing])
 
   useEffect(() => {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'pooja',
+        roomType: 'stairCase',
         length,
         breadth
       })
@@ -73,21 +72,17 @@ export default function Pooja({ id }) {
   }, [length, breadth])
 
   return (
-    <div
-      style={style}
-      className='bg-bathFullType13 absolute cursor-pointer'
-      onClick={handleClick}
-      onContextMenu={handleDeSelect}>
+    <div style={style} className='bg-bathFullType13 absolute cursor-pointer bg-amber-400 ' onClick={handleClick}>
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(currentPooja.length, currentPooja.breadth) * 1.1 }}>
-          CURRENT POOJA - {id.toUpperCase()}
+        <p style={{ fontSize: Math.min(currentStaircase.length, currentStaircase.breadth) * 1.1 }}>
+          STAIRCASE - {id.toUpperCase()}
           <br />
-          {currentPooja.length} X {currentPooja.breadth}
+          {currentStaircase.length} X {currentStaircase.breadth}
         </p>
       </div>
-      {currentPooja.walls.map((wall) => (
+      {currentStaircase.walls.map((wall) => (
         <Wall
-          id={`pooja-${id}-${wall.side}`}
+          id={`stairCase-${id}-${wall.side}`}
           added={wall.added}
           length={wall.length}
           thickness={wall.thickness}

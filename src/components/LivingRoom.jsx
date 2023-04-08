@@ -76,7 +76,13 @@ export default function LivingRoom({ id }) {
       id={id}
       onClick={handleClick}
       onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>LIVING ROOM - {id?.toUpperCase()}</div>
+      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
+        <p style={{ fontSize: Math.min(currentLivingroom.length, currentLivingroom.breadth) * 1.1 }}>
+          LIVING - {id.toUpperCase()}
+          <br />
+          {currentLivingroom.length} X {currentLivingroom.breadth}
+        </p>
+      </div>
       {currentLivingroom.walls.map((wall) => (
         <Wall
           id={`living-${id}-${wall.side}`}

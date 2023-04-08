@@ -13,9 +13,8 @@ export default function WallControls() {
   const [side, setSide] = useState(null)
   const { selectedWall } = useSelector((state) => state.rooms)
   const dispatch = useDispatch()
-  const { bedRooms, livingRooms, balconies, kitchen, utility, store, drawing, dining, pooja, toilets } = useSelector(
-    (state) => state.rooms
-  )
+  const { bedRooms, livingRooms, balconies, kitchen, utility, store, drawing, dining, pooja, toilets, commonToilet } =
+    useSelector((state) => state.rooms)
   const handleEditWall = (side) => {
     dispatch(setSelectedWall({ id: `${selectedRoom.roomType}-${selectedRoom.id}-${side}` }))
   }
@@ -37,6 +36,7 @@ export default function WallControls() {
       setCurrentRoom(room)
     }
     if (selectedRoom.roomType === 'kitchen') setCurrentRoom(kitchen)
+    if (selectedRoom.roomType === 'commonToilet') setCurrentRoom(commonToilet)
     if (selectedRoom.roomType === 'drawing') setCurrentRoom(drawing)
     if (selectedRoom.roomType === 'dining') setCurrentRoom(dining)
     if (selectedRoom.roomType === 'pooja') setCurrentRoom(pooja)

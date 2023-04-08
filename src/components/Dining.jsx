@@ -66,22 +66,35 @@ export default function Dining({ id }) {
     )
   }, [length, breadth])
 
-  return (
-    <div style={style} className='bg-bathFullType13 absolute cursor-pointer' onClick={handleClick}>
-      <div className='absolute top-1/2 left-1/2 text-sm font-thin italic'>Dining</div>
-      {currentDining.walls.map((wall) => (
-        <Wall
-          id={`dining-${id}-${wall.side}`}
-          added={wall.added}
-          length={wall.length}
-          thickness={wall.thickness}
-          position={wall.position}
-          door={wall.door}
-          side={wall.side}
-          window={wall.window}
-          opening={wall.opening}
-        />
-      ))}
-    </div>
-  )
+ const handleDeSelect = (e) => {
+   e.preventDefault()
+   dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
+   setIsActive(false)
+ }
+ return (
+   <div
+     style={style}
+     className='bg-bathFullType13 absolute cursor-pointer'
+     onClick={handleClick}
+     onContextMenu={handleDeSelect}>
+     <div className='absolute top-1/2 left-1/2 text-center text-xs   text-black p-2 '>
+       DINING - {id.toUpperCase()}
+       <br />
+       {currentDining.length} X {currentDining.breadth}
+     </div>
+     {currentDining.walls.map((wall) => (
+       <Wall
+         id={`dining-${id}-${wall.side}`}
+         added={wall.added}
+         length={wall.length}
+         thickness={wall.thickness}
+         position={wall.position}
+         door={wall.door}
+         side={wall.side}
+         window={wall.window}
+         opening={wall.opening}
+       />
+     ))}
+   </div>
+ )
 }

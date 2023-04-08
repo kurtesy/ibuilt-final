@@ -51,12 +51,12 @@ export default function MainArea({ isSiderOpen }) {
           Please Enter Dimensions
         </button>
       )}
-      {loading ? (
+      {/* {loading ? (
         <Loader />
       ) : (
         plot.plotLength && plot.plotBreadth && <Plot isSiderOpen={isSiderOpen} plotref={plotref} />
-      )}
-      {/* {plot.plotLength && plot.plotBreadth && <Plot isSiderOpen={isSiderOpen} />} */}
+      )} */}
+      {plot.plotLength && plot.plotBreadth && <Plot isSiderOpen={isSiderOpen} />}
 
       {openDeleteConfirmation && <ConfirmationModal setOpenDeleteConfirmation={setOpenDeleteConfirmation} />}
     </div>

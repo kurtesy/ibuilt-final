@@ -117,10 +117,12 @@ export default function Bedroom({ id }) {
           </>
         ))}
       {/* <img src={bed56} className='h-[150px] w-[150px] bottom-0 absolute rotate-[-90deg]' /> */}
-      <div className='absolute top-1/2 left-1/2 text-center text-xs  bg-black text-white p-2 '>
-        BED ROOM - {id.toUpperCase()}
-        <br />
-        {currentBedroom.length} X {currentBedroom.breadth}
+      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
+        <p style={{ fontSize: Math.min(currentBedroom.length, currentBedroom.breadth) * 0.9 }}>
+          BED ROOM - {id.toUpperCase()}
+          <br />
+          {currentBedroom.length} X {currentBedroom.breadth}
+        </p>
       </div>
       {currentBedroom.walls.map((wall) => (
         <Wall

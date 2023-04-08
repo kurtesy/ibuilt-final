@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addRoomToPlot, setSelectedRoomId } from '../../redux/rooms'
+import { addRoomToPlot, removeRoomFromPlot, setSelectedRoomId } from '../../redux/rooms'
 import { BsPencilFill } from 'react-icons/bs'
 export default function PositionSelector({ currentRoom, rooms, id }) {
   const [data, setData] = useState()
@@ -8,40 +8,41 @@ export default function PositionSelector({ currentRoom, rooms, id }) {
   const [editing, setEditing] = useState('')
   const { addedRooms } = useSelector((state) => state.rooms)
   const dispatch = useDispatch()
+
   useEffect(() => {
-    const newSelected = { nw: false, ne: false, sw: false, se: false }
-    addedRooms.forEach((room) => {
-      if (room.roomType === id) {
-        newSelected[room.position] = true
+    var alreadyAdded
+    for (const [position, added] of Object.entries(selected)) {
+      addedRooms.forEach((room) => {
+        if (room.position === position && room.roomType === currentRoom) alreadyAdded = true
+        else alreadyAdded = false
+      })
+      if (added) {
+        console.log('Added room')
+        dispatch(addRoomToPlot({ position, roomType: currentRoom }))
+      } else {
+        console.log('Removing: ' + position)
+        console.log('alreadyAdded: ' + alreadyAdded)
+        if (alreadyAdded) dispatch(removeRoomFromPlot({ position, roomType: currentRoom }))
       }
-    })
-    setSelected(newSelected)
-  }, [addedRooms, id])
-
-  console.log('addedRooms: ' + JSON.stringify(addedRooms))
-  console.log('selection: ' + JSON.stringify(selected))
-
-  useEffect(() => {
-    if (data) dispatch(addRoomToPlot(data))
-  }, [data])
-  useEffect(() => {
-    if (editing) {
-      console.log('editing: ' + editing)
-      dispatch(setSelectedRoomId({ selectedId: editing, roomType: currentRoom }))
     }
-  }, [editing])
+  }, [selected])
+
   const handleSelection = (e) => {
     if (id === currentRoom) {
-      if (e.target.name === 'nw') setSelected({ ...selected, nw: true })
-      // else setSelected({ ...selected, nw: false })
-      if (e.target.name === 'ne') setSelected({ ...selected, ne: true })
-      // else setSelected({ ...selected, sw: false })
-      if (e.target.name === 'sw') setSelected({ ...selected, sw: true })
-      // else setSelected({ ...selected, ne: false })
-      if (e.target.name === 'se') setSelected({ ...selected, se: true })
-      // else setSelected({ ...selected, se: false })
+      if (e.target.name === 'nw') {
+        if (selected.nw) setSelected({ ...selected, nw: false })
+        else setSelected({ ...selected, nw: true })
+      } else if (e.target.name === 'sw') {
+        if (selected.sw) setSelected({ ...selected, sw: false })
+        else setSelected({ ...selected, sw: true })
+      } else if (e.target.name === 'ne') {
+        if (selected.ne) setSelected({ ...selected, ne: false })
+        else setSelected({ ...selected, ne: true })
+      } else if (e.target.name === 'se') {
+        if (selected.se) setSelected({ ...selected, se: false })
+        else setSelected({ ...selected, se: true })
+      }
     }
-    setData({ roomType: currentRoom, position: e.target.name })
   }
 
   return (
