@@ -1505,7 +1505,7 @@ export const initialState = {
     type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
     length: 8,
     breadth: 8,
-    maxDim: 12,
+    maxDim: 15,
     minDim: 3,
     rotated: 0,
     area: 0,
@@ -1599,7 +1599,7 @@ export const initialState = {
     type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
     length: 8,
     breadth: 8,
-    maxDim: 12,
+    maxDim: 15,
     minDim: 3,
     rotated: 0,
     area: 0,
