@@ -13,7 +13,7 @@ export default function DimensionControls() {
   const currentLiving = useSelector((state) => state.rooms.livingRooms.filter((room) => room.id === selectedRoom.id)[0])
 
 
-  const { kitchen, utility, store, drawing, dining, pooja, stairCase, commonToilet } = useSelector(
+  const { kitchen, utility, store, drawing, dining, pooja, stairCase, commonToilet, media } = useSelector(
     (state) => state.rooms
   )
   const [currentSelection, setCurrentSelection] = useState(null)
@@ -50,6 +50,9 @@ export default function DimensionControls() {
     } else if (selectedRoom.roomType === 'pooja') {
       setCurrentSelection(pooja)
       console.log('pooja selected')
+    } else if (selectedRoom.roomType === 'media') {
+      setCurrentSelection(media)
+      console.log('Media selected')
     } else if (selectedRoom.roomType === 'stairCase') {
       setCurrentSelection(stairCase)
       console.log('staircase selected')
@@ -58,7 +61,7 @@ export default function DimensionControls() {
       console.log('nothing selected')
     }
   }, [selectedRoom])
-  console.log(currentSelection)
+
   useEffect(() => {
     if (currentSelection) {
       setLength(currentSelection.length <= currentSelection.maxDim ? currentSelection.length : currentSelection.maxDim)

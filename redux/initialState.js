@@ -1875,6 +1875,100 @@ export const initialState = {
       }
     ]
   },
+  media: {
+    id: '',
+    type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
+    length: 10,
+    breadth: 10,
+    maxDim: 12,
+    minDim: 6,
+    rotated: 0,
+    area: 0,
+    position: { top: 0, right: 0 },
+    walls: [
+      {
+        added: false,
+        side: 'front',
+        length: null,
+        thickness: 6,
+        direction: 0,
+        area: 0,
+        position: { bottom: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { right: 18 }
+        },
+        window: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        }
+      },
+      {
+        added: false,
+        side: 'back',
+        length: null,
+        thickness: 6,
+        direction: 0,
+        area: 0,
+        position: { top: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { right: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { right: 18 }
+        }
+      },
+      {
+        added: false,
+        side: 'left',
+        length: null,
+        thickness: 6,
+        direction: 1,
+        area: 0,
+        position: { top: 0, left: 0 },
+        door: {
+          includes: false,
+          position: { top: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { top: 18 }
+        }
+      },
+      {
+        added: false,
+        side: 'right',
+        length: null,
+        thickness: 6,
+        direction: 1,
+        area: 0,
+        position: { top: 0, right: 0 },
+        door: {
+          includes: false,
+          position: { top: 18 },
+          type: 'default'
+        },
+        opening: {
+          includes: false,
+          length: 1.8,
+          position: { top: 18 }
+        }
+      }
+    ]
+  },
   stairCase: {
     id: '',
     type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath

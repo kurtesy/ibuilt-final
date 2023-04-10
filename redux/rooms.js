@@ -511,6 +511,57 @@ const roomsSlice = createSlice({
         console.log('direction controls=>', action.payload)
         state.pooja = currentPooja
       }
+      if (roomType === 'media') {
+        const currentMedia = state.media
+        currentMedia.id = id
+        if (action.payload.rotated !== undefined) {
+          currentMedia.rotated = action.payload.rotated
+        }
+
+        //If both length and breadth are privided update length,breadth and area, walls lengths
+        if (action.payload.length && action.payload.breadth) {
+          //update room dimensions
+          currentMedia.length = parseFloat(action.payload.length).toFixed(2)
+          currentMedia.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          //update area
+          currentMedia.area = parseFloat(
+            parseFloat(action.payload.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          //update wall dimensions
+          //Front Wall
+          currentMedia.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          //Back Wall
+          currentMedia.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          //Left Wall
+          currentMedia.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          //Right Wall
+          currentMedia.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        //If only one dimension provided, update dimension, area and wall lengths
+        if (action.payload.length && !action.payload.breadth) {
+          currentMedia.length = parseFloat(action.payload.length).toFixed(2)
+          currentMedia.area = parseFloat(parseFloat(currentMedia.breadth) * parseFloat(action.payload.length)).toFixed(
+            2
+          )
+          currentMedia.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          currentMedia.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+        }
+        if (action.payload.breadth && !action.payload.length) {
+          currentMedia.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentMedia.area = parseFloat(parseFloat(currentMedia.length) * parseFloat(action.payload.breadth)).toFixed(
+            2
+          )
+          currentMedia.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentMedia.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        if (action.payload.position) {
+          currentMedia.position = action.payload.position
+        }
+        console.log('direction controls=>', action.payload)
+        state.media = currentMedia
+      }
       if (roomType === 'stairCase') {
         const currentStaircase = state.stairCase
         currentStaircase.id = id
@@ -616,11 +667,13 @@ const roomsSlice = createSlice({
     },
     addRoomToPlot: (state, action) => {
       const { position, roomType } = action.payload
+      console.log('payload' + JSON.stringify(action.payload))
       if (
         roomType === 'kitchen' ||
         roomType === 'drawing' ||
         roomType === 'dining' ||
         roomType === 'pooja' ||
+        roomType === 'media' ||
         roomType === 'commonToilet'
       ) {
         const filteredRooms = state.addedRooms.filter((room) => room.roomType == roomType)
@@ -758,11 +811,17 @@ const roomsSlice = createSlice({
         currentWall.added = status
         state.dining = currentDining
       }
-      if (roomType === 'pooja') {
+      if (roomType === 'media') {
         const currentPooja = state.pooja
         const currentWall = currentPooja.walls.filter((wall) => wall.side === side)[0]
         currentWall.added = status
         state.pooja = currentPooja
+      }
+      if (roomType === 'media') {
+        const currentMedia = state.media
+        const currentWall = currentMedia.walls.filter((wall) => wall.side === side)[0]
+        currentWall.added = status
+        state.media = currentMedia
       }
     },
     updateWall: (state, action) => {

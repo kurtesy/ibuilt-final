@@ -17,7 +17,8 @@ export default function PositionSelector({ currentRoom, rooms, id }) {
         else alreadyAdded = false
       })
       if (added) {
-        console.log('Added room')
+        console.log('Added room: ')
+        console.log({ position, roomType: currentRoom })
         dispatch(addRoomToPlot({ position, roomType: currentRoom }))
       } else {
         console.log('Removing: ' + position)
