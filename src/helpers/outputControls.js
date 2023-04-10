@@ -160,31 +160,31 @@ export function finalSave() {
     data[`balcony_${index}_position_left`] = room.position?.left
     data[`balcony_${index}_position_right`] = room.position?.right
     //walls
-    room.walls.forEach((wall, idx) => {
-      data[`balcony_${index}_wall_${idx}_added`] = wall.added
-      data[`balcony_${index}_wall_${idx}_side`] = wall.side
-      data[`balcony_${index}_wall_${idx}_length`] = wall.length
-      data[`balcony_${index}_wall_${idx}_thickness`] = wall.thickness
-      data[`balcony_${index}_wall_${idx}_area`] = wall.area
+    // room.walls.forEach((wall, idx) => {
+    //   data[`balcony_${index}_wall_${idx}_added`] = wall.added
+    //   data[`balcony_${index}_wall_${idx}_side`] = wall.side
+    //   data[`balcony_${index}_wall_${idx}_length`] = wall.length
+    //   data[`balcony_${index}_wall_${idx}_thickness`] = wall.thickness
+    //   data[`balcony_${index}_wall_${idx}_area`] = wall.area
 
-      data[`balcony_${index}_wall_${idx}_position_bottom`] = wall.position?.bottom
-      data[`balcony_${index}_wall_${idx}_position_top`] = wall.position?.top
-      data[`balcony_${index}_wall_${idx}_position_left`] = wall.position?.left
-      data[`balcony_${index}_wall_${idx}_position_right`] = wall.position?.right
+    //   data[`balcony_${index}_wall_${idx}_position_bottom`] = wall.position?.bottom
+    //   data[`balcony_${index}_wall_${idx}_position_top`] = wall.position?.top
+    //   data[`balcony_${index}_wall_${idx}_position_left`] = wall.position?.left
+    //   data[`balcony_${index}_wall_${idx}_position_right`] = wall.position?.right
 
-      data[`balcony_${index}_wall_${idx}_door_includes`] = wall.door.includes
-      data[`balcony_${index}_wall_${idx}_door_position_bottom`] = wall.door.position?.bottom
-      data[`balcony_${index}_wall_${idx}_door_position_top`] = wall.door.position?.top
-      data[`balcony_${index}_wall_${idx}_door_position_left`] = wall.door.position?.left
-      data[`balcony_${index}_wall_${idx}_door_position_right`] = wall.door.position?.right
+    //   data[`balcony_${index}_wall_${idx}_door_includes`] = wall.door.includes
+    //   data[`balcony_${index}_wall_${idx}_door_position_bottom`] = wall.door.position?.bottom
+    //   data[`balcony_${index}_wall_${idx}_door_position_top`] = wall.door.position?.top
+    //   data[`balcony_${index}_wall_${idx}_door_position_left`] = wall.door.position?.left
+    //   data[`balcony_${index}_wall_${idx}_door_position_right`] = wall.door.position?.right
 
-      data[`balcony_${index}_wall_${idx}_opening_includes`] = wall.opening.includes
-      data[`balcony_${index}_wall_${idx}_opening_length`] = wall.opening.length
-      data[`balcony_${index}_wall_${idx}_opening_position_bottom`] = wall.opening.position?.bottom
-      data[`balcony_${index}_wall_${idx}_opening_position_top`] = wall.opening.position?.top
-      data[`balcony_${index}_wall_${idx}_opening_position_left`] = wall.opening.position?.left
-      data[`balcony_${index}_wall_${idx}_opening_position_right`] = wall.opening.position?.right
-    })
+    //   data[`balcony_${index}_wall_${idx}_opening_includes`] = wall.opening.includes
+    //   data[`balcony_${index}_wall_${idx}_opening_length`] = wall.opening.length
+    //   data[`balcony_${index}_wall_${idx}_opening_position_bottom`] = wall.opening.position?.bottom
+    //   data[`balcony_${index}_wall_${idx}_opening_position_top`] = wall.opening.position?.top
+    //   data[`balcony_${index}_wall_${idx}_opening_position_left`] = wall.opening.position?.left
+    //   data[`balcony_${index}_wall_${idx}_opening_position_right`] = wall.opening.position?.right
+    // })
   })
   //save kitchen
   data[`kitchen_length`] = kitchen.length
