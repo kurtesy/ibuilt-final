@@ -24,9 +24,8 @@ export default function DirectionControls() {
     (state) => state.rooms.livingRooms.filter((room) => room.id === selectedRoom.id)[0]
   )
 
-  const { commonToilet, kitchen, utility, store, drawing, dining, pooja, stairCase, media } = useSelector(
-    (state) => state.rooms
-  )
+  const { commonToilet, kitchen, utility, store, drawing, dining, pooja, stairCase, media, sitout, parking } =
+    useSelector((state) => state.rooms)
 
   const [x, setX] = useState(0)
   const [y, setY] = useState(0)
@@ -99,6 +98,20 @@ export default function DirectionControls() {
       else setX(currentSelection.position.right)
       setMaxX((plotLength - currentSelection.length) * scale)
       setMaxY((plotBreadth - currentSelection.breadth) * scale)
+    } else if (selectedRoom.roomType === 'parking' && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
+      else setY(currentSelection.position.bottom)
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
+      else setX(currentSelection.position.right)
+      setMaxX((plotLength - currentSelection.length) * scale)
+      setMaxY((plotBreadth - currentSelection.breadth) * scale)
+    } else if (selectedRoom.roomType === 'sitout' && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
+      else setY(currentSelection.position.bottom)
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
+      else setX(currentSelection.position.right)
+      setMaxX((plotLength - currentSelection.length) * scale)
+      setMaxY((plotBreadth - currentSelection.breadth) * scale)
     } else if (selectedRoom.roomType === 'drawing' && currentSelection) {
       if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
       else setY(currentSelection.position.bottom)
@@ -135,6 +148,8 @@ export default function DirectionControls() {
     else if (selectedRoom.roomType === 'pooja') setCurrentSelection(pooja)
     else if (selectedRoom.roomType === 'media') setCurrentSelection(media)
     else if (selectedRoom.roomType === 'stairCase') setCurrentSelection(stairCase)
+    else if (selectedRoom.roomType === 'parking') setCurrentSelection(parking)
+    else if (selectedRoom.roomType === 'sitout') setCurrentSelection(sitout)
     else setCurrentSelection(null)
   }, [selectedRoom])
   useEffect(() => {

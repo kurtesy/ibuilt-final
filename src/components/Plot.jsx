@@ -4,6 +4,8 @@ import Built from './Built'
 import { changeScale, setBuiltup } from '../../redux/plot'
 import Staircase from '../components/Staircase'
 import CommonToilet from '../components/CommonToilet'
+import Sitout from '../components/Sitout'
+import Parking from '../components/Parking'
 export default function Plot({ isSiderOpen, plotref }) {
   const { plotLength, plotBreadth, scale, setbacks } = useSelector((state) => state.plot)
   const [zoomLevel, setZoomLevel] = useState(20)
@@ -40,6 +42,8 @@ export default function Plot({ isSiderOpen, plotref }) {
       <Built />
       {selectedItems?.map((item) => item.roomType === 'commonToilet' && <CommonToilet id={item.position} />)}
       {selectedItems?.map((item) => item.roomType === 'staircase' && <Staircase id={item.position} />)}
+      {selectedItems?.map((item) => item.roomType === 'sitout' && <Sitout id={item.position} />)}
+      {selectedItems?.map((item) => item.roomType === 'parking' && <Parking id={item.position} />)}
     </div>
   )
 }

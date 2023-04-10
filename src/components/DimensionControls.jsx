@@ -13,9 +13,8 @@ export default function DimensionControls() {
   const currentLiving = useSelector((state) => state.rooms.livingRooms.filter((room) => room.id === selectedRoom.id)[0])
 
 
-  const { kitchen, utility, store, drawing, dining, pooja, stairCase, commonToilet, media } = useSelector(
-    (state) => state.rooms
-  )
+  const { kitchen, utility, store, drawing, dining, pooja, stairCase, commonToilet, media, parking, sitout } =
+    useSelector((state) => state.rooms)
   const [currentSelection, setCurrentSelection] = useState(null)
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
@@ -56,6 +55,12 @@ export default function DimensionControls() {
     } else if (selectedRoom.roomType === 'stairCase') {
       setCurrentSelection(stairCase)
       console.log('staircase selected')
+    } else if (selectedRoom.roomType === 'parking') {
+      setCurrentSelection(parking)
+      console.log('parking selected')
+    } else if (selectedRoom.roomType === 'sitout') {
+      setCurrentSelection(sitout)
+      console.log('sitout selected')
     } else {
       setCurrentSelection(null)
       console.log('nothing selected')

@@ -5,8 +5,8 @@ import Wall from './Wall'
 import { positions } from '../constants/facingAndPosition'
 
 import { AiOutlineRotateRight } from 'react-icons/ai'
-export default function Staircase({ id }) {
-  const currentSitout = useSelector((state) => state.rooms.sitout)
+export default function Parking({ id }) {
+  const currentParking = useSelector((state) => state.rooms.parking)
 
   const [length, setLength] = useState(6)
   const [breadth, setBreadth] = useState(10)
@@ -28,7 +28,7 @@ export default function Staircase({ id }) {
       currStyle['zIndex'] = 50
       currStyle['backgroundColor'] = '#fff'
     }
-    setStyle({ ...currStyle, ...currentSitout.position })
+    setStyle({ ...currStyle, ...currentParking.position })
   }
   const handleDeSelect = (e) => {
     e.preventDefault()
@@ -36,14 +36,14 @@ export default function Staircase({ id }) {
     setIsActive(false)
   }
   useEffect(() => {
-    setLength(currentSitout?.length)
-    setBreadth(currentSitout?.breadth)
-  }, [currentSitout])
+    setLength(currentParking?.length)
+    setBreadth(currentParking?.breadth)
+  }, [currentParking])
   useEffect(() => {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'sitout',
+        roomType: 'parking',
         position: positions[facing.toString()][id.toString()]
         // position: { bottom: 0, right: 0 }
       })
@@ -51,19 +51,19 @@ export default function Staircase({ id }) {
   }, [facing])
   const handleClick = (e) => {
     e.stopPropagation()
-    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'sitout' }))
+    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'parking' }))
     setIsActive(true)
   }
 
   useEffect(() => {
     makeStyle()
-  }, [length, breadth, location, selectedRoom, isActive, currentSitout, facing])
+  }, [length, breadth, location, selectedRoom, isActive, currentParking, facing])
 
   useEffect(() => {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'sitout',
+        roomType: 'parking',
         length,
         breadth
       })
@@ -77,15 +77,15 @@ export default function Staircase({ id }) {
       onClick={handleClick}
       onContextMenu={handleDeSelect}>
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(currentSitout.length, currentSitout.breadth) * 1.1 }}>
-          SITOUT - {id.toUpperCase()}
+        <p style={{ fontSize: Math.min(currentParking.length, currentParking.breadth) * 1.1 }}>
+          PARKING - {id.toUpperCase()}
           <br />
-          {currentSitout.length} X {currentSitout.breadth}
+          {currentParking.length} X {currentParking.breadth}
         </p>
       </div>
-      {currentSitout.walls.map((wall) => (
+      {currentParking.walls.map((wall) => (
         <Wall
-          id={`sitout-${id}-${wall.side}`}
+          id={`parking-${id}-${wall.side}`}
           added={wall.added}
           length={wall.length}
           thickness={wall.thickness}

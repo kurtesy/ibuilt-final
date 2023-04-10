@@ -613,6 +613,108 @@ const roomsSlice = createSlice({
         console.log('direction controls=>', action.payload)
         state.stairCase = currentStaircase
       }
+      if (roomType === 'sitout') {
+        const currentSitout = state.sitout
+        currentSitout.id = id
+        if (action.payload.rotated !== undefined) {
+          currentSitout.rotated = action.payload.rotated
+        }
+
+        //If both length and breadth are privided update length,breadth and area, walls lengths
+        if (action.payload.length && action.payload.breadth) {
+          //update room dimensions
+          currentSitout.length = parseFloat(action.payload.length).toFixed(2)
+          currentSitout.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          //update area
+          currentSitout.area = parseFloat(
+            parseFloat(action.payload.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          //update wall dimensions
+          //Front Wall
+          currentSitout.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          //Back Wall
+          currentSitout.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          //Left Wall
+          currentSitout.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          //Right Wall
+          currentSitout.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        //If only one dimension provided, update dimension, area and wall lengths
+        if (action.payload.length && !action.payload.breadth) {
+          currentSitout.length = parseFloat(action.payload.length).toFixed(2)
+          currentSitout.area = parseFloat(
+            parseFloat(currentSitout.breadth) * parseFloat(action.payload.length)
+          ).toFixed(2)
+          currentSitout.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          currentSitout.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+        }
+        if (action.payload.breadth && !action.payload.length) {
+          currentSitout.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentSitout.area = parseFloat(
+            parseFloat(currentSitout.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          currentSitout.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentSitout.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        if (action.payload.position) {
+          currentSitout.position = action.payload.position
+        }
+        console.log('direction controls=>', action.payload)
+        state.sitout = currentSitout
+      }
+      if (roomType === 'parking') {
+        const currentParking = state.parking
+        currentParking.id = id
+        if (action.payload.rotated !== undefined) {
+          currentParking.rotated = action.payload.rotated
+        }
+
+        //If both length and breadth are privided update length,breadth and area, walls lengths
+        if (action.payload.length && action.payload.breadth) {
+          //update room dimensions
+          currentParking.length = parseFloat(action.payload.length).toFixed(2)
+          currentParking.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          //update area
+          currentParking.area = parseFloat(
+            parseFloat(action.payload.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          //update wall dimensions
+          //Front Wall
+          currentParking.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          //Back Wall
+          currentParking.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          //Left Wall
+          currentParking.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          //Right Wall
+          currentParking.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        //If only one dimension provided, update dimension, area and wall lengths
+        if (action.payload.length && !action.payload.breadth) {
+          currentParking.length = parseFloat(action.payload.length).toFixed(2)
+          currentParking.area = parseFloat(
+            parseFloat(currentParking.breadth) * parseFloat(action.payload.length)
+          ).toFixed(2)
+          currentParking.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          currentParking.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+        }
+        if (action.payload.breadth && !action.payload.length) {
+          currentParking.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentParking.area = parseFloat(
+            parseFloat(currentParking.length) * parseFloat(action.payload.breadth)
+          ).toFixed(2)
+          currentParking.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentParking.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+
+        if (action.payload.position) {
+          currentParking.position = action.payload.position
+        }
+        console.log('direction controls=>', action.payload)
+        state.parking = currentParking
+      }
       if (roomType === 'commonToilet') {
         const currentToilet = state.commonToilet
         currentToilet.id = id
@@ -674,6 +776,9 @@ const roomsSlice = createSlice({
         roomType === 'dining' ||
         roomType === 'pooja' ||
         roomType === 'media' ||
+        roomType === 'staircase' ||
+        roomType === 'parking' ||
+        roomType === 'sitout' ||
         roomType === 'commonToilet'
       ) {
         const filteredRooms = state.addedRooms.filter((room) => room.roomType == roomType)
@@ -811,7 +916,7 @@ const roomsSlice = createSlice({
         currentWall.added = status
         state.dining = currentDining
       }
-      if (roomType === 'media') {
+      if (roomType === 'pooja') {
         const currentPooja = state.pooja
         const currentWall = currentPooja.walls.filter((wall) => wall.side === side)[0]
         currentWall.added = status
@@ -822,6 +927,24 @@ const roomsSlice = createSlice({
         const currentWall = currentMedia.walls.filter((wall) => wall.side === side)[0]
         currentWall.added = status
         state.media = currentMedia
+      }
+      if (roomType === 'stairCase') {
+        const currentStairCase = state.stairCase
+        const currentWall = currentStairCase.walls.filter((wall) => wall.side === side)[0]
+        currentWall.added = status
+        state.stairCase = currentStairCase
+      }
+      if (roomType === 'parking') {
+        const currentParking = state.parking
+        const currentWall = currentParking.walls.filter((wall) => wall.side === side)[0]
+        currentWall.added = status
+        state.parking = currentParking
+      }
+      if (roomType === 'sitout') {
+        const currentSitout = state.sitout
+        const currentWall = currentSitout.walls.filter((wall) => wall.side === side)[0]
+        currentWall.added = status
+        state.sitout = currentSitout
       }
     },
     updateWall: (state, action) => {
