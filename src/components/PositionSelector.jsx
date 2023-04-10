@@ -47,7 +47,7 @@ export default function PositionSelector({ currentRoom, rooms, id }) {
   }
 
   return (
-    <div className='flex gap-1'>
+    <div className='flex gap-1 '>
       <div className='flex gap-1 border-[1px] p-1 rounded-lg bg-slate-700 '>
         <button
           className={` px-2 flex items-center h-8 rounded-md shadow-xl text-xs ${
@@ -59,7 +59,7 @@ export default function PositionSelector({ currentRoom, rooms, id }) {
           NW
         </button>
         <button
-          className={`text-primaryLime bg-slate-900 px-2 flex items-center h-8 rounded-md shadow-xl text-xs ${
+          className={` bg-slate-900 px-2 flex items-center h-8 rounded-md shadow-xl text-xs ${
             id === currentRoom ? '' : ' cursor-not-allowed'
           } ${selected.ne ? 'text-slate-900 bg-primaryLime' : 'text-white bg-slate-900'} `}
           disabled={id !== currentRoom}
@@ -68,7 +68,7 @@ export default function PositionSelector({ currentRoom, rooms, id }) {
           NE
         </button>
         <button
-          className={`text-primaryLime bg-slate-900 px-2 flex items-center h-8 rounded-md shadow-xl text-xs ${
+          className={` bg-slate-900 px-2 flex items-center h-8 rounded-md shadow-xl text-xs ${
             id === currentRoom ? '' : ' cursor-not-allowed'
           } ${selected.sw ? 'text-slate-900 bg-primaryLime' : 'text-white bg-slate-900'} `}
           disabled={id !== currentRoom}
@@ -77,7 +77,7 @@ export default function PositionSelector({ currentRoom, rooms, id }) {
           SW
         </button>
         <button
-          className={`text-primaryLime bg-slate-900 px-2 flex items-center h-8 rounded-md shadow-xl text-xs ${
+          className={` bg-slate-900 px-2 flex items-center h-8 rounded-md shadow-xl text-xs ${
             id === currentRoom ? '' : ' cursor-not-allowed'
           } ${selected.se ? 'text-slate-900 bg-primaryLime' : 'text-white bg-slate-900'} `}
           disabled={id !== currentRoom}

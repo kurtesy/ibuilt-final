@@ -13,7 +13,7 @@ export default function RoomandPositionSelector({
   setSelected
 }) {
   return (
-    <div className='flex w-2/3'>
+    <div className='flex w-full'>
       <RoomSelector
         label={label}
         value={value}
