@@ -4,7 +4,7 @@ const initialState = {
   type: '2BHK',
   facing: 'S',
   isGeneratingPlot: false,
-  plotLength: 0,
+  plotLength: 0, //45
   plotBreadth: 0,
   plotArea: 0,
   scale: 20,
