@@ -1,8 +1,10 @@
 import { useCallback } from 'react'
 import Particles from 'react-particles'
+import { useSelector } from 'react-redux'
 import { loadFull } from 'tsparticles'
 
 const ParticlesComponent = () => {
+  const { darkMode } = useSelector((state) => state.app)
   const particlesInit = useCallback(async (engine) => {
     console.log(engine)
     // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
@@ -21,11 +23,7 @@ const ParticlesComponent = () => {
       init={particlesInit}
       loaded={particlesLoaded}
       options={{
-        background: {
-          color: {
-            value: '#000000'
-          }
-        },
+        background: {},
         fpsLimit: 60,
         interactivity: {
           events: {

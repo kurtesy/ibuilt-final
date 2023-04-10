@@ -48,11 +48,11 @@ export default function PositionSelector({ currentRoom, rooms, id }) {
 
   return (
     <div className='flex gap-1'>
-      <div className='flex gap-1 border-[1px] p-1 rounded-lg bg-slate-700'>
+      <div className='flex gap-1 border-[1px] p-1 rounded-lg bg-slate-700 '>
         <button
           className={` px-2 flex items-center h-8 rounded-md shadow-xl text-xs ${
             id === currentRoom ? '' : ' cursor-not-allowed'
-          } ${selected.nw ? 'text-slate-900 bg-primaryLime' : 'text-primaryLime bg-slate-900'} `}
+          } ${selected.nw ? 'text-slate-900 bg-primaryLime' : 'text-white bg-slate-900'} `}
           disabled={id !== currentRoom}
           name='nw'
           onClick={handleSelection}>
@@ -61,7 +61,7 @@ export default function PositionSelector({ currentRoom, rooms, id }) {
         <button
           className={`text-primaryLime bg-slate-900 px-2 flex items-center h-8 rounded-md shadow-xl text-xs ${
             id === currentRoom ? '' : ' cursor-not-allowed'
-          } ${selected.ne ? 'text-slate-900 bg-primaryLime' : 'text-primaryLime bg-slate-900'} `}
+          } ${selected.ne ? 'text-slate-900 bg-primaryLime' : 'text-white bg-slate-900'} `}
           disabled={id !== currentRoom}
           name='ne'
           onClick={handleSelection}>
@@ -70,7 +70,7 @@ export default function PositionSelector({ currentRoom, rooms, id }) {
         <button
           className={`text-primaryLime bg-slate-900 px-2 flex items-center h-8 rounded-md shadow-xl text-xs ${
             id === currentRoom ? '' : ' cursor-not-allowed'
-          } ${selected.sw ? 'text-slate-900 bg-primaryLime' : 'text-primaryLime bg-slate-900'} `}
+          } ${selected.sw ? 'text-slate-900 bg-primaryLime' : 'text-white bg-slate-900'} `}
           disabled={id !== currentRoom}
           name='sw'
           onClick={handleSelection}>
@@ -79,7 +79,7 @@ export default function PositionSelector({ currentRoom, rooms, id }) {
         <button
           className={`text-primaryLime bg-slate-900 px-2 flex items-center h-8 rounded-md shadow-xl text-xs ${
             id === currentRoom ? '' : ' cursor-not-allowed'
-          } ${selected.se ? 'text-slate-900 bg-primaryLime' : 'text-primaryLime bg-slate-900'} `}
+          } ${selected.se ? 'text-slate-900 bg-primaryLime' : 'text-white bg-slate-900'} `}
           disabled={id !== currentRoom}
           name='se'
           onClick={handleSelection}>

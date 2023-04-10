@@ -9,6 +9,7 @@ import CurrentSaveButton from './CurrentSaveButton'
 import ConfirmationModal from './ConfirmationModal'
 import Particles from '../components/Particles'
 import SaveAsPdfButton from './SaveAsPdfButton'
+import ModeToggler from './ModeToggler'
 export default function MainArea({ isSiderOpen }) {
   const [show, setShow] = useState(false)
   const [showMainBtn, setShowMainBtn] = useState(true)
@@ -26,13 +27,13 @@ export default function MainArea({ isSiderOpen }) {
   return (
     <div
       tabIndex={0}
-      onKeyDown={handleDelete}
+      // onKeyDown={handleDelete}
       className={` relative h-full flex items-center justify-center  ${
         isSiderOpen ? 'w-[calc(100%-400px)] left-[400px]' : 'w-full'
       }`}>
       {!plot.plotLength && !plot.plotBreadth && <Particles />}
       <UserInputs show={show} setShow={setShow} setLoading={setLoading} isSiderOpen={isSiderOpen} />
-      {plot.plotLength && plot.plotBreadth && (
+      {plot.plotLength && plot.plotBreadth ? (
         <>
           <PositionPointer />
           <PositionPointer isBottom={true} />
@@ -40,8 +41,8 @@ export default function MainArea({ isSiderOpen }) {
           <SaveAsPdfButton plotref={plotref} />
           <ZoomControls />
         </>
-      )}
-      {showMainBtn && (
+      ) : null}
+      {showMainBtn ? (
         <button
           className='bg-primaryLime h-12 px-2 rounded-xl shadow-2xl text-slate-800 font-semibold hover:scale-110 duration-300 shadow-white animate-pulse'
           onClick={() => {
@@ -50,15 +51,15 @@ export default function MainArea({ isSiderOpen }) {
           }}>
           Please Enter Dimensions
         </button>
-      )}
+      ) : null}
       {/* {loading ? (
         <Loader />
       ) : (
         plot.plotLength && plot.plotBreadth && <Plot isSiderOpen={isSiderOpen} plotref={plotref} />
       )} */}
-      {plot.plotLength && plot.plotBreadth && <Plot isSiderOpen={isSiderOpen} />}
-
-      {openDeleteConfirmation && <ConfirmationModal setOpenDeleteConfirmation={setOpenDeleteConfirmation} />}
+      {plot.plotLength && plot.plotBreadth ? <Plot isSiderOpen={isSiderOpen} /> : null}
+      <ModeToggler />
+      {openDeleteConfirmation ? <ConfirmationModal setOpenDeleteConfirmation={setOpenDeleteConfirmation} /> : null}
     </div>
   )
 }

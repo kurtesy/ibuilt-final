@@ -11,6 +11,7 @@ export default function Plot({ isSiderOpen, plotref }) {
   const [zoomLevel, setZoomLevel] = useState(20)
   const { addedRooms } = useSelector((state) => state.rooms)
   const [selectedItems, setSelectedItems] = useState([])
+  const { darkMode } = useSelector((state) => state.app)
   const dispatch = useDispatch()
   useEffect(() => {
     setSelectedItems(addedRooms)
@@ -35,7 +36,7 @@ export default function Plot({ isSiderOpen, plotref }) {
 
   return (
     <div
-      className={`bg-white absolute ${isSiderOpen ? '' : ''}`}
+      className={` absolute ${isSiderOpen ? '' : ''} ${darkMode ? 'bg-white' : 'bg-gray-400'}`}
       style={{ width: plotLength * scale, height: plotBreadth * scale }}
       onWheel={handleWheel}
       ref={plotref}>

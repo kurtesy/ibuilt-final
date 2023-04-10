@@ -15,6 +15,7 @@ export default function App() {
   const [currentWidth, setCurrentWidth] = useState(width)
   const { plotLength, plotBreadth, isGenerating } = useSelector((state) => state.plot)
   const [isSiderOpen, setIsSiderOpen] = useState(false)
+  const { darkMode } = useSelector((state) => state.app)
   useEffect(() => {
     setCurrentWidth(width)
   }, [width])
@@ -67,10 +68,10 @@ export default function App() {
       {width < 1280 ? (
         <DisplayScreenWidthError />
       ) : (
-        <div className='w-screen h-screen bg-black flex '>
-          {plotLength && plotBreadth && (
+        <div className={`w-screen h-screen flex ${darkMode ? 'bg-black text-white' : 'bg-white text-slate-800'}`}>
+          {plotLength && plotBreadth ? (
             <>
-              {plotLength && plotBreadth && <Sider isSiderOpen={isSiderOpen} />}
+              {plotLength && plotBreadth ? <Sider isSiderOpen={isSiderOpen} /> : null}
               <button
                 className={`absolute text-primaryLime font-bold transition-all top-[50%] bg-slate-900 h-12 cursor-pointer z-50  ease-in-out ${
                   isSiderOpen ? 'left-[400px]' : 'left-0'
@@ -79,7 +80,7 @@ export default function App() {
                 {isSiderOpen ? <BsChevronCompactLeft /> : <BsChevronCompactRight />}
               </button>
             </>
-          )}
+          ) : null}
           <MainArea isSiderOpen={isSiderOpen} />
           {/* <Loader /> */}
         </div>

@@ -21,8 +21,9 @@ export default function RoomSelector({
     setRooms(filterdRooms)
   }
   useEffect(() => {
-    if (value === currentRoom) setSelected(true)
-    else setSelected(false)
+    if (value === currentRoom) {
+      setSelected(true)
+    } else setSelected(false)
   }, [id])
   console.log('selected: ' + selected)
   return (
@@ -33,7 +34,7 @@ export default function RoomSelector({
             selected && currentRoom === value ? 'bg-primaryLime animate-pulse' : 'bg-slate-900'
           }`}>
           <button
-            className='text-primaryLime bg-slate-900 px-2 flex items-center h-8 rounded-md shadow-xl text-xs w-[80px]'
+            className='text-white bg-slate-900 px-2 flex items-center h-8 rounded-md shadow-xl text-xs w-[80px]'
             name={value}
             onClick={handleRoomSelect}>
             {label}

@@ -15,12 +15,13 @@ export default function Sider({ isSiderOpen }) {
   // premium controls tobe implemented
   const [premium, setPremium] = useState(true)
   const dispatch = useDispatch()
+  const { darkMode } = useSelector((state) => state.app)
   const { selectedRoom } = useSelector((state) => state.rooms)
   return (
     <div
-      className={`w-[400px] ease-in-out z-30 transition-all h-full bg-slate-800 p-3 flex flex-col gap-3 absolute scrollbar-thin scrollbar-thumb-primaryLime scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-slate-800 overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full top-0 ${
+      className={`w-[400px] ease-in-out z-30 transition-all h-full p-3 flex flex-col gap-3 absolute scrollbar-thin scrollbar-thumb-primaryLime scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-slate-800 overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full top-0 ${
         isSiderOpen ? 'left-0' : 'left-[-400px]'
-      }`}>
+      } ${darkMode ? ' bg-slate-800' : 'bg-slate-200'}`}>
       {/* title */}
       <div className='text-2xl font-semibold text-center bg-white rounded-full drop-shadow-2xl bg-gradient-to-r from-slate-800 to-lime-500 bg-clip-text text-transparent'>
         iBuiltup
