@@ -762,7 +762,7 @@ const roomsSlice = createSlice({
         const currentPooja = state.pooja
         const currentWall = currentPooja.walls.filter((wall) => wall.side === side)[0]
         currentWall.added = status
-        state.dining = currentPooja
+        state.pooja = currentPooja
       }
     },
     updateWall: (state, action) => {
