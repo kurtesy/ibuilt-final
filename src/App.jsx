@@ -9,6 +9,7 @@ import Loader from './components/Loader'
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs'
 import { restorePreviousPlotState } from '../redux/plot'
 import { restorePreviousRoomsState } from '../redux/rooms'
+import { setDarkMode } from '../redux/app'
 
 export default function App() {
   const [_, width] = useWindowSize()
@@ -16,6 +17,23 @@ export default function App() {
   const { plotLength, plotBreadth, isGenerating } = useSelector((state) => state.plot)
   const [isSiderOpen, setIsSiderOpen] = useState(false)
   const { darkMode } = useSelector((state) => state.app)
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
+  useEffect(() => {
+    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    setIsDarkMode(darkModeMediaQuery.matches)
+
+    const handleDarkModeChange = (event) => setIsDarkMode(event.matches)
+
+    darkModeMediaQuery.addEventListener('change', handleDarkModeChange)
+
+    return () => {
+      darkModeMediaQuery.removeEventListener('change', handleDarkModeChange)
+    }
+  }, [])
+  useEffect(() => {
+    dispatch(setDarkMode({ mode: isDarkMode }))
+  }, [isDarkMode])
   useEffect(() => {
     setCurrentWidth(width)
   }, [width])

@@ -5,10 +5,10 @@ const appSlice = createSlice({
     darkMode: false
   },
   reducers: {
-    toggleMode: (state) => {
-      return { ...state, darkMode: !state.darkMode }
+    setDarkMode: (state, action) => {
+      return { ...state, darkMode: action.payload.mode }
     }
   }
 })
-export const { toggleMode } = appSlice.actions
+export const { setDarkMode } = appSlice.actions
 export default appSlice.reducer
