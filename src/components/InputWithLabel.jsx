@@ -5,9 +5,10 @@ export default function InputWithLabel({ label, value, setValue, min, max }) {
     <div className=' h-full px-2 py-1 flex items-center bg-slate-800 rounded-xl'>
       <label className='capitalize text-primaryLime font-semibold'>{label}&nbsp;</label>
       <input
-        className='w-[90px] h-full rounded-tl-xl rounded-br-xl outline-none px-3'
+        className='w-[90px] h-full rounded-tl-xl rounded-br-xl outline-none px-3 '
         value={value}
         type='number'
+        style={{ color: 'black' }}
         onChange={(e) => setValue(e.target.value)}
         min={min}
         max={max}

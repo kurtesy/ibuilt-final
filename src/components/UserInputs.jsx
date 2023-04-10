@@ -21,7 +21,7 @@ export default function UserInputs({ show, setShow, setLoading }) {
             onClick={() => setShow(false)}
           />
           <div className='w-full flex items-center justify-between'>
-            <div className='flex-1 absolute right-32 h-full flex items-center justify-center gap-3 w-full '>
+            <div className='flex-1 absolute right-32 h-full flex items-center justify-center gap-3 w-full tex-black '>
               <InputWithLabel label='length' value={length} setValue={setLength} min={10} max={70} />
               <InputWithLabel label='breadth' value={breadth} setValue={setBreadth} min={10} max={70} />
               <ExtraInputs dimensions={{ length, breadth }} setShow={setShow} setLoading={setLoading} />
