@@ -956,39 +956,95 @@ const roomsSlice = createSlice({
       const currentWallSide = id.split('-')[2]
       console.log('currentRoomType: ' + currentRoomType)
       //BED
+      // if (currentRoomType === 'bedroom') {
+      //   const currentBedroom = state.bedRooms.filter((room) => room.id === currentDirection)[0]
+      //   const currentWall = currentBedroom.walls.filter((wall) => wall.side == currentWallSide)[0]
+      //   const filteredWalls = currentBedroom.walls.filter((wall) => wall.side !== currentWallSide)
+      //   if (action.payload.hasOpening !== undefined) {
+      //     // opening.includes
+      //     currentWall.opening.includes = action.payload.hasOpening
+      //     filteredWalls.push(currentWall)
+      //     currentBedroom.walls = filteredWalls
+      //     console.log('currenrtbedtroom walls' + JSON.stringify(currentBedroom))
+      //   }
+      //   if (action.payload.hasDoor !== undefined) {
+      //     // opening.includes
+      //     currentWall.door.includes = action.payload.hasDoor
+      //     filteredWalls.push(currentWall)
+      //     currentBedroom.walls = filteredWalls
+      //     console.log('currenrtbedtroom walls' + JSON.stringify(currentBedroom))
+      //   }
+      //   if (action.payload.hasWindow !== undefined) {
+      //     currentWall.window.includes = action.payload.hasWindow
+      //     filteredWalls.push(currentWall)
+      //     currentBedroom.walls = filteredWalls
+      //     console.log('currenrtbedtroom walls' + JSON.stringify(currentBedroom))
+      //   }
+      //   if (action.payload.openingLength !== undefined) {
+      //     currentWall.opening.length = parseFloat(action.payload.openingLength)
+      //     filteredWalls.push(currentWall)
+      //     currentBedroom.walls = filteredWalls
+      //     console.log('currenrtbedtroom walls' + JSON.stringify(currentBedroom))
+      //   }
+      //   if (action.payload.openingPosition !== undefined) {
+      //     const { openingPosition } = action.payload
+      //     console.log('action position: ', JSON.stringify(openingPosition))
+      //     let pos
+      //     if (currentWallSide === 'front' || currentWallSide === 'back') {
+      //       pos = { right: parseInt(openingPosition) }
+      //     } else {
+      //       pos = { top: parseInt(openingPosition) }
+      //     }
+      //     currentWall.opening.position = pos
+      //     filteredWalls.push(currentWall)
+      //     currentBedroom.walls = filteredWalls
+      //     console.log('currenrtbedtroom walls' + JSON.stringify(currentBedroom))
+      //   }
+      //   if (action.payload.doorPosition !== undefined) {
+      //     const { doorPosition } = action.payload
+      //     console.log('action position: ', JSON.stringify(doorPosition))
+      //     let pos
+      //     if (currentWallSide === 'front' || currentWallSide === 'back') {
+      //       pos = { right: parseInt(doorPosition) }
+      //     } else {
+      //       pos = { top: parseInt(doorPosition) }
+      //     }
+      //     currentWall.door.position = pos
+      //     filteredWalls.push(currentWall)
+      //     currentBedroom.walls = filteredWalls
+      //     console.log('currenrtbedtroom walls' + JSON.stringify(currentBedroom))
+      //   }
+      //   state.bedRooms = state.bedRooms.filter((room) => room.id !== currentDirection)
+      //   console.log('state.bedrooms' + state.bedRooms.length)
+      //   state.bedRooms.push(currentBedroom)
+      //   console.log('currenrtbedtroom walls after' + JSON.stringify(currentBedroom))
+      //   console.log('state.bedrooms' + state.bedRooms.length)
+      // }
       if (currentRoomType === 'bedroom') {
-        const currentBedroom = state.bedRooms.filter((room) => room.id === currentDirection)[0]
-        const currentWall = currentBedroom.walls.filter((wall) => wall.side == currentWallSide)[0]
+        const currentBedroomIndex = state.bedRooms.findIndex((room) => room.id === currentDirection)
+        const currentBedroom = { ...state.bedRooms[currentBedroomIndex] }
+        const currentWallIndex = currentBedroom.walls.findIndex((wall) => wall.side === currentWallSide)
+        const currentWall = { ...currentBedroom.walls[currentWallIndex] }
         const filteredWalls = currentBedroom.walls.filter((wall) => wall.side !== currentWallSide)
+
         if (action.payload.hasOpening !== undefined) {
-          // opening.includes
           currentWall.opening.includes = action.payload.hasOpening
-          filteredWalls.push(currentWall)
-          currentBedroom.walls = filteredWalls
-          console.log('currenrtbedtroom walls' + JSON.stringify(currentBedroom))
         }
+
         if (action.payload.hasDoor !== undefined) {
-          // opening.includes
           currentWall.door.includes = action.payload.hasDoor
-          filteredWalls.push(currentWall)
-          currentBedroom.walls = filteredWalls
-          console.log('currenrtbedtroom walls' + JSON.stringify(currentBedroom))
         }
+
         if (action.payload.hasWindow !== undefined) {
           currentWall.window.includes = action.payload.hasWindow
-          filteredWalls.push(currentWall)
-          currentBedroom.walls = filteredWalls
-          console.log('currenrtbedtroom walls' + JSON.stringify(currentBedroom))
         }
+
         if (action.payload.openingLength !== undefined) {
           currentWall.opening.length = parseFloat(action.payload.openingLength)
-          filteredWalls.push(currentWall)
-          currentBedroom.walls = filteredWalls
-          console.log('currenrtbedtroom walls' + JSON.stringify(currentBedroom))
         }
+
         if (action.payload.openingPosition !== undefined) {
           const { openingPosition } = action.payload
-          console.log('action position: ', JSON.stringify(openingPosition))
           let pos
           if (currentWallSide === 'front' || currentWallSide === 'back') {
             pos = { right: parseInt(openingPosition) }
@@ -996,13 +1052,10 @@ const roomsSlice = createSlice({
             pos = { top: parseInt(openingPosition) }
           }
           currentWall.opening.position = pos
-          filteredWalls.push(currentWall)
-          currentBedroom.walls = filteredWalls
-          console.log('currenrtbedtroom walls' + JSON.stringify(currentBedroom))
         }
+
         if (action.payload.doorPosition !== undefined) {
           const { doorPosition } = action.payload
-          console.log('action position: ', JSON.stringify(doorPosition))
           let pos
           if (currentWallSide === 'front' || currentWallSide === 'back') {
             pos = { right: parseInt(doorPosition) }
@@ -1010,16 +1063,18 @@ const roomsSlice = createSlice({
             pos = { top: parseInt(doorPosition) }
           }
           currentWall.door.position = pos
-          filteredWalls.push(currentWall)
-          currentBedroom.walls = filteredWalls
-          console.log('currenrtbedtroom walls' + JSON.stringify(currentBedroom))
         }
-        state.bedRooms = state.bedRooms.filter((room) => room.id !== currentDirection)
-        console.log('state.bedrooms' + state.bedRooms.length)
-        state.bedRooms.push(currentBedroom)
-        console.log('currenrtbedtroom walls after' + JSON.stringify(currentBedroom))
-        console.log('state.bedrooms' + state.bedRooms.length)
+
+        filteredWalls.splice(currentWallIndex, 0, currentWall)
+
+        currentBedroom.walls = filteredWalls
+
+        const updatedBedrooms = [...state.bedRooms]
+        updatedBedrooms.splice(currentBedroomIndex, 1, currentBedroom)
+
+        state.bedRooms = updatedBedrooms
       }
+
       // LIVING
       if (currentRoomType === 'living') {
         const currentLivingRoom = state.livingRooms.filter((room) => room.id === currentDirection)[0]
