@@ -30,8 +30,8 @@ export default function CommonToilet({ id }) {
       currStyle['zIndex'] = 50
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
-      currStyle['zIndex'] = 50
-      currStyle['backgroundColor'] = 'red'
+      currStyle['zIndex'] = 30
+      currStyle['backgroundColor'] = '#94AF9F'
     }
     setStyle({ ...currStyle, ...currentToilet.position })
   }
@@ -61,16 +61,16 @@ export default function CommonToilet({ id }) {
     makeStyle()
   }, [length, breadth, location, selectedRoom, isActive, currentToilet, facing])
 
-  useEffect(() => {
-    dispatch(
-      updateRoomData({
-        id,
-        roomType: 'commonToilet',
-        length,
-        breadth
-      })
-    )
-  }, [length, breadth])
+  // useEffect(() => {
+  //   dispatch(
+  //     updateRoomData({
+  //       id,
+  //       roomType: 'commonToilet',
+  //       length,
+  //       breadth
+  //     })
+  //   )
+  // }, [length, breadth])
 
   return (
     <div

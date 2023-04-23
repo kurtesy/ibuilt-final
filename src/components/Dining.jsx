@@ -25,7 +25,7 @@ export default function Dining({ id }) {
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 10
-      currStyle['backgroundColor'] = '#fff'
+      currStyle['backgroundColor'] = '#DBE4C6'
     }
     setStyle({ ...currStyle, ...currentDining.position })
   }
@@ -66,35 +66,35 @@ export default function Dining({ id }) {
     )
   }, [length, breadth])
 
- const handleDeSelect = (e) => {
-   e.preventDefault()
-   dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
-   setIsActive(false)
- }
- return (
-   <div
-     style={style}
-     className='bg-bathFullType13 absolute cursor-pointer'
-     onClick={handleClick}
-     onContextMenu={handleDeSelect}>
-     <div className='absolute top-1/2 left-1/2 text-center text-xs   text-black p-2 '>
-       DINING - {id.toUpperCase()}
-       <br />
-       {currentDining.length} X {currentDining.breadth}
-     </div>
-     {currentDining.walls.map((wall) => (
-       <Wall
-         id={`dining-${id}-${wall.side}`}
-         added={wall.added}
-         length={wall.length}
-         thickness={wall.thickness}
-         position={wall.position}
-         door={wall.door}
-         side={wall.side}
-         window={wall.window}
-         opening={wall.opening}
-       />
-     ))}
-   </div>
- )
+  const handleDeSelect = (e) => {
+    e.preventDefault()
+    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
+    setIsActive(false)
+  }
+  return (
+    <div
+      style={style}
+      className='bg-bathFullType13 absolute cursor-pointer shadow-2xl'
+      onClick={handleClick}
+      onContextMenu={handleDeSelect}>
+      <div className='absolute top-1/2 left-1/2 text-center text-xs   text-black p-2 '>
+        DINING - {id.toUpperCase()}
+        <br />
+        {currentDining.length} X {currentDining.breadth}
+      </div>
+      {currentDining.walls.map((wall) => (
+        <Wall
+          id={`dining-${id}-${wall.side}`}
+          added={wall.added}
+          length={wall.length}
+          thickness={wall.thickness}
+          position={wall.position}
+          door={wall.door}
+          side={wall.side}
+          window={wall.window}
+          opening={wall.opening}
+        />
+      ))}
+    </div>
+  )
 }

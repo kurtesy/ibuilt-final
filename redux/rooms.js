@@ -19,6 +19,7 @@ const roomsSlice = createSlice({
       return { ...state, selectedRoom: { id: selectedId, roomType: roomType } }
     },
     updateRoomData: (state, action) => {
+      console.log(JSON.stringify('action.payload: ', action.payload))
       const { id, roomType } = action.payload
       if (roomType === 'bedroom') {
         const currentBedroom = state.bedRooms.filter((room) => room.id === id)[0]
@@ -876,7 +877,7 @@ const roomsSlice = createSlice({
         const currentRoom = state.toilets.filter((room) => room.id === id)[0]
         const currentWall = currentRoom.walls.filter((wall) => wall.side === side)[0]
         currentWall.added = status
-        const filteredRooms = state.livingRooms.filter((room) => room.id !== id)
+        const filteredRooms = state.toilets.filter((room) => room.id !== id)
         filteredRooms.push(currentRoom)
         state.toilets = filteredRooms
       }
@@ -1461,6 +1462,58 @@ const roomsSlice = createSlice({
         }
         state.pooja = currentPooja
       }
+      if (currentRoomType === 'sitout') {
+        const currentSitout = state.sitout
+        const currentWall = currentSitout.walls.filter((wall) => wall.side == currentWallSide)[0]
+        const filteredWalls = currentSitout.walls.filter((wall) => wall.side !== currentWallSide)
+        if (action.payload.hasOpening !== undefined) {
+          // opening.includes
+          currentWall.opening.includes = action.payload.hasOpening
+          filteredWalls.push(currentWall)
+          currentSitout.walls = filteredWalls
+        }
+        if (action.payload.hasDoor !== undefined) {
+          // opening.includes
+          currentWall.door.includes = action.payload.hasDoor
+          filteredWalls.push(currentWall)
+          currentSitout.walls = filteredWalls
+        }
+        if (action.payload.hasWindow !== undefined) {
+          currentWall.window.includes = action.payload.hasWindow
+          filteredWalls.push(currentWall)
+          currentSitout.walls = filteredWalls
+        }
+        if (action.payload.openingLength !== undefined) {
+          currentWall.opening.length = parseFloat(action.payload.openingLength)
+          filteredWalls.push(currentWall)
+          currentSitout.walls = filteredWalls
+        }
+        if (action.payload.openingPosition !== undefined) {
+          const { openingPosition } = action.payload
+          let pos
+          if (currentWallSide === 'front' || currentWallSide === 'back') {
+            pos = { right: parseInt(openingPosition) }
+          } else {
+            pos = { top: parseInt(openingPosition) }
+          }
+          currentWall.opening.position = pos
+          filteredWalls.push(currentWall)
+          currentSitout.walls = filteredWalls
+        }
+        if (action.payload.doorPosition !== undefined) {
+          const { doorPosition } = action.payload
+          let pos
+          if (currentWallSide === 'front' || currentWallSide === 'back') {
+            pos = { right: parseInt(doorPosition) }
+          } else {
+            pos = { top: parseInt(doorPosition) }
+          }
+          currentWall.door.position = pos
+          filteredWalls.push(currentWall)
+          currentSitout.walls = filteredWalls
+        }
+        state.sitout = currentSitout
+      }
     },
     setSelectedWall: (state, action) => {
       const { id } = action.payload
@@ -1473,11 +1526,43 @@ const roomsSlice = createSlice({
         currentRoom.rotated = rotation
         state.stairCase = currentRoom
       }
+    },
+    updateOpening: (state, action) => {
+      const { id } = action.payload
+      const [currentRoom, currentPosition, currentSide] = id.split('-')
+
+      if (currentRoom === 'kitchen') {
+        const currentKitchen = state.kitchen
+        const currentWall = currentKitchen.walls.filter((wall) => wall.side === currentSide)[0]
+        const filteredWalls = currentKitchen.walls.filter((wall) => wall.side !== currentSide)
+        if (action.payload.position !== undefined) {
+          currentWall.opening.position = action.payload.position
+        }
+        if (action.payload.length !== undefined && action.payload.length > 1) {
+          currentWall.opening.length = action.payload.length
+        }
+        filteredWalls.push(currentWall)
+        state.kitchen.walls = filteredWalls
+      }
+      if (currentRoom === 'pooja') {
+        const currentPooja = state.pooja
+        const currentWall = currentPooja.walls.filter((wall) => wall.side === currentSide)[0]
+        const filteredWalls = currentPooja.walls.filter((wall) => wall.side !== currentSide)
+        if (action.payload.position !== undefined) {
+          currentWall.opening.position = action.payload.position
+        }
+        if (action.payload.length !== undefined && action.payload.length > 1) {
+          currentWall.opening.length = action.payload.length
+        }
+        filteredWalls.push(currentWall)
+        state.pooja.walls = filteredWalls
+      }
     }
   }
 })
 export const {
   setCurrentPosition,
+  updateOpening,
   setRoomRotation,
   updateWall,
   setSelectedWall,

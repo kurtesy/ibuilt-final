@@ -31,7 +31,7 @@ export default function Bedroom({ id }) {
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 1
-      currStyle['backgroundColor'] = '#fff'
+      currStyle['backgroundColor'] = '#BBD6B8'
     }
     setStyle({ ...currStyle, ...currentBedroom.position })
   }
@@ -59,16 +59,16 @@ export default function Bedroom({ id }) {
     makeStyle()
   }, [length, breadth, selectedRoom, isActive, currentBedroom, facing, scale])
 
-  useEffect(() => {
-    dispatch(
-      updateRoomData({
-        id,
-        roomType: 'bedroom',
-        length: parseFloat(builtLength / 2) < 20 ? parseFloat(builtLength / 2) : 20,
-        breadth: parseFloat(builtBreadth / 2) ? parseFloat(builtBreadth / 2) : 20
-      })
-    )
-  }, [builtBreadth, builtLength])
+  // useEffect(() => {
+  //   dispatch(
+  //     updateRoomData({
+  //       id,
+  //       roomType: 'bedroom',
+  //       length: parseFloat(builtLength / 2) < 20 ? parseFloat(builtLength / 2) : 20,
+  //       breadth: parseFloat(builtBreadth / 2) ? parseFloat(builtBreadth / 2) : 20
+  //     })
+  //   )
+  // }, [builtBreadth, builtLength])
 
   const handleContextMenu = (e) => {
     e.preventDefault()
@@ -118,14 +118,15 @@ export default function Bedroom({ id }) {
         ))}
       {/* <img src={bed56} className='h-[150px] w-[150px] bottom-0 absolute rotate-[-90deg]' /> */}
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(currentBedroom.length, currentBedroom.breadth) * 0.9 }}>
+        <p style={{ fontSize: Math.min(16, Math.min(currentBedroom.length, currentBedroom.breadth)) }}>
           BED ROOM - {id.toUpperCase()}
           <br />
           {currentBedroom.length} X {currentBedroom.breadth}
         </p>
       </div>
-      {currentBedroom.walls.map((wall) => (
+      {currentBedroom.walls.map((wall, index) => (
         <Wall
+          key={index}
           id={`bedroom-${id}-${wall.side}`}
           added={wall.added}
           length={wall.length}

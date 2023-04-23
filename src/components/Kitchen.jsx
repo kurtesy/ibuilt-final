@@ -27,7 +27,7 @@ export default function Kitchen({ id }) {
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 10
-      currStyle['backgroundColor'] = '#fff'
+      currStyle['backgroundColor'] = '#BBD6B8'
     }
     setStyle({ ...currStyle, ...currentKitchen.position })
   }
@@ -65,16 +65,16 @@ export default function Kitchen({ id }) {
     makeStyle()
   }, [length, breadth, location, selectedRoom, isActive, currentKitchen, facing])
 
-  useEffect(() => {
-    dispatch(
-      updateRoomData({
-        id,
-        roomType: 'kitchen',
-        length,
-        breadth
-      })
-    )
-  }, [length, breadth])
+  // useEffect(() => {
+  //   dispatch(
+  //     updateRoomData({
+  //       id,
+  //       roomType: 'kitchen',
+  //       length,
+  //       breadth
+  //     })
+  //   )
+  // }, [length, breadth])
 
   return (
     <div
@@ -82,8 +82,8 @@ export default function Kitchen({ id }) {
       className='bg-bathFullType13 absolute cursor-pointer'
       onClick={handleClick}
       onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(currentKitchen.length, currentKitchen.breadth) * 1.1 }}>
+      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold translate-x-[-50%] translate-y-[-50%]'>
+        <p style={{ fontSize: Math.max(12, Math.min(currentKitchen.length, currentKitchen.breadth)) * 0.9 }}>
           KITCHEN - {id.toUpperCase()}
           <br />
           {currentKitchen.length} X {currentKitchen.breadth}

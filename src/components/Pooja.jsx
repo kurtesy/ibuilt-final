@@ -25,7 +25,7 @@ export default function Pooja({ id }) {
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 10
-      currStyle['backgroundColor'] = '#fff'
+      currStyle['backgroundColor'] = '#DBE4C6'
     }
     setStyle({ ...currStyle, ...currentPooja.position })
   }
@@ -39,6 +39,7 @@ export default function Pooja({ id }) {
     setLength(currentPooja?.length)
     setBreadth(currentPooja?.breadth)
   }, [currentPooja])
+
   useEffect(() => {
     dispatch(
       updateRoomData({
@@ -61,16 +62,16 @@ export default function Pooja({ id }) {
     makeStyle()
   }, [length, breadth, location, selectedRoom, isActive, currentPooja, facing])
 
-  useEffect(() => {
-    dispatch(
-      updateRoomData({
-        id,
-        roomType: 'pooja',
-        length,
-        breadth
-      })
-    )
-  }, [length, breadth])
+  // useEffect(() => {
+  //   dispatch(
+  //     updateRoomData({
+  //       id,
+  //       roomType: 'pooja',
+  //       length,
+  //       breadth
+  //     })
+  //   )
+  // }, [length, breadth])
 
   return (
     <div
@@ -78,8 +79,8 @@ export default function Pooja({ id }) {
       className='bg-bathFullType13 absolute cursor-pointer'
       onClick={handleClick}
       onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(currentPooja.length, currentPooja.breadth) * 1.1 }}>
+      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold translate-x-[-50%] translate-y-[-50%]'>
+        <p style={{ fontSize: Math.max(12, Math.min(currentPooja.length, currentPooja.breadth) * 1.1) }}>
           POOJA - {id.toUpperCase()}
           <br />
           {currentPooja.length} X {currentPooja.breadth}

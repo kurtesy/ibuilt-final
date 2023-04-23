@@ -43,7 +43,7 @@ export default function Toilet({ id }) {
       currStyle['backgroundColor'] = 'rgba(250,150,150,0.8)'
     } else {
       currStyle['zIndex'] = 10
-      currStyle['backgroundColor'] = '#fff'
+      currStyle['backgroundColor'] = '#94AF9F'
     }
     setStyle({ ...currStyle, ...currentToilet.position })
   }
@@ -64,36 +64,36 @@ export default function Toilet({ id }) {
     makeStyle()
   }, [length, breadth, location, selectedRoom, isActive, currentToilet, scale])
 
-return (
-  <div style={style} className='relative' onClick={handleClick} onContextMenu={handleDeSelect}>
-    {/* BG */}
-    <div
-      className='w-full h-full absolute top-0 left-0 bg-cover  -z-50'
-      style={type > 0 ? { backgroundImage: `url("${components.defaults[bgNum].icon}")` } : {}}
-      // type=1 wc only =>5
-      // type=2 half bath =>4
-      // type=3 fullbath =>2
-    />
-    <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
-      <p style={{ fontSize: Math.min(currentToilet.length, currentToilet.breadth) * 1.1 }}>
-        TOILET - {id.toUpperCase()}
-        <br />
-        {currentToilet.length} X {currentToilet.breadth}
-      </p>
-    </div>
-    {currentToilet.walls.map((wall) => (
-      <Wall
-        id={`toilet-${id}-${wall.side}`}
-        added={wall.added}
-        length={wall.length}
-        thickness={wall.thickness}
-        position={wall.position}
-        door={wall.door}
-        side={wall.side}
-        window={wall.window}
-        opening={wall.opening}
+  return (
+    <div style={style} className='relative' onClick={handleClick} onContextMenu={handleDeSelect}>
+      {/* BG */}
+      <div
+        className='w-full h-full absolute top-0 left-0 bg-cover  -z-50'
+        style={type > 0 ? { backgroundImage: `url("${components.defaults[bgNum].icon}")` } : {}}
+        // type=1 wc only =>5
+        // type=2 half bath =>4
+        // type=3 fullbath =>2
       />
-    ))}
-  </div>
-)
+      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold translate-y-[-50%]'>
+        <p style={{ fontSize: Math.max(10, Math.min(currentToilet.length, currentToilet.breadth) * 1.1) }}>
+          TOILET - {id.toUpperCase()}
+          <br />
+          {currentToilet.length} X {currentToilet.breadth}
+        </p>
+      </div>
+      {currentToilet.walls.map((wall) => (
+        <Wall
+          id={`toilet-${id}-${wall.side}`}
+          added={wall.added}
+          length={wall.length}
+          thickness={wall.thickness}
+          position={wall.position}
+          door={wall.door}
+          side={wall.side}
+          window={wall.window}
+          opening={wall.opening}
+        />
+      ))}
+    </div>
+  )
 }

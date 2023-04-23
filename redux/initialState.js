@@ -10,7 +10,7 @@ export const initialState = {
       id: 'nw',
       length: null,
       breadth: null,
-      maxDim: 20,
+      maxDim: 30,
       minDim: 8,
       area: 0,
       position: { top: 0, left: 0 },
@@ -101,7 +101,7 @@ export const initialState = {
       id: 'ne',
       length: null,
       breadth: null,
-      maxDim: 20,
+      maxDim: 30,
       minDim: 8,
       area: 0,
       position: { top: 0, right: 0 },
@@ -364,7 +364,7 @@ export const initialState = {
       id: 'nw',
       length: null,
       breadth: null,
-      maxDim: 20,
+      maxDim: 30,
       minDim: 8,
       area: 0,
       position: { top: 0, left: 0 },
@@ -459,7 +459,7 @@ export const initialState = {
       id: 'ne',
       length: null,
       breadth: null,
-      maxDim: 20,
+      maxDim: 30,
       minDim: 8,
       area: 0,
       position: { top: 0, right: 0 },
@@ -554,7 +554,7 @@ export const initialState = {
       id: 'sw',
       length: null,
       breadth: null,
-      maxDim: 20,
+      maxDim: 30,
       minDim: 8,
       area: 0,
       position: { bottom: 0, left: 0 },
@@ -649,7 +649,7 @@ export const initialState = {
       id: 'se',
       length: null,
       breadth: null,
-      maxDim: 20,
+      maxDim: 30,
       minDim: 8,
       area: 0,
       position: { bottom: 0, right: 0 },
@@ -747,8 +747,8 @@ export const initialState = {
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
-      maxDim: null,
-      minDim: null,
+      maxDim: 30,
+      minDim: 3,
       rotated: 0,
       area: 0,
       position: { top: 0, left: 0 },
@@ -841,8 +841,8 @@ export const initialState = {
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
-      maxDim: null,
-      minDim: null,
+      maxDim: 30,
+      minDim: 3,
       area: 0,
       position: { top: 0, left: 0 },
       walls: [
@@ -934,8 +934,8 @@ export const initialState = {
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
-      maxDim: null,
-      minDim: null,
+      maxDim: 30,
+      minDim: 3,
       area: 0,
       position: { top: 0, left: 0 },
       walls: [
@@ -1027,8 +1027,8 @@ export const initialState = {
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
-      maxDim: null,
-      minDim: null,
+      maxDim: 30,
+      minDim: 3,
       area: 0,
       position: { top: 0, left: 0 },
       walls: [
@@ -1221,7 +1221,7 @@ export const initialState = {
     id: '',
     length: null,
     breadth: null,
-    maxDim: 12,
+    maxDim: 30,
     minDim: 4,
     rotated: 0,
     area: 0,
@@ -1786,11 +1786,11 @@ export const initialState = {
     type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
     length: 8,
     breadth: 8,
-    maxDim: 12,
+    maxDim: 30,
     minDim: 3,
     rotated: 0,
     area: 0,
-    position: { top: 0, right: 0 },
+    position: { bottom: 0, right: 0 },
     walls: [
       {
         added: false,
@@ -2178,7 +2178,7 @@ export const initialState = {
         position: { bottom: 0, left: 0 },
         door: {
           includes: false,
-          position: { right: 18 },
+          position: { right: 50 },
           type: 'default'
         },
         opening: {

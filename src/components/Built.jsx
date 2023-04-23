@@ -9,8 +9,9 @@ import Pooja from './Pooja'
 import Drawing from './Drawing'
 import Dining from './Dining'
 import Media from './Media'
+import { generatePlot } from '../constants/rooms'
 export default function Built() {
-  const { builtLength, builtBreadth, scale, setbacks } = useSelector((state) => state.plot)
+  const { builtLength, builtBreadth, scale, setbacks, facing, type } = useSelector((state) => state.plot)
   const { addedRooms } = useSelector((state) => state.rooms)
   const [style, setStyle] = useState({})
   const [selectedItems, setSelectedItems] = useState([])
@@ -28,9 +29,12 @@ export default function Built() {
   useEffect(() => {
     setSelectedItems(addedRooms)
   }, [addedRooms])
+  useEffect(() => {
+    generatePlot(builtLength, builtBreadth, facing, type)
+  }, [builtLength, builtBreadth])
   return (
     <div
-      className='bg-gray-600 absolute'
+      className='bg-gray-600 absolute z-20'
       style={style}
       // onClick={(e) => {
       //   e.stopPropagation()

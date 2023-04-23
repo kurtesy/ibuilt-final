@@ -69,10 +69,8 @@ export default function DimensionControls() {
 
   useEffect(() => {
     if (currentSelection) {
-      setLength(currentSelection.length <= currentSelection.maxDim ? currentSelection.length : currentSelection.maxDim)
-      setBreadth(
-        currentSelection.breadth <= currentSelection.maxDim ? currentSelection.breadth : currentSelection.maxDim
-      )
+      setLength(currentSelection.length)
+      setBreadth(currentSelection.breadth)
     }
   }, [currentSelection])
 

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import Opening from './Opening'
 import Door from './Door'
 import WindowComp from '../components/WindowComp'
-export default function Wall({ position, length, thickness, side, door, added, window, opening }) {
+export default function Wall({ id, position, length, thickness, side, door, added, window, opening }) {
   const { scale } = useSelector((state) => state.plot)
   const [style, setStyle] = useState({})
   const makeStyle = () => {
@@ -29,9 +29,9 @@ export default function Wall({ position, length, thickness, side, door, added, w
   return (
     <>
       {added ? (
-        <div className='bg-slate-900 border-[1px] border-black absolute z-10 hover:bg-green-400' style={style}>
-          {opening.includes && <Opening length={opening.length} position={opening.position} side={side} />}
-          {door.includes && <Door position={door.position} side={side} />}
+        <div className='bg-slate-900 border-[1px] border-black absolute z-50 hover:bg-green-400' style={style}>
+          {opening.includes && <Opening length={opening.length} position={opening.position} side={side} id={id} />}
+          {door.includes && <Door position={door.position} side={side} id={id} />}
           {/* {window.includes && <WindowComp position={window.position} side={side} />} */}
         </div>
       ) : null}

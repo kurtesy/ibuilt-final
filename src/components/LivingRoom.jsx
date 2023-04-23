@@ -25,7 +25,7 @@ export default function LivingRoom({ id }) {
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 1
-      currStyle['backgroundColor'] = '#fff'
+      currStyle['backgroundColor'] = '#AEC2B6'
     }
     setStyle({ ...currStyle, ...currentLivingroom.position })
   }
@@ -58,16 +58,16 @@ export default function LivingRoom({ id }) {
     dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
     setIsActive(false)
   }
-  useEffect(() => {
-    dispatch(
-      updateRoomData({
-        id,
-        roomType: 'living',
-        length: parseFloat(builtLength / 2) < 20 ? parseFloat(builtLength / 2) : 20,
-        breadth: parseFloat(builtBreadth / 2) ? parseFloat(builtBreadth / 2) : 20
-      })
-    )
-  }, [builtBreadth, builtLength])
+  // useEffect(() => {
+  //   dispatch(
+  //     updateRoomData({
+  //       id,
+  //       roomType: 'living',
+  //       length: parseFloat(builtLength / 2) < 20 ? parseFloat(builtLength / 2) : 20,
+  //       breadth: parseFloat(builtBreadth / 2) ? parseFloat(builtBreadth / 2) : 20
+  //     })
+  //   )
+  // }, [builtBreadth, builtLength])
 
   return (
     <div
@@ -77,7 +77,7 @@ export default function LivingRoom({ id }) {
       onClick={handleClick}
       onContextMenu={handleDeSelect}>
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(currentLivingroom.length, currentLivingroom.breadth) * 1.1 }}>
+        <p style={{ fontSize: Math.min(16, Math.min(currentLivingroom.length, currentLivingroom.breadth) * 1.1) }}>
           LIVING - {id.toUpperCase()}
           <br />
           {currentLivingroom.length} X {currentLivingroom.breadth}

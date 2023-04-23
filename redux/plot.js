@@ -19,6 +19,7 @@ const initialState = {
   builtArea: 0,
   rooms: { nw: [], ne: [], sw: [], se: [] }
 }
+
 const plotSlice = createSlice({
   name: 'plot',
   initialState,
@@ -40,6 +41,12 @@ const plotSlice = createSlice({
     },
     changeScale: (state, action) => {
       state.scale = action.payload.scale
+    },
+    increaseScale: (state) => {
+      return state.scale++
+    },
+    decreaseScale: (state) => {
+      return state.scale--
     },
     updateType: (state, action) => {
       state.type = action.payload.type
@@ -97,6 +104,8 @@ export const {
   removeRoom,
   toggleGeneratePlot,
   saveCurrentPlotState,
-  restorePreviousPlotState
+  restorePreviousPlotState,
+  increaseScale,
+  decreaseScale
 } = plotSlice.actions
 export default plotSlice.reducer

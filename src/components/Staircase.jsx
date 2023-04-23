@@ -31,8 +31,8 @@ export default function Staircase({ id }) {
       currStyle['zIndex'] = 50
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
-      currStyle['zIndex'] = 50
-      currStyle['backgroundColor'] = '#fff'
+      currStyle['zIndex'] = 30
+      currStyle['backgroundColor'] = 'gray'
     }
     setStyle({ ...currStyle, ...currentStaircase.position })
   }
@@ -65,16 +65,16 @@ export default function Staircase({ id }) {
     makeStyle()
   }, [length, breadth, location, selectedRoom, isActive, currentStaircase, facing, rotation])
 
-  useEffect(() => {
-    dispatch(
-      updateRoomData({
-        id,
-        roomType: 'stairCase',
-        length,
-        breadth
-      })
-    )
-  }, [length, breadth])
+  // useEffect(() => {
+  //   dispatch(
+  //     updateRoomData({
+  //       id,
+  //       roomType: 'stairCase',
+  //       length,
+  //       breadth
+  //     })
+  //   )
+  // }, [length, breadth])
   const handleRotate = () => {
     if (rotation === 270) setRotation(0)
     else setRotation((prev) => prev + 90)
@@ -85,14 +85,14 @@ export default function Staircase({ id }) {
   return (
     <div
       style={style}
-      className={`bg-bathFullType13 absolute cursor-pointer `}
+      className={` absolute cursor-pointer `}
       onClick={handleClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}>
       {hovered && <AiOutlineRotateRight size={24} className='absolute right-0 top-[-24px]' onClick={handleRotate} />}
-      <img src={stairImg} alt='stair' className='w-full h-full' />
-      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(currentStaircase.length, currentStaircase.breadth) * 1.1 }}>
+      {/* <img src={stairImg} alt='stair' className='w-full h-full' /> */}
+      <div className='absolute z-40 top-1/2 left-1/2 text-center text-black p-2 font-semibold translate-x-[-50%] translate-y-[-50%]'>
+        <p style={{ fontSize: Math.max(14, Math.min(currentStaircase.length, currentStaircase.breadth)) * 0.8 }}>
           STAIRCASE - {id.toUpperCase()}
           <br />
           {currentStaircase.length} X {currentStaircase.breadth}

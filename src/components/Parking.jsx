@@ -25,8 +25,8 @@ export default function Parking({ id }) {
       currStyle['zIndex'] = 50
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
-      currStyle['zIndex'] = 50
-      currStyle['backgroundColor'] = '#fff'
+      currStyle['zIndex'] = 30
+      currStyle['backgroundColor'] = 'lightgray'
     }
     setStyle({ ...currStyle, ...currentParking.position })
   }
@@ -76,8 +76,8 @@ export default function Parking({ id }) {
       className={`bg-bathFullType13 absolute cursor-pointer `}
       onClick={handleClick}
       onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(currentParking.length, currentParking.breadth) * 1.1 }}>
+      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold translate-x-[-50%] translate-y-[-50%]'>
+        <p style={{ fontSize: Math.max(12, Math.min(currentParking.length, currentParking.breadth)) * 0.8 }}>
           PARKING - {id.toUpperCase()}
           <br />
           {currentParking.length} X {currentParking.breadth}
