@@ -1612,6 +1612,37 @@ const roomsSlice = createSlice({
         filteredWalls.push(currentWall)
         state.pooja.walls = filteredWalls
       }
+    },
+    updateDoor:(state, action)=>{
+      const { id } = action.payload
+      const [currentRoom, currentPosition, currentSide] = id.split('-')
+
+      if (currentRoom === 'bedroom') {
+        const currentBedroom = state.bedRooms.filter(room=>room.id===currentPosition)[0]
+        const currentWall = currentBedroom.walls.filter((wall) => wall.side === currentSide)[0]
+        const filteredWalls = currentBedroom.walls.filter((wall) => wall.side !== currentSide)
+        if (action.payload.position !== undefined) {
+          currentWall.opening.position = action.payload.position
+        }
+        if (action.payload.length !== undefined && action.payload.length > 1) {
+          currentWall.opening.length = action.payload.length
+        }
+        filteredWalls.push(currentWall)
+        state.kitchen.walls = filteredWalls
+      }
+      if (currentRoom === 'pooja') {
+        const currentPooja = state.pooja
+        const currentWall = currentPooja.walls.filter((wall) => wall.side === currentSide)[0]
+        const filteredWalls = currentPooja.walls.filter((wall) => wall.side !== currentSide)
+        if (action.payload.position !== undefined) {
+          currentWall.opening.position = action.payload.position
+        }
+        if (action.payload.length !== undefined && action.payload.length > 1) {
+          currentWall.opening.length = action.payload.length
+        }
+        filteredWalls.push(currentWall)
+        state.pooja.walls = filteredWalls
+      }
     }
   }
 })

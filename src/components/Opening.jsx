@@ -69,6 +69,7 @@ export default function Opening({ id, length, position, side }) {
     if (e.keyCode === 40 && e.ctrlKey) {
       if (side === 'left' || side === 'right') setCurrentLength((prev) => prev - 1)
     }
+    console.log('Key pressed: ' + e.keyCode)
   }
   useEffect(() => {
     const positionToUpdate = side === 'front' || side === 'back' ? { right: currentPosition } : { top: currentPosition }
