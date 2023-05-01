@@ -1613,12 +1613,12 @@ const roomsSlice = createSlice({
         state.pooja.walls = filteredWalls
       }
     },
-    updateDoor:(state, action)=>{
+    updateDoor: (state, action) => {
       const { id } = action.payload
       const [currentRoom, currentPosition, currentSide] = id.split('-')
 
       if (currentRoom === 'bedroom') {
-        const currentBedroom = state.bedRooms.filter(room=>room.id===currentPosition)[0]
+        const currentBedroom = state.bedRooms.filter((room) => room.id === currentPosition)[0]
         const currentWall = currentBedroom.walls.filter((wall) => wall.side === currentSide)[0]
         const filteredWalls = currentBedroom.walls.filter((wall) => wall.side !== currentSide)
         if (action.payload.position !== undefined) {
@@ -1643,6 +1643,9 @@ const roomsSlice = createSlice({
         filteredWalls.push(currentWall)
         state.pooja.walls = filteredWalls
       }
+    },
+    removeAllRooms: (state) => {
+      state.addedRooms = []
     }
   }
 })
@@ -1656,6 +1659,7 @@ export const {
   setSelectedRoomId,
   updateRoomData,
   addRoomToPlot,
+  removeAllRooms,
   removeRoomFromPlot,
   saveCurrentRoomsState,
   restorePreviousRoomsState,
