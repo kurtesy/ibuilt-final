@@ -165,20 +165,6 @@ export default function DirectionControls() {
   useEffect(() => {
     dispatch(updateRoomData({ ...selectedRoom, position }))
   }, [position])
-  const handleRotateClockwise = () => {
-    if (rotation === 270) setRotation(0)
-    else setRotation((prev) => prev + 90)
-  }
-  const handleRotateAntiClockwise = () => {
-    if (rotation === -270) setRotation(0)
-    else setRotation((prev) => prev - 90)
-  }
-
-  useEffect(() => {
-    if (selectedRoom.roomType === 'toilet')
-      dispatch(updateRoomData({ id: selectedRoom.id, roomType: 'toilet', rotated: rotation }))
-  }, [rotation])
-
   return (
     <>
       <div className='font-bold  flex justify-between items-center text-left p-1 px-3 bg-gradient-to-r from-slate-50 to-primaryLime rounded-full drop-shadow-2xl text-slate-800 text-xs'>

@@ -91,6 +91,9 @@ const plotSlice = createSlice({
       if (plotBreadth) state.plotBreadth = plotBreadth
       if (scale) state.scale = scale
       if (setbacks) state.setbacks = setbacks
+    },
+    saveCode: (state) => {
+      state.isGeneratingPlot = true
     }
   }
 })
@@ -106,6 +109,7 @@ export const {
   saveCurrentPlotState,
   restorePreviousPlotState,
   increaseScale,
-  decreaseScale
+  decreaseScale,
+  saveCode
 } = plotSlice.actions
 export default plotSlice.reducer

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { unstable_batchedUpdates } from 'react-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Bedroom from './Bedroom'
 import { setSelectedRoomId, updateRoomData } from '../../redux/rooms'
@@ -13,6 +14,7 @@ import { generatePlot } from '../constants/rooms'
 export default function Built() {
   const { builtLength, builtBreadth, scale, setbacks, facing, type } = useSelector((state) => state.plot)
   const { addedRooms } = useSelector((state) => state.rooms)
+  // const { rooms } = useSelector((state) => state)
   const [style, setStyle] = useState({})
   const [selectedItems, setSelectedItems] = useState([])
   const dispatch = useDispatch()
@@ -30,11 +32,13 @@ export default function Built() {
     setSelectedItems(addedRooms)
   }, [addedRooms])
   useEffect(() => {
-    generatePlot(builtLength, builtBreadth, facing, type)
+    unstable_batchedUpdates(() => {
+      generatePlot(builtLength, builtBreadth, facing, type)
+    })
   }, [builtLength, builtBreadth])
   return (
     <div
-      className='bg-gray-600 absolute z-20'
+      className='bg-white absolute z-20'
       style={style}
       // onClick={(e) => {
       //   e.stopPropagation()
@@ -43,9 +47,7 @@ export default function Built() {
     >
       {/* outer walls */}
       {/* top */}
-      <div className='w-full h-[9px] bg-slate-800 z-50 absolute top-0 left-0'>
-        {/* <WindowComp side='back' position={{ left: '50%' }} /> */}
-      </div>
+      <div className='w-full h-[9px] bg-slate-800 z-50 absolute top-0 left-0'>{/* <WindowComp side='back' position={{ left: '50%' }} /> */}</div>
       {/* bottom */}
       <div className='w-full h-[9px] bg-slate-800 z-50 absolute bottom-0 left-0' />
       {/* left */}

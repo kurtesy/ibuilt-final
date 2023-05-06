@@ -1142,38 +1142,30 @@ const roomsSlice = createSlice({
       }
       //TOILET
       if (currentRoomType === 'toilet') {
-        const currentToilet = state.toilets.filter((room) => room.id === currentDirection)[0]
-        const currentWall = currentToilet.walls.filter((wall) => wall.side == currentWallSide)[0]
-        const filteredWalls = currentToilet.walls.filter((wall) => wall.side !== currentWallSide)
+        const currentRoomIndex = state.toilets.findIndex((room) => room.id === currentDirection)
+        const currentRoom = { ...state.toilets[currentRoomIndex] }
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide)
+        const currentWall = { ...currentRoom.walls[currentWallIndex] }
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide)
+
         if (action.payload.hasOpening !== undefined) {
-          // opening.includes
           currentWall.opening.includes = action.payload.hasOpening
-          filteredWalls.push(currentWall)
-          currentToilet.walls = filteredWalls
-          console.log('currenrtbedtroom walls' + JSON.stringify(currentToilet))
         }
+
         if (action.payload.hasDoor !== undefined) {
-          // opening.includes
           currentWall.door.includes = action.payload.hasDoor
-          filteredWalls.push(currentWall)
-          currentToilet.walls = filteredWalls
-          console.log('currenrtbedtroom walls' + JSON.stringify(currentToilet))
         }
+
         if (action.payload.hasWindow !== undefined) {
           currentWall.window.includes = action.payload.hasWindow
-          filteredWalls.push(currentWall)
-          currentToilet.walls = filteredWalls
-          console.log('currenrtbedtroom walls' + JSON.stringify(currentToilet))
         }
+
         if (action.payload.openingLength !== undefined) {
           currentWall.opening.length = parseFloat(action.payload.openingLength)
-          filteredWalls.push(currentWall)
-          currentToilet.walls = filteredWalls
-          console.log('currenrtbedtroom walls' + JSON.stringify(currentToilet))
         }
+
         if (action.payload.openingPosition !== undefined) {
           const { openingPosition } = action.payload
-          console.log('action position: ', JSON.stringify(openingPosition))
           let pos
           if (currentWallSide === 'front' || currentWallSide === 'back') {
             pos = { right: parseInt(openingPosition) }
@@ -1181,13 +1173,10 @@ const roomsSlice = createSlice({
             pos = { top: parseInt(openingPosition) }
           }
           currentWall.opening.position = pos
-          filteredWalls.push(currentWall)
-          currentToilet.walls = filteredWalls
-          console.log('currenrtbedtroom walls' + JSON.stringify(currentToilet))
         }
+
         if (action.payload.doorPosition !== undefined) {
           const { doorPosition } = action.payload
-          console.log('action position: ', JSON.stringify(doorPosition))
           let pos
           if (currentWallSide === 'front' || currentWallSide === 'back') {
             pos = { right: parseInt(doorPosition) }
@@ -1195,15 +1184,16 @@ const roomsSlice = createSlice({
             pos = { top: parseInt(doorPosition) }
           }
           currentWall.door.position = pos
-          filteredWalls.push(currentWall)
-          currentToilet.walls = filteredWalls
-          console.log('currenrtbedtroom walls' + JSON.stringify(currentToilet))
         }
-        state.toilets = state.toilets.filter((room) => room.id !== currentDirection)
-        console.log('state.bedrooms' + state.toilets.length)
-        state.toilets.push(currentToilet)
-        console.log('currenrtbedtroom walls after' + JSON.stringify(currentToilet))
-        console.log('state.bedrooms' + state.toilets.length)
+
+        filteredWalls.splice(currentWallIndex, 0, currentWall)
+
+        currentRoom.walls = filteredWalls
+
+        const updatedRooms = [...state.toilets]
+        updatedRooms.splice(currentRoomIndex, 1, currentRoom)
+
+        state.toilets = updatedRooms
       }
       if (currentRoomType === 'kitchen') {
         const currentKitchen = state.kitchen

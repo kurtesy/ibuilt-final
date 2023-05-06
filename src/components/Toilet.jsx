@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setCurrentRoom, setSelectedRoomId } from '../../redux/rooms'
+import { setCurrentRoom, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import Wall from './Wall'
 import { components } from '../assets'
-
+import { positions } from '../constants/facingAndPosition'
 export default function Toilet({ id }) {
   const currentToilet = useSelector((state) => state.rooms.toilets.filter((room) => room.id === id)[0])
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
   const [type, setType] = useState(0)
   const [rotation, setRotation] = useState(0)
-  const { scale } = useSelector((state) => state.plot)
+  const { scale, facing } = useSelector((state) => state.plot)
   const { selectedRoom } = useSelector((state) => state.rooms)
   const [style, setStyle] = useState({})
   const [isActive, setIsActive] = useState(false)
@@ -51,15 +51,22 @@ export default function Toilet({ id }) {
     setLength(currentToilet?.length)
     setBreadth(currentToilet?.breadth)
   }, [currentToilet])
+  useEffect(() => {
+    dispatch(
+      updateRoomData({
+        id,
+        roomType: 'toilet',
+        position: positions[facing.toString()][id.toString()]
+      })
+    )
+  }, [facing])
 
   const handleClick = (e) => {
     e.stopPropagation()
     dispatch(setSelectedRoomId({ selectedId: id, roomType: 'toilet' }))
     setIsActive(true)
   }
-  useEffect(() => {
-    setRotation(currentToilet.rotated)
-  }, [currentToilet])
+
   useEffect(() => {
     makeStyle()
   }, [length, breadth, location, selectedRoom, isActive, currentToilet, scale])

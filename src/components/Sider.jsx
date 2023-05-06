@@ -13,16 +13,19 @@ import IconsList from './IconsList'
 import WallControls from './WallControls'
 import { removeAllRooms } from '../../redux/rooms'
 import PlanClearConfirmation from './planClearConfirmation'
+import { unstable_batchedUpdates } from 'react-dom'
 export default function Sider({ isSiderOpen }) {
   // premium controls tobe implemented
   const [premium, setPremium] = useState(true)
   const dispatch = useDispatch()
   const { darkMode } = useSelector((state) => state.app)
   const { selectedRoom, addedRooms } = useSelector((state) => state.rooms)
-  const { builtBreadth, builtLength, facing, type } = useSelector((state) => state.plot)
+  const { builtBreadth, builtLength, facing, type, plotLength, plotBreadth } = useSelector((state) => state.plot)
   useEffect(() => {
-    generatePlot(builtLength, builtBreadth, facing, type)
-  }, [builtLength, builtBreadth])
+    unstable_batchedUpdates(() => {
+      generatePlot(builtLength, builtBreadth, facing, type)
+    })
+  }, [builtLength, builtBreadth, plotLength, plotBreadth, facing, type])
   const [selection, setSelection] = useState('')
 
   const handleEditPlan = () => {

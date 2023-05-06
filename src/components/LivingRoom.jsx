@@ -38,6 +38,7 @@ export default function LivingRoom({ id }) {
       })
     )
   }, [facing])
+
   useEffect(() => {
     setLength(currentLivingroom?.length)
     setBreadth(currentLivingroom?.breadth)
