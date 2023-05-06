@@ -6,8 +6,8 @@ import { setCurrentPosition, setSelectedRoomId, updateRoomData } from '../../red
 import Wall from './Wall'
 import CommonToilet from './CommonToilet'
 import { positions } from '../constants/facingAndPosition'
-export default function ExtraSitout({ id }) {
-  const currentRoom = useSelector((state) => state.rooms.sitouts.filter((room) => room.id === id)[0])
+export default function Corridor({ id }) {
+  const currentRoom = useSelector((state) => state.rooms.corridors.filter((room) => room.id === id)[0])
   const { facing } = useSelector((state) => state.plot)
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
@@ -24,8 +24,8 @@ export default function ExtraSitout({ id }) {
       currStyle['zIndex'] = 40
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
-      currStyle['zIndex'] = 1
-      currStyle['backgroundColor'] = '#AEC2B6'
+      currStyle['zIndex'] = 50
+      currStyle['backgroundColor'] = '#394867'
     }
     setStyle({ ...currStyle, ...currentRoom.position })
   }
@@ -33,7 +33,7 @@ export default function ExtraSitout({ id }) {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'extraSitout',
+        roomType: 'corridor',
         position: positions[facing.toString()][id.toString()]
       })
     )
@@ -46,7 +46,7 @@ export default function ExtraSitout({ id }) {
 
   const handleClick = () => {
     // e.stopPropagation()
-    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'extraSitout' }))
+    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'corridor' }))
     setIsActive(true)
   }
 
@@ -74,14 +74,14 @@ export default function ExtraSitout({ id }) {
     <div style={style} className='absolute cursor-pointer bg-woodenFlooring' id={id} onClick={handleClick} onContextMenu={handleDeSelect}>
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
         <p style={{ fontSize: Math.min(16, Math.min(currentRoom.length, currentRoom.breadth) * 1.1) }}>
-          SITOUT - {id.toUpperCase()}
+          CORRIDOR - {id.toUpperCase()}
           <br />
           {currentRoom.length} X {currentRoom.breadth}
         </p>
       </div>
       {currentRoom.walls.map((wall) => (
         <Wall
-          id={`extraSitout-${id}-${wall.side}`}
+          id={`corridor-${id}-${wall.side}`}
           added={wall.added}
           length={wall.length}
           thickness={wall.thickness}

@@ -13,11 +13,10 @@ export function generatePlot(builtLength, builtBreadth, facing, type) {
       generateE2()
     }
     if (type === '3BHK') {
-      generateE3()
+      // generateE3()
     }
     if (type === '4BHK') {
-      generateE4()
+      // generateE4()
     }
   }
-  store.dispatch(saveCode())
 }

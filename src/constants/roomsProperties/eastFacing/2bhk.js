@@ -5,8 +5,8 @@ export async function generateE2() {
   const state = store.getState()
   const { plotLength, plotBreadth } = state.plot
   if (plotLength <= plotBreadth) {
-    const number = Math.floor(Math.random() * 4) + 1
-    generateTypeA(number)
+    const number = Math.floor(Math.random() * 5) + 1
+    generateTypeA(1)
   } else {
   }
 }
@@ -718,6 +718,42 @@ function generateTypeA(number) {
       store.dispatch(updateWall({ id: 'toilet-sw-front', hasDoor: false }))
       store.dispatch(updateWall({ id: 'toilet-nw-right', hasDoor: true }))
       store.dispatch(updateWall({ id: 'commonToilet- -right', hasDoor: true }))
+    }
+    if (number === 5) {
+      const corridorLength = builtLength * 0.8
+      const corridorBreadth = builtBreadth * 0.47
+      const sitoutBreadth = builtLength * 0.5
+      const sitOutLength = builtBreadth * 0.47
+      const bathLength = builtLength * 0.7
+      const bathBreadth = builtBreadth * 0.3
+      store.dispatch(addRoomToPlot({ position: 'nw', roomType: 'corridor' }))
+      store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'extraBath' }))
+      store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'extraSitout' }))
+      store.dispatch(
+        updateRoomData({
+          id: 'nw',
+          roomType: 'corridor',
+          length: corridorLength,
+          breadth: corridorBreadth
+        })
+      )
+      store.dispatch(
+        updateRoomData({
+          id: 'sw',
+          roomType: 'extraBath',
+          length: bathLength,
+          breadth: bathBreadth
+        })
+      )
+      store.dispatch(
+        updateRoomData({
+          id: 'ne',
+          length: sitOutLength,
+          breadth: sitoutBreadth,
+          roomType: 'extraSitout',
+          position: { bottom: 0, right: 0 }
+        })
+      )
     }
   } else if (plotLength > 45) {
   }

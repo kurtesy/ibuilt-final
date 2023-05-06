@@ -767,6 +767,126 @@ const roomsSlice = createSlice({
         console.log('direction controls=>', action.payload)
         state.commonToilet = currentToilet
       }
+      if (roomType === 'corridor') {
+        console.log('action payload: ', action.payload)
+        const currentRoom = state.corridors.filter((room) => room.id === id)[0]
+
+        //If both length and breadth are privided update length,breadth and area, walls lengths
+        if (action.payload.length && action.payload.breadth) {
+          //update room dimensions
+          currentRoom.length = parseFloat(action.payload.length).toFixed(2)
+          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          //update area
+          currentRoom.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          //update wall dimensions
+          //Front Wall
+          currentRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          //Back Wall
+          currentRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          //Left Wall
+          currentRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          //Right Wall
+          currentRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+        //If only one dimension provided, update dimension, area and wall lengths
+        if (action.payload.length && !action.payload.breadth) {
+          currentRoom.length = parseFloat(action.payload.length).toFixed(2)
+          currentRoom.area = parseFloat(parseFloat(currentRoom.breadth) * parseFloat(action.payload.length)).toFixed(2)
+          currentRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          currentRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+        }
+        if (action.payload.breadth && !action.payload.length) {
+          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentRoom.area = parseFloat(parseFloat(currentRoom.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+        if (action.payload.position) {
+          currentRoom.position = action.payload.position
+        }
+        state.corridors = state.corridors.filter((room) => room.id !== id)
+        state.corridors.push(currentRoom)
+      }
+      if (roomType === 'extraBath') {
+        console.log('action payload: ', action.payload)
+        const currentRoom = state.baths.filter((room) => room.id === id)[0]
+
+        //If both length and breadth are privided update length,breadth and area, walls lengths
+        if (action.payload.length && action.payload.breadth) {
+          //update room dimensions
+          currentRoom.length = parseFloat(action.payload.length).toFixed(2)
+          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          //update area
+          currentRoom.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          //update wall dimensions
+          //Front Wall
+          currentRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          //Back Wall
+          currentRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          //Left Wall
+          currentRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          //Right Wall
+          currentRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+        //If only one dimension provided, update dimension, area and wall lengths
+        if (action.payload.length && !action.payload.breadth) {
+          currentRoom.length = parseFloat(action.payload.length).toFixed(2)
+          currentRoom.area = parseFloat(parseFloat(currentRoom.breadth) * parseFloat(action.payload.length)).toFixed(2)
+          currentRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          currentRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+        }
+        if (action.payload.breadth && !action.payload.length) {
+          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentRoom.area = parseFloat(parseFloat(currentRoom.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+        if (action.payload.position) {
+          currentRoom.position = action.payload.position
+        }
+        state.baths = state.baths.filter((room) => room.id !== id)
+        state.baths.push(currentRoom)
+      }
+      if (roomType === 'extraSitout') {
+        console.log('action payload: ', action.payload)
+        const currentRoom = state.sitouts.filter((room) => room.id === id)[0]
+
+        //If both length and breadth are privided update length,breadth and area, walls lengths
+        if (action.payload.length && action.payload.breadth) {
+          //update room dimensions
+          currentRoom.length = parseFloat(action.payload.length).toFixed(2)
+          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          //update area
+          currentRoom.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          //update wall dimensions
+          //Front Wall
+          currentRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          //Back Wall
+          currentRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          //Left Wall
+          currentRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          //Right Wall
+          currentRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+        //If only one dimension provided, update dimension, area and wall lengths
+        if (action.payload.length && !action.payload.breadth) {
+          currentRoom.length = parseFloat(action.payload.length).toFixed(2)
+          currentRoom.area = parseFloat(parseFloat(currentRoom.breadth) * parseFloat(action.payload.length)).toFixed(2)
+          currentRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
+          currentRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+        }
+        if (action.payload.breadth && !action.payload.length) {
+          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentRoom.area = parseFloat(parseFloat(currentRoom.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+        }
+        if (action.payload.position) {
+          currentRoom.position = action.payload.position
+        }
+        state.sitouts = state.sitouts.filter((room) => room.id !== id)
+        state.sitouts.push(currentRoom)
+      }
     },
     addRoomToPlot: (state, action) => {
       const { position, roomType } = action.payload
@@ -872,6 +992,22 @@ const roomsSlice = createSlice({
         const filteredRooms = state.livingRooms.filter((room) => room.id !== id)
         filteredRooms.push(currentRoom)
         state.livingRooms = filteredRooms
+      }
+      if (roomType === 'extraBath') {
+        const currentRoom = state.baths.filter((room) => room.id === id)[0]
+        const currentWall = currentRoom.walls.filter((wall) => wall.side === side)[0]
+        currentWall.added = status
+        const filteredRooms = state.baths.filter((room) => room.id !== id)
+        filteredRooms.push(currentRoom)
+        state.baths = filteredRooms
+      }
+      if (roomType === 'extraSitout') {
+        const currentRoom = state.sitouts.filter((room) => room.id === id)[0]
+        const currentWall = currentRoom.walls.filter((wall) => wall.side === side)[0]
+        currentWall.added = status
+        const filteredRooms = state.sitouts.filter((room) => room.id !== id)
+        filteredRooms.push(currentRoom)
+        state.sitouts = filteredRooms
       }
       if (roomType === 'toilet') {
         const currentRoom = state.toilets.filter((room) => room.id === id)[0]
@@ -1140,6 +1276,7 @@ const roomsSlice = createSlice({
         console.log('currenrtbedtroom walls after' + JSON.stringify(currentLivingRoom))
         console.log('state.bedrooms' + state.livingRooms.length)
       }
+
       //TOILET
       if (currentRoomType === 'toilet') {
         const currentRoomIndex = state.toilets.findIndex((room) => room.id === currentDirection)

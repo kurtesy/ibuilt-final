@@ -24,8 +24,8 @@ export default function ExtraSitout({ id }) {
       currStyle['zIndex'] = 40
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
-      currStyle['zIndex'] = 1
-      currStyle['backgroundColor'] = '#AEC2B6'
+      currStyle['zIndex'] = 50
+      currStyle['backgroundColor'] = '#B0DAFF'
     }
     setStyle({ ...currStyle, ...currentRoom.position })
   }

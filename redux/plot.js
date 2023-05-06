@@ -24,6 +24,9 @@ const plotSlice = createSlice({
   name: 'plot',
   initialState,
   reducers: {
+    setSetBacks: (state, action) => {
+      state.setbacks = action.payload.setbacks
+    },
     setPlotDetails: (state, action) => {
       if (action.payload.length) state.plotLength = action.payload.length
       if (action.payload.breadth) state.plotBreadth = action.payload.breadth
@@ -35,9 +38,7 @@ const plotSlice = createSlice({
     setBuiltup: (state, action) => {
       state.builtLength = parseFloat(action.payload.builtLength).toFixed(2)
       state.builtBreadth = parseFloat(action.payload.builtBreadth).toFixed(2)
-      state.builtArea = parseFloat(
-        parseFloat(action.payload.builtLength) * parseFloat(action.payload.builtBreadth)
-      ).toFixed(2)
+      state.builtArea = parseFloat(parseFloat(action.payload.builtLength) * parseFloat(action.payload.builtBreadth)).toFixed(2)
     },
     changeScale: (state, action) => {
       state.scale = action.payload.scale
@@ -110,6 +111,7 @@ export const {
   restorePreviousPlotState,
   increaseScale,
   decreaseScale,
-  saveCode
+  saveCode,
+  setSetBacks
 } = plotSlice.actions
 export default plotSlice.reducer
