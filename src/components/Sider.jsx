@@ -12,7 +12,6 @@ import MultiSelectComponent from './MultiSelectComponent'
 import IconsList from './IconsList'
 import WallControls from './WallControls'
 import { removeAllRooms } from '../../redux/rooms'
-import PlanClearConfirmation from './planClearConfirmation'
 import { unstable_batchedUpdates } from 'react-dom'
 export default function Sider({ isSiderOpen }) {
   // premium controls tobe implemented
