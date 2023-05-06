@@ -6,7 +6,7 @@ export async function generateE2() {
   const { plotLength, plotBreadth } = state.plot
   if (plotLength <= plotBreadth) {
     const number = Math.floor(Math.random() * 5) + 1
-    generateTypeA(1)
+    generateTypeA(number)
   } else {
   }
 }
