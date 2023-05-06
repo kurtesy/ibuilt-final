@@ -2,12 +2,11 @@ import { addRoomToPlot, addWallToRoom, updateRoomData, updateWall } from '../../
 import { store } from '../../../../redux/store'
 
 export async function generateE2() {
-  const resultArray = []
   const state = store.getState()
-  const { builtLength, builtBreadth } = state.plot
-  if (builtLength <= builtBreadth) {
+  const { plotLength, plotBreadth } = state.plot
+  if (plotLength <= plotBreadth) {
     const number = Math.floor(Math.random() * 4) + 1
-    generateTypeA(1)
+    generateTypeA(number)
   } else {
   }
 }
@@ -16,7 +15,6 @@ function generateTypeA(number) {
   const state = store.getState()
   const { scale, builtLength, builtBreadth, plotBreadth, plotLength } = state.plot
   if (plotLength >= 16 && plotLength < 30) {
-    
   } else if (plotLength >= 30 && plotLength <= 45) {
     if (number === 1) {
       //bedroom1
