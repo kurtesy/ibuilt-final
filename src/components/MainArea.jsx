@@ -10,7 +10,9 @@ import ConfirmationModal from './ConfirmationModal'
 import Particles from '../components/Particles'
 import SaveAsPdfButton from './SaveAsPdfButton'
 import ModeToggler from './ModeToggler'
+import useWindowSize from 'use-window-hook'
 export default function MainArea({ isSiderOpen }) {
+  const [_, width] = useWindowSize()
   const [show, setShow] = useState(false)
   const [showMainBtn, setShowMainBtn] = useState(true)
   const { plot } = useSelector((state) => state)
