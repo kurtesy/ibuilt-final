@@ -43,7 +43,7 @@ export default function Toilet({ id }) {
       currStyle['backgroundColor'] = 'rgba(250,150,150,0.8)'
     } else {
       currStyle['zIndex'] = 10
-      currStyle['backgroundColor'] = '#94AF9F'
+      currStyle['backgroundColor'] = '#D7E9F7'
     }
     setStyle({ ...currStyle, ...currentToilet.position })
   }

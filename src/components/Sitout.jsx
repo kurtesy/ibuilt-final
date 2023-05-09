@@ -26,7 +26,7 @@ export default function Staircase({ id }) {
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 30
-      currStyle['backgroundColor'] = '#DBE4C6'
+      currStyle['backgroundColor'] = '#FFBBBB'
     }
     setStyle({ ...currStyle, ...currentSitout.position })
   }

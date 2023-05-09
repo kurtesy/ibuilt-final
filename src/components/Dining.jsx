@@ -25,7 +25,7 @@ export default function Dining({ id }) {
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 10
-      currStyle['backgroundColor'] = '#DBE4C6'
+      currStyle['backgroundColor'] = '#B4F2E1'
     }
     setStyle({ ...currStyle, ...currentDining.position })
   }

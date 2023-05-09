@@ -25,7 +25,7 @@ export default function Corridor({ id }) {
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 50
-      currStyle['backgroundColor'] = '#394867'
+      currStyle['backgroundColor'] = '#fff'
     }
     setStyle({ ...currStyle, ...currentRoom.position })
   }
