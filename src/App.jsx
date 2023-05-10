@@ -87,14 +87,14 @@ export default function App() {
       <div className={`w-screen h-screen flex ${darkMode ? 'bg-black text-white' : 'bg-white text-slate-800'}`}>
         {plotLength && plotBreadth ? (
           <>
-            {plotLength && plotBreadth ? <Sider isSiderOpen={isSiderOpen} /> : null}
-            <button
-              className={`absolute text-primaryLime font-bold transition-all top-[50%] bg-slate-900 h-12 cursor-pointer z-50  ease-in-out ${
-                isSiderOpen ? 'left-[400px]' : 'left-0'
-              }`}
-              onClick={() => setIsSiderOpen((prev) => !prev)}>
-              {isSiderOpen ? <BsChevronCompactLeft /> : <BsChevronCompactRight />}
-            </button>
+            {plotLength && plotBreadth && width >= 1024 ? <Sider isSiderOpen={isSiderOpen} /> : null}
+            {width >= 1024 ? (
+              <button
+                className={`absolute text-primaryLime font-bold transition-all top-[50%] bg-slate-900 h-12 cursor-pointer z-50  ease-in-out ${isSiderOpen ? 'left-[400px]' : 'left-0'}`}
+                onClick={() => setIsSiderOpen((prev) => !prev)}>
+                {isSiderOpen ? <BsChevronCompactLeft /> : <BsChevronCompactRight />}
+              </button>
+            ) : null}
           </>
         ) : null}
         <MainArea isSiderOpen={isSiderOpen} />
