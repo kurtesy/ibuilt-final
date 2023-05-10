@@ -27,7 +27,7 @@ export default function Kitchen({ id }) {
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 10
-      currStyle['backgroundColor'] = '#BBD6B8'
+      currStyle['backgroundColor'] = '#FFEDFF'
     }
     setStyle({ ...currStyle, ...currentKitchen.position })
   }

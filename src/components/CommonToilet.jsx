@@ -31,7 +31,7 @@ export default function CommonToilet({ id }) {
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 30
-      currStyle['backgroundColor'] = '#94AF9F'
+      currStyle['backgroundColor'] = '#F4F6FF'
     }
     setStyle({ ...currStyle, ...currentToilet.position })
   }
