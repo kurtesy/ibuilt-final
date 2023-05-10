@@ -1,5 +1,3 @@
-import { ScaleLoader } from 'react-spinners'
-import { setSetBacks } from '../../../../redux/plot'
 import { addRoomToPlot, addWallToRoom, updateRoomData, updateWall } from '../../../../redux/rooms'
 import { store } from '../../../../redux/store'
 
@@ -7,13 +5,12 @@ export async function generateW2() {
   const state = store.getState()
   const { plotLength, plotBreadth } = state.plot
   if (plotLength <= plotBreadth) {
-    const number = Math.floor(Math.random() * 13) + 1
     generateTypeA()
   } else {
   }
   generateTypeB()
 }
-function generateTypeA(number) {
+function generateTypeA() {
   const state = store.getState()
   const { scale, builtLength, builtBreadth, plotBreadth, plotLength, setbacks } = state.plot
 
@@ -2898,7 +2895,7 @@ function generateTypeA(number) {
       }
     }   
 // length > breadth
-  function generateTypeB(number) {
+  function generateTypeB() {
   const state = store.getState()
   const { scale, builtLength, builtBreadth, plotBreadth, plotLength, setbacks } = state.plot
     
