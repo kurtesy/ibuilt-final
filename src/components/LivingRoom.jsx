@@ -25,7 +25,7 @@ export default function LivingRoom({ id }) {
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 1
-      currStyle['backgroundColor'] = '#FFE3E1'
+      currStyle['backgroundColor'] = '#EEEEEE'
     }
     setStyle({ ...currStyle, ...currentLivingroom.position })
   }
