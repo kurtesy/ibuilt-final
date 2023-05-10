@@ -1,6 +1,7 @@
 import { setSetBacks } from '../../../../redux/plot'
 import { addRoomToPlot, addWallToRoom, updateRoomData, updateWall } from '../../../../redux/rooms'
 import { store } from '../../../../redux/store'
+import { ScaleLoader } from 'react-spinners'
 
 export function generateS2() {
   const resultArray = []
