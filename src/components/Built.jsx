@@ -62,6 +62,7 @@ export default function Built() {
       {selectedItems?.map((item) => item.roomType === 'dining' && <Dining id={item.position} />)}
       {selectedItems?.map((item) => item.roomType === 'pooja' && <Pooja id={item.position} />)}
       {selectedItems?.map((item) => item.roomType === 'media' && <Media id={item.position} />)}
+ 
     </div>
   )
 }
