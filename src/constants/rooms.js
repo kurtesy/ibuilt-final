@@ -1,28 +1,12 @@
 import { saveCode } from '../../redux/plot'
 import { store } from '../../redux/store'
-import { generateS2 } from './roomsProperties/southFacing/2bhk'
-import { generateE2 } from './roomsProperties/eastFacing/2bhk'
-import {generateW2} from './roomsProperties/westFacing/2bhk'
+import { generateS2 } from './roomsProperties/southFacing/'
+import { generateE2 } from './roomsProperties/eastFacing/'
+import { generateW2 } from './roomsProperties/westFacing/'
+// import { generateN2 } from './roomsProperties/northFacing/'
 export function generatePlot(builtLength, builtBreadth, facing, type) {
-  if (facing === 'S') {
-    if (type == '2BHK') {
-      generateS2()
-    }
-  }
-  if (facing === 'E') {
-    if (type === '2BHK') {
-      generateE2()
-    }
-    if (type === '3BHK') {
-      // generateE3()
-    }
-    if (type === '4BHK') {
-      // generateE4()
-    }
-
-  }
-  if(facing==='W'){
-    generateW2()
-
-  }
+  if (facing === 'S') generateS2()
+  // else if (facing === 'N') generateN2()
+  else if (facing === 'W') generateW2()
+  else if (facing === 'E') generateE2()
 }
