@@ -9,8 +9,8 @@ export async function generateE2() {
   if (plotLength <= plotBreadth) {
     generateTypeA()
   } else {
+    generateTypeB()
   }
-  generateTypeB()
 }
 function generateTypeA() {
   const state = store.getState()

@@ -7,9 +7,9 @@ export async function generateW2() {
   const { plotLength, plotBreadth } = state.plot
   if (plotLength <= plotBreadth) {
     generateTypeA()
-  } else {
+  } else {generateTypeB()
   }
-  generateTypeB()
+  
 }
 function generateTypeA() {
   const state = store.getState()

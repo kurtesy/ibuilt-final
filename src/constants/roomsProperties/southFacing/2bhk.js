@@ -9,8 +9,8 @@ const { plotLength, plotBreadth } = state.plot
 if (plotLength <= plotBreadth) {
       generateTypeA()
     } else {
+      generateTypeB()
     }
-    generateTypeB()
   }
   function generateTypeA() {
     const state = store.getState()
