@@ -117,7 +117,7 @@ function generateTypeA() {
     // store.dispatch(updateWall({ id: 'commonToilet-se-right', hasDoor: true }))
   }, 100); 
      }
-     if (plotBreadth >= 25 && plotBreadth <= 34) 
+     else if (plotBreadth >= 25 && plotBreadth <= 34) 
     //Breadth range = 22-35
     {
            
@@ -249,7 +249,7 @@ function generateTypeA() {
     }, 100);
  
     }
-     if (plotBreadth >= 35 && plotBreadth <= 37) //Breadth range = 35-37 
+    else if (plotBreadth >= 35 && plotBreadth <= 37) //Breadth range = 35-37 
 
     {
       const bed1Length = builtLength * 0.5
@@ -377,7 +377,7 @@ function generateTypeA() {
       store.dispatch(updateRoomData({id: '',roomType: 'Corridor',length: CorridorLength,breadth: CorridorBreadth,position: { top: 0, left:0 }}))
     }, 100);
      }
-     if (plotBreadth >= 38 && plotBreadth <= 43) //Breadth range = 38-43 
+     else if (plotBreadth >= 38 && plotBreadth <= 43) //Breadth range = 38-43 
     {
       const bed1Length = builtLength * 0.55
         const bed1Breadth = builtBreadth * 0.40
@@ -574,7 +574,7 @@ function generateTypeA() {
         store.dispatch(updateWall({ id: 'toilet-nw-right', hasDoor: true }))
         store.dispatch(updateWall({ id: 'commonToilet- -right', hasDoor: true }))
     }
-     if (plotBreadth >= 44 && plotBreadth <= 47) //Breadth range = 46-50
+     else if (plotBreadth >= 44 && plotBreadth <= 47) //Breadth range = 46-50
 {
   //bedroom3
   const bed1Length = builtLength * 0.47
@@ -755,7 +755,7 @@ setTimeout(() => {
     store.dispatch(updateWall({ id: 'commonToilet-se-right', hasDoor: true }))
   }, 100); 
     }
-     if (plotBreadth >= 48 && plotBreadth <= 54) //Breadth range = 51-55 
+    else if (plotBreadth >= 48 && plotBreadth <= 54) //Breadth range = 51-55 
 {
   //bedroom3
   const bed1Length = builtLength * 0.47
@@ -932,7 +932,7 @@ setTimeout(() => {
     store.dispatch(updateWall({ id: 'commonToilet-se-right', hasDoor: true }))
   }, 100); 
     }
-     if (plotBreadth >= 55 && plotBreadth <= 60) //Breadth range = 56-60 
+    else if (plotBreadth >= 55 && plotBreadth <= 60) //Breadth range = 56-60 
     {
       //bedroom3
       const bed1Length = builtLength * 0.5
@@ -1110,7 +1110,7 @@ setTimeout(() => {
         store.dispatch(updateWall({ id: 'commonToilet-se-right', hasDoor: true }))
       }, 100); 
     }
-    if (plotBreadth >= 61 && plotBreadth <= 65) //Breadth range = 61-65 
+    else if (plotBreadth >= 61 && plotBreadth <= 65) //Breadth range = 61-65 
     {
       //bedroom3
       const bed1Length = builtLength * 0.5
@@ -1297,7 +1297,7 @@ setTimeout(() => {
         store.dispatch(updateWall({ id: 'commonToilet-se-right', hasDoor: true }))
       }, 100); 
     }
-    if (plotBreadth >= 66 && plotBreadth <= 75) //Breadth range = 66-71 
+    else if (plotBreadth >= 66 && plotBreadth <= 75) //Breadth range = 66-71 
     {
       //bedroom3
       const bed1Length = builtLength * 0.42
@@ -4358,7 +4358,7 @@ function generateTypeB() {
             roomType: 'bedroom',
             length: bed2Length,
             breadth: bed2Breadth,
-            position: { left: Math.floor(bed3Length)*(scale+1.4), bottom:Math.floor(diningBreadth)*scale }
+            position: { left: Math.floor(bed3Length)*(scale), bottom:Math.floor(diningBreadth)*(scale+3) }
           })
         )
         store.dispatch(
@@ -4439,7 +4439,7 @@ function generateTypeB() {
           })
         )
         store.dispatch(updateRoomData({ id: 'nw', roomType: 'toilet', length: toilet1Length, breadth: toilet1Breadth,
-        position: { left:-50, top: Math.floor(stairCaseBreadth+diningBreadth) *scale } }))
+        position: { left:-40, top: Math.floor(stairCaseBreadth+diningBreadth) *scale } }))
         store.dispatch(updateRoomData({ id: 'ne', roomType: 'toilet', length: toilet2Length, breadth: toilet2Breadth}))
         // position: { left: Math.floor(bed1Length-setbacks.left) *scale, top:0 }}))
         store.dispatch(updateRoomData({ id: 'se', roomType: 'toilet', length: toilet3Length, breadth: toilet3Breadth,
@@ -4526,6 +4526,7 @@ function generateTypeB() {
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'toilet', id: 'nw' }))
         store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'toilet', id: 'nw' }))
         store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'toilet', id: 'nw' }))
+        store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'toilet', id: 'nw' }))
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'toilet', id: 'ne' }))
         
         store.dispatch(addWallToRoom({ side: 'front', status: false, roomType: 'toilet', id: 'ne' }))
@@ -4582,8 +4583,8 @@ function generateTypeB() {
         const poojaLength = builtLength * 0.10
         const poojaBreadth = builtBreadth * 0.14
         const parkingLength = builtLength * 0.272
-        const parkingBreadth = builtBreadth * 0.38  
-        const staircaseLength = builtLength * 0.28
+        const parkingBreadth = builtBreadth * 0.31  
+        const staircaseLength = builtLength * 0.23
         const stairCaseBreadth = builtBreadth * 0.17
         const toilet1Length = builtLength * 0.10
         const toilet1Breadth = builtBreadth * 0.12
@@ -4600,7 +4601,7 @@ function generateTypeB() {
         const mediaLength = builtLength * 0.14
         const mediaBreadth = builtBreadth * 0.24
         const diningLength = builtLength * 0.28
-        const diningBreadth = builtBreadth * 0.31
+        const diningBreadth = builtBreadth * 0.30
  
         //add rooms
         store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'bedroom' }))
@@ -4674,7 +4675,7 @@ function generateTypeB() {
             roomType: 'living',
             length: livingLength,
             breadth: livingBreadth,
-            position: { right: Math.floor(bed1Length)*(scale+1), bottom:0 }
+            position: { right: Math.floor(bed1Length)*(scale), bottom:0 }
           })
           )
           
@@ -4687,7 +4688,7 @@ function generateTypeB() {
               roomType: 'drawing',
               length: drawingLength,
               breadth: drawingBreadth,
-              position: { bottom: Math.floor(livingBreadth)*scale+8, right:Math.floor(bed1Length)*(scale+1) }
+              position: { bottom: Math.floor(livingBreadth)*scale+8, right:Math.floor(bed1Length)*(scale) }
               })
         )
         store.dispatch(
