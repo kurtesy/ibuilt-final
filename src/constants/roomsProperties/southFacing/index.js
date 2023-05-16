@@ -257,7 +257,7 @@ if (plotLength <= plotBreadth) {
     // store.dispatch(updateWall({ id: 'toilet-ne-front', hasDoor: true }))
   }
   
-  else if (plotBreadth >= 31 && plotBreadth <= 40)  //Breadth greater than 40-50
+   if (plotBreadth >= 31 && plotBreadth <= 40)  //Breadth greater than 40-50
    {
     const bed1Length = builtLength * 0.5
     const bed1Breadth = builtBreadth * 0.33
@@ -522,7 +522,7 @@ if (plotLength <= plotBreadth) {
   }
 
 
-  else if (plotBreadth >= 41 && plotBreadth <= 60)  //Breadth greater than 50-65
+   if (plotBreadth >= 41 && plotBreadth <= 60)  //Breadth greater than 50-65
   {
     const bed1Length = builtLength * 0.5
     const bed1Breadth = builtBreadth * 0.357

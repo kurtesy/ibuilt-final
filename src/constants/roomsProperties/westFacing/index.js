@@ -79,7 +79,7 @@ setTimeout(() => {
   }, 100);
 
      }
-     else if (plotBreadth >= 25 && plotBreadth <= 29) //Breadth range = 25-29
+      if (plotBreadth >= 25 && plotBreadth <= 29) //Breadth range = 25-29
     //Breadth range = 22-35
     {
            
@@ -215,7 +215,7 @@ setTimeout(() => {
     }, 100);
  
     }
-    else if (plotBreadth >= 30 && plotBreadth <= 35) //d Breadth range = 30-35 
+     if (plotBreadth >= 30 && plotBreadth <= 35) //d Breadth range = 30-35 
 
     {
         const bed1Length = builtLength * 0.52
@@ -438,7 +438,7 @@ setTimeout(() => {
         store.dispatch(updateWall({ id: 'toilet-ne-right', hasDoor: false }))
         store.dispatch(updateWall({ id: 'commonToilet- front', hasDoor: false }))
      }
-     else if (plotBreadth >= 36 && plotBreadth <= 39) //d Breadth range = 36-39 
+      if (plotBreadth >= 36 && plotBreadth <= 39) //d Breadth range = 36-39 
      {
      const bed1Length = builtLength * 0.51
      const bed1Breadth = builtBreadth * 0.32
@@ -681,7 +681,7 @@ setTimeout(() => {
      store.dispatch(updateWall({ id: 'toilet-ne-right', hasDoor: false }))
      store.dispatch(updateWall({ id: 'commonToilet- right', hasDoor: true }))
      }
-     else if (plotBreadth >= 40 && plotBreadth <= 42) //d Breadth range = 40-42
+      if (plotBreadth >= 40 && plotBreadth <= 42) //d Breadth range = 40-42
      {
          //bedroom3
          const bed1Length = builtLength * 0.36
@@ -915,7 +915,7 @@ setTimeout(() => {
          store.dispatch(updateWall({ id: 'toilet-ne-right', hasDoor: false }))
          store.dispatch(updateWall({ id: 'commonToilet- right', hasDoor: false }))
      }
-     else if (plotBreadth >= 43 && plotBreadth <= 45) //d Breadth range = 43-45 
+      if (plotBreadth >= 43 && plotBreadth <= 45) //d Breadth range = 43-45 
      {
   //bedroom3
         const bed1Length = builtLength * 0.36
@@ -1140,7 +1140,7 @@ setTimeout(() => {
         store.dispatch(updateWall({ id: 'toilet-ne-right', hasDoor: false }))
         store.dispatch(updateWall({ id: 'commonToilet- right', hasDoor: true }))
      }
-     else if (plotBreadth >= 46 && plotBreadth <= 47) //dd Breadth range = 46-48 
+      if (plotBreadth >= 46 && plotBreadth <= 47) //dd Breadth range = 46-48 
     {
       //bedroom3
       const bed1Length = builtLength * 0.42
@@ -1378,7 +1378,7 @@ setTimeout(() => {
         store.dispatch(updateWall({ id: 'commonToilet- right', hasDoor: true }))
       
      }
-     else if (plotBreadth >= 48 && plotBreadth <= 50) //d Breadth range = 49-50 
+      if (plotBreadth >= 48 && plotBreadth <= 50) //d Breadth range = 49-50 
     {
       //bedroom3
         const bed1Length = builtLength * 0.42
@@ -1635,7 +1635,7 @@ setTimeout(() => {
         store.dispatch(updateWall({ id: 'toilet-ne-right', hasDoor: false }))
         store.dispatch(updateWall({ id: 'commonToilet- right', hasDoor: true })) 
      }
-     else if (plotBreadth >= 51 && plotBreadth <= 53) //d Breadth range = 51-53 
+      if (plotBreadth >= 51 && plotBreadth <= 53) //d Breadth range = 51-53 
     {
       //bedroom3
       const bed1Length = builtLength * 0.42
@@ -1888,7 +1888,7 @@ setTimeout(() => {
         store.dispatch(updateWall({ id: 'toilet-ne-right', hasDoor: false }))
         store.dispatch(updateWall({ id: 'commonToilet- right', hasDoor: true }))
      }
-     else if (plotBreadth >= 54 && plotBreadth <= 56) //d Breadth range = 54-56 
+      if (plotBreadth >= 54 && plotBreadth <= 56) //d Breadth range = 54-56 
     {
       //bedroom3
       const bed1Length = builtLength * 0.42
@@ -2143,7 +2143,7 @@ setTimeout(() => {
         store.dispatch(updateWall({ id: 'toilet-ne-right', hasDoor: false }))
         store.dispatch(updateWall({ id: 'commonToilet- right', hasDoor: true }))
      }
-     else if (plotBreadth >= 57 && plotBreadth <= 59) //d Breadth range = 57-59 
+      if (plotBreadth >= 57 && plotBreadth <= 59) //d Breadth range = 57-59 
     {
       //bedroom3
       const bed1Length = builtLength * 0.40
@@ -2407,7 +2407,7 @@ setTimeout(() => {
         store.dispatch(updateWall({ id: 'toilet-ne-right', hasDoor: false }))
         store.dispatch(updateWall({ id: 'commonToilet- right', hasDoor: true }))
      }
-     else if (plotBreadth >= 60 && plotBreadth <= 64) //d Breadth range = 60-64 
+      if (plotBreadth >= 60 && plotBreadth <= 64) //d Breadth range = 60-64 
     {
       //bedroom3
       const bed1Length = builtLength * 0.42
@@ -2662,7 +2662,7 @@ setTimeout(() => {
         store.dispatch(updateWall({ id: 'toilet-ne-front', hasDoor: false }))
         store.dispatch(updateWall({ id: 'commonToilet- right', hasDoor: true }))
      }
-     else if (plotBreadth >= 65 && plotBreadth <= 78) //d Breadth range = 65-78 
+      if (plotBreadth >= 65 && plotBreadth <= 78) //d Breadth range = 65-78 
      {
        //bedroom3
        const bed1Length = builtLength * 0.42
