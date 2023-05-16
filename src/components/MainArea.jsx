@@ -30,10 +30,8 @@ export default function MainArea({ isSiderOpen }) {
     <div
       tabIndex={0}
       // onKeyDown={handleDelete}
-      className={` relative h-full flex items-center justify-center  ${
-        isSiderOpen ? 'w-[calc(100%-400px)] left-[400px]' : 'w-full'
-      }`}>
-      {!plot.plotLength && !plot.plotBreadth && <Particles />}
+      className={` relative h-full flex items-center justify-center  ${isSiderOpen ? 'w-[calc(100%-400px)] left-[400px]' : 'w-full'}`}>
+      {/* {!plot.plotLength && !plot.plotBreadth && <Particles />} */}
       <UserInputs show={show} setShow={setShow} setLoading={setLoading} isSiderOpen={isSiderOpen} />
       {plot.plotLength && plot.plotBreadth ? (
         <>
