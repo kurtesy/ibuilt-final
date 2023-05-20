@@ -46,9 +46,12 @@ export default function MainArea({ isSiderOpen }) {
     <div
       tabIndex={0}
       // onKeyDown={handleDelete}
-      className={` relative h-full flex items-center justify-center  ${
-        isSiderOpen ? 'w-[calc(100%-400px)] left-[400px]' : 'w-full'
-      }`}>
+      className={` relative h-full flex items-center justify-center  ${isSiderOpen ? 'w-[calc(100%-400px)] left-[400px]' : 'w-full'}`}>
+     {/* {!(plot.plotLength && plot.plotBreadth) ? (
+        <div className='absolute w-full h-full'>
+          <img src={mainareaBG} alt='bg' className='w-full h-full blur-sm' />
+        </div>
+      ) : null} */}
       {/* {!plot.plotLength && !plot.plotBreadth && <Particles />} */}
       <UserInputs show={show} setShow={setShow} setLoading={setLoading} isSiderOpen={isSiderOpen} />
       {plot.plotLength && plot.plotBreadth ? (
@@ -57,9 +60,9 @@ export default function MainArea({ isSiderOpen }) {
           <PositionPointer isBottom={true} />
           <CurrentSaveButton />
           <SaveAsPdfButton plotref={plotref} />
-          <ZoomControls />
           <FiRotateCcw size={32} className='absolute top-15 right-12 cursor-pointer' onClick={handleRotateCcw}/>
           <FiRotateCw size={32} className='absolute top-15 right-4 cursor-pointer' onClick={handleRotateCw}/>
+          {/* <ZoomControls /> */}
         </>
       ) : null}
       {showMainBtn ? (
