@@ -12,6 +12,7 @@ import { AiOutlineSave } from 'react-icons/ai'
 import { saveBedRoom } from '../helpers/outputControls'
 export default function Bedroom({ id }) {
   const currentBedroom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === id)[0])
+  const currentToilet=useSelector((state) => state.rooms.toilets.filter((room) => room.id === id)[0])
   const { facing } = useSelector((state) => state.plot)
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
@@ -97,7 +98,7 @@ export default function Bedroom({ id }) {
           onClick={() => saveBedRoom(selectedRoom)}
         />
       )}
-      <Toilet id={id} />
+      {(currentToilet.length && currentToilet.breadth)?<Toilet id={id} />:null}
       {/* BG */}
       {/* <div
         className='w-full h-full absolute top-0 left-0  -z-50'

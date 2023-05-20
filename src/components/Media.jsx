@@ -25,7 +25,7 @@ export default function Media({ id }) {
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 10
-      currStyle['backgroundColor'] = '#fff'
+      currStyle['backgroundColor'] = '#F4F9F4'
     }
     setStyle({ ...currStyle, ...currentMedia.position })
   }
