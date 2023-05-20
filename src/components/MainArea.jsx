@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import UserInputs from './UserInputs'
 import Plot from './Plot'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ZoomControls from './ZoomControls'
 import PositionPointer from './PositionPointer'
 import Loader from './Loader'
@@ -11,19 +11,35 @@ import Particles from '../components/Particles'
 import SaveAsPdfButton from './SaveAsPdfButton'
 import ModeToggler from './ModeToggler'
 import useWindowSize from 'use-window-hook'
+import {FiRotateCw,FiRotateCcw} from 'react-icons/fi'
+import { setPlotRotation } from '../../redux/plot'
 export default function MainArea({ isSiderOpen }) {
   const [_, width] = useWindowSize()
   const [show, setShow] = useState(false)
+  const dispatch=useDispatch()
   const [showMainBtn, setShowMainBtn] = useState(true)
   const { plot } = useSelector((state) => state)
   const [loading, setLoading] = useState(false)
+  const [rotation,setRotation]=useState(0)
   const [openDeleteConfirmation, setOpenDeleteConfirmation] = useState(false)
+  useEffect(()=>{
+    if(rotation)
+    dispatch(setPlotRotation({rotation}))
+  },[rotation])
   useEffect(() => {
     if (plot.plotLength && plot.plotBreadth) setShowMainBtn(false)
   }, [plot.plotLength, plot.plotBreadth])
 
   const handleDelete = (e) => {
     if (e.key === 'Delete') setOpenDeleteConfirmation(true)
+  }
+  const handleRotateCw=()=>{
+    if(rotation===360) setRotation(0)
+    else setRotation(prev=>prev+45)
+  }
+  const handleRotateCcw=()=>{
+    if(rotation===45) setRotation()
+    else setRotation(prev=>prev-45)
   }
   const plotref = useRef()
   return (
@@ -42,6 +58,8 @@ export default function MainArea({ isSiderOpen }) {
           <CurrentSaveButton />
           <SaveAsPdfButton plotref={plotref} />
           <ZoomControls />
+          <FiRotateCcw size={32} className='absolute top-15 right-12 cursor-pointer' onClick={handleRotateCcw}/>
+          <FiRotateCw size={32} className='absolute top-15 right-4 cursor-pointer' onClick={handleRotateCw}/>
         </>
       ) : null}
       {showMainBtn ? (

@@ -8,6 +8,7 @@ const initialState = {
   plotBreadth: 0,
   plotArea: 0,
   scale: 20,
+  rotation:0,
   setbacks: {
     front: 4.6,
     back: 1.6,
@@ -95,6 +96,8 @@ const plotSlice = createSlice({
     },
     saveCode: (state) => {
       state.isGeneratingPlot = true
+    },setPlotRotation:(state,action)=>{
+      state.rotation=action.payload.rotation
     }
   }
 })
@@ -112,6 +115,7 @@ export const {
   increaseScale,
   decreaseScale,
   saveCode,
+  setPlotRotation,
   setSetBacks
 } = plotSlice.actions
 export default plotSlice.reducer

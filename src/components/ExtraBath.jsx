@@ -25,7 +25,7 @@ export default function ExtraBath({ id }) {
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 50
-      currStyle['backgroundColor'] = '#ACB1D6'
+      currStyle['backgroundColor'] = '#D7E9F7'
     }
     setStyle({ ...currStyle, ...currentRoom.position })
   }
@@ -74,11 +74,13 @@ export default function ExtraBath({ id }) {
     <div style={style} className='absolute cursor-pointer bg-woodenFlooring' id={id} onClick={handleClick} onContextMenu={handleDeSelect}>
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
         <p style={{ fontSize: Math.min(16, Math.min(currentRoom.length, currentRoom.breadth) * 1.1) }}>
-          BATH - {id.toUpperCase()}
+          BATH/ DRESS - {id.toUpperCase()}
           <br />
           {currentRoom.length} X {currentRoom.breadth}
         </p>
       </div>
+     <div className='bg-black w-[6px] absolute left-1/2' style={{height:Math.floor(breadth * scale)}}/>
+      
       {currentRoom.walls.map((wall) => (
         <Wall
           id={`extraBath-${id}-${wall.side}`}
