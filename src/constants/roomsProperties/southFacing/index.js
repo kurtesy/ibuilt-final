@@ -3314,7 +3314,7 @@ function generateTypeB(number) {
      store.dispatch(updateWall({ id: 'commonToilet-sw-front', hasDoor: false }))
    } 
 
-   if(plotLength >= 60 && plotLength <=65) //**size 60x30 - code to execute breadth 30 
+   if(plotBreadth <= 35 && plotBreadth >=25) //**size 60x30 - code to execute breadth 30 
    {
      const bed1Length = builtLength * 0.29
      const bed1Breadth = builtBreadth * 0.36
@@ -3326,7 +3326,7 @@ function generateTypeB(number) {
      const bed4Breadth = builtBreadth * 0.53            
      const livingLength = builtLength * 0.4
      const livingBreadth = builtBreadth * 0.52
-     const drawingLength = builtLength * 0.17
+     const drawingLength = builtLength * 0.18
      const drawingBreadth = builtBreadth * 0.48  
      const kitchenLength = builtLength * 0.25
      const kitchenBreadth = builtBreadth * 0.44
@@ -3593,7 +3593,7 @@ function generateTypeB(number) {
      store.dispatch(updateWall({ id: 'commonToilet-sw-front', hasDoor: false }))
    } 
 
-   if(plotLength >= 60 && plotLength <=70) //Breadth :60-70 
+   if(plotLength >= 60 && plotLength <=64) //Breadth :60-70 
    {
      const bed1Length = builtLength * 0.24
      const bed1Breadth = builtBreadth * 0.51
@@ -3704,7 +3704,7 @@ function generateTypeB(number) {
          roomType: 'living',
          length: livingLength,
          breadth: livingBreadth,
-         position: { right: Math.floor(bed1Length)*scale, bottom:0 }
+         position: { right: Math.floor(kitchenLength+diningLength)*scale-9, bottom:0 }
        })
        )
        
@@ -3717,7 +3717,7 @@ function generateTypeB(number) {
            roomType: 'drawing',
            length: drawingLength,
            breadth: drawingBreadth,
-           position: { top:0, right:Math.floor(bed1Length)*(scale+0.3) }
+           position: { top:0, right:Math.floor(bed1Length)*(scale)+12 }
            })
      )
      store.dispatch(
@@ -3837,7 +3837,7 @@ function generateTypeB(number) {
      store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'pooja', id: '' }))
      store.dispatch(addWallToRoom({ side: 'left', status: false, roomType: 'pooja', id: '' }))
      store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'pooja', id: '' }))
-     store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'kitchen', id: '' }))
+     store.dispatch(addWallToRoom({ side: 'left', status: false, roomType: 'dining', id: '' }))
      store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'toilet', id: 'nw' }))
      store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'toilet', id: 'nw' }))
      store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'toilet', id: 'nw' }))
@@ -3866,9 +3866,9 @@ function generateTypeB(number) {
      store.dispatch(addWallToRoom({ side: 'back', status: false, roomType: 'living', id: 'sw' }))
      store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'media', id: '' }))
      //Add opening
-     store.dispatch(updateWall({ id: 'media-se-right', openingLength: 0.3 * mediaBreadth, hasOpening: true }))
-     store.dispatch(updateWall({ id: 'sitout-se-front', openingLength: 0.4 * sitoutBreadth, hasOpening: true }))
-     store.dispatch(updateWall({ id: 'pooja-nw-right', openingLength: 0.1 * livingLength, hasOpening: true }))
+     store.dispatch(updateWall({ id: 'media-se-right', openingLength: 0.3 * mediaBreadth, hasOpening: false }))
+     store.dispatch(updateWall({ id: 'sitout-se-front', openingLength: 0.4 * sitoutBreadth, hasOpening: false }))
+     store.dispatch(updateWall({ id: 'pooja-nw-right', openingLength: 0.1 * livingLength, hasOpening: false }))
      //Add doors  
      store.dispatch(updateWall({ id: 'bedroom-ne-front', hasDoor: false }))
      store.dispatch(updateWall({ id: 'bedroom-se-front', hasDoor: false }))
@@ -3879,7 +3879,7 @@ function generateTypeB(number) {
      store.dispatch(updateWall({ id: 'commonToilet-sw-front', hasDoor: false }))
    } 
 
-   if(plotLength >= 71 && plotLength <=80) //Breadth :71-80 
+   if(plotLength >= 65 && plotLength <=70) //Breadth :65-70 
    {
      const bed1Length = builtLength * 0.25
      const bed1Breadth = builtBreadth * 0.35

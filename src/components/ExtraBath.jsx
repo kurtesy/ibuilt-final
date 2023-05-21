@@ -79,7 +79,7 @@ export default function ExtraBath({ id }) {
           {currentRoom.length} X {currentRoom.breadth}
         </p>
       </div>
-     <div className='bg-black w-[6px] absolute left-1/2' style={{height:Math.floor(breadth * scale)}}/>
+     <div className='bg-grey w-[4px] absolute left-1/2' style={{height:Math.floor(breadth * scale)}}/>
       
       {currentRoom.walls.map((wall) => (
         <Wall
