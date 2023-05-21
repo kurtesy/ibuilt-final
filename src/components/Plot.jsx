@@ -40,7 +40,7 @@ export default function Plot({ isSiderOpen, plotref }) {
   const { darkMode } = useSelector((state) => state.app)
   const dispatch = useDispatch()
 
-  const smallerScale=plotLength<30|| plotBreadth<30?40:zoomLevel
+  // const smallerScale=plotLength*plotBreadth<700?35:zoomLevel
 
   useEffect(() => {
     setSelectedItems(addedRooms)
@@ -54,7 +54,7 @@ export default function Plot({ isSiderOpen, plotref }) {
   }, [plotLength, plotBreadth, setbacks, scale])
 
   useEffect(() => {
-    dispatch(changeScale({ scale: smallerScale }))
+    dispatch(changeScale({ scale: zoomLevel }))
   }, [zoomLevel])
 
   function handleWheel(event) {

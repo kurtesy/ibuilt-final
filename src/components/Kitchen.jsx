@@ -83,7 +83,7 @@ export default function Kitchen({ id }) {
       onClick={handleClick}
       onContextMenu={handleDeSelect}>
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold translate-x-[-50%] translate-y-[-50%]'>
-        <p style={{ fontSize: Math.max(12, Math.min(currentKitchen.length, currentKitchen.breadth)) * 0.9 }}>
+        <p style={{ fontSize: Math.max(10, Math.min(currentKitchen.length, currentKitchen.breadth)) * 0.9 }}>
           KITCHEN - {id.toUpperCase()}
           <br />
           {currentKitchen.length} X {currentKitchen.breadth}

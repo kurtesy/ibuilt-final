@@ -635,7 +635,7 @@ if (plotLength <= plotBreadth) {
         roomType: 'drawing',
         length: drawingLength,
         breadth: drawingBreadth,
-        position: { left: 0, top: Math.floor(bed2Breadth)*scale+8 }
+        position: { left: 0, top: Math.floor(bed2Breadth)*scale+9 }
       })
     )
   }, 100);
@@ -3603,7 +3603,7 @@ function generateTypeB(number) {
      const bed3Breadth = builtBreadth * 0.381  
      const bed4Length = builtLength * 0.28  
      const bed4Breadth = builtBreadth * 0.35            
-     const livingLength = builtLength * 0.284
+     const livingLength = builtLength * 0.28
      const livingBreadth = builtBreadth * 0.42
      const drawingLength = builtLength * 0.33
      const drawingBreadth = builtBreadth * 0.5  
@@ -3717,7 +3717,7 @@ function generateTypeB(number) {
            roomType: 'drawing',
            length: drawingLength,
            breadth: drawingBreadth,
-           position: { top:0, right:Math.floor(bed1Length)*(scale)+12 }
+           position: { top:0, right:Math.floor(bed1Length)*(scale)+15 }
            })
      )
      store.dispatch(

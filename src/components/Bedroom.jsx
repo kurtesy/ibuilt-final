@@ -118,7 +118,7 @@ export default function Bedroom({ id }) {
           </>
         ))}
       {/* <img src={bed56} className='h-[150px] w-[150px] bottom-0 absolute rotate-[-90deg]' /> */}
-      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
+      <div className='absolute top-1/3 left-1/3 text-center text-black p-2 font-semibold'>
         <p style={{ fontSize: Math.min(16, Math.min(currentBedroom.length, currentBedroom.breadth)) }}>
           BED ROOM - {id.toUpperCase()}
           <br />

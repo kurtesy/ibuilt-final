@@ -79,7 +79,7 @@ export default function Drawing({ id }) {
       onClick={handleClick}
       onContextMenu={handleDeSelect}>
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(currentDrawing.length, currentDrawing.breadth) * 1.1 }}>
+        <p style={{ fontSize: Math.min(currentDrawing.length, currentDrawing.breadth) * 0.8 }}>
           DRAWING - {id.toUpperCase()}
           <br />
           {currentDrawing.length} X {currentDrawing.breadth}

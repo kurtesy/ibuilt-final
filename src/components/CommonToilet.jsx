@@ -78,7 +78,7 @@ export default function CommonToilet({ id }) {
       className='bg-bathFullType13 absolute cursor-pointer bg-amber-400 '
       onClick={handleClick}
       onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
+      <div className='absolute top-1/3 left-1/5 text-center text-black p-2 font-semibold'>
         <p style={{ fontSize: Math.min(currentToilet.length, currentToilet.breadth) * 1.1 }}>
           COMMON BATH - {id.toUpperCase()}
           <br />

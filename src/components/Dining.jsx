@@ -77,7 +77,7 @@ export default function Dining({ id }) {
       className='bg-bathFullType13 absolute cursor-pointer shadow-2xl'
       onClick={handleClick}
       onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/2 left-1/2 text-center text-xs   text-black p-2 '>
+      <div className='absolute top-1/3 left-1/3 text-center text-xs   text-black p-1 '>
         DINING - {id.toUpperCase()}
         <br />
         {currentDining.length} X {currentDining.breadth}

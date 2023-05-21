@@ -79,9 +79,9 @@ export default function Pooja({ id }) {
       className='bg-bathFullType13 absolute cursor-pointer'
       onClick={handleClick}
       onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold translate-x-[-50%] translate-y-[-50%]'>
-        <p style={{ fontSize: Math.max(12, Math.min(currentPooja.length, currentPooja.breadth) * 1.1) }}>
-          POOJA - {id.toUpperCase()}
+      <div className='absolute top-1/2 left-1/2 text-center text-black p-1 font-bold translate-x-[-50%] translate-y-[-50%]'>
+        <p style={{ fontSize: Math.max(Math.min(currentPooja.length, currentPooja.breadth) *1) }}>
+          PUJA - {id.toUpperCase()}
           <br />
           {currentPooja.length} X {currentPooja.breadth}
         </p>
