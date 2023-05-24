@@ -32,7 +32,7 @@ export default function Bedroom({ id }) {
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 1
-      currStyle['backgroundColor'] = '#CFE8A9'
+      currStyle['backgroundColor'] = '#FBFFE2'
     }
     setStyle({ ...currStyle, ...currentBedroom.position })
   }
@@ -119,7 +119,7 @@ export default function Bedroom({ id }) {
         ))}
       {/* <img src={bed56} className='h-[150px] w-[150px] bottom-0 absolute rotate-[-90deg]' /> */}
       <div className='absolute top-1/3 left-1/3 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(16, Math.min(currentBedroom.length, currentBedroom.breadth)) }}>
+        <p style={{ fontSize: Math.min(10, Math.min(currentBedroom.length, currentBedroom.breadth)*1) }}>
           BED ROOM - {id.toUpperCase()}
           <br />
           {currentBedroom.length} X {currentBedroom.breadth}

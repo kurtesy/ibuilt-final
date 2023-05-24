@@ -79,7 +79,7 @@ export default function Media({ id }) {
       onClick={handleClick}
       onContextMenu={handleDeSelect}>
       <div className='absolute top-1/3 left-1/3 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(currentMedia.length, currentMedia.breadth) * 1.0 }}>
+        <p style={{ fontSize: Math.max(14, Math.min(currentMedia.length, currentMedia.breadth)) * 0.6 }}>
           MEDIA - {id.toUpperCase()}
           <br />
           {currentMedia.length} X {currentMedia.breadth}

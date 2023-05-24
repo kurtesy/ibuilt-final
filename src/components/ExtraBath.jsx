@@ -72,7 +72,7 @@ export default function ExtraBath({ id }) {
 
   return (
     <div style={style} className='absolute cursor-pointer bg-woodenFlooring' id={id} onClick={handleClick} onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/3 left-1/4 text-center text-black p-1 font-semibold'>
+      <div className='absolute top-1/4 left-1/3 text-center text-black p-1 font-semibold'>
         <p style={{ fontSize: Math.min(10, Math.min(currentRoom.length, currentRoom.breadth) * 1.7) }}>
           BATH/ DRESS - {id.toUpperCase()}
           <br />

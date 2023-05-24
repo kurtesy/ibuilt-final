@@ -77,8 +77,8 @@ export default function LivingRoom({ id }) {
       id={id}
       onClick={handleClick}
       onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/2 left-1/3 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(16, Math.min(currentLivingroom.length, currentLivingroom.breadth) * 0.8) }}>
+      <div className='absolute top-1/3 left-1/3 text-center text-black p-2 font-semibold'>
+        <p style={{ fontSize: Math.min(16, Math.min(currentLivingroom.length, currentLivingroom.breadth) * 1.1) }}>
           LIVING - {id.toUpperCase()}
           <br />
           {currentLivingroom.length} X {currentLivingroom.breadth}
