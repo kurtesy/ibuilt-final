@@ -1447,60 +1447,60 @@ setTimeout(() => {
       if (plotBreadth >= 48 && plotBreadth <= 50) //d Breadth range = 49-50 
     {
       //bedroom3
-        const bed1Length = builtLength * 0.42
-        const bed1Breadth = builtBreadth * 0.37
-        const bed2Length = builtLength * 0.35
+        const bed1Length = builtLength * 0.39
+        const bed1Breadth = builtBreadth * 0.27
+        const bed2Length = builtLength * 0.50
         const bed2Breadth = builtBreadth * 0.32
-        const bed3Length = builtLength * 0.32  
-        const bed3Breadth = builtBreadth * 0.4  
-        const bed4Length = builtLength * 0.34  
-        const bed4Breadth = builtBreadth * 0.30            
-        const livingLength = builtLength * 0.35
+       
+        const bed4Length = builtLength * 0.59 
+        const bed4Breadth = builtBreadth * 0.26            
+        const livingLength = builtLength * 0.5
         const livingBreadth = builtBreadth * 0.33
-        const drawingLength = builtLength * 0.38
-        const drawingBreadth = builtBreadth * 0.37
-        const kitchenLength = builtLength * 0.25
-        const kitchenBreadth = builtBreadth * 0.31
+        const drawingLength = builtLength * 0.6
+        const drawingBreadth = builtBreadth * 0.30
+        const kitchenLength = builtLength * 0.3
+        const kitchenBreadth = builtBreadth * 0.25
         const poojaLength = builtLength * 0.15
         const poojaBreadth = builtBreadth * 0.10
-        const parkingLength = builtLength * 0.25
-        const parkingBreadth = builtBreadth * 0.18  
+        const parkingLength = builtLength * 0.4
+        const parkingBreadth = builtBreadth * 0.22  
         const staircaseLength = builtLength * 0.35
         const stairCaseBreadth = builtBreadth * 0.13
-        const toilet1Length = builtLength * 0.13
-        const toilet1Breadth = builtBreadth * 0.10
-        const toilet2Length = builtLength * 0.13
-        const toilet2Breadth = builtBreadth * 0.2
-        const toilet3Length = builtLength * 0.24
-        const toilet3Breadth = builtBreadth * 0.13
-        const commonToiletLength = builtLength * 0.12
-        const commonToiletBreadth = builtBreadth * 0.12
+       
+        const commonToiletLength = builtLength * 0.15
+        const commonToiletBreadth = builtBreadth * 0.15
         const sitoutLength = builtLength * 0.15
-        const sitoutBreadth = builtBreadth * 0.18
-        const mediaLength = builtLength * 0.29
-        const mediaBreadth = builtBreadth * 0.23
-        const diningLength = builtLength * 0.21
-        const diningBreadth = builtBreadth * 0.22
+        const sitoutBreadth = builtBreadth * 0.19
+        const mediaLength = builtLength * 0.24
+        const mediaBreadth = builtBreadth * 0.17
+        const diningLength = builtLength * 0.3
+        const diningBreadth = builtBreadth * 0.15
+        const extraBathLength = builtLength * 0.30
+        const extraBathBreadth = builtBreadth * 0.15
+        const extraBath1Length = builtLength * 0.22
+        const extraBath1Breadth = builtBreadth * 0.2
+        const extraSitoutLength = builtLength * 0.15
+        const extraSitoutBreadth = builtBreadth * 0.25
  
         //add rooms
         store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'bedroom' }))
         store.dispatch(addRoomToPlot({ position: 'nw', roomType: 'bedroom' }))
-        store.dispatch(addRoomToPlot({ position: 'se', roomType: 'bedroom' }))
+       
         store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'bedroom' }))
         store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'living' }))
-        store.dispatch(addRoomToPlot({ position: '', roomType: 'pooja' }))
+        store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'pooja' }))
         store.dispatch(addRoomToPlot({ position: 'se', roomType: 'kitchen' }))
         store.dispatch(addRoomToPlot({ position: 'nw', roomType: 'staircase' }))
         store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'parking' }))
-        store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'toilet' }))
-        store.dispatch(addRoomToPlot({ position: 'nw', roomType: 'toilet' }))
-        store.dispatch(addRoomToPlot({ position: 'se', roomType: 'toilet' }))
-        store.dispatch(addRoomToPlot({ position: '', roomType: 'commonToilet' }))
-        store.dispatch(addRoomToPlot({ position: '', roomType: 'sitout' }))
-        store.dispatch(addRoomToPlot({ position: '', roomType: 'media' }))
-        store.dispatch(addRoomToPlot({ position: '', roomType: 'dining' }))
-        store.dispatch(addRoomToPlot({ position: '', roomType: 'drawing' }))
- 
+       
+        store.dispatch(addRoomToPlot({ position: 'se', roomType: 'commonToilet' }))
+        store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'sitout' }))
+        store.dispatch(addRoomToPlot({ position: 'nw', roomType: 'media' }))
+        store.dispatch(addRoomToPlot({ position: 'se', roomType: 'dining' }))
+        store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'drawing' }))
+        store.dispatch(addRoomToPlot({ position: 'nw', roomType: 'extraBath' }))
+        store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'extraBath' }))
+        store.dispatch(addRoomToPlot({ position: 'se', roomType: 'extraSitout' })) 
         //update dimensions and positions
         setTimeout(() => {
         
@@ -1510,6 +1510,7 @@ setTimeout(() => {
             roomType: 'bedroom',
             length: bed1Length,
             breadth: bed1Breadth,
+            position: { left: 0, bottom:Math.floor(bed2Breadth)*scale-9 }
            
           })
         )
@@ -1519,27 +1520,17 @@ setTimeout(() => {
             roomType: 'bedroom',
             length: bed2Length,
             breadth: bed2Breadth,
-            position: { left: Math.floor(bed3Length)*scale, bottom:0 }
-          })
-        )
-        store.dispatch(
-          updateRoomData({
-            id: 'se',
-            roomType: 'bedroom',
-            length: bed3Length,
-            breadth: bed3Breadth,
             position: { left: 0, bottom:0 }
-
-
           })
         )
+       
         store.dispatch(
           updateRoomData({
             id: 'sw',
             roomType: 'bedroom',
             length: bed4Length,
             breadth: bed4Breadth,
-            position: { left: Math.floor(bed1Length)*scale+8, top:0 }
+            position: { left:0, top:0 }
           })
         )
       }, 100);
@@ -1556,11 +1547,11 @@ setTimeout(() => {
           )
         store.dispatch(
             updateRoomData({
-              id: '',
+              id: 'ne',
               roomType: 'drawing',
               length: drawingLength,
               breadth: drawingBreadth,
-              position: { top: Math.floor(kitchenBreadth)*scale+12, right:Math.floor(diningLength)*scale }
+              position: { bottom: Math.floor(livingBreadth)*scale, right:0 }
               })
         )
         store.dispatch(
@@ -1576,11 +1567,11 @@ setTimeout(() => {
       
         store.dispatch(
           updateRoomData({
-            id: 'se',
+            id: 'ne',
             roomType: 'pooja',
             length: poojaLength,
             breadth: poojaBreadth,
-            position: { top: Math.floor(bed4Breadth)*scale, left:Math.floor(bed1Length)*scale+14 }
+            position: { top: Math.floor(bed4Breadth)*scale, left:Math.floor(bed1Length)*scale+9 }
           })
         )
         store.dispatch(
@@ -1591,12 +1582,7 @@ setTimeout(() => {
             breadth: stairCaseBreadth,
           })
         )
-        store.dispatch(updateRoomData({ id: 'nw', roomType: 'toilet', length: toilet1Length, breadth: toilet1Breadth,
-        position: {bottom: 0, left: 0 } }))
-        store.dispatch(updateRoomData({ id: 'ne', roomType: 'toilet', length: toilet2Length, breadth: toilet2Breadth,
-        position: {bottom: 0, right: 0}}))
-        store.dispatch(updateRoomData({ id: 'se', roomType: 'toilet', length: toilet3Length, breadth: toilet3Breadth,
-        position: {bottom: 0, right: 0}}))
+      
       }, 100);
 setTimeout(() => {
   
@@ -1612,11 +1598,11 @@ setTimeout(() => {
        
         store.dispatch(
           updateRoomData({
-            id: '',
+            id: 'se',
             roomType: 'commonToilet',
             length: commonToiletLength,
             breadth: commonToiletBreadth,
-            position: { top: Math.floor(kitchenBreadth) *scale, right: 0 }
+            position: { top: Math.floor(kitchenBreadth+diningBreadth) *scale, right: 0 }
            
            
           })
@@ -1625,50 +1611,75 @@ setTimeout(() => {
 
         store.dispatch(
           updateRoomData({
-            id: '',
+            id: 'ne',
             roomType: 'sitout',
             length: sitoutLength,
             breadth: sitoutBreadth,
-            position: { bottom: Math.floor(livingBreadth+setbacks.front)*scale, right:0 }
+            position: { bottom: Math.floor(livingBreadth+setbacks.front)*scale-10, right:0 }
           })
         )
 
 
         store.dispatch(
           updateRoomData({
-            id: '',
+            id: 'nw',
             roomType: 'media',
             length: mediaLength,
             breadth: mediaBreadth,
-            position: { bottom: Math.floor(bed3Breadth) *scale+16, left:0 }
+            position: { left:Math.floor(extraSitoutLength)*scale, top:Math.floor(bed4Breadth)*scale+6 }
           })
         )
        
         store.dispatch(
           updateRoomData({
-            id: '',
+            id: 'se',
             roomType: 'dining',
             length: diningLength,
             breadth: diningBreadth,
             position: { top: Math.floor(kitchenBreadth)*scale, right:0 }
-          })
+          }))
 
-        )
+          store.dispatch(
+            updateRoomData({
+              id: 'nw',
+              roomType: 'extraBath',
+              length: extraBathLength,
+              breadth: extraBathBreadth,
+              position: {bottom:Math.floor(bed2Breadth)*scale, left:0 }
+            }))    
+            store.dispatch(
+              updateRoomData({
+                id: 'ne',
+                roomType: 'extraBath',
+                length: extraBath1Length,
+                breadth: extraBath1Breadth,
+                position: { top: 0, right:Math.floor(kitchenLength)*scale+setbacks.right*scale }
+              }))    
+              store.dispatch(
+                updateRoomData({
+                  id: 'se',
+                  roomType: 'extraSitout',
+                  length: extraSitoutLength,
+                  breadth: extraSitoutBreadth,
+                  position: { left: 0, top:Math.floor(bed1Breadth)*scale }
+                }))                  
+
+
       }, 100);
         //Add walls
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'bedroom', id: 'ne' }))
         store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'bedroom', id: 'ne' }))
-        store.dispatch(addWallToRoom({ side: 'back', status: false, roomType: 'bedroom', id: 'ne' }))
+        store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'bedroom', id: 'ne' }))
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'bedroom', id: 'nw' }))
-        store.dispatch(addWallToRoom({ side: 'front', status: false, roomType: 'bedroom', id: 'nw' }))
+        store.dispatch(addWallToRoom({ side: 'back', status:true, roomType: 'bedroom', id: 'nw' }))
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'bedroom', id: 'se' }))
         store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'bedroom', id: 'se' }))
         store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'bedroom', id: 'sw' }))
-        store.dispatch(addWallToRoom({ side: 'back', status: true , roomType: 'bedroom', id: 'nw' }))
-        store.dispatch(addWallToRoom({ side: 'right', status: false, roomType: 'pooja', id: 'sw' }))
+        store.dispatch(addWallToRoom({ side: 'right', status: true , roomType: 'bedroom', id: 'sw' }))
+        store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'pooja', id: 'sw' }))
         store.dispatch(addWallToRoom({ side: 'front', status: false, roomType: 'pooja', id: '' }))
         store.dispatch(addWallToRoom({ side: 'left', status: false, roomType: 'pooja', id: '' }))
-        store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'kitchen', id: '' }))
+        store.dispatch(addWallToRoom({ side: 'left', status: false, roomType: 'kitchen', id: '' }))
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'toilet', id: 'nw' }))
         store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'toilet', id: 'nw' }))
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'toilet', id: 'ne' }))
@@ -1685,9 +1696,19 @@ setTimeout(() => {
         store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'parking', id: '' }))
         store.dispatch(addWallToRoom({ side: 'front', status: false, roomType: 'drawing', id: 'sw' }))
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'media', id: '' }))
-        store.dispatch(addWallToRoom({ side: 'front', status: false, roomType: 'media', id: '' }))
+        store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'media', id: '' }))
         store.dispatch(addWallToRoom({ side: 'back', status: false, roomType: 'media', id: '' }))
-        store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'living', id: 'sw' }))
+        store.dispatch(addWallToRoom({ side: 'left', status: false, roomType: 'living', id: 'sw' }))
+        store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'extraBath', id: 'nw' }))
+        store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'extraBath', id: 'nw' }))
+        store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'extraBath', id: 'nw' }))
+        store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'extraBath', id: 'ne' }))
+        store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'extraBath', id: 'ne' }))
+        store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'extraBath', id: 'ne' }))
+        store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'extraSitout', id: 'se' }))
+        store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'extraSitout', id: 'se' }))
+        store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'extraSitout', id: 'se' }))
+
         //Add opening
         store.dispatch(updateWall({ id: 'media-se-right', openingLength: 0.3 * mediaBreadth, hasOpening: true }))
         store.dispatch(updateWall({ id: 'sitout-se-left', openingLength: 0.4 * sitoutBreadth, hasOpening: true }))
@@ -2478,62 +2499,59 @@ setTimeout(() => {
       if (plotBreadth >= 60 && plotBreadth <= 64) //d Breadth range = 60-64 
     {
       //bedroom3
-      const bed1Length = builtLength * 0.42
+      const bed1Length = builtLength * 0.5
         const bed1Breadth = builtBreadth * 0.30
         const bed2Length = builtLength * 0.5
         const bed2Breadth = builtBreadth * 0.25
         const bed3Length = builtLength * 0.35  
-        const bed3Breadth = builtBreadth * 0.20  
-        const bed4Length = builtLength * 0.34  
-        const bed4Breadth = builtBreadth * 0.26            
-        const livingLength = builtLength * 0.37
-        const livingBreadth = builtBreadth * 0.37
+        const bed3Breadth = builtBreadth * 0.27  
+                    
+        const livingLength = builtLength * 0.65
+        const livingBreadth = builtBreadth * 0.25
         const drawingLength = builtLength * 0.50
         const drawingBreadth = builtBreadth * 0.25
-        const kitchenLength = builtLength * 0.25
-        const kitchenBreadth = builtBreadth * 0.31
+        const kitchenLength = builtLength * 0.36
+        const kitchenBreadth = builtBreadth * 0.22
         const poojaLength = builtLength * 0.15
         const poojaBreadth = builtBreadth * 0.09
-        const parkingLength = builtLength * 0.35
-        const parkingBreadth = builtBreadth * 0.12  
-        const staircaseLength = builtLength * 0.39
+        const parkingLength = builtLength * 0.4
+        const parkingBreadth = builtBreadth * 0.17  
+        const staircaseLength = builtLength * 0.45
         const stairCaseBreadth = builtBreadth * 0.17
-        const toilet1Length = builtLength * 0.2
-        const toilet1Breadth = builtBreadth * 0.08
-        const toilet2Length = builtLength * 0.25
-        const toilet2Breadth = builtBreadth * 0.1
-        const toilet3Length = builtLength * 0.29
-        const toilet3Breadth = builtBreadth * 0.09
-        const toilet4Length = builtLength * 0.25
-        const toilet4Breadth = builtBreadth * 0.10
-        const commonToiletLength = builtLength * 0.09
+
+        const commonToiletLength = builtLength * 0.15
         const commonToiletBreadth = builtBreadth * 0.15
-        const sitoutLength = builtLength * 0.1
+        const sitoutLength = builtLength * 0.2
         const sitoutBreadth = builtBreadth * 0.20
-        const mediaLength = builtLength * 0.27
-        const mediaBreadth = builtBreadth * 0.17
-        const diningLength = builtLength * 0.28
-        const diningBreadth = builtBreadth * 0.16
- 
+        const mediaLength = builtLength * 0.29
+        const mediaBreadth = builtBreadth * 0.16
+        const diningLength = builtLength * 0.4
+        const diningBreadth = builtBreadth * 0.10
+        const extraBathLength = builtLength * 0.28
+        const extraBathBreadth = builtBreadth * 0.16
+        const extraBath1Length = builtLength * 0.20
+        const extraBath1Breadth = builtBreadth * 0.23
+        const extraSitoutLength = builtLength * 0.35
+        const extraSitoutBreadth = builtBreadth * 0.15
         //add rooms
         store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'bedroom' }))
         store.dispatch(addRoomToPlot({ position: 'nw', roomType: 'bedroom' }))
         store.dispatch(addRoomToPlot({ position: 'se', roomType: 'bedroom' }))
-        store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'bedroom' }))
+        
         store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'living' }))
-        store.dispatch(addRoomToPlot({ position: '', roomType: 'pooja' }))
+        store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'pooja' }))
         store.dispatch(addRoomToPlot({ position: 'se', roomType: 'kitchen' }))
         store.dispatch(addRoomToPlot({ position: 'nw', roomType: 'staircase' }))
         store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'parking' }))
-        store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'toilet' }))
-        store.dispatch(addRoomToPlot({ position: 'nw', roomType: 'toilet' }))
-        store.dispatch(addRoomToPlot({ position: 'se', roomType: 'toilet' }))
-        store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'toilet' }))
-        store.dispatch(addRoomToPlot({ position: '', roomType: 'commonToilet' }))
-        store.dispatch(addRoomToPlot({ position: '', roomType: 'sitout' }))
-        store.dispatch(addRoomToPlot({ position: '', roomType: 'media' }))
-        store.dispatch(addRoomToPlot({ position: '', roomType: 'dining' }))
-        store.dispatch(addRoomToPlot({ position: '', roomType: 'drawing' }))
+
+        store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'commonToilet' }))
+        store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'sitout' }))
+        store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'media' }))
+        store.dispatch(addRoomToPlot({ position: 'se', roomType: 'dining' }))
+        store.dispatch(addRoomToPlot({ position: 'nw', roomType: 'drawing' }))
+        store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'extraBath' }))
+        store.dispatch(addRoomToPlot({ position: 'nw', roomType: 'extraBath' }))
+        store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'extraSitout' }))
  
         //update dimensions and positions
         setTimeout(() => {
@@ -2553,7 +2571,7 @@ setTimeout(() => {
             roomType: 'bedroom',
             length: bed2Length,
             breadth: bed2Breadth,
-            position: { left: 0, bottom:Math.floor(stairCaseBreadth)*scale-setbacks.front*scale }
+            position: { right: 0, bottom:Math.floor(parkingBreadth)*scale-setbacks.front*scale }
           })
         )
         store.dispatch(
@@ -2562,20 +2580,12 @@ setTimeout(() => {
             roomType: 'bedroom',
             length: bed3Length,
             breadth: bed3Breadth,
-            position: { left: 0, bottom:Math.floor(bed2Breadth*scale)+stairCaseBreadth*scale-setbacks.front*scale-12 }
+            position: { left: 0, bottom:Math.floor(drawingBreadth*scale)+stairCaseBreadth*scale-setbacks.front*scale-12 }
 
 
           })
         )
-        store.dispatch(
-          updateRoomData({
-            id: 'sw',
-            roomType: 'bedroom',
-            length: bed4Length,
-            breadth: bed4Breadth,
-            position: { left: Math.floor(bed1Length)*scale+6, top:0 }
-          })
-        )
+       
 
       
         store.dispatch(
@@ -2584,16 +2594,16 @@ setTimeout(() => {
             roomType: 'living',
             length: livingLength,
             breadth: livingBreadth,
-            position:{ top: Math.floor(kitchenBreadth)*scale+3, right:Math.floor(diningLength)*scale }}))
+            position:{ bottom: Math.floor(bed2Breadth+parkingBreadth)*scale-setbacks.front*scale-9, right:0 }}))
           }, 100);
           setTimeout(() => {
         store.dispatch(
             updateRoomData({
-              id: '',
+              id: 'nw',
               roomType: 'drawing',
               length: drawingLength,
               breadth: drawingBreadth,
-              position: { bottom:0, right:0 }
+              position: { bottom:Math.floor(stairCaseBreadth)*scale-setbacks.front*scale, left:0 }
               })
         )
         store.dispatch(
@@ -2624,14 +2634,7 @@ setTimeout(() => {
             breadth: stairCaseBreadth,
           })
         )
-        store.dispatch(updateRoomData({ id: 'nw', roomType: 'toilet', length: toilet1Length, breadth: toilet1Breadth,
-        position: { left:0, top: Math.floor(staircaseLength) *scale-setbacks.front*scale, } }))
-        store.dispatch(updateRoomData({ id: 'ne', roomType: 'toilet', length: toilet2Length, breadth: toilet2Breadth,
-        position: {bottom: 0, right: 0}}))
-        store.dispatch(updateRoomData({ id: 'se', roomType: 'toilet', length: toilet3Length, breadth: toilet3Breadth,
-        position: { bottom: Math.floor(poojaBreadth) *scale, left:0 }}))
-        store.dispatch(updateRoomData({ id: 'sw', roomType: 'toilet', length: toilet4Length, breadth: toilet4Breadth,
-        position: { right: Math.floor(toilet2Length-setbacks.left) *scale-12, top:0 }}))
+
 
         store.dispatch(
           updateRoomData({
@@ -2645,57 +2648,81 @@ setTimeout(() => {
        
         store.dispatch(
           updateRoomData({
-            id: '',
+            id: 'sw',
             roomType: 'commonToilet',
             length: commonToiletLength,
             breadth: commonToiletBreadth,
-            position: { top: Math.floor(kitchenBreadth) *scale, right: 0 }
+            position: { bottom: Math.floor(drawingBreadth+stairCaseBreadth) *scale-setbacks.front*scale, left: 0 }
   
           })
         )
         store.dispatch(
           updateRoomData({
-            id: '',
+            id: 'sw',
             roomType: 'sitout',
             length: sitoutLength,
             breadth: sitoutBreadth,
-            position: { top: Math.floor(kitchenBreadth+diningBreadth)*scale, right:0 }
+            position: { top: Math.floor(kitchenBreadth+diningBreadth+mediaBreadth)*scale, right:0 }
           })
         )
         store.dispatch(
           updateRoomData({
-            id: '',
+            id: 'sw',
             roomType: 'media',
             length: mediaLength,
             breadth: mediaBreadth,
-            position: { bottom: Math.floor(drawingBreadth) *scale, right:0 }
+            position: { top: Math.floor(kitchenBreadth+diningBreadth) *scale+12, right:0 }
           })
         )
        
         store.dispatch(
           updateRoomData({
-            id: '',
+            id: 'se',
             roomType: 'dining',
             length: diningLength,
             breadth: diningBreadth,
-            position: { top: Math.floor(kitchenBreadth)*scale, right:0 }
-          })
-       )
+            position: { top: Math.floor(kitchenBreadth)*scale+9, right:0 }}))
+
+                store.dispatch(
+                  updateRoomData({
+                    id: 'ne',
+                    roomType: 'extraSitout',
+                    length: extraSitoutLength,
+                    breadth: extraSitoutBreadth,
+                    position: { top: Math.floor(bed1Breadth)*scale, left:0 }}))                            
+
+                  store.dispatch(
+                  updateRoomData({
+                    id: 'ne',
+                    roomType: 'extraBath',
+                    length: extraBathLength,
+                    breadth: extraBathBreadth,
+                    position: { top: 0,right:Math.floor(kitchenLength)*scale+setbacks.right*scale-3 }}))                            
+                    
+                    store.dispatch(
+                      updateRoomData({
+                        id: 'nw',
+                        roomType: 'extraBath',
+                        length: extraBath1Length,
+                        breadth: extraBath1Breadth,
+                        position: { bottom: Math.floor(bed2Breadth)*scale+setbacks.back*scale, right:0 }}))                            
+
       }, 100);
         //Add walls
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'bedroom', id: 'ne' }))
         store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'bedroom', id: 'ne' }))
         store.dispatch(addWallToRoom({ side: 'back', status: false, roomType: 'bedroom', id: 'ne' }))
-        store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'bedroom', id: 'nw' }))
+        store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'bedroom', id: 'nw' }))
         store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'bedroom', id: 'nw' }))
+        store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'bedroom', id: 'nw' }))
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'bedroom', id: 'se' }))
         store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'bedroom', id: 'se' }))
-        store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'bedroom', id: 'sw' }))
-        store.dispatch(addWallToRoom({ side: 'back', status: true , roomType: 'bedroom', id: 'nw' }))
+        store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'bedroom', id: 'se' }))
+        
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'pooja', id: '' }))
         store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'pooja', id: '' }))
         store.dispatch(addWallToRoom({ side: 'left', status: false, roomType: 'pooja', id: '' }))
-        store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'kitchen', id: 'se' }))
+        store.dispatch(addWallToRoom({ side: 'left', status: false, roomType: 'kitchen', id: 'se' }))
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'toilet', id: 'nw' }))
         store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'toilet', id: 'nw' }))
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'toilet', id: 'ne' }))
@@ -2705,7 +2732,7 @@ setTimeout(() => {
         store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'toilet', id: 'se' }))
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'toilet', id: 'sw' }))
         store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'toilet', id: 'sw' }))
-        store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'commonToilet', id: '' }))
+        store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'commonToilet', id: '' }))
         store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'commonToilet', id: '' }))
         store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'commonToilet', id: '' }))
         store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'sitout', id: '' }))
@@ -2713,10 +2740,22 @@ setTimeout(() => {
         store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'sitout', id: '' }))
         store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'parking', id: '' }))
         store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'parking', id: '' }))
+        store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'stairCase', id: '' }))
+        store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'stairCase', id: '' }))
+
         store.dispatch(addWallToRoom({ side: 'front', status: false, roomType: 'drawing', id: 'sw' }))
         store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'media', id: '' }))
         store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'media', id: '' }))
         store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'media', id: '' }))
+        store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'extraBath', id: 'nw' }))
+        store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'extraBath', id: 'nw' }))
+        store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'extraBath', id: 'nw' }))
+        store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'extraBath', id: 'ne' }))
+        store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'extraBath', id: 'ne' }))
+        store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'extraBath', id: 'ne' }))
+        store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'extraSitout', id: 'ne' }))
+        store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'extraSitout', id: 'ne' }))
+        store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'extraSitout', id: 'ne' }))
         //Add opening
         store.dispatch(updateWall({ id: 'media-se-right', openingLength: 0.3 * mediaBreadth, hasOpening: true }))
         store.dispatch(updateWall({ id: 'sitout-se-left', openingLength: 0.4 * sitoutBreadth, hasOpening: true }))
@@ -2746,7 +2785,7 @@ setTimeout(() => {
         const drawingLength = builtLength * 0.66
         const drawingBreadth = builtBreadth * 0.23
         const kitchenLength = builtLength * 0.34
-        const kitchenBreadth = builtBreadth * 0.2
+        const kitchenBreadth = builtBreadth * 0.25
         const poojaLength = builtLength * 0.12
         const poojaBreadth = builtBreadth * 0.10
         const parkingLength = builtLength * 0.32
@@ -2765,7 +2804,7 @@ setTimeout(() => {
         const mediaBreadth = builtBreadth * 0.16
         const diningLength = builtLength * 0.23
         const diningBreadth = builtBreadth * 0.23
-        const extraBathLength = builtLength * 0.5
+        const extraBathLength = builtLength * 0.4
         const extraBathBreadth = builtBreadth * 0.13
  
         //add rooms
@@ -2866,7 +2905,7 @@ setTimeout(() => {
             roomType: 'pooja',
             length: poojaLength,
             breadth: poojaBreadth,
-            position: { left: Math.floor(mediaLength)*scale, top:Math.floor(bed1Breadth)*scale+6}
+            position: { left: Math.floor(mediaLength)*scale+6, top:Math.floor(bed1Breadth)*scale+10}
           })
         )
       }, 100);
@@ -2926,7 +2965,7 @@ setTimeout(() => {
             roomType: 'media',
             length: mediaLength,
             breadth: mediaBreadth,
-            position: { top: Math.floor(bed1Breadth)*scale+3, left:0 }
+            position: { top: Math.floor(bed1Breadth)*scale+10, left:0 }
           })
         )
        
@@ -2961,7 +3000,7 @@ setTimeout(() => {
        
         store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'pooja', id: '' }))
         store.dispatch(addWallToRoom({ side: 'left', status: false, roomType: 'pooja', id: '' }))
-        store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'kitchen', id: '' }))
+        store.dispatch(addWallToRoom({ side: 'left', status: false, roomType: 'kitchen', id: '' }))
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'toilet', id: 'nw' }))
         store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'toilet', id: 'nw' }))
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'toilet', id: 'ne' }))

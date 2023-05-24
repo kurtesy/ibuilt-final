@@ -1669,7 +1669,7 @@ setTimeout(() => {
           roomType: 'living',
           length: livingLength,
           breadth: livingBreadth,
-          position: { right: 0, top: Math.floor(bed2Breadth)*scale+4 }
+          position: { right: 0, top: Math.floor(bed2Breadth)*scale+9 }
         })
       )
       store.dispatch(
@@ -1769,7 +1769,7 @@ setTimeout(() => {
          roomType: 'media',
          length: mediaLength,
          breadth: mediaBreadth,
-         position: { left: 0, top:Math.floor(bed2Breadth)*scale+5 }
+         position: { left: 0, top:Math.floor(bed2Breadth)*scale+9 }
        })
      )
       store.dispatch(
@@ -1833,7 +1833,7 @@ setTimeout(() => {
       store.dispatch(addWallToRoom({ side: 'front', status:false, roomType: 'living', id: 'sw' }))
   
       store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'commonToilet', id: '' }))
-      store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'commonToilet', id: '' }))
+      store.dispatch(addWallToRoom({ side: 'back', status: false, roomType: 'commonToilet', id: '' }))
       store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'commonToilet', id: '' }))
       store.dispatch(addWallToRoom({ side: 'back', status: false, roomType: 'sitout', id: '' }))
       store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'sitout', id: '' }))

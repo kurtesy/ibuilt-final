@@ -1468,8 +1468,8 @@ function generateTypeA() {
       const livingLength = builtLength * 0.5
       const livingBreadth = builtBreadth * 0.32
       const drawingLength = builtLength * 0.6
-      const drawingBreadth = builtBreadth * 0.36
-      const kitchenLength = builtLength * 0.34
+      const drawingBreadth = builtBreadth * 0.34
+      const kitchenLength = builtLength * 0.36
       const kitchenBreadth = builtBreadth * 0.32
       const poojaLength = builtLength * 0.13
       const poojaBreadth = builtBreadth * 0.12
@@ -1681,7 +1681,7 @@ function generateTypeA() {
       store.dispatch(addWallToRoom({ side: 'right', status:true, roomType: 'pooja', id: '' }))
       store.dispatch(addWallToRoom({ side: 'front', status:true, roomType: 'pooja', id: '' }))
       store.dispatch(addWallToRoom({ side: 'left', status:false, roomType: 'pooja', id: '' }))
-      store.dispatch(addWallToRoom({ side: 'right', status:true, roomType: 'kitchen', id: '' }))
+      store.dispatch(addWallToRoom({ side: 'right', status:false, roomType: 'kitchen', id: '' }))
       store.dispatch(addWallToRoom({ side: 'right', status:true, roomType: 'toilet', id: 'nw' }))
       store.dispatch(addWallToRoom({ side: 'front', status:true, roomType: 'toilet', id: 'nw' }))
       store.dispatch(addWallToRoom({ side: 'right', status:true, roomType: 'toilet', id: 'ne' }))
@@ -1691,7 +1691,7 @@ function generateTypeA() {
        store.dispatch(addWallToRoom({ side: 'left', status:true, roomType: 'commonToilet', id: '' }))
       store.dispatch(addWallToRoom({ side: 'back', status:true, roomType: 'commonToilet', id: '' }))
       store.dispatch(addWallToRoom({ side: 'front', status:true, roomType: 'commonToilet', id: '' }))
-      store.dispatch(addWallToRoom({ side: 'left', status:true, roomType: 'sitout', id: '' }))
+      store.dispatch(addWallToRoom({ side: 'right', status:true, roomType: 'sitout', id: '' }))
       store.dispatch(addWallToRoom({ side: 'back', status:true, roomType: 'sitout', id: '' }))
       store.dispatch(addWallToRoom({ side: 'front', status:true, roomType: 'sitout', id: '' }))
       store.dispatch(addWallToRoom({ side: 'left', status:true, roomType: 'parking', id: '' }))
@@ -1701,6 +1701,11 @@ function generateTypeA() {
       store.dispatch(addWallToRoom({ side: 'left', status:false, roomType: 'media', id: '' }))
       store.dispatch(addWallToRoom({ side: 'front', status:false, roomType: 'drawing', id: '' }))
       store.dispatch(addWallToRoom({ side: 'front', status:true, roomType: 'media', id: '' }))
+      store.dispatch(addWallToRoom({ side: 'front', status:true, roomType: 'extraBath', id: 'se' }))
+      store.dispatch(addWallToRoom({ side: 'left', status:true, roomType: 'extraBath', id: 'se' }))
+      store.dispatch(addWallToRoom({ side: 'back', status:true, roomType: 'extraBath', id: 'se' }))
+      store.dispatch(addWallToRoom({ side: 'left', status:true, roomType: 'extraSitout', id: 'se' }))
+      store.dispatch(addWallToRoom({ side: 'front', status:true, roomType: 'extraSitout', id: 'se' }))
       //Add opening
       store.dispatch(updateWall({ id: 'media-se-right', openingLength: 0.3 * mediaBreadth, hasOpening: false }))
       store.dispatch(updateWall({ id: 'sitout-se-left', openingLength: 0.4 * sitoutBreadth, hasOpening: false }))
