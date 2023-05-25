@@ -5517,7 +5517,7 @@ setTimeout(() => {
    }   
   if(plotLength >= 50 && plotLength <= 53) //Breadth :50-53
     {
-  const bed1Length = builtLength * 0.29
+       const bed1Length = builtLength * 0.29
         const bed1Breadth = builtBreadth * 0.36
         const bed2Length = builtLength * 0.33
         const bed2Breadth = builtBreadth * 0.51
@@ -5549,10 +5549,10 @@ setTimeout(() => {
         const commonToiletBreadth = builtBreadth * 0.35
         const sitoutLength = builtLength * 0.187
         const sitoutBreadth = builtBreadth * 0.18
-        const mediaLength = builtLength * 0.20
+        const mediaLength = builtLength * 0.22
         const mediaBreadth = builtBreadth * 0.35
         const diningLength = builtLength * 0.13
-        const diningBreadth = builtBreadth * 0.42
+        const diningBreadth = builtBreadth * 0.40
  
         //add rooms
         // store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'bedroom' }))
@@ -5625,7 +5625,7 @@ setTimeout(() => {
             roomType: 'living',
             length: livingLength,
             breadth: livingBreadth,
-            position: { right: Math.floor(bed4Length)*scale+15, bottom:0 }
+            position: { right: Math.floor(bed4Length)*scale+18, bottom:0 }
           })
           )
         }, 100);
@@ -5655,7 +5655,7 @@ setTimeout(() => {
             roomType: 'pooja',
             length: poojaLength,
             breadth: poojaBreadth,
-            position: { top: Math.floor(commonToiletBreadth)*scale-setbacks.back*scale+0, left:Math.floor(bed2Length)*scale+3 }
+            position: { top: Math.floor(commonToiletBreadth)*scale-setbacks.back*scale+0, left:Math.floor(bed2Length)*scale+12 }
           })
         )
       }, 100);
@@ -5699,7 +5699,7 @@ setTimeout(() => {
             roomType: 'commonToilet',
             length: commonToiletLength,
             breadth: commonToiletBreadth,
-            position: { top: 0 *scale, left:Math.floor(bed2Length)*scale+setbacks.left*scale }
+            position: { top: 0 *scale, left:Math.floor(bed2Length)*scale+setbacks.left*scale+9 }
            
            
           })
@@ -5724,7 +5724,7 @@ setTimeout(() => {
             length: mediaLength,
             breadth: mediaBreadth,
             // position: { left: 0, top:0 }
-            position: { left: Math.floor(bed2Length)*scale-setbacks.left*scale-14, bottom:0 }
+            position: { left: Math.floor(bed3Length)*scale+3, bottom:0 }
            
           })
         )

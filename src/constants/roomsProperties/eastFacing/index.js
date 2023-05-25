@@ -1010,7 +1010,7 @@ function generateTypeA() {
   const bed1Length = builtLength * 0.42
   const bed1Breadth = builtBreadth * 0.4
   const bed2Length = builtLength * 0.4
-  const bed2Breadth = builtBreadth * 0.40
+  const bed2Breadth = builtBreadth * 0.39
   const bed3Length = builtLength * 0.4
   const bed3Breadth = builtBreadth * 0.28
   const livingLength = builtLength * 0.6
@@ -1029,7 +1029,7 @@ function generateTypeA() {
   const toilet2Breadth = builtBreadth * 0.11
   const sitoutLength = builtLength * 0.2
   const sitoutBreadth = builtBreadth * 0.2
-  const commonToiletLength = builtLength * 0.175
+  const commonToiletLength = builtLength * 0.2
   const commonToiletBreadth = builtBreadth * 0.14
   const diningLength = builtLength * 0.20
   const diningBreadth = builtBreadth * 0.17
@@ -1038,7 +1038,7 @@ function generateTypeA() {
   const extraBathLength = builtLength * 0.35
   const extraBathBreadth = builtBreadth * 0.16
   const mediaLength = builtLength * 0.30
-  const mediaBreadth = builtBreadth * 0.15
+  const mediaBreadth = builtBreadth * 0.16
   //add rooms
     
   
@@ -1087,7 +1087,7 @@ function generateTypeA() {
       roomType: 'bedroom',
       length: bed3Length,
       breadth: bed3Breadth,
-      position: {bottom:Math.floor(kitchenBreadth)*scale+3, left: 0 }
+      position: {top:Math.floor(bed2Breadth+mediaBreadth)*scale+12, left: 0 }
     })
   )
 }, 100);
@@ -1101,7 +1101,7 @@ setTimeout(() => {
       roomType: 'living',
       length: livingLength,
       breadth: livingBreadth,
-      position: { right: 0, top: Math.floor(bed2Breadth)*scale+4 }
+      position: { right: 0, top: Math.floor(bed2Breadth)*scale+12 }
     })
   )
   store.dispatch(
@@ -1140,7 +1140,7 @@ setTimeout(() => {
     updateRoomData({
       id: '',
       roomType: 'pooja',
-      position: { top: Math.floor(bed1Breadth * parseInt(scale)), right: 0 }
+      position: {top: Math.floor(bed1Breadth-poojaBreadth)* parseInt(scale)+9, right: 0 }
     })
   )
   store.dispatch(
@@ -1184,7 +1184,7 @@ setTimeout(() => {
     updateRoomData({
       id: 'sw',
       roomType: 'sitout',
-      position: {bottom: Math.floor(drawingBreadth+setbacks.front) * parseInt(scale)+9, right: 0 }
+      position: {top: Math.floor(bed1Breadth+commonToiletBreadth) * parseInt(scale)+setbacks.back*scale, right: 0 }
     })
   )
   store.dispatch(
@@ -1201,7 +1201,7 @@ setTimeout(() => {
      roomType: 'media',
      length: mediaLength,
      breadth: mediaBreadth,
-     position: { left: 0, top:Math.floor(bed2Breadth)*scale+2 }
+     position: { left: 0, top:Math.floor(bed2Breadth)*scale+3 }
    })
  )
   store.dispatch(
@@ -1217,8 +1217,8 @@ setTimeout(() => {
       roomType: 'commonToilet',
       length: commonToiletLength,
       breadth: commonToiletBreadth,
-      position: { top: Math.floor(extraBathBreadth) * parseInt(scale), 
-       right: Math.floor(bed1Length)*scale+setbacks.right*scale+9 }
+      position: { top: Math.floor(bed1Breadth) * parseInt(scale)+setbacks.back*scale+9, 
+       right: 0 }
       }))
 }, 100);
 
@@ -1266,7 +1266,7 @@ setTimeout(() => {
   store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'parking', id: 'ne' }))
   store.dispatch(addWallToRoom({ side: 'front', status:false, roomType: 'living', id: 'sw' }))
 
-  store.dispatch(addWallToRoom({ side: 'right', status: false, roomType: 'commonToilet', id: 'sw' }))
+  store.dispatch(addWallToRoom({ side: 'left', status:true, roomType: 'commonToilet', id: 'sw' }))
   store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'commonToilet', id: 'sw' }))
   store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'commonToilet', id: 'sw' }))
   store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'sitout', id: 'se' }))
@@ -1614,7 +1614,7 @@ setTimeout(() => {
       store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'bedroom' }))
       store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'bedroom' }))
       store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'living' }))
-      store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'pooja' }))
+      store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'pooja' }))
       store.dispatch(addRoomToPlot({ position: 'se', roomType: 'kitchen' }))
       store.dispatch(addRoomToPlot({ position: 'se', roomType: 'staircase' }))
       store.dispatch(addRoomToPlot({ position: 'nw', roomType: 'parking' }))
@@ -1622,8 +1622,8 @@ setTimeout(() => {
       // store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'toilet' }))
       store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'sitout' }))
       store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'commonToilet' }))
-      store.dispatch(addRoomToPlot({ position: '', roomType: 'dining' }))
-      store.dispatch(addRoomToPlot({ position: '', roomType: 'drawing' }))
+      store.dispatch(addRoomToPlot({ position: 'se', roomType: 'dining' }))
+      store.dispatch(addRoomToPlot({ position: 'se', roomType: 'drawing' }))
       store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'extraBath' }))
       store.dispatch(addRoomToPlot({ position: 'nw', roomType: 'media' }))
     
@@ -1683,7 +1683,7 @@ setTimeout(() => {
       )
       store.dispatch(
         updateRoomData({
-          id: '',
+          id: 'se',
           roomType: 'drawing',
           length: drawingLength,
           breadth: drawingBreadth,
@@ -1706,14 +1706,14 @@ setTimeout(() => {
       )
       store.dispatch(
         updateRoomData({
-          id: '',
+          id: 'ne',
           roomType: 'pooja',
           position: { top: Math.floor(bed1Breadth * parseInt(scale)), right: 0 }
         })
       )
       store.dispatch(
         updateRoomData({
-          id: 'se',
+          id: 'ne',
           roomType: 'pooja',
           length: poojaLength,
           breadth: poojaBreadth
@@ -1795,14 +1795,14 @@ setTimeout(() => {
     
       store.dispatch(
         updateRoomData({
-          id: '',
+          id: 'se',
           roomType: 'dining',
           position: { bottom: Math.floor(kitchenBreadth)*(scale), left:0}
         })
       )
       store.dispatch(
         updateRoomData({
-          id: '',
+          id: 'se',
           roomType: 'dining',
           length: diningLength,
           breadth: diningBreadth
