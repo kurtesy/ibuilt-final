@@ -1596,8 +1596,8 @@ setTimeout(() => {
       const toilet2Breadth = builtBreadth * 0.11
       const sitoutLength = builtLength * 0.15
       const sitoutBreadth = builtBreadth * 0.15
-      const commonToiletLength = builtLength * 0.190
-      const commonToiletBreadth = builtBreadth * 0.14
+      const commonToiletLength = builtLength * 0.16
+      const commonToiletBreadth = builtBreadth * 0.2
       const diningLength = builtLength * 0.23
       const diningBreadth = builtBreadth * 0.10
       const drawingLength = builtLength * 0.58
@@ -1784,8 +1784,8 @@ setTimeout(() => {
           roomType: 'commonToilet',
           length: commonToiletLength,
           breadth: commonToiletBreadth,
-          position: { top: Math.floor(extraBathBreadth) * parseInt(scale), 
-           right: Math.floor(bed1Length)*scale+setbacks.right*scale-0 }
+          position: { top: Math.floor(bed1Breadth+poojaBreadth) * parseInt(scale)+setbacks.back*scale, 
+           right: 0 }
           }))
     }, 100);
   
@@ -1831,8 +1831,8 @@ setTimeout(() => {
       store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'parking', id: '' }))
       store.dispatch(addWallToRoom({ side: 'front', status:false, roomType: 'living', id: 'sw' }))
   
-      store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'commonToilet', id: '' }))
-      store.dispatch(addWallToRoom({ side: 'back', status: false, roomType: 'commonToilet', id: '' }))
+      store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'commonToilet', id: '' }))
+      store.dispatch(addWallToRoom({ side: 'back', status:true, roomType: 'commonToilet', id: '' }))
       store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'commonToilet', id: '' }))
       store.dispatch(addWallToRoom({ side: 'back', status: false, roomType: 'sitout', id: '' }))
       store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'sitout', id: '' }))

@@ -1452,7 +1452,7 @@ setTimeout(() => {
         const bed2Length = builtLength * 0.50
         const bed2Breadth = builtBreadth * 0.32
        
-        const bed4Length = builtLength * 0.59 
+        const bed4Length = builtLength * 0.49 
         const bed4Breadth = builtBreadth * 0.26            
         const livingLength = builtLength * 0.5
         const livingBreadth = builtBreadth * 0.33
@@ -1571,7 +1571,7 @@ setTimeout(() => {
             roomType: 'pooja',
             length: poojaLength,
             breadth: poojaBreadth,
-            position: { top: Math.floor(bed4Breadth)*scale, left:Math.floor(bed1Length)*scale+9 }
+            position: { top: Math.floor(bed4Breadth)*scale, left:Math.floor(mediaLength+extraSitoutLength)*scale-setbacks.left*scale }
           })
         )
         store.dispatch(
@@ -1626,7 +1626,7 @@ setTimeout(() => {
             roomType: 'media',
             length: mediaLength,
             breadth: mediaBreadth,
-            position: { left:Math.floor(extraSitoutLength)*scale, top:Math.floor(bed4Breadth)*scale+6 }
+            position: { left:Math.floor(extraSitoutLength)*scale-setbacks.left*scale, top:Math.floor(bed4Breadth)*scale+6 }
           })
         )
        
@@ -1676,7 +1676,7 @@ setTimeout(() => {
         store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'bedroom', id: 'se' }))
         store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'bedroom', id: 'sw' }))
         store.dispatch(addWallToRoom({ side: 'right', status: true , roomType: 'bedroom', id: 'sw' }))
-        store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'pooja', id: 'sw' }))
+        store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'pooja', id: 'sw' }))
         store.dispatch(addWallToRoom({ side: 'front', status: false, roomType: 'pooja', id: '' }))
         store.dispatch(addWallToRoom({ side: 'left', status: false, roomType: 'pooja', id: '' }))
         store.dispatch(addWallToRoom({ side: 'left', status: false, roomType: 'kitchen', id: '' }))
@@ -1706,7 +1706,7 @@ setTimeout(() => {
         store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'extraBath', id: 'ne' }))
         store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'extraBath', id: 'ne' }))
         store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'extraSitout', id: 'se' }))
-        store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'extraSitout', id: 'se' }))
+        store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'extraSitout', id: 'se' }))
         store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'extraSitout', id: 'se' }))
 
         //Add opening
