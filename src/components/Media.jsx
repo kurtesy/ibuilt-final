@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSelectedRoomId, updateRoomData } from '../../redux/rooms'
+import { removeRoomFromPlot, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import Wall from './Wall'
 import { positions } from '../constants/facingAndPosition'
+import { AiFillCloseCircle } from 'react-icons/ai'
 export default function Media({ id }) {
   const currentMedia = useSelector((state) => state.rooms.media)
 
@@ -15,6 +16,10 @@ export default function Media({ id }) {
   const [isActive, setIsActive] = useState(false)
 
   const dispatch = useDispatch()
+  const [hovered, setHovered] = useState(false)
+  const handleDelete = () => {
+    dispatch(removeRoomFromPlot({ position: id, roomType: 'media' }))
+  }
   const makeStyle = () => {
     const currStyle = {}
     currStyle['width'] = Math.floor(length * scale)
@@ -77,9 +82,14 @@ export default function Media({ id }) {
       style={style}
       className='bg-bathFullType13 absolute cursor-pointer'
       onClick={handleClick}
-      onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(currentMedia.length, currentMedia.breadth) * 1.1 }}>
+      onContextMenu={handleDeSelect}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}>
+      {selectedRoom.id && hovered && (
+        <AiFillCloseCircle size={32} className='text-red-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 top-0 z-[99]' onClick={handleDelete} />
+      )}
+      <div className='absolute top-1/3 left-1/3 text-center text-black p-2 font-semibold'>
+        <p style={{ fontSize: Math.min(14, Math.min(currentMedia.length, currentMedia.breadth)) * 0.6 }}>
           MEDIA - {id.toUpperCase()}
           <br />
           {currentMedia.length} X {currentMedia.breadth}

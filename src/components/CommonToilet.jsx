@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSelectedRoomId, updateRoomData } from '../../redux/rooms'
+import { removeRoomFromPlot, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import Wall from './Wall'
 import { positions } from '../constants/facingAndPosition'
+import { AiFillCloseCircle } from 'react-icons/ai'
 export default function CommonToilet({ id }) {
   const currentToilet = useSelector((state) => state.rooms.commonToilet)
 
@@ -13,7 +14,7 @@ export default function CommonToilet({ id }) {
   const { selectedRoom } = useSelector((state) => state.rooms)
   const [style, setStyle] = useState({})
   const [isActive, setIsActive] = useState(false)
-
+  const [hovered, setHovered] = useState(false)
   const dispatch = useDispatch()
 
   const handleDeSelect = (e) => {
@@ -21,6 +22,10 @@ export default function CommonToilet({ id }) {
     dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
     setIsActive(false)
   }
+  const handleDelete = () => {
+    dispatch(removeRoomFromPlot({ position: id, roomType: 'commonToilet' }))
+  }
+
   const makeStyle = () => {
     const currStyle = {}
     currStyle['width'] = Math.floor(length * scale)
@@ -77,10 +82,15 @@ export default function CommonToilet({ id }) {
       style={style}
       className='bg-bathFullType13 absolute cursor-pointer bg-amber-400 '
       onClick={handleClick}
-      onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(currentToilet.length, currentToilet.breadth) * 1.1 }}>
-          COMMON BATH - {id.toUpperCase()}
+      onContextMenu={handleDeSelect}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}>
+      {selectedRoom.id && hovered && (
+        <AiFillCloseCircle size={32} className='text-red-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 top-0 z-[99]' onClick={handleDelete} />
+      )}
+      <div className='absolute top-1/3 left-1/3 text-center text-black p-2 font-semibold'>
+        <p style={{ fontSize: (18, Math.min(currentToilet.length, currentToilet.breadth) * 1.1) }}>
+          CMN BATH/DRESS - {id.toUpperCase()}
           <br />
           {currentToilet.length} X {currentToilet.breadth}
         </p>

@@ -34,7 +34,6 @@ export default function Plot({ isSiderOpen, plotref }) {
   }, [zoomLevel])
 
   function handleWheel(event) {
-    console.log(event.deltaY)
     if (event.deltaY > 0) setZoomLevel((prev) => prev - 1)
     else setZoomLevel((prev) => prev + 1)
   }
@@ -52,59 +51,57 @@ export default function Plot({ isSiderOpen, plotref }) {
   return (
     <div
       className={`z-40 shadow-2xl shadow-black absolute ${isSiderOpen ? '' : ''} ${darkMode ? 'bg-white' : 'bg-gray-400'} `}
-      style={{ width: plotLength * scale, height: plotBreadth * scale,rotate:`${rotation}deg` }}
+      style={{ width: plotLength * scale, height: plotBreadth * scale, rotate: `${rotation}deg` }}
       // onWheel={handleWheel}
       ref={plotref}>
       {/* outer walls */}
       {/* top */}
       <div className='w-full h-[6px] bg-cyan-800 z-[99] absolute top-0 left-0 text-blue-500'>
-      <div className='h-[2px] absolute top-[-28px] bg-blue-500' style={{width:plotLength*scale}}/>
+        <div className='h-[2px] absolute top-[-28px] bg-blue-500' style={{ width: plotLength * scale }} />
         <div className='w-full z-50 absolute  top-[-42px] font-bold flex items-center justify-center'>
-        <BsChevronBarLeft size={32} className='absolute left-[-16px] top-[-1px]'/>
-        <BsChevronBarRight size={32} className='absolute right-[-16px] top-[-1px]'/>
+          <BsChevronBarLeft size={32} className='absolute left-[-16px] top-[-1px]' />
+          <BsChevronBarRight size={32} className='absolute right-[-16px] top-[-1px]' />
           <div className='bg-white w-[72px] px-2 border-2 border-blue-500'>{plotLength} ft</div>
         </div>
       </div>
       {/* bottom */}
-      <div className='w-full h-[6px] bg-cyan-800 z-[99] absolute bottom-0 left-0 text-red-500' >
-      <div className='h-[2px] absolute bottom-[-28px] bg-red-500' style={{width: builtLength*scale,left:setbacks.left*scale}}/>
+      <div className='w-full h-[6px] bg-cyan-800 z-[99] absolute bottom-0 left-0 text-red-500'>
+        <div className='h-[2px] absolute bottom-[-28px] bg-red-500' style={{ width: builtLength * scale, left: setbacks.left * scale }} />
         <div className='w-full z-50 absolute  bottom-[-42px] font-bold flex items-center justify-center '>
-        <BsChevronBarLeft size={32} className='absolute left-[16px] bottom-[-1px]'/>
-        <BsChevronBarRight size={32} className='absolute right-[16px] bottom-[-1px]'/>
+          <BsChevronBarLeft size={32} className='absolute left-[16px] bottom-[-1px]' />
+          <BsChevronBarRight size={32} className='absolute right-[16px] bottom-[-1px]' />
           <div className='bg-white w-[90px] px-2 border-2 border-red-500 text-red-500 '>{builtLength} ft</div>
         </div>
       </div>
 
       {/* left */}
       <div className='h-[calc(100%-12px)] w-[6px] bg-cyan-800 z-[99] absolute top-[6px] left-0 text-blue-500'>
-      <div className='w-[2px] absolute left-[-28px] bg-blue-500' style={{height:plotBreadth*scale}}/>
-     
-      <div className='h-full z-50 absolute  left-[-57px] font-bold flex items-center justify-center'>
-        <BsChevronBarUp size={32} className='absolute top-[-16px]'/>
-        <BsChevronBarDown size={32} className='absolute bottom-[-26px]'/>
+        <div className='w-[2px] absolute left-[-28px] bg-blue-500' style={{ height: plotBreadth * scale }} />
+
+        <div className='h-full z-50 absolute  left-[-57px] font-bold flex items-center justify-center'>
+          <BsChevronBarUp size={32} className='absolute top-[-16px]' />
+          <BsChevronBarDown size={32} className='absolute bottom-[-26px]' />
           <div className='-rotate-90 bg-white w-[60px] px-2 border-2 border-blue-500'>{plotBreadth} ft</div>
-        
-      </div>
-        
+        </div>
       </div>
       {/* right */}
-      <div className='h-[calc(100%-12px)] w-[6px] bg-cyan-800 z-[99] absolute top-[6px] right-0 text-red-500' >
-        <div className='w-[2px] absolute right-[-28px] bg-red-500' style={{height:builtBreadth*scale,top:setbacks.back*scale}}/>
-        
-      <div className='h-full z-50 absolute  right-[-70px] font-bold flex items-center justify-center'>
-      <BsChevronBarUp size={32} className='absolute top-[16px] left-[31px]' />
-        <BsChevronBarDown size={32} className='absolute bottom-[62px] left-[31px]'/>
+      <div className='h-[calc(100%-12px)] w-[6px] bg-cyan-800 z-[99] absolute top-[6px] right-0 text-red-500'>
+        <div className='w-[2px] absolute right-[-28px] bg-red-500' style={{ height: builtBreadth * scale, top: setbacks.back * scale }} />
+
+        <div className='h-full z-50 absolute  right-[-70px] font-bold flex items-center justify-center'>
+          <BsChevronBarUp size={32} className='absolute top-[16px] left-[31px]' />
+          <BsChevronBarDown size={32} className='absolute bottom-[62px] left-[31px]' />
           <div className='-rotate-90 bg-white w-[90px] px-2 border-2 border-red-500'>{builtBreadth} ft</div>
-      </div>
+        </div>
       </div>
       <Built />
-      {selectedItems?.map((item) => item.roomType === 'commonToilet' && <CommonToilet id={item.position} />)}
-      {selectedItems?.map((item) => item.roomType === 'staircase' && <Staircase id={item.position} />)}
-      {selectedItems?.map((item) => item.roomType === 'sitout' && <Sitout id={item.position} />)}
-      {selectedItems?.map((item) => item.roomType === 'parking' && <Parking id={item.position} />)}
-      {selectedItems?.map((item) => item.roomType === 'corridor' && <Corridor id={item.position} />)}
-      {selectedItems?.map((item) => item.roomType === 'extraBath' && <ExtraBath id={item.position} />)}
-      {selectedItems?.map((item) => item.roomType === 'extraSitout' && <ExtraSitout id={item.position} />)}
+      {selectedItems?.map((item, index) => item.roomType === 'commonToilet' && <CommonToilet id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === 'staircase' && <Staircase id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === 'sitout' && <Sitout id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === 'parking' && <Parking id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === 'corridor' && <Corridor id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === 'extraBath' && <ExtraBath id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === 'extraSitout' && <ExtraSitout id={item.position} key={index} />)}
     </div>
   )
 }

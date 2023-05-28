@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setCurrentRoom, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
+import { removeRoomFromPlot, setCurrentRoom, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import Wall from './Wall'
 import Utility from './Utility'
 import { positions } from '../constants/facingAndPosition'
 import Store from './Store'
+import { AiFillCloseCircle } from 'react-icons/ai'
 export default function Kitchen({ id }) {
   const currentKitchen = useSelector((state) => state.rooms.kitchen)
 
@@ -17,6 +18,10 @@ export default function Kitchen({ id }) {
   const [isActive, setIsActive] = useState(false)
 
   const dispatch = useDispatch()
+  const [hovered, setHovered] = useState(false)
+  const handleDelete = () => {
+    dispatch(removeRoomFromPlot({ position: id, roomType: 'kitchen' }))
+  }
   const makeStyle = () => {
     const currStyle = {}
     currStyle['width'] = Math.floor(length * scale)
@@ -81,9 +86,14 @@ export default function Kitchen({ id }) {
       style={style}
       className='bg-bathFullType13 absolute cursor-pointer'
       onClick={handleClick}
-      onContextMenu={handleDeSelect}>
+      onContextMenu={handleDeSelect}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}>
+      {selectedRoom.id && hovered && (
+        <AiFillCloseCircle size={32} className='text-red-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 top-0 z-[99]' onClick={handleDelete} />
+      )}
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold translate-x-[-50%] translate-y-[-50%]'>
-        <p style={{ fontSize: Math.max(12, Math.min(currentKitchen.length, currentKitchen.breadth)) * 0.9 }}>
+        <p style={{ fontSize: Math.max(14, Math.min(currentKitchen.length, currentKitchen.breadth)) * 0.8 }}>
           KITCHEN - {id.toUpperCase()}
           <br />
           {currentKitchen.length} X {currentKitchen.breadth}
@@ -91,7 +101,7 @@ export default function Kitchen({ id }) {
       </div>
       {currentKitchen.hasUtility && <Utility id={currentKitchen.id} />}
       {currentKitchen.hasStore && <Store id={currentKitchen.id} isInside={true} />}
-      {currentKitchen.walls.map((wall) => (
+      {currentKitchen.walls.map((wall, index) => (
         <Wall
           id={`kitchen-${id}-${wall.side}`}
           added={wall.added}
@@ -102,6 +112,7 @@ export default function Kitchen({ id }) {
           side={wall.side}
           window={wall.window}
           opening={wall.opening}
+          key={index}
         />
       ))}
     </div>

@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import locationMap from '../constants/locationMapping'
-import { setCurrentPosition, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
+import { removeRoomFromPlot, setCurrentPosition, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import Wall from './Wall'
-import CommonToilet from './CommonToilet'
+import { AiFillCloseCircle } from 'react-icons/ai'
 import { positions } from '../constants/facingAndPosition'
 export default function ExtraBath({ id }) {
   const currentRoom = useSelector((state) => state.rooms.baths.filter((room) => room.id === id)[0])
@@ -16,6 +16,10 @@ export default function ExtraBath({ id }) {
   const [style, setStyle] = useState({})
   const [isActive, setIsActive] = useState(false)
   const dispatch = useDispatch()
+  const [hovered, setHovered] = useState(false)
+  const handleDelete = () => {
+    dispatch(removeRoomFromPlot({ position: id, roomType: 'extraBath' }))
+  }
   const makeStyle = () => {
     const currStyle = {}
     currStyle['width'] = Math.floor(length * scale)
@@ -71,16 +75,26 @@ export default function ExtraBath({ id }) {
   // }, [builtBreadth, builtLength])
 
   return (
-    <div style={style} className='absolute cursor-pointer bg-woodenFlooring' id={id} onClick={handleClick} onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(16, Math.min(currentRoom.length, currentRoom.breadth) * 1.1) }}>
+    <div
+      style={style}
+      className='absolute cursor-pointer bg-woodenFlooring'
+      id={id}
+      onClick={handleClick}
+      onContextMenu={handleDeSelect}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}>
+      {selectedRoom.id && hovered && (
+        <AiFillCloseCircle size={32} className='text-red-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 top-0 z-[99]' onClick={handleDelete} />
+      )}
+      <div className='absolute top-1/4 left-1/3 text-center text-black p-1 font-semibold'>
+        <p style={{ fontSize: Math.min(10, Math.min(currentRoom.length, currentRoom.breadth) * 1.7) }}>
           BATH/ DRESS - {id.toUpperCase()}
           <br />
           {currentRoom.length} X {currentRoom.breadth}
         </p>
       </div>
-     <div className='bg-black w-[6px] absolute left-1/2' style={{height:Math.floor(breadth * scale)}}/>
-      
+      <div className='bg-gray-600 w-[4px] absolute left-1/2' style={{ height: Math.floor(breadth * scale) }} />
+
       {currentRoom.walls.map((wall) => (
         <Wall
           id={`extraBath-${id}-${wall.side}`}

@@ -55,14 +55,13 @@ export default function Built() {
       {/* right */}
       <div className='h-[calc(100%-18px)] w-[9px] bg-slate-800 z-50 absolute top-[9px] right-0' />
 
-      {selectedItems?.map((item) => item.roomType === 'bedroom' && <Bedroom id={item.position} />)}
-      {selectedItems?.map((item) => item.roomType === 'living' && <LivingRoom id={item.position} />)}
-      {selectedItems?.map((item) => item.roomType === 'kitchen' && <Kitchen id={item.position} />)}
-      {selectedItems?.map((item) => item.roomType === 'drawing' && <Drawing id={item.position} />)}
-      {selectedItems?.map((item) => item.roomType === 'dining' && <Dining id={item.position} />)}
-      {selectedItems?.map((item) => item.roomType === 'pooja' && <Pooja id={item.position} />)}
-      {selectedItems?.map((item) => item.roomType === 'media' && <Media id={item.position} />)}
- 
+      {selectedItems?.map((item, index) => item.roomType === 'bedroom' && <Bedroom id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === 'living' && <LivingRoom id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === 'kitchen' && <Kitchen id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === 'drawing' && <Drawing id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === 'dining' && <Dining id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === 'pooja' && <Pooja id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === 'media' && <Media id={item.position} key={index} />)}
     </div>
   )
 }

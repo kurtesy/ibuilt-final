@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSelectedRoomId, updateRoomData } from '../../redux/rooms'
+import { removeRoomFromPlot, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import Wall from './Wall'
+import { AiFillCloseCircle } from 'react-icons/ai'
 import { positions } from '../constants/facingAndPosition'
 export default function Dining({ id }) {
   const currentDining = useSelector((state) => state.rooms.dining)
@@ -13,8 +14,11 @@ export default function Dining({ id }) {
   const { selectedRoom } = useSelector((state) => state.rooms)
   const [style, setStyle] = useState({})
   const [isActive, setIsActive] = useState(false)
-
   const dispatch = useDispatch()
+  const [hovered, setHovered] = useState(false)
+  const handleDelete = () => {
+    dispatch(removeRoomFromPlot({ position: id, roomType: 'dining' }))
+  }
   const makeStyle = () => {
     const currStyle = {}
     currStyle['width'] = Math.floor(length * scale)
@@ -29,6 +33,7 @@ export default function Dining({ id }) {
     }
     setStyle({ ...currStyle, ...currentDining.position })
   }
+
   useEffect(() => {
     setLength(currentDining?.length)
     setBreadth(currentDining?.breadth)
@@ -76,13 +81,18 @@ export default function Dining({ id }) {
       style={style}
       className='bg-bathFullType13 absolute cursor-pointer shadow-2xl'
       onClick={handleClick}
-      onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/2 left-1/2 text-center text-xs   text-black p-2 '>
+      onContextMenu={handleDeSelect}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}>
+      {selectedRoom.id && hovered && (
+        <AiFillCloseCircle size={32} className='text-red-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 top-0 z-[99]' onClick={handleDelete} />
+      )}
+      <div className='absolute top-1/2 left-1/2 text-center text-xs   text-black p-1 '>
         DINING - {id.toUpperCase()}
         <br />
         {currentDining.length} X {currentDining.breadth}
       </div>
-      {currentDining.walls.map((wall) => (
+      {currentDining.walls.map((wall, index) => (
         <Wall
           id={`dining-${id}-${wall.side}`}
           added={wall.added}
@@ -93,6 +103,7 @@ export default function Dining({ id }) {
           side={wall.side}
           window={wall.window}
           opening={wall.opening}
+          key={index}
         />
       ))}
     </div>

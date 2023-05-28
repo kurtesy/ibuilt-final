@@ -11,10 +11,10 @@ export default function Opening({ id, length, position, side }) {
   const [currentPosition, setCurrentPosition] = useState(
     side === 'front' || side === 'back' ? position.right : position.top
   )
-  console.log('current position: ' + JSON.stringify(currentPosition))
+ 
   const [currentLength, setCurrentLength] = useState(length)
 
-  console.log('opening id: ' + id)
+ 
   const makeStyle = () => {
     let currStyle = {}
     if (side === 'front' || side === 'back') {
@@ -69,7 +69,6 @@ export default function Opening({ id, length, position, side }) {
     if (e.keyCode === 40 && e.ctrlKey) {
       if (side === 'left' || side === 'right') setCurrentLength((prev) => prev - 1)
     }
-    console.log('Key pressed: ' + e.keyCode)
   }
   useEffect(() => {
     const positionToUpdate = side === 'front' || side === 'back' ? { right: currentPosition } : { top: currentPosition }

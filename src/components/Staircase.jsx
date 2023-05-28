@@ -12,7 +12,6 @@ export default function Staircase({ id }) {
   const [breadth, setBreadth] = useState(10)
   const { rotated } = currentStaircase
   const [rotation, setRotation] = useState(0)
-  console.log('Rotating: ' + rotated)
   const { scale, facing } = useSelector((state) => state.plot)
   const { selectedRoom } = useSelector((state) => state.rooms)
   const [style, setStyle] = useState({})

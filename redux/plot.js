@@ -7,8 +7,8 @@ const initialState = {
   plotLength: 0, //45
   plotBreadth: 0,
   plotArea: 0,
-  scale: 20,
-  rotation:0,
+  scale: 25,
+  rotation: 0,
   setbacks: {
     front: 4.6,
     back: 1.6,

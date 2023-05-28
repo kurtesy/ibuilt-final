@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSelectedRoomId, updateRoomData } from '../../redux/rooms'
+import { removeRoomFromPlot, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import { positions } from '../constants/facingAndPosition'
 import Wall from './Wall'
 import Toilet from './Toilet'
 import Wardrobe from './Wardrobe'
 import Balcony from './Balcony'
-import { components } from '../assets'
-import { AiOutlineSave } from 'react-icons/ai'
-import { saveBedRoom } from '../helpers/outputControls'
+import { AiFillCloseCircle } from 'react-icons/ai'
+// import { saveBedRoom } from '../helpers/outputControls'
 export default function Bedroom({ id }) {
   const currentBedroom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === id)[0])
-  const currentToilet=useSelector((state) => state.rooms.toilets.filter((room) => room.id === id)[0])
+  const currentToilet = useSelector((state) => state.rooms.toilets.filter((room) => room.id === id)[0])
   const { facing } = useSelector((state) => state.plot)
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
@@ -28,7 +27,7 @@ export default function Bedroom({ id }) {
     currStyle['width'] = Math.floor(length * scale)
     currStyle['height'] = Math.floor(breadth * scale)
     if (isActive && selectedRoom.id === id) {
-      currStyle['zIndex'] = 40
+      currStyle['zIndex'] = 98
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 1
@@ -80,6 +79,9 @@ export default function Bedroom({ id }) {
     dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
     setIsActive(false)
   }
+  const handleDelete = () => {
+    dispatch(removeRoomFromPlot({ position: id, roomType: 'bedRoom' }))
+  }
 
   return (
     <div
@@ -92,13 +94,9 @@ export default function Bedroom({ id }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}>
       {selectedRoom.id && hovered && (
-        <AiOutlineSave
-          size={32}
-          className='text-green-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 bottom-0'
-          onClick={() => saveBedRoom(selectedRoom)}
-        />
+        <AiFillCloseCircle size={32} className='text-red-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 top-0 z-[99]' onClick={handleDelete} />
       )}
-      {(currentToilet.length && currentToilet.breadth)?<Toilet id={id} />:null}
+      {currentToilet.length && currentToilet.breadth ? <Toilet id={id} /> : null}
       {/* BG */}
       {/* <div
         className='w-full h-full absolute top-0 left-0  -z-50'
@@ -106,20 +104,14 @@ export default function Bedroom({ id }) {
       /> */}
       {currentBedroom.icons &&
         currentBedroom.icons.map((icon, index) => (
-          <>
-            <img
-              src={icon.src}
-              key={index}
-              className='w-16 inline-block'
-              onClick={(e) => {}}
-              onContextMenu={handleContextMenu}
-            />
+          <div key={index}>
+            <img src={icon.src} key={index} className='w-16 inline-block' onClick={(e) => {}} onContextMenu={handleContextMenu} />
             {rightClicked && <span className='bg-red-500 text-xs p-1 rounded-lg'>Delete</span>}
-          </>
+          </div>
         ))}
       {/* <img src={bed56} className='h-[150px] w-[150px] bottom-0 absolute rotate-[-90deg]' /> */}
-      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(16, Math.min(currentBedroom.length, currentBedroom.breadth)) }}>
+      <div className='absolute top-1/3 left-1/3 text-center text-black p-2 font-semibold'>
+        <p style={{ fontSize: Math.min(10, Math.min(currentBedroom.length, currentBedroom.breadth)) }}>
           BED ROOM - {id.toUpperCase()}
           <br />
           {currentBedroom.length} X {currentBedroom.breadth}
