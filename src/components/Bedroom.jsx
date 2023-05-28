@@ -20,8 +20,11 @@ export default function Bedroom({ id }) {
   const [style, setStyle] = useState({})
   const [isActive, setIsActive] = useState(false)
   const [rightClicked, setRightClicked] = useState(false)
-  const [hovered, setHovered] = useState(false)
   const dispatch = useDispatch()
+  const [hovered, setHovered] = useState(false)
+  const handleDelete = () => {
+    dispatch(removeRoomFromPlot({ position: id, roomType: 'bedRoom' }))
+  }
   const makeStyle = () => {
     const currStyle = {}
     currStyle['width'] = Math.floor(length * scale)
@@ -31,7 +34,7 @@ export default function Bedroom({ id }) {
       currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
     } else {
       currStyle['zIndex'] = 1
-      currStyle['backgroundColor'] = '#BBD6B8'
+      currStyle['backgroundColor'] = '#FBFFE2'
     }
     setStyle({ ...currStyle, ...currentBedroom.position })
   }
@@ -78,9 +81,6 @@ export default function Bedroom({ id }) {
     e.preventDefault()
     dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
     setIsActive(false)
-  }
-  const handleDelete = () => {
-    dispatch(removeRoomFromPlot({ position: id, roomType: 'bedRoom' }))
   }
 
   return (

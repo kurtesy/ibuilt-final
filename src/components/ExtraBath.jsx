@@ -95,7 +95,7 @@ export default function ExtraBath({ id }) {
       </div>
       <div className='bg-gray-600 w-[4px] absolute left-1/2' style={{ height: Math.floor(breadth * scale) }} />
 
-      {currentRoom.walls.map((wall) => (
+      {currentRoom.walls.map((wall, index) => (
         <Wall
           id={`extraBath-${id}-${wall.side}`}
           added={wall.added}
@@ -106,6 +106,7 @@ export default function ExtraBath({ id }) {
           side={wall.side}
           window={wall.window}
           opening={wall.opening}
+          key={index}
         />
       ))}
       {/* {currentRoom.hasToilet && <CommonToilet id={currentRoom.id} />}

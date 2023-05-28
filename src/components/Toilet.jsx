@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setCurrentRoom, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
+import { removeRoomFromPlot, setCurrentRoom, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
 import Wall from './Wall'
 import { components } from '../assets'
 import { positions } from '../constants/facingAndPosition'
+import { AiFillCloseCircle } from 'react-icons/ai'
 export default function Toilet({ id }) {
   const currentToilet = useSelector((state) => state.rooms.toilets.filter((room) => room.id === id)[0])
   const [length, setLength] = useState(0)
@@ -16,6 +17,10 @@ export default function Toilet({ id }) {
   const [isActive, setIsActive] = useState(false)
   const [bgNum, setBgNum] = useState(4)
   const dispatch = useDispatch()
+  const [hovered, setHovered] = useState(false)
+  const handleDelete = () => {
+    dispatch(removeRoomFromPlot({ position: id, roomType: 'toilet' }))
+  }
   useEffect(() => {
     setType(currentToilet.type)
   }, [currentToilet])
@@ -72,7 +77,10 @@ export default function Toilet({ id }) {
   }, [length, breadth, location, selectedRoom, isActive, currentToilet, scale])
 
   return (
-    <div style={style} className='relative' onClick={handleClick} onContextMenu={handleDeSelect}>
+    <div style={style} className='relative' onClick={handleClick} onContextMenu={handleDeSelect} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+      {selectedRoom.id && hovered && (
+        <AiFillCloseCircle size={32} className='text-red-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 top-0 z-[99]' onClick={handleDelete} />
+      )}
       {/* BG */}
       <div
         className='w-full h-full absolute top-0 left-0 bg-cover  -z-50'
@@ -88,7 +96,7 @@ export default function Toilet({ id }) {
           {currentToilet.length} X {currentToilet.breadth}
         </p>
       </div>
-      {currentToilet.walls.map((wall) => (
+      {currentToilet.walls.map((wall, index) => (
         <Wall
           id={`toilet-${id}-${wall.side}`}
           added={wall.added}
@@ -99,6 +107,7 @@ export default function Toilet({ id }) {
           side={wall.side}
           window={wall.window}
           opening={wall.opening}
+          key={index}
         />
       ))}
     </div>

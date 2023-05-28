@@ -79,7 +79,7 @@ export default function Corridor({ id }) {
           {currentRoom.length} X {currentRoom.breadth}
         </p>
       </div>
-      {currentRoom.walls.map((wall) => (
+      {currentRoom.walls.map((wall, index) => (
         <Wall
           id={`corridor-${id}-${wall.side}`}
           added={wall.added}
@@ -90,6 +90,7 @@ export default function Corridor({ id }) {
           side={wall.side}
           window={wall.window}
           opening={wall.opening}
+          key={index}
         />
       ))}
       {/* {currentRoom.hasToilet && <CommonToilet id={currentRoom.id} />}

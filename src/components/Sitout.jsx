@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSelectedRoomId, updateRoomData, setRoomRotation } from '../../redux/rooms'
+import { setSelectedRoomId, updateRoomData, setRoomRotation, removeRoomFromPlot } from '../../redux/rooms'
 import Wall from './Wall'
 import { positions } from '../constants/facingAndPosition'
 
-import { AiOutlineRotateRight } from 'react-icons/ai'
+import { AiFillCloseCircle, AiOutlineRotateRight } from 'react-icons/ai'
 export default function Staircase({ id }) {
   const currentSitout = useSelector((state) => state.rooms.sitout)
 
@@ -16,6 +16,10 @@ export default function Staircase({ id }) {
   const [isActive, setIsActive] = useState(false)
 
   const dispatch = useDispatch()
+  const [hovered, setHovered] = useState(false)
+  const handleDelete = () => {
+    dispatch(removeRoomFromPlot({ position: id, roomType: 'sitout' }))
+  }
   const makeStyle = () => {
     const currStyle = {}
     currStyle['width'] = Math.floor(length * scale)
@@ -75,15 +79,20 @@ export default function Staircase({ id }) {
       style={style}
       className={`bg-bathFullType13 absolute cursor-pointer `}
       onClick={handleClick}
-      onContextMenu={handleDeSelect}>
-      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(currentSitout.length, currentSitout.breadth) * 1.1 }}>
-          SITOUT - {id.toUpperCase()}
+      onContextMenu={handleDeSelect}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}>
+      {selectedRoom.id && hovered && (
+        <AiFillCloseCircle size={32} className='text-red-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 top-0 z-[99]' onClick={handleDelete} />
+      )}
+      <div className='absolute top-1/3 left-1/4 text-center text-black p-2 font-semibold'>
+        <p style={{ fontSize: Math.min(14, Math.min(currentSitout.length, currentSitout.breadth) * 1.4) }}>
+          SIT-OUT - {id.toUpperCase()}
           <br />
           {currentSitout.length} X {currentSitout.breadth}
         </p>
       </div>
-      {currentSitout.walls.map((wall) => (
+      {currentSitout.walls.map((wall, index) => (
         <Wall
           id={`sitout-${id}-${wall.side}`}
           added={wall.added}
@@ -94,6 +103,7 @@ export default function Staircase({ id }) {
           side={wall.side}
           window={wall.window}
           opening={wall.opening}
+          key={index}
         />
       ))}
     </div>

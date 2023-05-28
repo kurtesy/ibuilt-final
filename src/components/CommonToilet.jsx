@@ -95,7 +95,7 @@ export default function CommonToilet({ id }) {
           {currentToilet.length} X {currentToilet.breadth}
         </p>
       </div>
-      {currentToilet.walls.map((wall) => (
+      {currentToilet.walls.map((wall, index) => (
         <Wall
           id={`commonToilet-${id}-${wall.side}`}
           added={wall.added}
@@ -106,6 +106,7 @@ export default function CommonToilet({ id }) {
           side={wall.side}
           window={wall.window}
           opening={wall.opening}
+          key={index}
         />
       ))}
     </div>

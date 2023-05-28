@@ -82,12 +82,7 @@ export default function Staircase({ id }) {
     dispatch(setRoomRotation({ roomType: 'stairCase', id, rotation }))
   }, [rotation])
   return (
-    <div
-      style={style}
-      className={` absolute cursor-pointer `}
-      onClick={handleClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}>
+    <div style={style} className={` absolute cursor-pointer `} onClick={handleClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
       {hovered && <AiOutlineRotateRight size={24} className='absolute right-0 top-[-24px]' onClick={handleRotate} />}
       {/* <img src={stairImg} alt='stair' className='w-full h-full' /> */}
       <div className='absolute z-40 top-1/2 left-1/2 text-center text-black p-2 font-semibold translate-x-[-50%] translate-y-[-50%]'>
@@ -97,7 +92,7 @@ export default function Staircase({ id }) {
           {currentStaircase.length} X {currentStaircase.breadth}
         </p>
       </div>
-      {currentStaircase.walls.map((wall) => (
+      {currentStaircase.walls.map((wall, index) => (
         <Wall
           id={`stairCase-${id}-${wall.side}`}
           added={wall.added}
@@ -108,6 +103,7 @@ export default function Staircase({ id }) {
           side={wall.side}
           window={wall.window}
           opening={wall.opening}
+          key={index}
         />
       ))}
     </div>

@@ -71,11 +71,7 @@ export default function Parking({ id }) {
   }, [length, breadth])
 
   return (
-    <div
-      style={style}
-      className={`bg-bathFullType13 absolute cursor-pointer `}
-      onClick={handleClick}
-      onContextMenu={handleDeSelect}>
+    <div style={style} className={`bg-bathFullType13 absolute cursor-pointer `} onClick={handleClick} onContextMenu={handleDeSelect}>
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold translate-x-[-50%] translate-y-[-50%]'>
         <p style={{ fontSize: Math.max(12, Math.min(currentParking.length, currentParking.breadth)) * 0.8 }}>
           PARKING - {id.toUpperCase()}
@@ -83,7 +79,7 @@ export default function Parking({ id }) {
           {currentParking.length} X {currentParking.breadth}
         </p>
       </div>
-      {currentParking.walls.map((wall) => (
+      {currentParking.walls.map((wall, index) => (
         <Wall
           id={`parking-${id}-${wall.side}`}
           added={wall.added}
@@ -94,6 +90,7 @@ export default function Parking({ id }) {
           side={wall.side}
           window={wall.window}
           opening={wall.opening}
+          key={index}
         />
       ))}
     </div>
