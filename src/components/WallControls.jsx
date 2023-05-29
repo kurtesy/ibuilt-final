@@ -93,7 +93,7 @@ export default function WallControls() {
         </span>
       </div>
       <div className='flex items-center justify-evenly gap-3 text-xs '>
-        <div className='flex gap-2 items-center font-semibold text-primaryLime w-[80px]'>
+        <div className='flex gap-2 items-center font-semibold text-180A0A w-[80px]'>
           <input
             type='checkbox'
             checked={isLeftwallChecked}
@@ -111,7 +111,7 @@ export default function WallControls() {
             />
           )}
         </div>
-        <div className='flex gap-2  items-center font-semibold text-primaryLime w-[80px]'>
+        <div className='flex gap-2  items-center font-semibold text-180A0A w-[80px]'>
           <input
             type='checkbox'
             value='right'
@@ -129,7 +129,7 @@ export default function WallControls() {
             />
           )}
         </div>
-        <div className='flex gap-2  items-center font-semibold text-primaryLime w-[80px]'>
+        <div className='flex gap-2  items-center font-semibold text-180A0A w-[80px]'>
           <input
             type='checkbox'
             checked={isFrontwallChecked}
@@ -147,7 +147,7 @@ export default function WallControls() {
             />
           )}
         </div>
-        <div className='flex gap-2  items-center font-semibold text-primaryLime w-[80px]'>
+        <div className='flex gap-2  items-center font-semibold text-180A0A w-[80px]'>
           <input
             type='checkbox'
             value='back'

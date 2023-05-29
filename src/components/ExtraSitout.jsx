@@ -73,7 +73,7 @@ export default function ExtraSitout({ id }) {
   return (
     <div style={style} className='absolute cursor-pointer bg-woodenFlooring' id={id} onClick={handleClick} onContextMenu={handleDeSelect}>
       <div className='absolute top-1/4 left-1/3 text-center text-black p-2 font-semibold'>
-        <p style={{ fontSize: Math.min(16, Math.min(currentRoom.length, currentRoom.breadth) * 1.1) }}>
+        <p style={{ fontSize: Math.min(18, Math.min(currentRoom.length, currentRoom.breadth) * 1.6) }}>
           SIT-OUT- {id.toUpperCase()}
           <br />
           {currentRoom.length} X {currentRoom.breadth}
