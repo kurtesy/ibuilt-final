@@ -1251,7 +1251,8 @@ if (plotLength <= plotBreadth) {
     
 
     //Add Doors
-    store.dispatch(updateWall({ id: 'bedroom-nw-front', hasDoor:true }))
+    store.dispatch(updateWall({ id: 'bedroom-nw-right', hasDoor:true,doorPosition:260  }))
+    store.dispatch(updateWall({ id: 'bedroom-ne-front', hasDoor:true,doorPosition:255 }))
     store.dispatch(updateWall({ id: 'bedroom-sw-left', hasDoor:true }))
     
     store.dispatch(updateWall({ id: 'commonToilet-sw-left', hasDoor:true }))
