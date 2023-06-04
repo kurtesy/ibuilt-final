@@ -56,25 +56,28 @@ export default function MultiSelectComponent({ isSiderOpen }) {
   }, [index])
 
   const options = [
-    { label: 'Bedroom', value: 'bedroom' },
-    { label: 'Livingroom', value: 'living' },
-    { label: 'Kitchen', value: 'kitchen' },
-    { label: 'C.Bath', value: 'commonToilet' },
+    { label: "Bedroom", value: "bedroom" },
+    { label: "Livingroom", value: "living" },
+    { label: "Kitchen", value: "kitchen" },
+    { label: "C.Bath", value: "commonToilet" },
 
-    { label: 'Drawing', value: 'drawing' },
-    { label: 'Dining', value: 'dining' },
-    { label: 'Pooja', value: 'pooja' },
+    { label: "Drawing", value: "drawing" },
+    { label: "Dining", value: "dining" },
+    { label: "Pooja", value: "pooja" },
 
-    { label: 'Stair Case', value: 'staircase' },
-    { label: 'Parking', value: 'parking' },
-    { label: 'Media', value: 'media' },
-    { label: 'Sitout', value: 'sitout' }
+    { label: "Stair Case", value: "staircase" },
+    { label: "Parking", value: "parking" },
+    { label: "Media", value: "media" },
+    { label: "Sitout", value: "sitout" },
+    { label: "Extra Sitout", value: "extraSitout" },
+    { label: "Extra Bath", value: "extraBath" },
+    { label: "Corridor", value: "corridor" }
 
     // { label: 'Store', value: 'store' },
     // { label: 'Office', value: 'office' },
     // { label: 'Lift', value: 'lift' },
     // { label: 'Duct/Shaft', value: 'duct' }
-  ]
+  ];
 
   const [rooms, setRooms] = useState([])
   const [currentRoom, setCurrentRoom] = useState('')

@@ -9,8 +9,8 @@ import { positions } from '../constants/facingAndPosition'
 export default function ExtraBath({ id }) {
   const currentRoom = useSelector((state) => state.rooms.baths.filter((room) => room.id === id)[0])
   const { facing } = useSelector((state) => state.plot)
-  const [length, setLength] = useState(0)
-  const [breadth, setBreadth] = useState(0)
+  const [length, setLength] = useState(6);
+  const [breadth, setBreadth] = useState(10);
   const { scale, builtLength, builtBreadth } = useSelector((state) => state.plot)
   const { selectedRoom } = useSelector((state) => state.rooms)
   const [style, setStyle] = useState({})
@@ -44,8 +44,8 @@ export default function ExtraBath({ id }) {
   }, [facing])
 
   useEffect(() => {
-    setLength(currentRoom?.length)
-    setBreadth(currentRoom?.breadth)
+currentRoom?.length ? setLength(currentRoom?.length) : null;
+currentRoom?.breadth ? setBreadth(currentRoom?.breadth) : null;
   }, [currentRoom])
 
   const handleClick = () => {
@@ -93,7 +93,7 @@ export default function ExtraBath({ id }) {
           {currentRoom.length} X {currentRoom.breadth}
         </p>
       </div>
-      <div className='bg-gray-600 w-[4px] absolute left-1/2' style={{ height: Math.floor(breadth * scale) }} />
+      {/* <div className='bg-gray-600 w-[4px] absolute left-1/2' style={{ height: Math.floor(breadth * scale) }} /> */}
 
       {currentRoom.walls.map((wall, index) => (
         <Wall
@@ -113,5 +113,5 @@ export default function ExtraBath({ id }) {
       {currentRoom.hasWash && <div>WASH</div>}
       {currentRoom.hasSitout && <div>SITOUT</div>} */}
     </div>
-  )
+  );
 }

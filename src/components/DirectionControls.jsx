@@ -15,143 +15,165 @@ export default function DirectionControls() {
   const { selectedRoom } = useSelector((state) => state.rooms)
   const { plotLength, plotBreadth, scale, setbacks } = useSelector((state) => state.plot)
   const currentBedRoom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === selectedRoom.id)[0])
-  const currentToilet = useSelector((state) => state.rooms.toilets.filter((room) => room.id === selectedRoom.id)[0])
-  const containedBedRoom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === selectedRoom.id)[0])
-  const containedLivingRoom = useSelector(
-    (state) => state.rooms.livingRooms.filter((room) => room.id === selectedRoom.id)[0]
-  )
-  const currentLivingroom = useSelector(
-    (state) => state.rooms.livingRooms.filter((room) => room.id === selectedRoom.id)[0]
-  )
+  const currentExtraSitout = useSelector((state) => state.rooms.sitouts.filter((room) => room.id === selectedRoom.id)[0]);
+  const currentExtraBath = useSelector((state) => state.rooms.baths.filter((room) => room.id === selectedRoom.id)[0]);
+  const currentCorridor = useSelector((state) => state.rooms.corridors.filter((room) => room.id === selectedRoom.id)[0]);
+  const currentToilet = useSelector((state) => state.rooms.toilets.filter((room) => room.id === selectedRoom.id)[0]);
+  const containedBedRoom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === selectedRoom.id)[0]);
+  const containedLivingRoom = useSelector((state) => state.rooms.livingRooms.filter((room) => room.id === selectedRoom.id)[0]);
+  const currentLivingroom = useSelector((state) => state.rooms.livingRooms.filter((room) => room.id === selectedRoom.id)[0]);
 
-  const { commonToilet, kitchen, utility, store, drawing, dining, pooja, stairCase, media, sitout, parking } =
-    useSelector((state) => state.rooms)
+  const { commonToilet, kitchen, utility, store, drawing, dining, pooja, stairCase, media, sitout, parking } = useSelector((state) => state.rooms);
 
-  const [x, setX] = useState(0)
-  const [y, setY] = useState(0)
-  const [maxX, setMaxX] = useState(0)
-  const [maxY, setMaxY] = useState(0)
-  const [position, setPosition] = useState({})
-  const [rotation, setRotation] = useState(0)
-  const [currentSelection, setCurrentSelection] = useState(null)
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+  const [maxX, setMaxX] = useState(0);
+  const [maxY, setMaxY] = useState(0);
+  const [position, setPosition] = useState({});
+  const [rotation, setRotation] = useState(0);
+  const [currentSelection, setCurrentSelection] = useState(null);
   useEffect(() => {
-    if (selectedRoom.roomType === 'bedroom' && currentSelection) {
-      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
-      else setY(currentSelection.position.bottom)
-      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
-      else setX(currentSelection.position.right)
-      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale)
-      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale)
-    } else if (selectedRoom.roomType === 'toilet' && currentSelection) {
-      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
-      else setY(currentSelection.position.bottom)
-      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
-      else setX(currentSelection.position.right)
-      setMaxX((containedBedRoom?.length - currentSelection.length) * scale)
-      setMaxY((containedBedRoom?.breadth - currentSelection.breadth) * scale)
-    } else if (selectedRoom.roomType === 'living' && currentSelection) {
-      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
-      else setY(currentSelection.position.bottom)
-      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
-      else setX(currentSelection.position.right)
-      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale)
-      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale)
-    } else if (selectedRoom.roomType === 'kitchen' && currentSelection) {
-      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
-      else setY(currentSelection.position.bottom)
-      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
-      else setX(currentSelection.position.right)
-      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale)
-      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale)
-    } else if (selectedRoom.roomType === 'utility' && currentSelection) {
-      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
-      else setY(currentSelection.position.bottom)
-      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
-      else setX(currentSelection.position.right)
-      setMaxX((utility?.length - currentSelection.length) * scale)
-      setMaxY((utility?.breadth - currentSelection.breadth) * scale)
-    } else if (selectedRoom.roomType === 'store' && currentSelection) {
-      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
-      else setY(currentSelection.position.bottom)
-      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
-      else setX(currentSelection.position.right)
-      setMaxX((store?.length - currentSelection.length) * scale)
-      setMaxY((store?.breadth - currentSelection.breadth) * scale)
-    } else if (selectedRoom.roomType === 'pooja' && currentSelection) {
-      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
-      else setY(currentSelection.position.bottom)
-      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
-      else setX(currentSelection.position.right)
-      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale)
-      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale)
-    } else if (selectedRoom.roomType === 'media' && currentSelection) {
-      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
-      else setY(currentSelection.position.bottom)
-      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
-      else setX(currentSelection.position.right)
-      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale)
-      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale)
-    } else if (selectedRoom.roomType === 'stairCase' && currentSelection) {
-      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
-      else setY(currentSelection.position.bottom)
-      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
-      else setX(currentSelection.position.right)
-      setMaxX((plotLength - currentSelection.length) * scale)
-      setMaxY((plotBreadth - currentSelection.breadth) * scale)
-    } else if (selectedRoom.roomType === 'parking' && currentSelection) {
-      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
-      else setY(currentSelection.position.bottom)
-      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
-      else setX(currentSelection.position.right)
-      setMaxX((plotLength - currentSelection.length) * scale)
-      setMaxY((plotBreadth - currentSelection.breadth) * scale)
-    } else if (selectedRoom.roomType === 'sitout' && currentSelection) {
-      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
-      else setY(currentSelection.position.bottom)
-      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
-      else setX(currentSelection.position.right)
-      setMaxX((plotLength - currentSelection.length) * scale)
-      setMaxY((plotBreadth - currentSelection.breadth) * scale)
-    } else if (selectedRoom.roomType === 'drawing' && currentSelection) {
-      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
-      else setY(currentSelection.position.bottom)
-      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
-      else setX(currentSelection.position.right)
-      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale)
-      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale)
-    } else if (selectedRoom.roomType === 'dining' && currentSelection) {
-      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
-      else setY(currentSelection.position.bottom)
-      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
-      else setX(currentSelection.position.right)
-      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale)
-      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale)
-    } else if (selectedRoom.roomType === 'commonToilet' && currentSelection) {
-      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top)
-      else setY(currentSelection.position.bottom)
-      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left)
-      else setX(currentSelection.position.right)
-      setMaxX((plotLength - currentSelection.length) * scale)
-      setMaxY((plotBreadth - currentSelection.breadth) * scale)
+    if (selectedRoom.roomType === "bedroom" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale);
+      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale);
+    } else if (selectedRoom.roomType === "toilet" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((containedBedRoom?.length - currentSelection.length) * scale);
+      setMaxY((containedBedRoom?.breadth - currentSelection.breadth) * scale);
+    } else if (selectedRoom.roomType === "living" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale);
+      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale);
+    } else if (selectedRoom.roomType === "kitchen" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale);
+      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale);
+    } else if (selectedRoom.roomType === "utility" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((utility?.length - currentSelection.length) * scale);
+      setMaxY((utility?.breadth - currentSelection.breadth) * scale);
+    } else if (selectedRoom.roomType === "store" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((store?.length - currentSelection.length) * scale);
+      setMaxY((store?.breadth - currentSelection.breadth) * scale);
+    } else if (selectedRoom.roomType === "pooja" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale);
+      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale);
+    } else if (selectedRoom.roomType === "media" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale);
+      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale);
+    } else if (selectedRoom.roomType === "stairCase" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((plotLength - currentSelection.length) * scale);
+      setMaxY((plotBreadth - currentSelection.breadth) * scale);
+    } else if (selectedRoom.roomType === "parking" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((plotLength - currentSelection.length) * scale);
+      setMaxY((plotBreadth - currentSelection.breadth) * scale);
+    } else if (selectedRoom.roomType === "sitout" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((plotLength - currentSelection.length) * scale);
+      setMaxY((plotBreadth - currentSelection.breadth) * scale);
+    } else if (selectedRoom.roomType === "drawing" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale);
+      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale);
+    } else if (selectedRoom.roomType === "dining" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((plotLength - currentSelection.length - setbacks.left - setbacks.right) * scale);
+      setMaxY((plotBreadth - currentSelection.breadth - setbacks.front - setbacks.back) * scale);
+    } else if (selectedRoom.roomType === "commonToilet" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((plotLength - currentSelection.length) * scale);
+      setMaxY((plotBreadth - currentSelection.breadth) * scale);
+    } else if (selectedRoom.roomType === "extraBath" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((plotLength - currentSelection.length) * scale);
+      setMaxY((plotBreadth - currentSelection.breadth) * scale);
+    } else if (selectedRoom.roomType === "extraSitout" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((plotLength - currentSelection.length) * scale);
+      setMaxY((plotBreadth - currentSelection.breadth) * scale);
+    } else if (selectedRoom.roomType === "corridor" && currentSelection) {
+      if (currentSelection.position.top !== undefined) setY(currentSelection.position.top);
+      else setY(currentSelection.position.bottom);
+      if (currentSelection.position.left !== undefined) setX(currentSelection.position.left);
+      else setX(currentSelection.position.right);
+      setMaxX((plotLength - currentSelection.length) * scale);
+      setMaxY((plotBreadth - currentSelection.breadth) * scale);
     }
-  }, [currentSelection])
+  }, [currentSelection]);
   useEffect(() => {
-    if (selectedRoom.roomType === 'bedroom') setCurrentSelection(currentBedRoom)
-    else if (selectedRoom.roomType === 'toilet') setCurrentSelection(currentToilet)
-    else if (selectedRoom.roomType === 'living') setCurrentSelection(currentLivingroom)
-    else if (selectedRoom.roomType === 'commonToilet') setCurrentSelection(commonToilet)
-    else if (selectedRoom.roomType === 'kitchen') setCurrentSelection(kitchen)
-    else if (selectedRoom.roomType === 'utility') setCurrentSelection(utility)
-    else if (selectedRoom.roomType === 'store') setCurrentSelection(utility)
-    else if (selectedRoom.roomType === 'dining') setCurrentSelection(dining)
-    else if (selectedRoom.roomType === 'drawing') setCurrentSelection(drawing)
-    else if (selectedRoom.roomType === 'pooja') setCurrentSelection(pooja)
-    else if (selectedRoom.roomType === 'media') setCurrentSelection(media)
-    else if (selectedRoom.roomType === 'stairCase') setCurrentSelection(stairCase)
-    else if (selectedRoom.roomType === 'parking') setCurrentSelection(parking)
-    else if (selectedRoom.roomType === 'sitout') setCurrentSelection(sitout)
-    else setCurrentSelection(null)
-  }, [selectedRoom])
+    if (selectedRoom.roomType === "bedroom") setCurrentSelection(currentBedRoom);
+    else if (selectedRoom.roomType === "toilet") setCurrentSelection(currentToilet);
+    else if (selectedRoom.roomType === "living") setCurrentSelection(currentLivingroom);
+    else if (selectedRoom.roomType === "commonToilet") setCurrentSelection(commonToilet);
+    else if (selectedRoom.roomType === "kitchen") setCurrentSelection(kitchen);
+    else if (selectedRoom.roomType === "utility") setCurrentSelection(utility);
+    else if (selectedRoom.roomType === "store") setCurrentSelection(utility);
+    else if (selectedRoom.roomType === "dining") setCurrentSelection(dining);
+    else if (selectedRoom.roomType === "drawing") setCurrentSelection(drawing);
+    else if (selectedRoom.roomType === "pooja") setCurrentSelection(pooja);
+    else if (selectedRoom.roomType === "media") setCurrentSelection(media);
+    else if (selectedRoom.roomType === "stairCase") setCurrentSelection(stairCase);
+    else if (selectedRoom.roomType === "parking") setCurrentSelection(parking);
+    else if (selectedRoom.roomType === "sitout") setCurrentSelection(sitout);
+    else if (selectedRoom.roomType === "extraSitout") setCurrentSelection(currentExtraSitout);
+    else if (selectedRoom.roomType === "extraBath") setCurrentSelection(currentExtraBath);
+    else if (selectedRoom.roomType === "corridor") setCurrentSelection(currentCorridor);
+    else setCurrentSelection(null);
+  }, [selectedRoom]);
   useEffect(() => {
     if (currentSelection) {
       const currPos = {}

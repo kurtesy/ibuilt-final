@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { ImExit } from "react-icons/im";
 import UserInputs from './UserInputs'
 import Plot from './Plot'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,6 +14,7 @@ import ModeToggler from './ModeToggler'
 import useWindowSize from 'use-window-hook'
 import {FiRotateCw,FiRotateCcw} from 'react-icons/fi'
 import { setPlotRotation } from '../../redux/plot'
+import { useNavigate } from "react-router-dom";
 export default function MainArea({ isSiderOpen }) {
   const [_, width] = useWindowSize()
   const [show, setShow] = useState(false)
@@ -21,7 +23,9 @@ export default function MainArea({ isSiderOpen }) {
   const { plot } = useSelector((state) => state)
   const [loading, setLoading] = useState(false)
   const [rotation,setRotation]=useState(0)
+  const [exitHovered, setExitHovered] = useState(false);
   const [openDeleteConfirmation, setOpenDeleteConfirmation] = useState(false)
+  const navigate = useNavigate();
   useEffect(()=>{
     if(rotation)
     dispatch(setPlotRotation({rotation}))
@@ -46,8 +50,8 @@ export default function MainArea({ isSiderOpen }) {
     <div
       tabIndex={0}
       // onKeyDown={handleDelete}
-      className={` relative h-full flex items-center justify-center  ${isSiderOpen ? 'w-[calc(100%-400px)] left-[400px]' : 'w-full'}`}>
-     {/* {!(plot.plotLength && plot.plotBreadth) ? (
+      className={` relative h-full flex items-center justify-center  ${isSiderOpen ? "w-[calc(100%-400px)] left-[400px]" : "w-full"}`}>
+      {/* {!(plot.plotLength && plot.plotBreadth) ? (
         <div className='absolute w-full h-full'>
           <img src={mainareaBG} alt='bg' className='w-full h-full blur-sm' />
         </div>
@@ -60,8 +64,8 @@ export default function MainArea({ isSiderOpen }) {
           <PositionPointer isBottom={true} />
           <CurrentSaveButton />
           <SaveAsPdfButton plotref={plotref} />
-          <FiRotateCcw size={32} className='absolute top-15 right-12 cursor-pointer' onClick={handleRotateCcw}/>
-          <FiRotateCw size={32} className='absolute top-15 right-4 cursor-pointer' onClick={handleRotateCw}/>
+          <FiRotateCcw size={32} className='absolute top-15 right-12 cursor-pointer' onClick={handleRotateCcw} />
+          <FiRotateCw size={32} className='absolute top-15 right-4 cursor-pointer' onClick={handleRotateCw} />
           {/* <ZoomControls /> */}
         </>
       ) : null}
@@ -69,8 +73,8 @@ export default function MainArea({ isSiderOpen }) {
         <button
           className='bg-primaryLime h-12 px-2 rounded-xl shadow-2xl text-slate-800 font-semibold hover:scale-110 duration-300 shadow-white animate-pulse'
           onClick={() => {
-            setShow(true)
-            setShowMainBtn(false)
+            setShow(true);
+            setShowMainBtn(false);
           }}>
           Please Enter Dimensions
         </button>
@@ -82,7 +86,11 @@ export default function MainArea({ isSiderOpen }) {
       )} */}
       {plot.plotLength && plot.plotBreadth ? <Plot isSiderOpen={isSiderOpen} /> : null}
       <ModeToggler />
+      <div className='absolute top-48 right-4 flex flex-col items-center text-red-500 gap-3' onMouseEnter={() => setExitHovered(true)} onMouseLeave={() => setExitHovered(false)}>
+        <ImExit size={24} className={` hover:scale-110 cursor-pointer`} onClick={() => navigate("/")} />
+        {exitHovered ? <div className=''>Exit the drawing</div> : null}
+      </div>
       {openDeleteConfirmation ? <ConfirmationModal setOpenDeleteConfirmation={setOpenDeleteConfirmation} /> : null}
     </div>
-  )
+  );
 }

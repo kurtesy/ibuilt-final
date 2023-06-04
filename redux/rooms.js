@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import bathTypeDimensions from '../src/constants/toiletDimensions'
 import { initialState } from './initialState'
 
@@ -1582,6 +1582,9 @@ const roomsSlice = createSlice({
     },
     removeAllRooms: (state) => {
       state.addedRooms = []
+    },
+    resetRooms:(state)=>{
+      return initialState
     }
   }
 })
@@ -1603,6 +1606,7 @@ export const {
   removeIcon,
   changeIconVariant,
   setSelectedIcon,
-  addWallToRoom
+  addWallToRoom,
+  resetRooms
 } = roomsSlice.actions
 export default roomsSlice.reducer

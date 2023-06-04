@@ -98,6 +98,8 @@ const plotSlice = createSlice({
       state.isGeneratingPlot = true
     },setPlotRotation:(state,action)=>{
       state.rotation=action.payload.rotation
+    },resetPlot:(state)=>{
+      return initialState
     }
   }
 })
@@ -116,6 +118,7 @@ export const {
   decreaseScale,
   saveCode,
   setPlotRotation,
-  setSetBacks
+  setSetBacks,
+  resetPlot
 } = plotSlice.actions
 export default plotSlice.reducer
