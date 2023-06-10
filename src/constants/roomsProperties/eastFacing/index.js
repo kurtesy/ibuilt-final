@@ -1560,7 +1560,7 @@ setTimeout(() => {
       const bed3Length = builtLength * 0.42
       const bed3Breadth = builtBreadth * 0.30
       const livingLength = builtLength * 0.42
-      const livingBreadth = builtBreadth * 0.205
+      const livingBreadth = builtBreadth * 0.22
       const kitchenLength = builtLength * 0.4
       const kitchenBreadth = builtBreadth * 0.2
       const poojaLength = builtLength * 0.15
@@ -1577,8 +1577,8 @@ setTimeout(() => {
       const sitoutBreadth = builtBreadth * 0.15
       const commonToiletLength = builtLength * 0.16
       const commonToiletBreadth = builtBreadth * 0.2
-      const diningLength = builtLength * 0.23
-      const diningBreadth = builtBreadth * 0.10
+      const diningLength = builtLength * 0.26
+      const diningBreadth = builtBreadth * 0.13
       const drawingLength = builtLength * 0.58
       const drawingBreadth = builtBreadth * 0.25
       const extraBathLength = builtLength * 0.23
@@ -1797,7 +1797,7 @@ setTimeout(() => {
       store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'bedroom', id: 'sw' }))
       store.dispatch(addWallToRoom({ side: 'left', status: false, roomType: 'pooja', id: '' }))
       store.dispatch(addWallToRoom({ side: 'front', status: false, roomType: 'pooja', id: '' }))
-      store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'kitchen', id: '' }))
+      store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'dining', id: '' }))
       store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'toilet', id: 'nw' }))
       store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'toilet', id: 'nw' }))
       store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'toilet', id: 'ne' }))
@@ -1824,9 +1824,9 @@ setTimeout(() => {
       
   
       //Add Doors
-      store.dispatch(updateWall({ id: 'bedroom-nw-right', hasDoor:true}))
-      store.dispatch(updateWall({ id: 'bedroom-ne-left', hasDoor:true}))
-      store.dispatch(updateWall({ id: 'bedroom-se-back', hasDoor:true }))
+      store.dispatch(updateWall({ id: 'bedroom-nw-right', hasDoor:true, doorPosition:280}))
+      store.dispatch(updateWall({ id: 'bedroom-ne-left', hasDoor:true, doorPosition:280}))
+      store.dispatch(updateWall({ id: 'bedroom-sw-back', hasDoor:true, doorPosition:160 }))
       store.dispatch(updateWall({ id: 'toilet-nw-right', hasDoor: true }))
       store.dispatch(updateWall({ id: 'extraBath-ne-right', hasDoor:true}))
       store.dispatch(updateWall({ id: 'living-sw-front', hasDoor: false }))
