@@ -46,14 +46,14 @@ export default function Door({ side, position }) {
       className={`absolute flex items-end justify-center ${side === "left" || side === "right" ? (side === "left" ? "h-[54px] w-[54px] left-0" : "h-[54px] w-[54px] right-0") : "h-[6px] w-[54px] "}`}
       style={{ ...position, zIndex: 99 }}>
       <div
-        className={`absolute bg-white flex items-end justify-center z-[99] ${
+        className={`absolute flex items-end justify-center z-[99] ${
           side === "left" || side === "right" ? (side === "left" ? "h-[54px] w-[54px] right-0" : "h-[54px] w-[54px] right-0") : "h-[6px] w-[54px]"
         }`}></div>
       <img
         src={doors[side][Object.keys(position)[0]]}
         alt='door'
-        className={`absolute h-[54px] w-[54px] z-[100]  ${side === "front" ? "bottom-[-10px]" : ""} ${side === "left" ? "left-[-10px]" : ""} ${side === "right" ? "right-[-10px]" : ""} ${
-          side === "back" ? "bottom-[-10px]" : ""
+        className={`absolute h-[54px] w-[54px] z-[100]  ${side === "front" ? "bottom-[-9px]" : ""} ${side === "left" ? "left-[-9px]" : ""} ${side === "right" ? "right-[-9px]" : ""} ${
+          side === "back" ? "bottom-[-9px]" : ""
         }`}
       />
     </div>

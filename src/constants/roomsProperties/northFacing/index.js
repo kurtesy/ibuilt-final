@@ -1340,12 +1340,12 @@ function generateTypeA() {
     setTimeout(() => {
       store.dispatch(
         updateRoomData({
-          id: 'nw',
-          roomType: 'stairCase',
+          id: "nw",
+          roomType: "stairCase",
           length: staircaseLength,
           breadth: stairCaseBreadth
         })
-      )
+      );
 
       store.dispatch(
         updateRoomData({

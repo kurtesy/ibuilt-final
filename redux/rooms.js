@@ -558,6 +558,9 @@ const roomsSlice = createSlice({
         if (action.payload.rotated !== undefined) {
           currentStaircase.rotated = action.payload.rotated;
         }
+        if(action.payload.placement){
+          currentStaircase.placement=action.payload.placement;
+        }
 
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
@@ -1067,17 +1070,17 @@ const roomsSlice = createSlice({
       }
     },
     updateWall: (state, action) => {
-      const { id } = action.payload
-      const currentRoomType = id.split('-')[0]
-      const currentDirection = id.split('-')[1]
-      const currentWallSide = id.split('-')[2]
+      const { id } = action.payload;
+      const currentRoomType = id.split("-")[0];
+      const currentDirection = id.split("-")[1];
+      const currentWallSide = id.split("-")[2];
       //BED
       if (currentRoomType === "bedroom") {
-        const currentBedroomIndex = state.bedRooms.findIndex((room) => room.id === currentDirection);
-        const currentBedroom = { ...state.bedRooms[currentBedroomIndex] };
-        const currentWallIndex = currentBedroom.walls.findIndex((wall) => wall.side === currentWallSide);
-        const currentWall = { ...currentBedroom.walls[currentWallIndex] };
-        const filteredWalls = currentBedroom.walls.filter((wall) => wall.side !== currentWallSide);
+        const currentRoomIndex = state.bedRooms.findIndex((room) => room.id === currentDirection);
+        const currentRoom = { ...state.bedRooms[currentRoomIndex] };
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentRoom.walls[currentWallIndex] };
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide);
 
         if (action.payload.hasOpening !== undefined) {
           currentWall.opening.includes = action.payload.hasOpening;
@@ -1097,89 +1100,67 @@ const roomsSlice = createSlice({
 
         if (action.payload.openingPosition !== undefined) {
           const { openingPosition } = action.payload;
-          let pos;
-          if (currentWallSide === "front" || currentWallSide === "back") {
-            pos = { right: parseInt(openingPosition) };
-          } else {
-            pos = { top: parseInt(openingPosition) };
-          }
-          currentWall.opening.position = pos;
+          currentWall.door.position = openingPosition;
         }
 
         if (action.payload.doorPosition !== undefined) {
-          console.log(action.payload.doorPosition);
           const { doorPosition } = action.payload;
           currentWall.door.position = doorPosition;
-        }
-
-        if (action.payload.doorPosition !== undefined) {
-          const { doorRotation } = action.payload;
-          currentWall.door.rotation = doorRotation;
         }
 
         filteredWalls.splice(currentWallIndex, 0, currentWall);
 
-        currentBedroom.walls = filteredWalls;
+        currentRoom.walls = filteredWalls;
 
-        const updatedBedrooms = [...state.bedRooms];
-        updatedBedrooms.splice(currentBedroomIndex, 1, currentBedroom);
+        const updatedRooms = [...state.bedRooms];
+        updatedRooms.splice(currentRoomIndex, 1, currentRoom);
 
-        state.bedRooms = updatedBedrooms;
+        state.bedRooms = updatedRooms;
       }
-
-      // LIVING
+      //LIVING
       if (currentRoomType === "living") {
-        const currentLivingRoom = state.livingRooms.filter((room) => room.id === currentDirection)[0];
-        const currentWall = currentLivingRoom.walls.filter((wall) => wall.side == currentWallSide)[0];
-        const filteredWalls = currentLivingRoom.walls.filter((wall) => wall.side !== currentWallSide);
+        const currentRoomIndex = state.livingRooms.findIndex((room) => room.id === currentDirection);
+        const currentRoom = { ...state.livingRooms[currentRoomIndex] };
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentRoom.walls[currentWallIndex] };
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide);
+
         if (action.payload.hasOpening !== undefined) {
-          // opening.includes
           currentWall.opening.includes = action.payload.hasOpening;
-          filteredWalls.push(currentWall);
-          currentLivingRoom.walls = filteredWalls;
         }
+
         if (action.payload.hasDoor !== undefined) {
-          // opening.includes
           currentWall.door.includes = action.payload.hasDoor;
-          filteredWalls.push(currentWall);
-          currentLivingRoom.walls = filteredWalls;
         }
+
         if (action.payload.hasWindow !== undefined) {
           currentWall.window.includes = action.payload.hasWindow;
-          filteredWalls.push(currentWall);
-          currentLivingRoom.walls = filteredWalls;
         }
+
         if (action.payload.openingLength !== undefined) {
           currentWall.opening.length = parseFloat(action.payload.openingLength);
-          filteredWalls.push(currentWall);
-          currentLivingRoom.walls = filteredWalls;
         }
+
         if (action.payload.openingPosition !== undefined) {
           const { openingPosition } = action.payload;
-          let pos;
-          if (currentWallSide === "front" || currentWallSide === "back") {
-            pos = { right: parseInt(openingPosition) };
-          } else {
-            pos = { top: parseInt(openingPosition) };
-          }
-          currentWall.opening.position = pos;
-          filteredWalls.push(currentWall);
-          currentLivingRoom.walls = filteredWalls;
+          currentWall.door.position = openingPosition;
         }
+
         if (action.payload.doorPosition !== undefined) {
-          console.log(action.payload.doorPosition);
           const { doorPosition } = action.payload;
           currentWall.door.position = doorPosition;
-          filteredWalls.push(currentWall);
-          currentLivingRoom.walls = filteredWalls;
         }
 
-        state.livingRooms = state.livingRooms.filter((room) => room.id !== currentDirection);
+        filteredWalls.splice(currentWallIndex, 0, currentWall);
 
-        state.livingRooms.push(currentLivingRoom);
+        currentRoom.walls = filteredWalls;
+
+        const updatedRooms = [...state.livingRooms];
+        updatedRooms.splice(currentRoomIndex, 1, currentRoom);
+
+        state.livingRooms = updatedRooms;
       }
-
-      //TOILET
+      //TOILETS
       if (currentRoomType === "toilet") {
         const currentRoomIndex = state.toilets.findIndex((room) => room.id === currentDirection);
         const currentRoom = { ...state.toilets[currentRoomIndex] };
@@ -1205,17 +1186,10 @@ const roomsSlice = createSlice({
 
         if (action.payload.openingPosition !== undefined) {
           const { openingPosition } = action.payload;
-          let pos;
-          if (currentWallSide === "front" || currentWallSide === "back") {
-            pos = { right: parseInt(openingPosition) };
-          } else {
-            pos = { top: parseInt(openingPosition) };
-          }
-          currentWall.opening.position = pos;
+          currentWall.door.position = openingPosition;
         }
 
         if (action.payload.doorPosition !== undefined) {
-          console.log(action.payload.doorPosition);
           const { doorPosition } = action.payload;
           currentWall.door.position = doorPosition;
         }
@@ -1229,381 +1203,458 @@ const roomsSlice = createSlice({
 
         state.toilets = updatedRooms;
       }
+      // EXTRA BATHS
+      if (currentRoomType === "extraBath") {
+        const currentRoomIndex = state.baths.findIndex((room) => room.id === currentDirection);
+        const currentRoom = { ...state.baths[currentRoomIndex] };
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentRoom.walls[currentWallIndex] };
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide);
+
+        if (action.payload.hasOpening !== undefined) {
+          currentWall.opening.includes = action.payload.hasOpening;
+        }
+
+        if (action.payload.hasDoor !== undefined) {
+          currentWall.door.includes = action.payload.hasDoor;
+        }
+
+        if (action.payload.hasWindow !== undefined) {
+          currentWall.window.includes = action.payload.hasWindow;
+        }
+
+        if (action.payload.openingLength !== undefined) {
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+        }
+
+        if (action.payload.openingPosition !== undefined) {
+          const { openingPosition } = action.payload;
+          currentWall.door.position = openingPosition;
+        }
+
+        if (action.payload.doorPosition !== undefined) {
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+        }
+
+        filteredWalls.splice(currentWallIndex, 0, currentWall);
+
+        currentRoom.walls = filteredWalls;
+
+        const updatedRooms = [...state.baths];
+        updatedRooms.splice(currentRoomIndex, 1, currentRoom);
+
+        state.baths = updatedRooms;
+      }
+      // EXTRA SITOUTS
+      if (currentRoomType === "extraSitout") {
+        const currentRoomIndex = state.sitouts.findIndex((room) => room.id === currentDirection);
+        const currentRoom = { ...state.sitouts[currentRoomIndex] };
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentRoom.walls[currentWallIndex] };
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide);
+
+        if (action.payload.hasOpening !== undefined) {
+          currentWall.opening.includes = action.payload.hasOpening;
+        }
+
+        if (action.payload.hasDoor !== undefined) {
+          currentWall.door.includes = action.payload.hasDoor;
+        }
+
+        if (action.payload.hasWindow !== undefined) {
+          currentWall.window.includes = action.payload.hasWindow;
+        }
+
+        if (action.payload.openingLength !== undefined) {
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+        }
+
+        if (action.payload.openingPosition !== undefined) {
+          const { openingPosition } = action.payload;
+          currentWall.door.position = openingPosition;
+        }
+
+        if (action.payload.doorPosition !== undefined) {
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+        }
+
+        filteredWalls.splice(currentWallIndex, 0, currentWall);
+
+        currentRoom.walls = filteredWalls;
+
+        const updatedRooms = [...state.sitouts];
+        updatedRooms.splice(currentRoomIndex, 1, currentRoom);
+
+        state.sitouts = updatedRooms;
+      }
+      // CORRIDOR
+      if (currentRoomType === "corridor") {
+        const currentRoomIndex = state.corridors.findIndex((room) => room.id === currentDirection);
+        const currentRoom = { ...state.corridors[currentRoomIndex] };
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentRoom.walls[currentWallIndex] };
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide);
+
+        if (action.payload.hasOpening !== undefined) {
+          currentWall.opening.includes = action.payload.hasOpening;
+        }
+
+        if (action.payload.hasDoor !== undefined) {
+          currentWall.door.includes = action.payload.hasDoor;
+        }
+
+        if (action.payload.hasWindow !== undefined) {
+          currentWall.window.includes = action.payload.hasWindow;
+        }
+
+        if (action.payload.openingLength !== undefined) {
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+        }
+
+        if (action.payload.openingPosition !== undefined) {
+          const { openingPosition } = action.payload;
+          currentWall.door.position = openingPosition;
+        }
+
+        if (action.payload.doorPosition !== undefined) {
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+        }
+
+        filteredWalls.splice(currentWallIndex, 0, currentWall);
+
+        currentRoom.walls = filteredWalls;
+
+        const updatedRooms = [...state.corridors];
+        updatedRooms.splice(currentRoomIndex, 1, currentRoom);
+
+        state.corridors = updatedRooms;
+      }
+      // COMMON TOILET
+      if (currentRoomType === "commonToilet") {
+        const currentRoom = state.commonToilet;
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentRoom.walls[currentWallIndex] };
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide);
+
+        if (action.payload.hasOpening !== undefined) {
+          currentWall.opening.includes = action.payload.hasOpening;
+        }
+
+        if (action.payload.hasDoor !== undefined) {
+          currentWall.door.includes = action.payload.hasDoor;
+        }
+
+        if (action.payload.hasWindow !== undefined) {
+          currentWall.window.includes = action.payload.hasWindow;
+        }
+
+        if (action.payload.openingLength !== undefined) {
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+        }
+
+        if (action.payload.openingPosition !== undefined) {
+          const { openingPosition } = action.payload;
+          currentWall.door.position = openingPosition;
+        }
+
+        if (action.payload.doorPosition !== undefined) {
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+        }
+        filteredWalls.splice(currentWallIndex, 0, currentWall);
+        currentRoom.walls = filteredWalls;
+        state.commonToilet = currentRoom;
+      }
+      // KITCHEN
       if (currentRoomType === "kitchen") {
-        const currentKitchen = state.kitchen;
-        const currentWall = currentKitchen.walls.filter((wall) => wall.side == currentWallSide)[0];
-        const filteredWalls = currentKitchen.walls.filter((wall) => wall.side !== currentWallSide);
+        const currentRoom = state.kitchen;
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentRoom.walls[currentWallIndex] };
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide);
+
         if (action.payload.hasOpening !== undefined) {
-          // opening.includes
           currentWall.opening.includes = action.payload.hasOpening;
-          filteredWalls.push(currentWall);
-          currentKitchen.walls = filteredWalls;
         }
+
         if (action.payload.hasDoor !== undefined) {
-          // opening.includes
           currentWall.door.includes = action.payload.hasDoor;
-          filteredWalls.push(currentWall);
-          currentKitchen.walls = filteredWalls;
         }
+
         if (action.payload.hasWindow !== undefined) {
           currentWall.window.includes = action.payload.hasWindow;
-          filteredWalls.push(currentWall);
-          currentKitchen.walls = filteredWalls;
         }
+
         if (action.payload.openingLength !== undefined) {
           currentWall.opening.length = parseFloat(action.payload.openingLength);
-          filteredWalls.push(currentWall);
-          currentKitchen.walls = filteredWalls;
         }
+
         if (action.payload.openingPosition !== undefined) {
           const { openingPosition } = action.payload;
-          let pos;
-          if (currentWallSide === "front" || currentWallSide === "back") {
-            pos = { right: parseInt(openingPosition) };
-          } else {
-            pos = { top: parseInt(openingPosition) };
-          }
-          currentWall.opening.position = pos;
-          filteredWalls.push(currentWall);
-          currentKitchen.walls = filteredWalls;
+          currentWall.door.position = openingPosition;
         }
+
         if (action.payload.doorPosition !== undefined) {
-          console.log(action.payload.doorPosition);
           const { doorPosition } = action.payload;
           currentWall.door.position = doorPosition;
-          filteredWalls.push(currentWall);
-          currentKitchen.walls = filteredWalls;
         }
-        state.kitchen = currentKitchen;
+        filteredWalls.splice(currentWallIndex, 0, currentWall);
+        currentRoom.walls = filteredWalls;
+        state.kitchen = currentRoom;
       }
-      if (currentRoomType === "utility") {
-        const currentUtility = state.utility;
-        const currentWall = currentUtility.walls.filter((wall) => wall.side == currentWallSide)[0];
-        const filteredWalls = currentUtility.walls.filter((wall) => wall.side !== currentWallSide);
-        if (action.payload.hasOpening !== undefined) {
-          // opening.includes
-          currentWall.opening.includes = action.payload.hasOpening;
-          filteredWalls.push(currentWall);
-          currentUtility.walls = filteredWalls;
-        }
-        if (action.payload.hasDoor !== undefined) {
-          // opening.includes
-          currentWall.door.includes = action.payload.hasDoor;
-          filteredWalls.push(currentWall);
-          currentUtility.walls = filteredWalls;
-        }
-        if (action.payload.hasWindow !== undefined) {
-          currentWall.window.includes = action.payload.hasWindow;
-          filteredWalls.push(currentWall);
-          currentUtility.walls = filteredWalls;
-        }
-        if (action.payload.openingLength !== undefined) {
-          currentWall.opening.length = parseFloat(action.payload.openingLength);
-          filteredWalls.push(currentWall);
-          currentUtility.walls = filteredWalls;
-        }
-        if (action.payload.openingPosition !== undefined) {
-          const { openingPosition } = action.payload;
-          let pos;
-          if (currentWallSide === "front" || currentWallSide === "back") {
-            pos = { right: parseInt(openingPosition) };
-          } else {
-            pos = { top: parseInt(openingPosition) };
-          }
-          currentWall.opening.position = pos;
-          filteredWalls.push(currentWall);
-          currentUtility.walls = filteredWalls;
-        }
-        if (action.payload.doorPosition !== undefined) {
-          console.log(action.payload.doorPosition);
-          const { doorPosition } = action.payload;
-          currentWall.door.position = doorPosition;
-          filteredWalls.push(currentWall);
-          currentUtility.walls = filteredWalls;
-        }
-        state.utility = currentUtility;
-      }
-      if (currentRoomType === "store") {
-        const currentStore = state.store;
-        const currentWall = currentStore.walls.filter((wall) => wall.side == currentWallSide)[0];
-        const filteredWalls = currentStore.walls.filter((wall) => wall.side !== currentWallSide);
-        if (action.payload.hasOpening !== undefined) {
-          // opening.includes
-          currentWall.opening.includes = action.payload.hasOpening;
-          filteredWalls.push(currentWall);
-          currentStore.walls = filteredWalls;
-        }
-        if (action.payload.hasDoor !== undefined) {
-          // opening.includes
-          currentWall.door.includes = action.payload.hasDoor;
-          filteredWalls.push(currentWall);
-          currentStore.walls = filteredWalls;
-        }
-        if (action.payload.hasWindow !== undefined) {
-          currentWall.window.includes = action.payload.hasWindow;
-          filteredWalls.push(currentWall);
-          currentStore.walls = filteredWalls;
-        }
-        if (action.payload.openingLength !== undefined) {
-          currentWall.opening.length = parseFloat(action.payload.openingLength);
-          filteredWalls.push(currentWall);
-          currentStore.walls = filteredWalls;
-        }
-        if (action.payload.openingPosition !== undefined) {
-          const { openingPosition } = action.payload;
-          let pos;
-          if (currentWallSide === "front" || currentWallSide === "back") {
-            pos = { right: parseInt(openingPosition) };
-          } else {
-            pos = { top: parseInt(openingPosition) };
-          }
-          currentWall.opening.position = pos;
-          filteredWalls.push(currentWall);
-          currentStore.walls = filteredWalls;
-        }
-        if (action.payload.doorPosition !== undefined) {
-          console.log(action.payload.doorPosition);
-          const { doorPosition } = action.payload;
-          currentWall.door.position = doorPosition;
-          filteredWalls.push(currentWall);
-          currentStore.walls = filteredWalls;
-        }
-        state.store = currentStore;
-      }
-      if (currentRoomType === "dining") {
-        const currentDining = state.dining;
-        const currentWall = currentDining.walls.filter((wall) => wall.side == currentWallSide)[0];
-        const filteredWalls = currentDining.walls.filter((wall) => wall.side !== currentWallSide);
-        if (action.payload.hasOpening !== undefined) {
-          // opening.includes
-          currentWall.opening.includes = action.payload.hasOpening;
-          filteredWalls.push(currentWall);
-          currentDining.walls = filteredWalls;
-        }
-        if (action.payload.hasDoor !== undefined) {
-          // opening.includes
-          currentWall.door.includes = action.payload.hasDoor;
-          filteredWalls.push(currentWall);
-          currentDining.walls = filteredWalls;
-        }
-        if (action.payload.hasWindow !== undefined) {
-          currentWall.window.includes = action.payload.hasWindow;
-          filteredWalls.push(currentWall);
-          currentDining.walls = filteredWalls;
-        }
-        if (action.payload.openingLength !== undefined) {
-          currentWall.opening.length = parseFloat(action.payload.openingLength);
-          filteredWalls.push(currentWall);
-          currentDining.walls = filteredWalls;
-        }
-        if (action.payload.openingPosition !== undefined) {
-          const { openingPosition } = action.payload;
-          let pos;
-          if (currentWallSide === "front" || currentWallSide === "back") {
-            pos = { right: parseInt(openingPosition) };
-          } else {
-            pos = { top: parseInt(openingPosition) };
-          }
-          currentWall.opening.position = pos;
-          filteredWalls.push(currentWall);
-          currentDining.walls = filteredWalls;
-        }
-        if (action.payload.doorPosition !== undefined) {
-          console.log(action.payload.doorPosition);
-          const { doorPosition } = action.payload;
-          currentWall.door.position = doorPosition;
-          filteredWalls.push(currentWall);
-          currentDining.walls = filteredWalls;
-        }
-        state.dining = currentDining;
-      }
-      if (currentRoomType === "drawing") {
-        const currentDrawing = state.drawing;
-        const currentWall = currentDrawing.walls.filter((wall) => wall.side == currentWallSide)[0];
-        const filteredWalls = currentDrawing.walls.filter((wall) => wall.side !== currentWallSide);
-        if (action.payload.hasOpening !== undefined) {
-          // opening.includes
-          currentWall.opening.includes = action.payload.hasOpening;
-          filteredWalls.push(currentWall);
-          currentDrawing.walls = filteredWalls;
-        }
-        if (action.payload.hasDoor !== undefined) {
-          // opening.includes
-          currentWall.door.includes = action.payload.hasDoor;
-          filteredWalls.push(currentWall);
-          currentDrawing.walls = filteredWalls;
-        }
-        if (action.payload.hasWindow !== undefined) {
-          currentWall.window.includes = action.payload.hasWindow;
-          filteredWalls.push(currentWall);
-          currentDrawing.walls = filteredWalls;
-        }
-        if (action.payload.openingLength !== undefined) {
-          currentWall.opening.length = parseFloat(action.payload.openingLength);
-          filteredWalls.push(currentWall);
-          currentDrawing.walls = filteredWalls;
-        }
-        if (action.payload.openingPosition !== undefined) {
-          const { openingPosition } = action.payload;
-          let pos;
-          if (currentWallSide === "front" || currentWallSide === "back") {
-            pos = { right: parseInt(openingPosition) };
-          } else {
-            pos = { top: parseInt(openingPosition) };
-          }
-          currentWall.opening.position = pos;
-          filteredWalls.push(currentWall);
-          currentDrawing.walls = filteredWalls;
-        }
-        if (action.payload.doorPosition !== undefined) {
-          console.log(action.payload.doorPosition);
-          const { doorPosition } = action.payload;
-          currentWall.door.position = doorPosition;
-          filteredWalls.push(currentWall);
-          currentDrawing.walls = filteredWalls;
-        }
-        state.drawing = currentDrawing;
-      }
+      // POOJA
       if (currentRoomType === "pooja") {
-        const currentPooja = state.pooja;
-        const currentWall = currentPooja.walls.filter((wall) => wall.side == currentWallSide)[0];
-        const filteredWalls = currentPooja.walls.filter((wall) => wall.side !== currentWallSide);
+        const currentRoom = state.pooja;
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentRoom.walls[currentWallIndex] };
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide);
+
         if (action.payload.hasOpening !== undefined) {
-          // opening.includes
           currentWall.opening.includes = action.payload.hasOpening;
-          filteredWalls.push(currentWall);
-          currentPooja.walls = filteredWalls;
         }
+
         if (action.payload.hasDoor !== undefined) {
-          // opening.includes
           currentWall.door.includes = action.payload.hasDoor;
-          filteredWalls.push(currentWall);
-          currentPooja.walls = filteredWalls;
         }
+
         if (action.payload.hasWindow !== undefined) {
           currentWall.window.includes = action.payload.hasWindow;
-          filteredWalls.push(currentWall);
-          currentPooja.walls = filteredWalls;
         }
+
         if (action.payload.openingLength !== undefined) {
           currentWall.opening.length = parseFloat(action.payload.openingLength);
-          filteredWalls.push(currentWall);
-          currentPooja.walls = filteredWalls;
         }
+
         if (action.payload.openingPosition !== undefined) {
           const { openingPosition } = action.payload;
-          let pos;
-          if (currentWallSide === "front" || currentWallSide === "back") {
-            pos = { right: parseInt(openingPosition) };
-          } else {
-            pos = { top: parseInt(openingPosition) };
-          }
-          currentWall.opening.position = pos;
-          filteredWalls.push(currentWall);
-          currentPooja.walls = filteredWalls;
+          currentWall.door.position = openingPosition;
         }
+
         if (action.payload.doorPosition !== undefined) {
-          console.log(action.payload.doorPosition);
           const { doorPosition } = action.payload;
           currentWall.door.position = doorPosition;
-          filteredWalls.push(currentWall);
-          currentPooja.walls = filteredWalls;
         }
-        state.pooja = currentPooja;
+        filteredWalls.splice(currentWallIndex, 0, currentWall);
+        currentRoom.walls = filteredWalls;
+        state.pooja = currentRoom;
       }
-      if (currentRoomType === "sitout") {
-        const currentSitout = state.sitout;
-        const currentWall = currentSitout.walls.filter((wall) => wall.side == currentWallSide)[0];
-        const filteredWalls = currentSitout.walls.filter((wall) => wall.side !== currentWallSide);
+      // DINING
+      if (currentRoomType === "dining") {
+        const currentRoom = state.dining;
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentRoom.walls[currentWallIndex] };
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide);
+
         if (action.payload.hasOpening !== undefined) {
-          // opening.includes
           currentWall.opening.includes = action.payload.hasOpening;
-          filteredWalls.push(currentWall);
-          currentSitout.walls = filteredWalls;
         }
+
         if (action.payload.hasDoor !== undefined) {
-          // opening.includes
           currentWall.door.includes = action.payload.hasDoor;
-          filteredWalls.push(currentWall);
-          currentSitout.walls = filteredWalls;
         }
+
         if (action.payload.hasWindow !== undefined) {
           currentWall.window.includes = action.payload.hasWindow;
-          filteredWalls.push(currentWall);
-          currentSitout.walls = filteredWalls;
         }
+
         if (action.payload.openingLength !== undefined) {
           currentWall.opening.length = parseFloat(action.payload.openingLength);
-          filteredWalls.push(currentWall);
-          currentSitout.walls = filteredWalls;
         }
+
         if (action.payload.openingPosition !== undefined) {
           const { openingPosition } = action.payload;
-          let pos;
-          if (currentWallSide === "front" || currentWallSide === "back") {
-            pos = { right: parseInt(openingPosition) };
-          } else {
-            pos = { top: parseInt(openingPosition) };
-          }
-          currentWall.opening.position = pos;
-          filteredWalls.push(currentWall);
-          currentSitout.walls = filteredWalls;
+          currentWall.door.position = openingPosition;
         }
+
         if (action.payload.doorPosition !== undefined) {
-          console.log(action.payload.doorPosition);
           const { doorPosition } = action.payload;
           currentWall.door.position = doorPosition;
-          filteredWalls.push(currentWall);
-          currentSitout.walls = filteredWalls;
         }
-        state.sitout = currentSitout;
+        filteredWalls.splice(currentWallIndex, 0, currentWall);
+        currentRoom.walls = filteredWalls;
+        state.dining = currentRoom;
       }
+      // DRAWING
+      if (currentRoomType === "drawing") {
+        const currentRoom = state.drawing;
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentRoom.walls[currentWallIndex] };
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide);
+
+        if (action.payload.hasOpening !== undefined) {
+          currentWall.opening.includes = action.payload.hasOpening;
+        }
+
+        if (action.payload.hasDoor !== undefined) {
+          currentWall.door.includes = action.payload.hasDoor;
+        }
+
+        if (action.payload.hasWindow !== undefined) {
+          currentWall.window.includes = action.payload.hasWindow;
+        }
+
+        if (action.payload.openingLength !== undefined) {
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+        }
+
+        if (action.payload.openingPosition !== undefined) {
+          const { openingPosition } = action.payload;
+          currentWall.door.position = openingPosition;
+        }
+
+        if (action.payload.doorPosition !== undefined) {
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+        }
+        filteredWalls.splice(currentWallIndex, 0, currentWall);
+        currentRoom.walls = filteredWalls;
+        state.drawing = currentRoom;
+      }
+      // KITCHEN
+      if (currentRoomType === "utility") {
+        const currentRoom = state.utility;
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentRoom.walls[currentWallIndex] };
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide);
+
+        if (action.payload.hasOpening !== undefined) {
+          currentWall.opening.includes = action.payload.hasOpening;
+        }
+
+        if (action.payload.hasDoor !== undefined) {
+          currentWall.door.includes = action.payload.hasDoor;
+        }
+
+        if (action.payload.hasWindow !== undefined) {
+          currentWall.window.includes = action.payload.hasWindow;
+        }
+
+        if (action.payload.openingLength !== undefined) {
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+        }
+
+        if (action.payload.openingPosition !== undefined) {
+          const { openingPosition } = action.payload;
+          currentWall.door.position = openingPosition;
+        }
+
+        if (action.payload.doorPosition !== undefined) {
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+        }
+        filteredWalls.splice(currentWallIndex, 0, currentWall);
+        currentRoom.walls = filteredWalls;
+        state.utility = currentRoom;
+      }
+      // PARKING
       if (currentRoomType === "parking") {
-        const currentParking = state.parking;
-        const currentWall = currentParking.walls.filter((wall) => wall.side == currentWallSide)[0];
-        const filteredWalls = currentParking.walls.filter((wall) => wall.side !== currentWallSide);
+        const currentRoom = state.parking;
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentRoom.walls[currentWallIndex] };
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide);
+
         if (action.payload.hasOpening !== undefined) {
-          // opening.includes
           currentWall.opening.includes = action.payload.hasOpening;
-          filteredWalls.push(currentWall);
-          currentParking.walls = filteredWalls;
         }
+
         if (action.payload.hasDoor !== undefined) {
-          // opening.includes
           currentWall.door.includes = action.payload.hasDoor;
-          filteredWalls.push(currentWall);
-          currentParking.walls = filteredWalls;
         }
+
         if (action.payload.hasWindow !== undefined) {
           currentWall.window.includes = action.payload.hasWindow;
-          filteredWalls.push(currentWall);
-          currentParking.walls = filteredWalls;
         }
+
         if (action.payload.openingLength !== undefined) {
           currentWall.opening.length = parseFloat(action.payload.openingLength);
-          filteredWalls.push(currentWall);
-          currentParking.walls = filteredWalls;
         }
+
         if (action.payload.openingPosition !== undefined) {
           const { openingPosition } = action.payload;
-          let pos;
-          if (currentWallSide === "front" || currentWallSide === "back") {
-            pos = { right: parseInt(openingPosition) };
-          } else {
-            pos = { top: parseInt(openingPosition) };
-          }
-          currentWall.opening.position = pos;
-          filteredWalls.push(currentWall);
-          currentParking.walls = filteredWalls;
+          currentWall.door.position = openingPosition;
         }
+
         if (action.payload.doorPosition !== undefined) {
-          console.log(action.payload.doorPosition);
           const { doorPosition } = action.payload;
           currentWall.door.position = doorPosition;
-          filteredWalls.push(currentWall);
-          currentSitout.walls = filteredWalls;
         }
-        state.parking = currentParking;
+        filteredWalls.splice(currentWallIndex, 0, currentWall);
+        currentRoom.walls = filteredWalls;
+        state.parking = currentRoom;
+      }
+      // Staircase
+      if (currentRoomType === "stairCase") {
+        const currentRoom = state.stairCase;
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentRoom.walls[currentWallIndex] };
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide);
+
+        if (action.payload.hasOpening !== undefined) {
+          currentWall.opening.includes = action.payload.hasOpening;
+        }
+
+        if (action.payload.hasDoor !== undefined) {
+          currentWall.door.includes = action.payload.hasDoor;
+        }
+
+        if (action.payload.hasWindow !== undefined) {
+          currentWall.window.includes = action.payload.hasWindow;
+        }
+
+        if (action.payload.openingLength !== undefined) {
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+        }
+
+        if (action.payload.openingPosition !== undefined) {
+          const { openingPosition } = action.payload;
+          currentWall.door.position = openingPosition;
+        }
+
+        if (action.payload.doorPosition !== undefined) {
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+        }
+        filteredWalls.splice(currentWallIndex, 0, currentWall);
+        currentRoom.walls = filteredWalls;
+        state.stairCase = currentRoom;
+      }
+      // Media
+      if (currentRoomType === "media") {
+        const currentRoom = state.media;
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentRoom.walls[currentWallIndex] };
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide);
+
+        if (action.payload.hasOpening !== undefined) {
+          currentWall.opening.includes = action.payload.hasOpening;
+        }
+
+        if (action.payload.hasDoor !== undefined) {
+          currentWall.door.includes = action.payload.hasDoor;
+        }
+
+        if (action.payload.hasWindow !== undefined) {
+          currentWall.window.includes = action.payload.hasWindow;
+        }
+
+        if (action.payload.openingLength !== undefined) {
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+        }
+
+        if (action.payload.openingPosition !== undefined) {
+          const { openingPosition } = action.payload;
+          currentWall.door.position = openingPosition;
+        }
+
+        if (action.payload.doorPosition !== undefined) {
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+        }
+        filteredWalls.splice(currentWallIndex, 0, currentWall);
+        currentRoom.walls = filteredWalls;
+        state.media = currentRoom;
       }
     },
     setSelectedWall: (state, action) => {

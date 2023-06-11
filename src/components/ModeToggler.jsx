@@ -10,21 +10,13 @@ export default function ModeToggler() {
     dispatch(setDarkMode({ mode: isDarkMode }))
   }, [isDarkMode])
   return (
-    <div className='absolute top-28 right-4 flex flex-col items-center'>
+    <div className=' flex flex-col items-center'>
       {darkMode ? (
-        <BsMoonFill
-          size={24}
-          className='text-white cursor-pointer hover:scale-125 hover:rotate-180 duration-700 ease-in-out'
-          onClick={() => setIsDarkMode((prev) => !prev)}
-        />
+        <BsMoonFill size={24} className='text-blue-700 cursor-pointer hover:scale-125 hover:rotate-180 duration-700 ease-in-out' onClick={() => setIsDarkMode((prev) => !prev)} />
       ) : (
-        <BsSunFill
-          size={30}
-          className='text-slate-800 cursor-pointer hover:scale-125 hover:rotate-180 duration-700 ease-in-out'
-          onClick={() => setIsDarkMode((prev) => !prev)}
-        />
+        <BsSunFill size={30} className='text-white cursor-pointer hover:scale-125 hover:rotate-180 duration-700 ease-in-out' onClick={() => setIsDarkMode((prev) => !prev)} />
       )}
-      <p className='text-xs my-2 font-semibold'>{darkMode ? 'DARK' : 'LIGHT'}</p>
+      <p className={`text-xs my-2 font-semibold ${darkMode ? "text-blue-700" : "text-white"}`}>{darkMode ? "DARK" : "LIGHT"}</p>
     </div>
-  )
+  );
 }

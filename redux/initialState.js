@@ -1980,6 +1980,7 @@ export const initialState = {
     rotated: 0,
     area: 0,
     position: { top: 0, right: 0 },
+    placement: "",
     walls: [
       {
         added: false,

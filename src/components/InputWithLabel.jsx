@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 export default function InputWithLabel({ label, value, setValue, min, max, disabled }) {
   return (
     <div className=' h-full py-1  items-center bg-slate-800 rounded-xl flex gap-3'>
-      <label className='capitalize text-primaryLime font-semibold'>{label}&nbsp;</label>
+      <label className='capitalize text-primaryLime font-semibold px-2'>{label}&nbsp;</label>
       <input
         className='w-[90px] h-full rounded-md outline-none px-3 '
         value={value}
@@ -15,10 +15,10 @@ export default function InputWithLabel({ label, value, setValue, min, max, disab
         onFocus={(e) => e.target.select()}
         disabled={disabled}
       />
-      {/* <select className='h-full bg-transparent text-primaryLime bg-slate-800 flex items-center justify-center font-semibold outline-none'>
-        <option className='bg-slate-800'>ft</option>
-        <option className='bg-slate-800'>m</option>
-      </select> */}
+      <div className='h-full w-full px-2  bg-transparent text-primaryLime bg-slate-800 flex items-center justify-center font-semibold outline-none'>
+        <div className='bg-slate-800'>ft</div>
+        {/* <option className='bg-slate-800'>m</option> */}
+      </div>
     </div>
   );
 }

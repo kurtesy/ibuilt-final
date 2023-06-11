@@ -69,8 +69,8 @@ export default function MultiSelectComponent({ isSiderOpen }) {
     { label: "Parking", value: "parking" },
     { label: "Media", value: "media" },
     { label: "Sitout", value: "sitout" },
-    { label: "Extra Sitout", value: "extraSitout" },
-    { label: "Extra Bath", value: "extraBath" },
+    { label: "Balcony", value: "extraSitout" },
+    { label: "Bath", value: "extraBath" },
     { label: "Corridor", value: "corridor" }
 
     // { label: 'Store', value: 'store' },
@@ -83,7 +83,7 @@ export default function MultiSelectComponent({ isSiderOpen }) {
   const [currentRoom, setCurrentRoom] = useState('')
   const [active, setActive] = useState(false)
   return (
-    <div className='flex relative'>
+    <div className='flex relative w-full'>
       <div className='flex flex-col w-full gap-3'>
         {options.map((room, index) => (
           <RoomandPositionSelector
@@ -145,5 +145,5 @@ export default function MultiSelectComponent({ isSiderOpen }) {
       </div> */}
       <div>{selectedRoom.roomType && <SubMenu roomType={selectedRoom.roomType} id={selectedRoom.id} />}</div>
     </div>
-  )
+  );
 }

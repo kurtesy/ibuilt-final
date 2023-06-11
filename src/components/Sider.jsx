@@ -38,17 +38,11 @@ export default function Sider({ isSiderOpen }) {
   return (
     <div
       className={`w-[400px] ease-in-out z-30 transition-all h-full p-3 flex flex-col gap-3 absolute scrollbar-thin scrollbar-thumb-primaryLime scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-track-slate-800 overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full top-0 ${
-        isSiderOpen ? 'left-0' : 'left-[-400px]'
-      } ${darkMode ? ' bg-slate-800' : 'bg-slate-200'}`}>
+        isSiderOpen ? "left-0" : "left-[-400px]"
+      } ${darkMode ? " bg-slate-900" : "bg-slate-800"}`}>
       {/* title */}
-      <div className='text-2xl font-semibold text-center bg-white rounded-full drop-shadow-2xl bg-gradient-to-r from-slate-800 to-lime-500 bg-clip-text text-transparent'>
-        iBuiltup
-      </div>
-      {premium && (
-        <div className='bg-yellow-300 text-slate-600 font-semibold w-auto absolute right-10 px-2 rounded-full'>
-          Premium
-        </div>
-      )}
+      <div className='text-2xl font-semibold text-center bg-white rounded-full w-full bg-gradient-to-r from-slate-800 to-lime-500 bg-clip-text text-transparent'>iBuiltup</div>
+      {premium && <div className='bg-yellow-300 text-slate-600 font-semibold w-auto absolute right-10 px-2 rounded-full'>Premium</div>}
       {!premium && <PremiumButton setPremium={setPremium} />}
       {premium && (
         <>
@@ -58,9 +52,7 @@ export default function Sider({ isSiderOpen }) {
               <button className='bg-red-400 px-6 py-3 rounded-md hover:scale-110 duration-300' onClick={createNewPlan}>
                 Create a New Plan
               </button>
-              <button
-                className='bg-green-400 px-6 py-3 rounded-md hover:scale-110 duration-300 '
-                onClick={handleEditPlan}>
+              <button className='bg-green-400 px-6 py-3 rounded-md hover:scale-110 duration-300 ' onClick={handleEditPlan}>
                 Edit Existing Plan
               </button>
             </div>
@@ -87,5 +79,5 @@ export default function Sider({ isSiderOpen }) {
         </>
       )}
     </div>
-  )
+  );
 }

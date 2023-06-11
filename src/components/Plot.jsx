@@ -78,22 +78,23 @@ export default function Plot({ isSiderOpen, plotref }) {
   }, [plotLength, plotBreadth, scale])
   return (
     <div
-      className={`z-40 shadow-2xl shadow-black absolute ${isSiderOpen ? "" : ""} ${darkMode ? "bg-white" : "bg-green-100"} `}
+      className={`z-40 shadow-xl shadow-black absolute ${isSiderOpen ? "" : ""} ${darkMode ? "bg-white" : "bg-green-100"} `}
       style={{ width: plotLength * scale, height: plotBreadth * scale, rotate: `${rotation}deg` }}
       // onWheel={handleWheel}
-      ref={plotref}>
+      ref={plotref}
+      id='plot'>
       {/* outer walls */}
       {/* top */}
       <div className='w-full h-[6px] bg-cyan-800 z-[65] absolute top-0 left-0 text-green-800'>
-        <div className='w-full flex items-center justify-center font-bold  absolute -top-5'>
+        <div className='w-full flex items-center justify-center  absolute -top-5'>
           <div>{facings[`${facing}`].opposite}</div>
         </div>
         <div className='h-[2px] absolute top-[-28px] bg-green-800' style={{ width: plotLength * scale }} />
 
-        <div className='w-full z-50 absolute  top-[-42px] font-bold flex items-center justify-center'>
-          <BsChevronBarLeft size={32} className='absolute left-[-16px] top-[-1px]' />
-          <BsChevronBarRight size={32} className='absolute right-[-16px] top-[-1px]' />
-          <div className='bg-white w-[72px] px-2 border-2 border-green-800'>{plotLength} ft</div>
+        <div className='w-full z-50 absolute  top-[-36px] font-bold flex items-center justify-center'>
+          {/* <BsChevronBarLeft size={32} className='absolute left-[-16px] top-[-1px]' /> */}
+          {/* <BsChevronBarRight size={32} className='absolute right-[-16px] top-[-1px]' /> */}
+          <div className='bg-white w-[90px] px-2 border-2 border-green-800 text-xs'>{plotLength} ft</div>
         </div>
       </div>
       {/* bottom */}
@@ -104,10 +105,10 @@ export default function Plot({ isSiderOpen, plotref }) {
         {setbacks.left != 0 && setbacks.right != 0 ? (
           <>
             <div className='h-[2px] absolute bottom-[-28px] bg-red-500' style={{ width: builtLength * scale, left: setbacks.left * scale }} />
-            <div className='w-full z-50 absolute  bottom-[-42px] font-bold flex items-center justify-center '>
+            <div className='w-full z-50 absolute  bottom-[-36px] font-bold flex items-center justify-center '>
               {/* <BsChevronBarLeft size={32} className='absolute left-[16px] bottom-[-1px]'/> */}
               {/* <BsChevronBarRight size={32} className='absolute right-[16px] bottom-[-1px]'/> */}
-              <div className='bg-white w-[90px] px-2 border-2 border-red-500 text-red-500 '>{builtLength} ft</div>
+              <div className='bg-white w-[90px] px-2 border-2 border-red-500 text-red-500 text-xs'>{builtLength} ft</div>
             </div>
           </>
         ) : null}
@@ -117,10 +118,10 @@ export default function Plot({ isSiderOpen, plotref }) {
       <div className='h-[calc(100%-12px)] w-[6px] bg-cyan-800 z-[65] absolute top-[6px] left-0 text-green-800'>
         <div className='w-[2px] absolute left-[-28px] bg-green-800' style={{ height: plotBreadth * scale }} />
 
-        <div className='h-full z-50 absolute  left-[-57px] font-bold flex items-center justify-center'>
-          <BsChevronBarUp size={32} className='absolute top-[-16px]' />
-          <BsChevronBarDown size={32} className='absolute bottom-[-26px]' />
-          <div className='-rotate-90 bg-white w-[60px] px-2 border-2 border-green-800'>{plotBreadth} ft</div>
+        <div className='h-full z-50 absolute  left-[-72px] font-bold flex items-center justify-center'>
+          {/* <BsChevronBarUp size={32} className='absolute top-[-16px] ' /> */}
+          {/* <BsChevronBarDown size={32} className='absolute bottom-[-27px]' /> */}
+          <div className='-rotate-90 bg-white w-[90px] px-2 border-2 border-green-800 text-xs'>{plotBreadth} ft</div>
         </div>
       </div>
       {/* right */}
@@ -129,10 +130,10 @@ export default function Plot({ isSiderOpen, plotref }) {
           <>
             <div className='w-[2px] absolute right-[-28px] bg-red-500' style={{ height: builtBreadth * scale, top: setbacks.back * scale }} />
 
-            <div className='h-full z-50 absolute  right-[-70px] font-bold flex items-center justify-center'>
+            <div className='h-full z-50 absolute  right-[-72px] font-bold flex items-center justify-center'>
               {/* <BsChevronBarUp size={32} className='absolute top-[16px] left-[31px]' /> */}
               {/* <BsChevronBarDown size={32} className='absolute bottom-[62px] left-[31px]'/> */}
-              <div className='-rotate-90 bg-white w-[90px] px-2 border-2 border-red-500'>{builtBreadth} ft</div>
+              <div className='-rotate-90 bg-white w-[90px] px-2 border-2 border-red-500 text-xs'>{builtBreadth} ft</div>
             </div>
           </>
         ) : null}

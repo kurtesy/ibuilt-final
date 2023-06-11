@@ -48,5 +48,5 @@ export default function SetbacksModal({ dimensions, setShow, setLoading }) {
         </button>
       </div>
     </div>
-  )
+  );
 }

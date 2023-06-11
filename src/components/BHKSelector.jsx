@@ -18,10 +18,7 @@ export default function BHKSelector() {
     <>
       <div className='flex gap-3 h-8 items-center bg-slate-800 text-primaryLime justify-between px-6 rounded-lg'>
         <label className='font-semibold text-lg'>Facing</label>
-        <select
-          className='font-semibold flex items-center justify-center text-white outline-none bg-transparent'
-          defaultValue='S'
-          onChange={handleFacingChange}>
+        <select className='font-semibold flex items-center justify-center text-white outline-none bg-transparent' defaultValue='N' onChange={handleFacingChange}>
           {/* <option className='bg-slate-800' value=''>
             Select Facing
           </option> */}
@@ -39,7 +36,7 @@ export default function BHKSelector() {
           </option>
         </select>
       </div>
-      <div className='flex gap-3 h-8 items-center bg-slate-800 text-primaryLime justify-between px-6 rounded-lg'>
+      {/* <div className='flex gap-3 h-8 items-center bg-slate-800 text-primaryLime justify-between px-6 rounded-lg'>
         <div className={selected === '1BHK' ? activeClass : null} onClick={() => setSelected('1BHK')}>
           1 BHK
         </div>
@@ -52,7 +49,7 @@ export default function BHKSelector() {
         <div className={selected === '4BHK' ? activeClass : null} onClick={() => setSelected('4BHK')}>
           4 BHK
         </div>
-      </div>
+      </div> */}
     </>
-  )
+  );
 }

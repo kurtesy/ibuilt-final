@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@progress/kendo-react-pdf": "^5.14.1",
+    "@react-pdf/renderer": "^3.1.12",
     "@reduxjs/toolkit": "^1.9.1",
     "antd": "^5.4.4",
     "json-2-csv": "^4.0.0",

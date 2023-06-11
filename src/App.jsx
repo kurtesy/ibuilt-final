@@ -27,7 +27,7 @@ export default function App() {
     dispatch(setDarkMode({ mode: isDarkMode }))
   }, [isDarkMode])
   return (
-    <div className={`w-screen h-screen flex `}>
+    <div className={`w-screen h-screen flex overflow-hidden ${darkMode ? "bg-slate-800" : ""}`}>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/auth' element={<Auth />}>
@@ -37,5 +37,5 @@ export default function App() {
         <Route path='/drawing' element={<Drawing />} />
       </Routes>
     </div>
-  )
+  );
 }

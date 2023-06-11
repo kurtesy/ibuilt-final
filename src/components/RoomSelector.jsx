@@ -22,26 +22,22 @@ export default function RoomSelector({
   }
   useEffect(() => {
     if (value === currentRoom) {
-      setSelected(true)
-    } else setSelected(false)
-  }, [id])
-  console.log('selected: ' + selected)
+      setSelected(true);
+    } else setSelected(false);
+  }, [id]);
   return (
     <div className='w-full flex items-center justify-start '>
-      <div className='w-full flex gap-2 items-center justify-start rounded-lg shadow-2xl'>
+      <div className='w-full flex gap-2 items-center justify-start rounded-lg'>
         <div
-          className={`flex gap-1 border-[1px] p-1 rounded-lg  w-[90px]  hover:bg-primaryLime ${
-            selected && currentRoom === value ? 'bg-primaryLime animate-pulse' : 'bg-slate-900'
+          className={`flex gap-1 border-[1px] border-primaryLime p-1 rounded-lg  w-[90px]  hover:bg-primaryLime ${
+            selected && currentRoom === value ? "bg-primaryLime animate-pulse" : "bg-slate-900"
           }`}>
-          <button
-            className='text-white bg-slate-900 px-2 flex items-center h-8 rounded-md shadow-xl text-xs w-[80px]'
-            name={value}
-            onClick={handleRoomSelect}>
+          <button className='text-white bg-slate-900 px-2 flex items-center h-8 rounded-md shadow-xl text-xs w-[80px]' name={value} onClick={handleRoomSelect}>
             {label}
           </button>
         </div>
         <PositionSelector currentRoom={currentRoom} rooms={rooms} id={id} />
       </div>
     </div>
-  )
+  );
 }

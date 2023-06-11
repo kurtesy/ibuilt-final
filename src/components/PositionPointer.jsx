@@ -18,8 +18,8 @@ export default function PositionPointer({ isBottom }) {
   if (facing)
     return (
       <div
-        className={`absolute h-90 bg-slate-900 flex  items-center justify-center text-primaryLime ${
-          isBottom ? 'right-12 bottom-2 gap-3 px-2 w-[120px] rounded-lg shadow-2xl' : ' right-2 top-16 flex-col'
+        className={`absolute z-50 h-90 bg-slate-900 flex  items-center justify-center text-primaryLime ${
+          isBottom ? "right-12 bottom-2 gap-3 px-2 w-[120px] rounded-lg shadow-2xl" : " right-0 top-16 flex-col"
         }`}>
         {!isBottom ? (
           <div className='flex px-2 '>
@@ -33,5 +33,5 @@ export default function PositionPointer({ isBottom }) {
           </>
         )}
       </div>
-    )
+    );
 }

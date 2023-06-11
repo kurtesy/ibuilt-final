@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   type: "2BHK",
-  facing: "S",
+  facing: "N",
   isGeneratingPlot: false,
   plotLength: 0, //45
   plotBreadth: 0,
