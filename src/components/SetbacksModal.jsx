@@ -18,7 +18,7 @@ export default function SetbacksModal({ dimensions, setShow, setLoading }) {
     updateSetbacks()
     setTimeout(() => {
       const { length, breadth } = dimensions
-      dispatch(setPlotDetails({ length, breadth }))
+      dispatch(setPlotDetails({ length: parseFloat(length).toFixed(2), breadth: parseFloat(breadth).toFixed(2) }));
       dispatch(toggleGeneratePlot({ isGenerating: true }))
       if (length && breadth) {
         setLoading(false)

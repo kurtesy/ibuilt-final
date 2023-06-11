@@ -12,63 +12,63 @@ export default function Kitchen({ id }) {
   const [length, setLength] = useState(6)
   const [breadth, setBreadth] = useState(10)
   const [rotation, setRotation] = useState(0)
-  const { scale, facing } = useSelector((state) => state.plot)
-  const { selectedRoom } = useSelector((state) => state.rooms)
-  const [style, setStyle] = useState({})
-  const [isActive, setIsActive] = useState(false)
+  const { scale, facing, icons } = useSelector((state) => state.plot);
+  const { selectedRoom } = useSelector((state) => state.rooms);
+  const [style, setStyle] = useState({});
+  const [isActive, setIsActive] = useState(false);
 
-  const dispatch = useDispatch()
-  const [hovered, setHovered] = useState(false)
+  const dispatch = useDispatch();
+  const [hovered, setHovered] = useState(false);
   const handleDelete = () => {
-    dispatch(removeRoomFromPlot({ position: id, roomType: 'kitchen' }))
-  }
+    dispatch(removeRoomFromPlot({ position: id, roomType: "kitchen" }));
+  };
   const makeStyle = () => {
-    const currStyle = {}
-    currStyle['width'] = Math.floor(length * scale)
-    currStyle['height'] = Math.floor(breadth * scale)
-    currStyle['rotate'] = `${rotation}deg`
+    const currStyle = {};
+    currStyle["width"] = Math.floor(length * scale);
+    currStyle["height"] = Math.floor(breadth * scale);
+    currStyle["rotate"] = `${rotation}deg`;
     if (isActive && selectedRoom.id === id) {
-      currStyle['zIndex'] = 42
-      currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
+      currStyle["zIndex"] = 40;
+      currStyle["backgroundColor"] = "#FFF";
     } else {
-      currStyle['zIndex'] = 10
-      currStyle['backgroundColor'] = '#FFEDFF'
+      currStyle["zIndex"] = 30;
+      currStyle["backgroundColor"] = icons ? "#FFF" : "#FFEDFF";
     }
-    setStyle({ ...currStyle, ...currentKitchen.position })
-  }
+    setStyle({ ...currStyle, ...currentKitchen.position });
+  };
 
   useEffect(() => {
-    setLength(currentKitchen?.length)
-    setBreadth(currentKitchen?.breadth)
-  }, [currentKitchen])
+    setLength(currentKitchen?.length);
+    setBreadth(currentKitchen?.breadth);
+  }, [currentKitchen]);
 
   const handleDeSelect = (e) => {
-    e.preventDefault()
-    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
-    setIsActive(false)
-  }
+    e.preventDefault();
+    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }));
+    setIsActive(false);
+  };
 
   useEffect(() => {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'kitchen',
+        roomType: "kitchen",
         position: positions[facing.toString()][id.toString()]
         // position: { bottom: 0, right: 0 }
       })
-    )
-  }, [facing])
+    );
+  }, [facing]);
   const handleClick = (e) => {
-    e.stopPropagation()
-    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'kitchen' }))
-    setIsActive(true)
-  }
+    e.stopPropagation();
+    dispatch(setSelectedRoomId({ selectedId: id, roomType: "kitchen" }));
+    setIsActive(true);
+  };
   useEffect(() => {
-    setRotation(currentKitchen.rotated)
-  }, [currentKitchen])
+    setRotation(currentKitchen.rotated);
+  }, [currentKitchen]);
   useEffect(() => {
-    makeStyle()
-  }, [length, breadth, location, selectedRoom, isActive, currentKitchen, facing])
+    makeStyle();
+  }, [length, breadth, location, selectedRoom, isActive, currentKitchen, facing, icons]);
 
   // useEffect(() => {
   //   dispatch(
@@ -89,9 +89,6 @@ export default function Kitchen({ id }) {
       onContextMenu={handleDeSelect}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}>
-      {selectedRoom.id && hovered && (
-        <AiFillCloseCircle size={32} className='text-red-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 top-0 z-[99]' onClick={handleDelete} />
-      )}
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold translate-x-[-50%] translate-y-[-50%]'>
         <p style={{ fontSize: Math.max(14, Math.min(currentKitchen.length, currentKitchen.breadth)) * 0.8 }}>
           KITCHEN - {id.toUpperCase()}
@@ -116,5 +113,5 @@ export default function Kitchen({ id }) {
         />
       ))}
     </div>
-  )
+  );
 }

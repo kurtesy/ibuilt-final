@@ -20,773 +20,870 @@ const roomsSlice = createSlice({
     },
     updateRoomData: (state, action) => {
       const { id, roomType } = action.payload
-      if (roomType === 'bedroom') {
-        const currentBedroom = state.bedRooms.filter((room) => room.id === id)[0]
+      if (roomType === "bedroom") {
+        const currentBedroom = state.bedRooms.filter((room) => room.id === id)[0];
         if (action.payload.icon !== undefined) {
-          currentBedroom.icons.push(icon)
+          currentBedroom.icons.push(icon);
         }
         if (action.payload.balcony !== undefined) {
-          currentBedroom.hasBalcony = action.payload.balcony
+          currentBedroom.hasBalcony = action.payload.balcony;
         }
         if (action.payload.wardrobe !== undefined) {
-          currentBedroom.hasWardrobe = action.payload.wardrobe
+          currentBedroom.hasWardrobe = action.payload.wardrobe;
         }
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentBedroom.length = parseFloat(action.payload.length).toFixed(2)
-          currentBedroom.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentBedroom.length = parseFloat(action.payload.length).toFixed(2);
+          currentBedroom.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentBedroom.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentBedroom.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
           //Front Wall
-          currentBedroom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentBedroom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentBedroom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentBedroom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentBedroom.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentBedroom.length = parseFloat(action.payload.length).toFixed(2)
-          currentBedroom.area = parseFloat(parseFloat(currentBedroom.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentBedroom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentBedroom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentBedroom.length = parseFloat(action.payload.length).toFixed(2);
+          currentBedroom.area = parseFloat(parseFloat(currentBedroom.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentBedroom.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentBedroom.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentBedroom.area = parseFloat(parseFloat(currentBedroom.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentBedroom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentBedroom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentBedroom.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentBedroom.area = parseFloat(parseFloat(currentBedroom.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentBedroom.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         if (action.payload.position) {
-          currentBedroom.position = action.payload.position
+          currentBedroom.position = action.payload.position;
         }
 
-        state.bedRooms = state.bedRooms.filter((room) => room.id !== id)
-        state.bedRooms.push(currentBedroom)
+        state.bedRooms = state.bedRooms.filter((room) => room.id !== id);
+        state.bedRooms.push(currentBedroom);
       }
-      if (roomType === 'toilet') {
+      if (roomType === "toilet") {
         // bathTypeDimensions
-        const currentToilet = state.toilets.filter((room) => room.id === id)[0]
+        const currentToilet = state.toilets.filter((room) => room.id === id)[0];
         if (action.payload.rotated !== undefined) {
-          currentToilet.rotated = action.payload.rotated
+          currentToilet.rotated = action.payload.rotated;
         }
         if (action.payload.bathType) {
-          currentToilet.type = parseInt(action.payload.bathType)
-          const dimensions = bathTypeDimensions.filter((roomType) => roomType.type === parseInt(action.payload.bathType))[0]
-          currentToilet.maxDim = dimensions.maxDims
-          currentToilet.minDim = dimensions.minDims
-          currentToilet.length = dimensions.length
-          currentToilet.breadth = dimensions.breadth
-          currentToilet.walls[0].length = dimensions.length
-          currentToilet.walls[1].length = dimensions.length
-          currentToilet.walls[2].length = dimensions.breadth
-          currentToilet.walls[3].length = dimensions.breadth
+          currentToilet.type = parseInt(action.payload.bathType);
+          const dimensions = bathTypeDimensions.filter((roomType) => roomType.type === parseInt(action.payload.bathType))[0];
+          currentToilet.maxDim = dimensions.maxDims;
+          currentToilet.minDim = dimensions.minDims;
+          currentToilet.length = dimensions.length;
+          currentToilet.breadth = dimensions.breadth;
+          currentToilet.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(dimensions.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(dimensions.breadth).toFixed(2);
+            }
+          });
         }
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentToilet.length = parseFloat(action.payload.length).toFixed(2)
-          currentToilet.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentToilet.length = parseFloat(action.payload.length).toFixed(2);
+          currentToilet.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentToilet.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentToilet.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
           //Front Wall
-          currentToilet.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentToilet.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentToilet.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentToilet.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentToilet.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentToilet.length = parseFloat(action.payload.length).toFixed(2)
-          currentToilet.area = parseFloat(parseFloat(currentToilet.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentToilet.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentToilet.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentToilet.length = parseFloat(action.payload.length).toFixed(2);
+          currentToilet.area = parseFloat(parseFloat(currentToilet.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentToilet.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentToilet.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentToilet.area = parseFloat(parseFloat(currentToilet.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentToilet.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentToilet.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentToilet.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentToilet.area = parseFloat(parseFloat(currentToilet.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentToilet.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         if (action.payload.position) {
-          currentToilet.position = action.payload.position
+          currentToilet.position = action.payload.position;
         }
 
-        state.toilets = state.toilets.filter((room) => room.id !== id)
-        state.toilets.push(currentToilet)
+        state.toilets = state.toilets.filter((room) => room.id !== id);
+        state.toilets.push(currentToilet);
       }
-      if (roomType === 'living') {
-        const currentLivingRoom = state.livingRooms.filter((room) => room.id === id)[0]
+      if (roomType === "living") {
+        const currentLivingRoom = state.livingRooms.filter((room) => room.id === id)[0];
         if (action.payload.commonToilet !== undefined) {
-          currentLivingRoom.hasToilet = action.payload.commonToilet
+          currentLivingRoom.hasToilet = action.payload.commonToilet;
         }
         if (action.payload.sitout !== undefined) {
-          currentLivingRoom.hasSitout = action.payload.sitout
+          currentLivingRoom.hasSitout = action.payload.sitout;
         }
         if (action.payload.wash !== undefined) {
-          currentLivingRoom.hasWash = action.payload.wash
+          currentLivingRoom.hasWash = action.payload.wash;
         }
 
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentLivingRoom.length = parseFloat(action.payload.length).toFixed(2)
-          currentLivingRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentLivingRoom.length = parseFloat(action.payload.length).toFixed(2);
+          currentLivingRoom.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentLivingRoom.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentLivingRoom.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
           //Front Wall
-          currentLivingRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentLivingRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentLivingRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentLivingRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentLivingRoom.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentLivingRoom.length = parseFloat(action.payload.length).toFixed(2)
-          currentLivingRoom.area = parseFloat(parseFloat(currentLivingRoom.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentLivingRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentLivingRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentLivingRoom.length = parseFloat(action.payload.length).toFixed(2);
+          currentLivingRoom.area = parseFloat(parseFloat(currentLivingRoom.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentLivingRoom.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentLivingRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentLivingRoom.area = parseFloat(parseFloat(currentLivingRoom.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentLivingRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentLivingRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentLivingRoom.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentLivingRoom.area = parseFloat(parseFloat(currentLivingRoom.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentLivingRoom.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         if (action.payload.position) {
-          currentLivingRoom.position = action.payload.position
+          currentLivingRoom.position = action.payload.position;
         }
 
-        state.livingRooms = state.livingRooms.filter((room) => room.id !== id)
-        state.livingRooms.push(currentLivingRoom)
+        state.livingRooms = state.livingRooms.filter((room) => room.id !== id);
+        state.livingRooms.push(currentLivingRoom);
       }
-      if (roomType === 'kitchen') {
+      if (roomType === "kitchen") {
         // bathTypeDimensions
-        const currentKitchen = state.kitchen
-        currentKitchen.id = id
+        const currentKitchen = state.kitchen;
+        currentKitchen.id = id;
         if (action.payload.store !== undefined) {
-          currentKitchen.hasStore = action.payload.store
+          currentKitchen.hasStore = action.payload.store;
         }
         if (action.payload.utility !== undefined) {
-          currentKitchen.hasUtility = action.payload.utility
+          currentKitchen.hasUtility = action.payload.utility;
         }
         if (action.payload.rotated !== undefined) {
-          currentKitchen.rotated = action.payload.rotated
+          currentKitchen.rotated = action.payload.rotated;
         }
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentKitchen.length = parseFloat(action.payload.length).toFixed(2)
-          currentKitchen.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentKitchen.length = parseFloat(action.payload.length).toFixed(2);
+          currentKitchen.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentKitchen.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentKitchen.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
-          //Front Wall
-          currentKitchen.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentKitchen.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentKitchen.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentKitchen.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentKitchen.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentKitchen.length = parseFloat(action.payload.length).toFixed(2)
-          currentKitchen.area = parseFloat(parseFloat(currentKitchen.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentKitchen.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentKitchen.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentKitchen.length = parseFloat(action.payload.length).toFixed(2);
+          currentKitchen.area = parseFloat(parseFloat(currentKitchen.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentKitchen.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentKitchen.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentKitchen.area = parseFloat(parseFloat(currentKitchen.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentKitchen.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentKitchen.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentKitchen.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentKitchen.area = parseFloat(parseFloat(currentKitchen.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentKitchen.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         if (action.payload.position) {
-          currentKitchen.position = action.payload.position
+          currentKitchen.position = action.payload.position;
         }
-        state.kitchen = currentKitchen
+        state.kitchen = currentKitchen;
       }
-      if (roomType === 'utility') {
-        const currentUtility = state.utility
-        currentUtility.id = id
+      if (roomType === "utility") {
+        const currentUtility = state.utility;
+        currentUtility.id = id;
         if (action.payload.rotated !== undefined) {
-          currentUtility.rotated = action.payload.rotated
+          currentUtility.rotated = action.payload.rotated;
         }
 
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentUtility.length = parseFloat(action.payload.length).toFixed(2)
-          currentUtility.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentUtility.length = parseFloat(action.payload.length).toFixed(2);
+          currentUtility.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentUtility.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentUtility.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
-          //Front Wall
-          currentUtility.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentUtility.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentUtility.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentUtility.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentUtility.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentUtility.length = parseFloat(action.payload.length).toFixed(2)
-          currentUtility.area = parseFloat(parseFloat(currentUtility.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentUtility.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentUtility.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentUtility.length = parseFloat(action.payload.length).toFixed(2);
+          currentUtility.area = parseFloat(parseFloat(currentUtility.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentUtility.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentUtility.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentUtility.area = parseFloat(parseFloat(currentUtility.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentUtility.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentUtility.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentUtility.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentUtility.area = parseFloat(parseFloat(currentUtility.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentUtility.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         if (action.payload.position) {
-          currentUtility.position = action.payload.position
+          currentUtility.position = action.payload.position;
         }
-        state.utility = currentUtility
+        state.utility = currentUtility;
       }
-      if (roomType === 'store') {
-        const currentStore = state.store
-        currentStore.id = id
+      if (roomType === "store") {
+        const currentStore = state.store;
+        currentStore.id = id;
         if (action.payload.rotated !== undefined) {
-          currentStore.rotated = action.payload.rotated
+          currentStore.rotated = action.payload.rotated;
         }
 
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentStore.length = parseFloat(action.payload.length).toFixed(2)
-          currentStore.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentStore.length = parseFloat(action.payload.length).toFixed(2);
+          currentStore.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentStore.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentStore.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
-          //Front Wall
-          currentStore.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentStore.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentStore.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentStore.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentStore.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentStore.length = parseFloat(action.payload.length).toFixed(2)
-          currentStore.area = parseFloat(parseFloat(currentStore.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentStore.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentStore.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentStore.length = parseFloat(action.payload.length).toFixed(2);
+          currentStore.area = parseFloat(parseFloat(currentStore.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentStore.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentStore.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentStore.area = parseFloat(parseFloat(currentStore.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentStore.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentStore.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentStore.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentStore.area = parseFloat(parseFloat(currentStore.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentStore.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+            e;
+          });
         }
 
         if (action.payload.position) {
-          currentStore.position = action.payload.position
+          currentStore.position = action.payload.position;
         }
-        state.store = currentStore
+        state.store = currentStore;
       }
-      if (roomType === 'dining') {
-        const currentDining = state.dining
-        currentDining.id = id
+      if (roomType === "dining") {
+        const currentDining = state.dining;
+        currentDining.id = id;
         if (action.payload.rotated !== undefined) {
-          currentDining.rotated = action.payload.rotated
+          currentDining.rotated = action.payload.rotated;
         }
 
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentDining.length = parseFloat(action.payload.length).toFixed(2)
-          currentDining.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentDining.length = parseFloat(action.payload.length).toFixed(2);
+          currentDining.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentDining.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentDining.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
           //Front Wall
-          currentDining.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentDining.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentDining.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentDining.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentDining.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentDining.length = parseFloat(action.payload.length).toFixed(2)
-          currentDining.area = parseFloat(parseFloat(currentDining.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentDining.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentDining.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentDining.length = parseFloat(action.payload.length).toFixed(2);
+          currentDining.area = parseFloat(parseFloat(currentDining.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentStore.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentDining.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentDining.area = parseFloat(parseFloat(currentDining.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentDining.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentDining.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentDining.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentDining.area = parseFloat(parseFloat(currentDining.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentStore.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         if (action.payload.position) {
-          currentDining.position = action.payload.position
+          currentDining.position = action.payload.position;
         }
-        state.dining = currentDining
+        state.dining = currentDining;
       }
-      if (roomType === 'drawing') {
-        const currentDrawing = state.drawing
-        currentDrawing.id = id
+      if (roomType === "drawing") {
+        const currentDrawing = state.drawing;
+        currentDrawing.id = id;
         if (action.payload.rotated !== undefined) {
-          currentDrawing.rotated = action.payload.rotated
+          currentDrawing.rotated = action.payload.rotated;
         }
 
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentDrawing.length = parseFloat(action.payload.length).toFixed(2)
-          currentDrawing.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentDrawing.length = parseFloat(action.payload.length).toFixed(2);
+          currentDrawing.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentDrawing.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentDrawing.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
           //Front Wall
-          currentDrawing.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentDrawing.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentDrawing.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentDrawing.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentDrawing.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentDrawing.length = parseFloat(action.payload.length).toFixed(2)
-          currentDrawing.area = parseFloat(parseFloat(currentDrawing.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentDrawing.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentDrawing.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentDrawing.length = parseFloat(action.payload.length).toFixed(2);
+          currentDrawing.area = parseFloat(parseFloat(currentDrawing.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentStore.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentDrawing.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentDrawing.area = parseFloat(parseFloat(currentDrawing.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentDrawing.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentDrawing.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentDrawing.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentDrawing.area = parseFloat(parseFloat(currentDrawing.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentStore.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         if (action.payload.position) {
-          currentDrawing.position = action.payload.position
+          currentDrawing.position = action.payload.position;
         }
 
-        state.drawing = currentDrawing
+        state.drawing = currentDrawing;
       }
-      if (roomType === 'pooja') {
-        const currentPooja = state.pooja
-        currentPooja.id = id
+      if (roomType === "pooja") {
+        const currentPooja = state.pooja;
+        currentPooja.id = id;
         if (action.payload.rotated !== undefined) {
-          currentPooja.rotated = action.payload.rotated
+          currentPooja.rotated = action.payload.rotated;
         }
 
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentPooja.length = parseFloat(action.payload.length).toFixed(2)
-          currentPooja.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentPooja.length = parseFloat(action.payload.length).toFixed(2);
+          currentPooja.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentPooja.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentPooja.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
-          //Front Wall
-          currentPooja.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentPooja.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentPooja.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentPooja.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentPooja.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentPooja.length = parseFloat(action.payload.length).toFixed(2)
-          currentPooja.area = parseFloat(parseFloat(currentPooja.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentPooja.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentPooja.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentPooja.length = parseFloat(action.payload.length).toFixed(2);
+          currentPooja.area = parseFloat(parseFloat(currentPooja.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentPooja.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentPooja.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentPooja.area = parseFloat(parseFloat(currentPooja.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentPooja.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentPooja.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentPooja.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentPooja.area = parseFloat(parseFloat(currentPooja.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentPooja.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         if (action.payload.position) {
-          currentPooja.position = action.payload.position
+          currentPooja.position = action.payload.position;
         }
-        state.pooja = currentPooja
+        state.pooja = currentPooja;
       }
-      if (roomType === 'media') {
-        const currentMedia = state.media
-        currentMedia.id = id
+      if (roomType === "media") {
+        const currentMedia = state.media;
+        currentMedia.id = id;
         if (action.payload.rotated !== undefined) {
-          currentMedia.rotated = action.payload.rotated
+          currentMedia.rotated = action.payload.rotated;
         }
 
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentMedia.length = parseFloat(action.payload.length).toFixed(2)
-          currentMedia.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentMedia.length = parseFloat(action.payload.length).toFixed(2);
+          currentMedia.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentMedia.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentMedia.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
-          //Front Wall
-          currentMedia.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentMedia.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentMedia.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentMedia.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentMedia.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentMedia.length = parseFloat(action.payload.length).toFixed(2)
-          currentMedia.area = parseFloat(parseFloat(currentMedia.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentMedia.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentMedia.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentMedia.length = parseFloat(action.payload.length).toFixed(2);
+          currentMedia.area = parseFloat(parseFloat(currentMedia.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentMedia.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentMedia.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentMedia.area = parseFloat(parseFloat(currentMedia.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentMedia.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentMedia.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentMedia.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentMedia.area = parseFloat(parseFloat(currentMedia.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentMedia.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         if (action.payload.position) {
-          currentMedia.position = action.payload.position
+          currentMedia.position = action.payload.position;
         }
-        state.media = currentMedia
+        state.media = currentMedia;
       }
-      if (roomType === 'stairCase') {
-        const currentStaircase = state.stairCase
-        currentStaircase.id = id
+      if (roomType === "stairCase") {
+        const currentStaircase = state.stairCase;
+        currentStaircase.id = id;
         if (action.payload.rotated !== undefined) {
-          currentStaircase.rotated = action.payload.rotated
+          currentStaircase.rotated = action.payload.rotated;
         }
 
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentStaircase.length = parseFloat(action.payload.length).toFixed(2)
-          currentStaircase.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentStaircase.length = parseFloat(action.payload.length).toFixed(2);
+          currentStaircase.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentStaircase.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentStaircase.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
-          //Front Wall
-          currentStaircase.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentStaircase.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentStaircase.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentStaircase.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentStaircase.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentStaircase.length = parseFloat(action.payload.length).toFixed(2)
-          currentStaircase.area = parseFloat(parseFloat(currentStaircase.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentStaircase.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentStaircase.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentStaircase.length = parseFloat(action.payload.length).toFixed(2);
+          currentStaircase.area = parseFloat(parseFloat(currentStaircase.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentStairCase.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentStaircase.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentStaircase.area = parseFloat(parseFloat(currentStaircase.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentStaircase.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentStaircase.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentStaircase.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentStaircase.area = parseFloat(parseFloat(currentStaircase.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentStairCase.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         if (action.payload.position) {
-          currentStaircase.position = action.payload.position
+          currentStaircase.position = action.payload.position;
         }
 
-        state.stairCase = currentStaircase
+        state.stairCase = currentStaircase;
       }
-      if (roomType === 'sitout') {
-        const currentSitout = state.sitout
-        currentSitout.id = id
+      if (roomType === "sitout") {
+        const currentSitout = state.sitout;
+        currentSitout.id = id;
         if (action.payload.rotated !== undefined) {
-          currentSitout.rotated = action.payload.rotated
+          currentSitout.rotated = action.payload.rotated;
         }
 
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentSitout.length = parseFloat(action.payload.length).toFixed(2)
-          currentSitout.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentSitout.length = parseFloat(action.payload.length).toFixed(2);
+          currentSitout.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentSitout.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentSitout.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
           //Front Wall
-          currentSitout.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentSitout.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentSitout.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentSitout.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentSitout.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentSitout.length = parseFloat(action.payload.length).toFixed(2)
-          currentSitout.area = parseFloat(parseFloat(currentSitout.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentSitout.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentSitout.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentSitout.length = parseFloat(action.payload.length).toFixed(2);
+          currentSitout.area = parseFloat(parseFloat(currentSitout.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentSitout.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentSitout.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentSitout.area = parseFloat(parseFloat(currentSitout.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentSitout.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentSitout.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentSitout.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentSitout.area = parseFloat(parseFloat(currentSitout.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentSitout.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         if (action.payload.position) {
-          currentSitout.position = action.payload.position
+          currentSitout.position = action.payload.position;
         }
-        state.sitout = currentSitout
+        state.sitout = currentSitout;
       }
-      if (roomType === 'parking') {
-        const currentParking = state.parking
-        currentParking.id = id
+      if (roomType === "parking") {
+        const currentParking = state.parking;
+        currentParking.id = id;
         if (action.payload.rotated !== undefined) {
-          currentParking.rotated = action.payload.rotated
+          currentParking.rotated = action.payload.rotated;
         }
 
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentParking.length = parseFloat(action.payload.length).toFixed(2)
-          currentParking.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentParking.length = parseFloat(action.payload.length).toFixed(2);
+          currentParking.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentParking.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentParking.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
-          //Front Wall
-          currentParking.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentParking.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentParking.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentParking.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentParking.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentParking.length = parseFloat(action.payload.length).toFixed(2)
-          currentParking.area = parseFloat(parseFloat(currentParking.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentParking.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentParking.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentParking.length = parseFloat(action.payload.length).toFixed(2);
+          currentParking.area = parseFloat(parseFloat(currentParking.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentParking.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentParking.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentParking.area = parseFloat(parseFloat(currentParking.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentParking.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentParking.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentParking.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentParking.area = parseFloat(parseFloat(currentParking.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentParking.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         if (action.payload.position) {
-          currentParking.position = action.payload.position
+          currentParking.position = action.payload.position;
         }
-        state.parking = currentParking
+        state.parking = currentParking;
       }
-      if (roomType === 'commonToilet') {
-        const currentToilet = state.commonToilet
-        currentToilet.id = id
+      if (roomType === "commonToilet") {
+        const currentToilet = state.commonToilet;
+        currentToilet.id = id;
         if (action.payload.rotated !== undefined) {
-          currentToilet.rotated = action.payload.rotated
+          currentToilet.rotated = action.payload.rotated;
         }
 
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentToilet.length = parseFloat(action.payload.length).toFixed(2)
-          currentToilet.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentToilet.length = parseFloat(action.payload.length).toFixed(2);
+          currentToilet.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentToilet.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentToilet.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
           //Front Wall
-          currentToilet.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentToilet.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentToilet.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentToilet.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentToilet.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentToilet.length = parseFloat(action.payload.length).toFixed(2)
-          currentToilet.area = parseFloat(parseFloat(currentToilet.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentToilet.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentToilet.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentToilet.length = parseFloat(action.payload.length).toFixed(2);
+          currentToilet.area = parseFloat(parseFloat(currentToilet.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentToilet.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentToilet.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentToilet.area = parseFloat(parseFloat(currentToilet.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentToilet.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentToilet.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentToilet.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentToilet.area = parseFloat(parseFloat(currentToilet.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentToilet.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
 
         if (action.payload.position) {
-          currentToilet.position = action.payload.position
+          currentToilet.position = action.payload.position;
         }
 
-        state.commonToilet = currentToilet
+        state.commonToilet = currentToilet;
       }
-      if (roomType === 'corridor') {
-        const currentRoom = state.corridors.filter((room) => room.id === id)[0]
+      if (roomType === "corridor") {
+        const currentRoom = state.corridors.filter((room) => room.id === id)[0];
 
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentRoom.length = parseFloat(action.payload.length).toFixed(2)
-          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentRoom.length = parseFloat(action.payload.length).toFixed(2);
+          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentRoom.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentRoom.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
-          //Front Wall
-          currentRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentRoom.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentRoom.length = parseFloat(action.payload.length).toFixed(2)
-          currentRoom.area = parseFloat(parseFloat(currentRoom.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentRoom.length = parseFloat(action.payload.length).toFixed(2);
+          currentRoom.area = parseFloat(parseFloat(currentRoom.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentRoom.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentRoom.area = parseFloat(parseFloat(currentRoom.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentRoom.area = parseFloat(parseFloat(currentRoom.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentRoom.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
         if (action.payload.position) {
-          currentRoom.position = action.payload.position
+          currentRoom.position = action.payload.position;
         }
-        state.corridors = state.corridors.filter((room) => room.id !== id)
-        state.corridors.push(currentRoom)
+        state.corridors = state.corridors.filter((room) => room.id !== id);
+        state.corridors.push(currentRoom);
       }
-      if (roomType === 'extraBath') {
-        const currentRoom = state.baths.filter((room) => room.id === id)[0]
+      if (roomType === "extraBath") {
+        const currentRoom = state.baths.filter((room) => room.id === id)[0];
 
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentRoom.length = parseFloat(action.payload.length).toFixed(2)
-          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentRoom.length = parseFloat(action.payload.length).toFixed(2);
+          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentRoom.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentRoom.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
-          //Front Wall
-          currentRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentRoom.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentRoom.length = parseFloat(action.payload.length).toFixed(2)
-          currentRoom.area = parseFloat(parseFloat(currentRoom.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentRoom.length = parseFloat(action.payload.length).toFixed(2);
+          currentRoom.area = parseFloat(parseFloat(currentRoom.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentRoom.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentRoom.area = parseFloat(parseFloat(currentRoom.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentRoom.area = parseFloat(parseFloat(currentRoom.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentRoom.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
         if (action.payload.position) {
-          currentRoom.position = action.payload.position
+          currentRoom.position = action.payload.position;
         }
-        state.baths = state.baths.filter((room) => room.id !== id)
-        state.baths.push(currentRoom)
+        state.baths = state.baths.filter((room) => room.id !== id);
+        state.baths.push(currentRoom);
       }
-      if (roomType === 'extraSitout') {
-        const currentRoom = state.sitouts.filter((room) => room.id === id)[0]
+      if (roomType === "extraSitout") {
+        const currentRoom = state.sitouts.filter((room) => room.id === id)[0];
 
         //If both length and breadth are privided update length,breadth and area, walls lengths
         if (action.payload.length && action.payload.breadth) {
           //update room dimensions
-          currentRoom.length = parseFloat(action.payload.length).toFixed(2)
-          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
+          currentRoom.length = parseFloat(action.payload.length).toFixed(2);
+          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2);
           //update area
-          currentRoom.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2)
+          currentRoom.area = parseFloat(parseFloat(action.payload.length) * parseFloat(action.payload.breadth)).toFixed(2);
           //update wall dimensions
           //Front Wall
-          currentRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          //Back Wall
-          currentRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
-          //Left Wall
-          currentRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          //Right Wall
-          currentRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentRoom.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            } else {
+              wall.length = parseFloat(action.payload.breadth).toFixed(2);
+            }
+          });
         }
         //If only one dimension provided, update dimension, area and wall lengths
         if (action.payload.length && !action.payload.breadth) {
-          currentRoom.length = parseFloat(action.payload.length).toFixed(2)
-          currentRoom.area = parseFloat(parseFloat(currentRoom.breadth) * parseFloat(action.payload.length)).toFixed(2)
-          currentRoom.walls[0].length = parseFloat(action.payload.length).toFixed(2)
-          currentRoom.walls[1].length = parseFloat(action.payload.length).toFixed(2)
+          currentRoom.length = parseFloat(action.payload.length).toFixed(2);
+          currentRoom.area = parseFloat(parseFloat(currentRoom.breadth) * parseFloat(action.payload.length)).toFixed(2);
+          currentRoom.walls.forEach((wall, index) => {
+            if (wall.side === "front" || wall.side === "back") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.breadth && !action.payload.length) {
-          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2)
-          currentRoom.area = parseFloat(parseFloat(currentRoom.length) * parseFloat(action.payload.breadth)).toFixed(2)
-          currentRoom.walls[2].length = parseFloat(action.payload.breadth).toFixed(2)
-          currentRoom.walls[3].length = parseFloat(action.payload.breadth).toFixed(2)
+          currentRoom.breadth = parseFloat(action.payload.breadth).toFixed(2);
+          currentRoom.area = parseFloat(parseFloat(currentRoom.length) * parseFloat(action.payload.breadth)).toFixed(2);
+          currentRoom.walls.forEach((wall, index) => {
+            if (wall.side === "left" || wall.side === "right") {
+              wall.length = parseFloat(action.payload.length).toFixed(2);
+            }
+          });
         }
         if (action.payload.position) {
-          currentRoom.position = action.payload.position
+          currentRoom.position = action.payload.position;
         }
-        state.sitouts = state.sitouts.filter((room) => room.id !== id)
-        state.sitouts.push(currentRoom)
+        state.sitouts = state.sitouts.filter((room) => room.id !== id);
+        state.sitouts.push(currentRoom);
       }
     },
     addRoomToPlot: (state, action) => {
@@ -975,535 +1072,538 @@ const roomsSlice = createSlice({
       const currentDirection = id.split('-')[1]
       const currentWallSide = id.split('-')[2]
       //BED
-      if (currentRoomType === 'bedroom') {
-        const currentBedroomIndex = state.bedRooms.findIndex((room) => room.id === currentDirection)
-        const currentBedroom = { ...state.bedRooms[currentBedroomIndex] }
-        const currentWallIndex = currentBedroom.walls.findIndex((wall) => wall.side === currentWallSide)
-        const currentWall = { ...currentBedroom.walls[currentWallIndex] }
-        const filteredWalls = currentBedroom.walls.filter((wall) => wall.side !== currentWallSide)
+      if (currentRoomType === "bedroom") {
+        const currentBedroomIndex = state.bedRooms.findIndex((room) => room.id === currentDirection);
+        const currentBedroom = { ...state.bedRooms[currentBedroomIndex] };
+        const currentWallIndex = currentBedroom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentBedroom.walls[currentWallIndex] };
+        const filteredWalls = currentBedroom.walls.filter((wall) => wall.side !== currentWallSide);
 
         if (action.payload.hasOpening !== undefined) {
-          currentWall.opening.includes = action.payload.hasOpening
+          currentWall.opening.includes = action.payload.hasOpening;
         }
 
         if (action.payload.hasDoor !== undefined) {
-          currentWall.door.includes = action.payload.hasDoor
+          currentWall.door.includes = action.payload.hasDoor;
         }
 
         if (action.payload.hasWindow !== undefined) {
-          currentWall.window.includes = action.payload.hasWindow
+          currentWall.window.includes = action.payload.hasWindow;
         }
 
         if (action.payload.openingLength !== undefined) {
-          currentWall.opening.length = parseFloat(action.payload.openingLength)
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
         }
 
         if (action.payload.openingPosition !== undefined) {
-          const { openingPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(openingPosition) }
+          const { openingPosition } = action.payload;
+          let pos;
+          if (currentWallSide === "front" || currentWallSide === "back") {
+            pos = { right: parseInt(openingPosition) };
           } else {
-            pos = { top: parseInt(openingPosition) }
+            pos = { top: parseInt(openingPosition) };
           }
-          currentWall.opening.position = pos
+          currentWall.opening.position = pos;
         }
 
         if (action.payload.doorPosition !== undefined) {
-          const { doorPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(doorPosition) }
-          } else {
-            pos = { top: parseInt(doorPosition) }
-          }
-          currentWall.door.position = pos
+          console.log(action.payload.doorPosition);
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
         }
 
-        filteredWalls.splice(currentWallIndex, 0, currentWall)
+        if (action.payload.doorPosition !== undefined) {
+          const { doorRotation } = action.payload;
+          currentWall.door.rotation = doorRotation;
+        }
 
-        currentBedroom.walls = filteredWalls
+        filteredWalls.splice(currentWallIndex, 0, currentWall);
 
-        const updatedBedrooms = [...state.bedRooms]
-        updatedBedrooms.splice(currentBedroomIndex, 1, currentBedroom)
+        currentBedroom.walls = filteredWalls;
 
-        state.bedRooms = updatedBedrooms
+        const updatedBedrooms = [...state.bedRooms];
+        updatedBedrooms.splice(currentBedroomIndex, 1, currentBedroom);
+
+        state.bedRooms = updatedBedrooms;
       }
 
       // LIVING
-      if (currentRoomType === 'living') {
-        const currentLivingRoom = state.livingRooms.filter((room) => room.id === currentDirection)[0]
-        const currentWall = currentLivingRoom.walls.filter((wall) => wall.side == currentWallSide)[0]
-        const filteredWalls = currentLivingRoom.walls.filter((wall) => wall.side !== currentWallSide)
+      if (currentRoomType === "living") {
+        const currentLivingRoom = state.livingRooms.filter((room) => room.id === currentDirection)[0];
+        const currentWall = currentLivingRoom.walls.filter((wall) => wall.side == currentWallSide)[0];
+        const filteredWalls = currentLivingRoom.walls.filter((wall) => wall.side !== currentWallSide);
         if (action.payload.hasOpening !== undefined) {
           // opening.includes
-          currentWall.opening.includes = action.payload.hasOpening
-          filteredWalls.push(currentWall)
-          currentLivingRoom.walls = filteredWalls
+          currentWall.opening.includes = action.payload.hasOpening;
+          filteredWalls.push(currentWall);
+          currentLivingRoom.walls = filteredWalls;
         }
         if (action.payload.hasDoor !== undefined) {
           // opening.includes
-          currentWall.door.includes = action.payload.hasDoor
-          filteredWalls.push(currentWall)
-          currentLivingRoom.walls = filteredWalls
+          currentWall.door.includes = action.payload.hasDoor;
+          filteredWalls.push(currentWall);
+          currentLivingRoom.walls = filteredWalls;
         }
         if (action.payload.hasWindow !== undefined) {
-          currentWall.window.includes = action.payload.hasWindow
-          filteredWalls.push(currentWall)
-          currentLivingRoom.walls = filteredWalls
+          currentWall.window.includes = action.payload.hasWindow;
+          filteredWalls.push(currentWall);
+          currentLivingRoom.walls = filteredWalls;
         }
         if (action.payload.openingLength !== undefined) {
-          currentWall.opening.length = parseFloat(action.payload.openingLength)
-          filteredWalls.push(currentWall)
-          currentLivingRoom.walls = filteredWalls
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+          filteredWalls.push(currentWall);
+          currentLivingRoom.walls = filteredWalls;
         }
         if (action.payload.openingPosition !== undefined) {
-          const { openingPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(openingPosition) }
+          const { openingPosition } = action.payload;
+          let pos;
+          if (currentWallSide === "front" || currentWallSide === "back") {
+            pos = { right: parseInt(openingPosition) };
           } else {
-            pos = { top: parseInt(openingPosition) }
+            pos = { top: parseInt(openingPosition) };
           }
-          currentWall.opening.position = pos
-          filteredWalls.push(currentWall)
-          currentLivingRoom.walls = filteredWalls
+          currentWall.opening.position = pos;
+          filteredWalls.push(currentWall);
+          currentLivingRoom.walls = filteredWalls;
         }
         if (action.payload.doorPosition !== undefined) {
-          const { doorPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(doorPosition) }
-          } else {
-            pos = { top: parseInt(doorPosition) }
-          }
-          currentWall.door.position = pos
-          filteredWalls.push(currentWall)
-          currentLivingRoom.walls = filteredWalls
+          console.log(action.payload.doorPosition);
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+          filteredWalls.push(currentWall);
+          currentLivingRoom.walls = filteredWalls;
         }
-        state.livingRooms = state.livingRooms.filter((room) => room.id !== currentDirection)
 
-        state.livingRooms.push(currentLivingRoom)
+        state.livingRooms = state.livingRooms.filter((room) => room.id !== currentDirection);
+
+        state.livingRooms.push(currentLivingRoom);
       }
 
       //TOILET
-      if (currentRoomType === 'toilet') {
-        const currentRoomIndex = state.toilets.findIndex((room) => room.id === currentDirection)
-        const currentRoom = { ...state.toilets[currentRoomIndex] }
-        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide)
-        const currentWall = { ...currentRoom.walls[currentWallIndex] }
-        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide)
+      if (currentRoomType === "toilet") {
+        const currentRoomIndex = state.toilets.findIndex((room) => room.id === currentDirection);
+        const currentRoom = { ...state.toilets[currentRoomIndex] };
+        const currentWallIndex = currentRoom.walls.findIndex((wall) => wall.side === currentWallSide);
+        const currentWall = { ...currentRoom.walls[currentWallIndex] };
+        const filteredWalls = currentRoom.walls.filter((wall) => wall.side !== currentWallSide);
 
         if (action.payload.hasOpening !== undefined) {
-          currentWall.opening.includes = action.payload.hasOpening
+          currentWall.opening.includes = action.payload.hasOpening;
         }
 
         if (action.payload.hasDoor !== undefined) {
-          currentWall.door.includes = action.payload.hasDoor
+          currentWall.door.includes = action.payload.hasDoor;
         }
 
         if (action.payload.hasWindow !== undefined) {
-          currentWall.window.includes = action.payload.hasWindow
+          currentWall.window.includes = action.payload.hasWindow;
         }
 
         if (action.payload.openingLength !== undefined) {
-          currentWall.opening.length = parseFloat(action.payload.openingLength)
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
         }
 
         if (action.payload.openingPosition !== undefined) {
-          const { openingPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(openingPosition) }
+          const { openingPosition } = action.payload;
+          let pos;
+          if (currentWallSide === "front" || currentWallSide === "back") {
+            pos = { right: parseInt(openingPosition) };
           } else {
-            pos = { top: parseInt(openingPosition) }
+            pos = { top: parseInt(openingPosition) };
           }
-          currentWall.opening.position = pos
+          currentWall.opening.position = pos;
         }
 
         if (action.payload.doorPosition !== undefined) {
-          const { doorPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(doorPosition) }
-          } else {
-            pos = { top: parseInt(doorPosition) }
-          }
-          currentWall.door.position = pos
+          console.log(action.payload.doorPosition);
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
         }
 
-        filteredWalls.splice(currentWallIndex, 0, currentWall)
+        filteredWalls.splice(currentWallIndex, 0, currentWall);
 
-        currentRoom.walls = filteredWalls
+        currentRoom.walls = filteredWalls;
 
-        const updatedRooms = [...state.toilets]
-        updatedRooms.splice(currentRoomIndex, 1, currentRoom)
+        const updatedRooms = [...state.toilets];
+        updatedRooms.splice(currentRoomIndex, 1, currentRoom);
 
-        state.toilets = updatedRooms
+        state.toilets = updatedRooms;
       }
-      if (currentRoomType === 'kitchen') {
-        const currentKitchen = state.kitchen
-        const currentWall = currentKitchen.walls.filter((wall) => wall.side == currentWallSide)[0]
-        const filteredWalls = currentKitchen.walls.filter((wall) => wall.side !== currentWallSide)
+      if (currentRoomType === "kitchen") {
+        const currentKitchen = state.kitchen;
+        const currentWall = currentKitchen.walls.filter((wall) => wall.side == currentWallSide)[0];
+        const filteredWalls = currentKitchen.walls.filter((wall) => wall.side !== currentWallSide);
         if (action.payload.hasOpening !== undefined) {
           // opening.includes
-          currentWall.opening.includes = action.payload.hasOpening
-          filteredWalls.push(currentWall)
-          currentKitchen.walls = filteredWalls
+          currentWall.opening.includes = action.payload.hasOpening;
+          filteredWalls.push(currentWall);
+          currentKitchen.walls = filteredWalls;
         }
         if (action.payload.hasDoor !== undefined) {
           // opening.includes
-          currentWall.door.includes = action.payload.hasDoor
-          filteredWalls.push(currentWall)
-          currentKitchen.walls = filteredWalls
+          currentWall.door.includes = action.payload.hasDoor;
+          filteredWalls.push(currentWall);
+          currentKitchen.walls = filteredWalls;
         }
         if (action.payload.hasWindow !== undefined) {
-          currentWall.window.includes = action.payload.hasWindow
-          filteredWalls.push(currentWall)
-          currentKitchen.walls = filteredWalls
+          currentWall.window.includes = action.payload.hasWindow;
+          filteredWalls.push(currentWall);
+          currentKitchen.walls = filteredWalls;
         }
         if (action.payload.openingLength !== undefined) {
-          currentWall.opening.length = parseFloat(action.payload.openingLength)
-          filteredWalls.push(currentWall)
-          currentKitchen.walls = filteredWalls
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+          filteredWalls.push(currentWall);
+          currentKitchen.walls = filteredWalls;
         }
         if (action.payload.openingPosition !== undefined) {
-          const { openingPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(openingPosition) }
+          const { openingPosition } = action.payload;
+          let pos;
+          if (currentWallSide === "front" || currentWallSide === "back") {
+            pos = { right: parseInt(openingPosition) };
           } else {
-            pos = { top: parseInt(openingPosition) }
+            pos = { top: parseInt(openingPosition) };
           }
-          currentWall.opening.position = pos
-          filteredWalls.push(currentWall)
-          currentKitchen.walls = filteredWalls
+          currentWall.opening.position = pos;
+          filteredWalls.push(currentWall);
+          currentKitchen.walls = filteredWalls;
         }
         if (action.payload.doorPosition !== undefined) {
-          const { doorPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(doorPosition) }
-          } else {
-            pos = { top: parseInt(doorPosition) }
-          }
-          currentWall.door.position = pos
-          filteredWalls.push(currentWall)
-          currentKitchen.walls = filteredWalls
+          console.log(action.payload.doorPosition);
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+          filteredWalls.push(currentWall);
+          currentKitchen.walls = filteredWalls;
         }
-        state.kitchen = currentKitchen
+        state.kitchen = currentKitchen;
       }
-      if (currentRoomType === 'utility') {
-        const currentUtility = state.utility
-        const currentWall = currentUtility.walls.filter((wall) => wall.side == currentWallSide)[0]
-        const filteredWalls = currentUtility.walls.filter((wall) => wall.side !== currentWallSide)
+      if (currentRoomType === "utility") {
+        const currentUtility = state.utility;
+        const currentWall = currentUtility.walls.filter((wall) => wall.side == currentWallSide)[0];
+        const filteredWalls = currentUtility.walls.filter((wall) => wall.side !== currentWallSide);
         if (action.payload.hasOpening !== undefined) {
           // opening.includes
-          currentWall.opening.includes = action.payload.hasOpening
-          filteredWalls.push(currentWall)
-          currentUtility.walls = filteredWalls
+          currentWall.opening.includes = action.payload.hasOpening;
+          filteredWalls.push(currentWall);
+          currentUtility.walls = filteredWalls;
         }
         if (action.payload.hasDoor !== undefined) {
           // opening.includes
-          currentWall.door.includes = action.payload.hasDoor
-          filteredWalls.push(currentWall)
-          currentUtility.walls = filteredWalls
+          currentWall.door.includes = action.payload.hasDoor;
+          filteredWalls.push(currentWall);
+          currentUtility.walls = filteredWalls;
         }
         if (action.payload.hasWindow !== undefined) {
-          currentWall.window.includes = action.payload.hasWindow
-          filteredWalls.push(currentWall)
-          currentUtility.walls = filteredWalls
+          currentWall.window.includes = action.payload.hasWindow;
+          filteredWalls.push(currentWall);
+          currentUtility.walls = filteredWalls;
         }
         if (action.payload.openingLength !== undefined) {
-          currentWall.opening.length = parseFloat(action.payload.openingLength)
-          filteredWalls.push(currentWall)
-          currentUtility.walls = filteredWalls
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+          filteredWalls.push(currentWall);
+          currentUtility.walls = filteredWalls;
         }
         if (action.payload.openingPosition !== undefined) {
-          const { openingPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(openingPosition) }
+          const { openingPosition } = action.payload;
+          let pos;
+          if (currentWallSide === "front" || currentWallSide === "back") {
+            pos = { right: parseInt(openingPosition) };
           } else {
-            pos = { top: parseInt(openingPosition) }
+            pos = { top: parseInt(openingPosition) };
           }
-          currentWall.opening.position = pos
-          filteredWalls.push(currentWall)
-          currentUtility.walls = filteredWalls
+          currentWall.opening.position = pos;
+          filteredWalls.push(currentWall);
+          currentUtility.walls = filteredWalls;
         }
         if (action.payload.doorPosition !== undefined) {
-          const { doorPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(doorPosition) }
-          } else {
-            pos = { top: parseInt(doorPosition) }
-          }
-          currentWall.door.position = pos
-          filteredWalls.push(currentWall)
-          currentUtility.walls = filteredWalls
+          console.log(action.payload.doorPosition);
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+          filteredWalls.push(currentWall);
+          currentUtility.walls = filteredWalls;
         }
-        state.utility = currentUtility
+        state.utility = currentUtility;
       }
-      if (currentRoomType === 'store') {
-        const currentStore = state.store
-        const currentWall = currentStore.walls.filter((wall) => wall.side == currentWallSide)[0]
-        const filteredWalls = currentStore.walls.filter((wall) => wall.side !== currentWallSide)
+      if (currentRoomType === "store") {
+        const currentStore = state.store;
+        const currentWall = currentStore.walls.filter((wall) => wall.side == currentWallSide)[0];
+        const filteredWalls = currentStore.walls.filter((wall) => wall.side !== currentWallSide);
         if (action.payload.hasOpening !== undefined) {
           // opening.includes
-          currentWall.opening.includes = action.payload.hasOpening
-          filteredWalls.push(currentWall)
-          currentStore.walls = filteredWalls
+          currentWall.opening.includes = action.payload.hasOpening;
+          filteredWalls.push(currentWall);
+          currentStore.walls = filteredWalls;
         }
         if (action.payload.hasDoor !== undefined) {
           // opening.includes
-          currentWall.door.includes = action.payload.hasDoor
-          filteredWalls.push(currentWall)
-          currentStore.walls = filteredWalls
+          currentWall.door.includes = action.payload.hasDoor;
+          filteredWalls.push(currentWall);
+          currentStore.walls = filteredWalls;
         }
         if (action.payload.hasWindow !== undefined) {
-          currentWall.window.includes = action.payload.hasWindow
-          filteredWalls.push(currentWall)
-          currentStore.walls = filteredWalls
+          currentWall.window.includes = action.payload.hasWindow;
+          filteredWalls.push(currentWall);
+          currentStore.walls = filteredWalls;
         }
         if (action.payload.openingLength !== undefined) {
-          currentWall.opening.length = parseFloat(action.payload.openingLength)
-          filteredWalls.push(currentWall)
-          currentStore.walls = filteredWalls
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+          filteredWalls.push(currentWall);
+          currentStore.walls = filteredWalls;
         }
         if (action.payload.openingPosition !== undefined) {
-          const { openingPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(openingPosition) }
+          const { openingPosition } = action.payload;
+          let pos;
+          if (currentWallSide === "front" || currentWallSide === "back") {
+            pos = { right: parseInt(openingPosition) };
           } else {
-            pos = { top: parseInt(openingPosition) }
+            pos = { top: parseInt(openingPosition) };
           }
-          currentWall.opening.position = pos
-          filteredWalls.push(currentWall)
-          currentStore.walls = filteredWalls
+          currentWall.opening.position = pos;
+          filteredWalls.push(currentWall);
+          currentStore.walls = filteredWalls;
         }
         if (action.payload.doorPosition !== undefined) {
-          const { doorPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(doorPosition) }
-          } else {
-            pos = { top: parseInt(doorPosition) }
-          }
-          currentWall.door.position = pos
-          filteredWalls.push(currentWall)
-          currentStore.walls = filteredWalls
+          console.log(action.payload.doorPosition);
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+          filteredWalls.push(currentWall);
+          currentStore.walls = filteredWalls;
         }
-        state.store = currentStore
+        state.store = currentStore;
       }
-      if (currentRoomType === 'dining') {
-        const currentDining = state.dining
-        const currentWall = currentDining.walls.filter((wall) => wall.side == currentWallSide)[0]
-        const filteredWalls = currentDining.walls.filter((wall) => wall.side !== currentWallSide)
+      if (currentRoomType === "dining") {
+        const currentDining = state.dining;
+        const currentWall = currentDining.walls.filter((wall) => wall.side == currentWallSide)[0];
+        const filteredWalls = currentDining.walls.filter((wall) => wall.side !== currentWallSide);
         if (action.payload.hasOpening !== undefined) {
           // opening.includes
-          currentWall.opening.includes = action.payload.hasOpening
-          filteredWalls.push(currentWall)
-          currentDining.walls = filteredWalls
+          currentWall.opening.includes = action.payload.hasOpening;
+          filteredWalls.push(currentWall);
+          currentDining.walls = filteredWalls;
         }
         if (action.payload.hasDoor !== undefined) {
           // opening.includes
-          currentWall.door.includes = action.payload.hasDoor
-          filteredWalls.push(currentWall)
-          currentDining.walls = filteredWalls
+          currentWall.door.includes = action.payload.hasDoor;
+          filteredWalls.push(currentWall);
+          currentDining.walls = filteredWalls;
         }
         if (action.payload.hasWindow !== undefined) {
-          currentWall.window.includes = action.payload.hasWindow
-          filteredWalls.push(currentWall)
-          currentDining.walls = filteredWalls
+          currentWall.window.includes = action.payload.hasWindow;
+          filteredWalls.push(currentWall);
+          currentDining.walls = filteredWalls;
         }
         if (action.payload.openingLength !== undefined) {
-          currentWall.opening.length = parseFloat(action.payload.openingLength)
-          filteredWalls.push(currentWall)
-          currentDining.walls = filteredWalls
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+          filteredWalls.push(currentWall);
+          currentDining.walls = filteredWalls;
         }
         if (action.payload.openingPosition !== undefined) {
-          const { openingPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(openingPosition) }
+          const { openingPosition } = action.payload;
+          let pos;
+          if (currentWallSide === "front" || currentWallSide === "back") {
+            pos = { right: parseInt(openingPosition) };
           } else {
-            pos = { top: parseInt(openingPosition) }
+            pos = { top: parseInt(openingPosition) };
           }
-          currentWall.opening.position = pos
-          filteredWalls.push(currentWall)
-          currentDining.walls = filteredWalls
+          currentWall.opening.position = pos;
+          filteredWalls.push(currentWall);
+          currentDining.walls = filteredWalls;
         }
         if (action.payload.doorPosition !== undefined) {
-          const { doorPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(doorPosition) }
-          } else {
-            pos = { top: parseInt(doorPosition) }
-          }
-          currentWall.door.position = pos
-          filteredWalls.push(currentWall)
-          currentDining.walls = filteredWalls
+          console.log(action.payload.doorPosition);
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+          filteredWalls.push(currentWall);
+          currentDining.walls = filteredWalls;
         }
-        state.dining = currentDining
+        state.dining = currentDining;
       }
-      if (currentRoomType === 'drawing') {
-        const currentDrawing = state.drawing
-        const currentWall = currentDrawing.walls.filter((wall) => wall.side == currentWallSide)[0]
-        const filteredWalls = currentDrawing.walls.filter((wall) => wall.side !== currentWallSide)
+      if (currentRoomType === "drawing") {
+        const currentDrawing = state.drawing;
+        const currentWall = currentDrawing.walls.filter((wall) => wall.side == currentWallSide)[0];
+        const filteredWalls = currentDrawing.walls.filter((wall) => wall.side !== currentWallSide);
         if (action.payload.hasOpening !== undefined) {
           // opening.includes
-          currentWall.opening.includes = action.payload.hasOpening
-          filteredWalls.push(currentWall)
-          currentDrawing.walls = filteredWalls
+          currentWall.opening.includes = action.payload.hasOpening;
+          filteredWalls.push(currentWall);
+          currentDrawing.walls = filteredWalls;
         }
         if (action.payload.hasDoor !== undefined) {
           // opening.includes
-          currentWall.door.includes = action.payload.hasDoor
-          filteredWalls.push(currentWall)
-          currentDrawing.walls = filteredWalls
+          currentWall.door.includes = action.payload.hasDoor;
+          filteredWalls.push(currentWall);
+          currentDrawing.walls = filteredWalls;
         }
         if (action.payload.hasWindow !== undefined) {
-          currentWall.window.includes = action.payload.hasWindow
-          filteredWalls.push(currentWall)
-          currentDrawing.walls = filteredWalls
+          currentWall.window.includes = action.payload.hasWindow;
+          filteredWalls.push(currentWall);
+          currentDrawing.walls = filteredWalls;
         }
         if (action.payload.openingLength !== undefined) {
-          currentWall.opening.length = parseFloat(action.payload.openingLength)
-          filteredWalls.push(currentWall)
-          currentDrawing.walls = filteredWalls
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+          filteredWalls.push(currentWall);
+          currentDrawing.walls = filteredWalls;
         }
         if (action.payload.openingPosition !== undefined) {
-          const { openingPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(openingPosition) }
+          const { openingPosition } = action.payload;
+          let pos;
+          if (currentWallSide === "front" || currentWallSide === "back") {
+            pos = { right: parseInt(openingPosition) };
           } else {
-            pos = { top: parseInt(openingPosition) }
+            pos = { top: parseInt(openingPosition) };
           }
-          currentWall.opening.position = pos
-          filteredWalls.push(currentWall)
-          currentDrawing.walls = filteredWalls
+          currentWall.opening.position = pos;
+          filteredWalls.push(currentWall);
+          currentDrawing.walls = filteredWalls;
         }
         if (action.payload.doorPosition !== undefined) {
-          const { doorPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(doorPosition) }
-          } else {
-            pos = { top: parseInt(doorPosition) }
-          }
-          currentWall.door.position = pos
-          filteredWalls.push(currentWall)
-          currentDrawing.walls = filteredWalls
+          console.log(action.payload.doorPosition);
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+          filteredWalls.push(currentWall);
+          currentDrawing.walls = filteredWalls;
         }
-        state.drawing = currentDrawing
+        state.drawing = currentDrawing;
       }
-      if (currentRoomType === 'pooja') {
-        const currentPooja = state.pooja
-        const currentWall = currentPooja.walls.filter((wall) => wall.side == currentWallSide)[0]
-        const filteredWalls = currentPooja.walls.filter((wall) => wall.side !== currentWallSide)
+      if (currentRoomType === "pooja") {
+        const currentPooja = state.pooja;
+        const currentWall = currentPooja.walls.filter((wall) => wall.side == currentWallSide)[0];
+        const filteredWalls = currentPooja.walls.filter((wall) => wall.side !== currentWallSide);
         if (action.payload.hasOpening !== undefined) {
           // opening.includes
-          currentWall.opening.includes = action.payload.hasOpening
-          filteredWalls.push(currentWall)
-          currentPooja.walls = filteredWalls
+          currentWall.opening.includes = action.payload.hasOpening;
+          filteredWalls.push(currentWall);
+          currentPooja.walls = filteredWalls;
         }
         if (action.payload.hasDoor !== undefined) {
           // opening.includes
-          currentWall.door.includes = action.payload.hasDoor
-          filteredWalls.push(currentWall)
-          currentPooja.walls = filteredWalls
+          currentWall.door.includes = action.payload.hasDoor;
+          filteredWalls.push(currentWall);
+          currentPooja.walls = filteredWalls;
         }
         if (action.payload.hasWindow !== undefined) {
-          currentWall.window.includes = action.payload.hasWindow
-          filteredWalls.push(currentWall)
-          currentPooja.walls = filteredWalls
+          currentWall.window.includes = action.payload.hasWindow;
+          filteredWalls.push(currentWall);
+          currentPooja.walls = filteredWalls;
         }
         if (action.payload.openingLength !== undefined) {
-          currentWall.opening.length = parseFloat(action.payload.openingLength)
-          filteredWalls.push(currentWall)
-          currentPooja.walls = filteredWalls
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+          filteredWalls.push(currentWall);
+          currentPooja.walls = filteredWalls;
         }
         if (action.payload.openingPosition !== undefined) {
-          const { openingPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(openingPosition) }
+          const { openingPosition } = action.payload;
+          let pos;
+          if (currentWallSide === "front" || currentWallSide === "back") {
+            pos = { right: parseInt(openingPosition) };
           } else {
-            pos = { top: parseInt(openingPosition) }
+            pos = { top: parseInt(openingPosition) };
           }
-          currentWall.opening.position = pos
-          filteredWalls.push(currentWall)
-          currentPooja.walls = filteredWalls
+          currentWall.opening.position = pos;
+          filteredWalls.push(currentWall);
+          currentPooja.walls = filteredWalls;
         }
         if (action.payload.doorPosition !== undefined) {
-          const { doorPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(doorPosition) }
-          } else {
-            pos = { top: parseInt(doorPosition) }
-          }
-          currentWall.door.position = pos
-          filteredWalls.push(currentWall)
-          currentPooja.walls = filteredWalls
+          console.log(action.payload.doorPosition);
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+          filteredWalls.push(currentWall);
+          currentPooja.walls = filteredWalls;
         }
-        state.pooja = currentPooja
+        state.pooja = currentPooja;
       }
-      if (currentRoomType === 'sitout') {
-        const currentSitout = state.sitout
-        const currentWall = currentSitout.walls.filter((wall) => wall.side == currentWallSide)[0]
-        const filteredWalls = currentSitout.walls.filter((wall) => wall.side !== currentWallSide)
+      if (currentRoomType === "sitout") {
+        const currentSitout = state.sitout;
+        const currentWall = currentSitout.walls.filter((wall) => wall.side == currentWallSide)[0];
+        const filteredWalls = currentSitout.walls.filter((wall) => wall.side !== currentWallSide);
         if (action.payload.hasOpening !== undefined) {
           // opening.includes
-          currentWall.opening.includes = action.payload.hasOpening
-          filteredWalls.push(currentWall)
-          currentSitout.walls = filteredWalls
+          currentWall.opening.includes = action.payload.hasOpening;
+          filteredWalls.push(currentWall);
+          currentSitout.walls = filteredWalls;
         }
         if (action.payload.hasDoor !== undefined) {
           // opening.includes
-          currentWall.door.includes = action.payload.hasDoor
-          filteredWalls.push(currentWall)
-          currentSitout.walls = filteredWalls
+          currentWall.door.includes = action.payload.hasDoor;
+          filteredWalls.push(currentWall);
+          currentSitout.walls = filteredWalls;
         }
         if (action.payload.hasWindow !== undefined) {
-          currentWall.window.includes = action.payload.hasWindow
-          filteredWalls.push(currentWall)
-          currentSitout.walls = filteredWalls
+          currentWall.window.includes = action.payload.hasWindow;
+          filteredWalls.push(currentWall);
+          currentSitout.walls = filteredWalls;
         }
         if (action.payload.openingLength !== undefined) {
-          currentWall.opening.length = parseFloat(action.payload.openingLength)
-          filteredWalls.push(currentWall)
-          currentSitout.walls = filteredWalls
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+          filteredWalls.push(currentWall);
+          currentSitout.walls = filteredWalls;
         }
         if (action.payload.openingPosition !== undefined) {
-          const { openingPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(openingPosition) }
+          const { openingPosition } = action.payload;
+          let pos;
+          if (currentWallSide === "front" || currentWallSide === "back") {
+            pos = { right: parseInt(openingPosition) };
           } else {
-            pos = { top: parseInt(openingPosition) }
+            pos = { top: parseInt(openingPosition) };
           }
-          currentWall.opening.position = pos
-          filteredWalls.push(currentWall)
-          currentSitout.walls = filteredWalls
+          currentWall.opening.position = pos;
+          filteredWalls.push(currentWall);
+          currentSitout.walls = filteredWalls;
         }
         if (action.payload.doorPosition !== undefined) {
-          const { doorPosition } = action.payload
-          let pos
-          if (currentWallSide === 'front' || currentWallSide === 'back') {
-            pos = { right: parseInt(doorPosition) }
-          } else {
-            pos = { top: parseInt(doorPosition) }
-          }
-          currentWall.door.position = pos
-          filteredWalls.push(currentWall)
-          currentSitout.walls = filteredWalls
+          console.log(action.payload.doorPosition);
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+          filteredWalls.push(currentWall);
+          currentSitout.walls = filteredWalls;
         }
-        state.sitout = currentSitout
+        state.sitout = currentSitout;
+      }
+      if (currentRoomType === "parking") {
+        const currentParking = state.parking;
+        const currentWall = currentParking.walls.filter((wall) => wall.side == currentWallSide)[0];
+        const filteredWalls = currentParking.walls.filter((wall) => wall.side !== currentWallSide);
+        if (action.payload.hasOpening !== undefined) {
+          // opening.includes
+          currentWall.opening.includes = action.payload.hasOpening;
+          filteredWalls.push(currentWall);
+          currentParking.walls = filteredWalls;
+        }
+        if (action.payload.hasDoor !== undefined) {
+          // opening.includes
+          currentWall.door.includes = action.payload.hasDoor;
+          filteredWalls.push(currentWall);
+          currentParking.walls = filteredWalls;
+        }
+        if (action.payload.hasWindow !== undefined) {
+          currentWall.window.includes = action.payload.hasWindow;
+          filteredWalls.push(currentWall);
+          currentParking.walls = filteredWalls;
+        }
+        if (action.payload.openingLength !== undefined) {
+          currentWall.opening.length = parseFloat(action.payload.openingLength);
+          filteredWalls.push(currentWall);
+          currentParking.walls = filteredWalls;
+        }
+        if (action.payload.openingPosition !== undefined) {
+          const { openingPosition } = action.payload;
+          let pos;
+          if (currentWallSide === "front" || currentWallSide === "back") {
+            pos = { right: parseInt(openingPosition) };
+          } else {
+            pos = { top: parseInt(openingPosition) };
+          }
+          currentWall.opening.position = pos;
+          filteredWalls.push(currentWall);
+          currentParking.walls = filteredWalls;
+        }
+        if (action.payload.doorPosition !== undefined) {
+          console.log(action.payload.doorPosition);
+          const { doorPosition } = action.payload;
+          currentWall.door.position = doorPosition;
+          filteredWalls.push(currentWall);
+          currentSitout.walls = filteredWalls;
+        }
+        state.parking = currentParking;
       }
     },
     setSelectedWall: (state, action) => {

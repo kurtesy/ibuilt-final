@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 export default function InputWithLabel({ label, value, setValue, min, max, disabled }) {
   return (
-    <div className=' h-full py-1 flex items-center bg-slate-800 rounded-xl flex gap-3'>
+    <div className=' h-full py-1  items-center bg-slate-800 rounded-xl flex gap-3'>
       <label className='capitalize text-primaryLime font-semibold'>{label}&nbsp;</label>
       <input
         className='w-[90px] h-full rounded-md outline-none px-3 '

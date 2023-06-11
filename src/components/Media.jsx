@@ -10,72 +10,72 @@ export default function Media({ id }) {
   const [length, setLength] = useState(6)
   const [breadth, setBreadth] = useState(10)
   const [rotation, setRotation] = useState(0)
-  const { scale, facing } = useSelector((state) => state.plot)
-  const { selectedRoom } = useSelector((state) => state.rooms)
-  const [style, setStyle] = useState({})
-  const [isActive, setIsActive] = useState(false)
+  const { scale, facing, icons } = useSelector((state) => state.plot);
+  const { selectedRoom } = useSelector((state) => state.rooms);
+  const [style, setStyle] = useState({});
+  const [isActive, setIsActive] = useState(false);
 
-  const dispatch = useDispatch()
-  const [hovered, setHovered] = useState(false)
+  const dispatch = useDispatch();
+  const [hovered, setHovered] = useState(false);
   const handleDelete = () => {
-    dispatch(removeRoomFromPlot({ position: id, roomType: 'media' }))
-  }
+    dispatch(removeRoomFromPlot({ position: id, roomType: "media" }));
+  };
   const makeStyle = () => {
-    const currStyle = {}
-    currStyle['width'] = Math.floor(length * scale)
-    currStyle['height'] = Math.floor(breadth * scale)
-    currStyle['rotate'] = `${rotation}deg`
+    const currStyle = {};
+    currStyle["width"] = Math.floor(length * scale);
+    currStyle["height"] = Math.floor(breadth * scale);
+    currStyle["rotate"] = `${rotation}deg`;
     if (isActive && selectedRoom.id === id) {
-      currStyle['zIndex'] = 42
-      currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
+      currStyle["zIndex"] = 40;
+      currStyle["backgroundColor"] = "#FFF";
     } else {
-      currStyle['zIndex'] = 10
-      currStyle['backgroundColor'] = '#F4F9F4'
+      currStyle["zIndex"] = 30;
+      currStyle["backgroundColor"] = icons ? "#FFF" : "#F4F9F4";
     }
-    setStyle({ ...currStyle, ...currentMedia.position })
-  }
+    setStyle({ ...currStyle, ...currentMedia.position });
+  };
 
   const handleDeSelect = (e) => {
-    e.preventDefault()
-    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
-    setIsActive(false)
-  }
+    e.preventDefault();
+    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }));
+    setIsActive(false);
+  };
   useEffect(() => {
-    setLength(currentMedia?.length)
-    setBreadth(currentMedia?.breadth)
-  }, [currentMedia])
+    setLength(currentMedia?.length);
+    setBreadth(currentMedia?.breadth);
+  }, [currentMedia]);
   useEffect(() => {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'media',
+        roomType: "media",
         position: positions[facing.toString()][id.toString()]
         // position: { bottom: 0, right: 0 }
       })
-    )
-  }, [facing])
+    );
+  }, [facing]);
   const handleClick = (e) => {
-    e.stopPropagation()
-    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'media' }))
-    setIsActive(true)
-  }
+    e.stopPropagation();
+    dispatch(setSelectedRoomId({ selectedId: id, roomType: "media" }));
+    setIsActive(true);
+  };
   useEffect(() => {
-    setRotation(currentMedia.rotated)
-  }, [currentMedia])
+    setRotation(currentMedia.rotated);
+  }, [currentMedia]);
   useEffect(() => {
-    makeStyle()
-  }, [length, breadth, location, selectedRoom, isActive, currentMedia, facing])
+    makeStyle();
+  }, [length, breadth, location, selectedRoom, isActive, currentMedia, facing, icons]);
 
   useEffect(() => {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'media',
+        roomType: "media",
         length,
         breadth
       })
-    )
-  }, [length, breadth])
+    );
+  }, [length, breadth]);
 
   return (
     <div
@@ -85,9 +85,6 @@ export default function Media({ id }) {
       onContextMenu={handleDeSelect}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}>
-      {selectedRoom.id && hovered && (
-        <AiFillCloseCircle size={32} className='text-red-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 top-0 z-[99]' onClick={handleDelete} />
-      )}
       <div className='absolute top-1/3 left-1/3 text-center text-black p-2 font-semibold'>
         <p style={{ fontSize: Math.min(14, Math.min(currentMedia.length, currentMedia.breadth)) * 0.6 }}>
           MEDIA - {id.toUpperCase()}
@@ -109,5 +106,5 @@ export default function Media({ id }) {
         />
       ))}
     </div>
-  )
+  );
 }

@@ -78,13 +78,13 @@ export default function Plot({ isSiderOpen, plotref }) {
   }, [plotLength, plotBreadth, scale])
   return (
     <div
-      className={`z-40 shadow-2xl shadow-black absolute ${isSiderOpen ? '' : ''} ${darkMode ? 'bg-white' : 'bg-green-100'} `}
+      className={`z-40 shadow-2xl shadow-black absolute ${isSiderOpen ? "" : ""} ${darkMode ? "bg-white" : "bg-green-100"} `}
       style={{ width: plotLength * scale, height: plotBreadth * scale, rotate: `${rotation}deg` }}
       // onWheel={handleWheel}
       ref={plotref}>
       {/* outer walls */}
       {/* top */}
-      <div className='w-full h-[6px] bg-cyan-800 z-[99] absolute top-0 left-0 text-green-800'>
+      <div className='w-full h-[6px] bg-cyan-800 z-[65] absolute top-0 left-0 text-green-800'>
         <div className='w-full flex items-center justify-center font-bold  absolute -top-5'>
           <div>{facings[`${facing}`].opposite}</div>
         </div>
@@ -97,7 +97,7 @@ export default function Plot({ isSiderOpen, plotref }) {
         </div>
       </div>
       {/* bottom */}
-      <div className='w-full h-[6px] bg-cyan-800 z-[99] absolute bottom-0 left-0 text-red-500'>
+      <div className='w-full h-[6px] bg-cyan-800 z-[65] absolute bottom-0 left-0 text-red-500'>
         <div className='w-full flex items-center justify-center font-bold text-primaryLime'>
           <div>{facing}</div>
         </div>
@@ -114,7 +114,7 @@ export default function Plot({ isSiderOpen, plotref }) {
       </div>
 
       {/* left */}
-      <div className='h-[calc(100%-12px)] w-[6px] bg-cyan-800 z-[99] absolute top-[6px] left-0 text-green-800'>
+      <div className='h-[calc(100%-12px)] w-[6px] bg-cyan-800 z-[65] absolute top-[6px] left-0 text-green-800'>
         <div className='w-[2px] absolute left-[-28px] bg-green-800' style={{ height: plotBreadth * scale }} />
 
         <div className='h-full z-50 absolute  left-[-57px] font-bold flex items-center justify-center'>
@@ -124,7 +124,7 @@ export default function Plot({ isSiderOpen, plotref }) {
         </div>
       </div>
       {/* right */}
-      <div className='h-[calc(100%-12px)] w-[6px] bg-cyan-800 z-[99] absolute top-[6px] right-0 text-red-500'>
+      <div className='h-[calc(100%-12px)] w-[6px] bg-cyan-800 z-[65] absolute top-[6px] right-0 text-red-500'>
         {setbacks.front != 0 && setbacks.back != 0 ? (
           <>
             <div className='w-[2px] absolute right-[-28px] bg-red-500' style={{ height: builtBreadth * scale, top: setbacks.back * scale }} />
@@ -138,13 +138,13 @@ export default function Plot({ isSiderOpen, plotref }) {
         ) : null}
       </div>
       <Built />
-      {selectedItems?.map((item, index) => item.roomType === 'commonToilet' && <CommonToilet id={item.position} key={index}/>)}
-      {selectedItems?.map((item, index) => item.roomType === 'staircase' && <Staircase id={item.position} key={index}/>)}
-      {selectedItems?.map((item, index) => item.roomType === 'sitout' && <Sitout id={item.position} key={index}/>)}
-      {selectedItems?.map((item, index) => item.roomType === 'parking' && <Parking id={item.position} key={index}/>)}
-      {selectedItems?.map((item, index) => item.roomType === 'corridor' && <Corridor id={item.position} key={index}/>)}
-      {selectedItems?.map((item, index) => item.roomType === 'extraBath' && <ExtraBath id={item.position} key={index}/>)}
-      {selectedItems?.map((item, index) => item.roomType === 'extraSitout' && <ExtraSitout id={item.position} key={index}/>)}
+      {selectedItems?.map((item, index) => item.roomType === "commonToilet" && <CommonToilet id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === "staircase" && <Staircase id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === "sitout" && <Sitout id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === "parking" && <Parking id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === "corridor" && <Corridor id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === "extraBath" && <ExtraBath id={item.position} key={index} />)}
+      {selectedItems?.map((item, index) => item.roomType === "extraSitout" && <ExtraSitout id={item.position} key={index} />)}
     </div>
-  )
+  );
 }

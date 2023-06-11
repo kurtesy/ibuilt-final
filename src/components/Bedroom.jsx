@@ -12,55 +12,55 @@ import { AiFillCloseCircle } from 'react-icons/ai'
 export default function Bedroom({ id }) {
   const currentBedroom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === id)[0])
   const currentToilet = useSelector((state) => state.rooms.toilets.filter((room) => room.id === id)[0])
-  const { facing } = useSelector((state) => state.plot)
-  const [length, setLength] = useState(0)
-  const [breadth, setBreadth] = useState(0)
-  const { scale, builtLength, builtBreadth } = useSelector((state) => state.plot)
-  const { selectedRoom } = useSelector((state) => state.rooms)
-  const [style, setStyle] = useState({})
-  const [isActive, setIsActive] = useState(false)
-  const [rightClicked, setRightClicked] = useState(false)
-  const dispatch = useDispatch()
-  const [hovered, setHovered] = useState(false)
+  const { facing, icons } = useSelector((state) => state.plot);
+  const [length, setLength] = useState(0);
+  const [breadth, setBreadth] = useState(0);
+  const { scale, builtLength, builtBreadth } = useSelector((state) => state.plot);
+  const { selectedRoom } = useSelector((state) => state.rooms);
+  const [style, setStyle] = useState({});
+  const [isActive, setIsActive] = useState(false);
+  const [rightClicked, setRightClicked] = useState(false);
+  const dispatch = useDispatch();
+  const [hovered, setHovered] = useState(false);
   const handleDelete = () => {
-    dispatch(removeRoomFromPlot({ position: id, roomType: 'bedRoom' }))
-  }
+    dispatch(removeRoomFromPlot({ position: id, roomType: "bedRoom" }));
+  };
   const makeStyle = () => {
-    const currStyle = {}
-    currStyle['width'] = Math.floor(length * scale)
-    currStyle['height'] = Math.floor(breadth * scale)
+    const currStyle = {};
+    currStyle["width"] = Math.floor(length * scale);
+    currStyle["height"] = Math.floor(breadth * scale);
     if (isActive && selectedRoom.id === id) {
-      currStyle['zIndex'] = 98
-      currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
+      currStyle["zIndex"] = 40;
+      currStyle["backgroundColor"] = "#fff";
     } else {
-      currStyle['zIndex'] = 1
-      currStyle['backgroundColor'] = '#FBFFE2'
+      currStyle["zIndex"] = 30;
+      currStyle["backgroundColor"] = icons ? "#FFF" : "#FdF8D6";
     }
-    setStyle({ ...currStyle, ...currentBedroom.position })
-  }
+    setStyle({ ...currStyle, ...currentBedroom.position });
+  };
   useEffect(() => {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'bedroom',
+        roomType: "bedroom",
         position: positions[facing.toString()][id.toString()]
       })
-    )
-  }, [facing])
+    );
+  }, [facing]);
   useEffect(() => {
-    setLength(currentBedroom?.length)
-    setBreadth(currentBedroom?.breadth)
-  }, [currentBedroom])
+    setLength(currentBedroom?.length);
+    setBreadth(currentBedroom?.breadth);
+  }, [currentBedroom]);
 
   const handleClick = () => {
     // e.stopPropagation()
-    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'bedroom' }))
-    setIsActive(true)
-  }
+    dispatch(setSelectedRoomId({ selectedId: id, roomType: "bedroom" }));
+    setIsActive(true);
+  };
 
   useEffect(() => {
-    makeStyle()
-  }, [length, breadth, selectedRoom, isActive, currentBedroom, facing, scale])
+    makeStyle();
+  }, [length, breadth, selectedRoom, isActive, currentBedroom, facing, scale, icons]);
 
   // useEffect(() => {
   //   dispatch(
@@ -74,14 +74,14 @@ export default function Bedroom({ id }) {
   // }, [builtBreadth, builtLength])
 
   const handleContextMenu = (e) => {
-    e.preventDefault()
-    setRightClicked(true)
-  }
+    e.preventDefault();
+    setRightClicked(true);
+  };
   const handleDeSelect = (e) => {
-    e.preventDefault()
-    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
-    setIsActive(false)
-  }
+    e.preventDefault();
+    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }));
+    setIsActive(false);
+  };
 
   return (
     <div
@@ -93,9 +93,9 @@ export default function Bedroom({ id }) {
       onContextMenu={handleDeSelect}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}>
-      {selectedRoom.id && hovered && (
+      {/* {selectedRoom.id && hovered && (
         <AiFillCloseCircle size={32} className='text-red-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 top-0 z-[99]' onClick={handleDelete} />
-      )}
+      )} */}
       {currentToilet.length && currentToilet.breadth ? <Toilet id={id} /> : null}
       {/* BG */}
       {/* <div
@@ -134,5 +134,5 @@ export default function Bedroom({ id }) {
       {currentBedroom.hasWardrobe && <Wardrobe id={currentBedroom.id} />}
       {currentBedroom.hasBalcony && <Balcony id={currentBedroom.id} />}
     </div>
-  )
+  );
 }

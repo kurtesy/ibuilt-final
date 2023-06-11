@@ -1177,48 +1177,50 @@ function generateTypeA() {
     store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'bedroom', id: 'nw' }))
     store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'bedroom', id: 'nw' }))
     store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'bedroom', id: 'ne' }))
-    // store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'bedroom', id: 'ne' }))
-    store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'bedroom', id: 'sw' }))
-    store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'bedroom', id: 'sw' }))
-    store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'bedroom', id: 'sw' }))
-    store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'pooja', id: 'ne' }))
-    store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'pooja', id: 'ne' }))
-    store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'kitchen', id: '' }))
-    store.dispatch(addWallToRoom({ side: 'right', status: false, roomType: 'toilet', id: 'nw' }))
-    store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'toilet', id: 'nw' }))
-    store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'toilet', id: 'ne' }))
-    store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'toilet', id: 'ne' }))
-    store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'extraBath', id: 'sw' }))
-    store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'extraBath', id: 'sw' }))
-    store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'extraBath', id: 'sw' }))
-    store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'extraBath', id: 'sw' }))
-    store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'parking', id: '' }))
-    store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'parking', id: '' }))
-    store.dispatch(addWallToRoom({ side: 'front', status: false, roomType: 'living', id: 'sw' }))
+    store.dispatch(addWallToRoom({ side: "right", status: true, roomType: "bedroom", id: "sw" }));
+    store.dispatch(addWallToRoom({ side: "front", status: true, roomType: "bedroom", id: "sw" }));
+    store.dispatch(addWallToRoom({ side: "left", status: true, roomType: "bedroom", id: "sw" }));
+    store.dispatch(addWallToRoom({ side: "back", status: true, roomType: "bedroom", id: "sw" }));
+    store.dispatch(addWallToRoom({ side: "right", status: true, roomType: "pooja", id: "ne" }));
+    store.dispatch(addWallToRoom({ side: "front", status: true, roomType: "pooja", id: "ne" }));
+    store.dispatch(addWallToRoom({ side: "left", status: true, roomType: "kitchen", id: "" }));
+    store.dispatch(addWallToRoom({ side: "right", status: false, roomType: "toilet", id: "nw" }));
+    store.dispatch(addWallToRoom({ side: "front", status: true, roomType: "toilet", id: "nw" }));
+    store.dispatch(addWallToRoom({ side: "right", status: true, roomType: "toilet", id: "ne" }));
+    store.dispatch(addWallToRoom({ side: "front", status: true, roomType: "toilet", id: "ne" }));
+    store.dispatch(addWallToRoom({ side: "front", status: true, roomType: "extraBath", id: "sw" }));
+    store.dispatch(addWallToRoom({ side: "left", status: true, roomType: "extraBath", id: "sw" }));
+    store.dispatch(addWallToRoom({ side: "right", status: true, roomType: "extraBath", id: "sw" }));
+    store.dispatch(addWallToRoom({ side: "back", status: true, roomType: "extraBath", id: "sw" }));
+    store.dispatch(addWallToRoom({ side: "right", status: true, roomType: "parking", id: "" }));
+    store.dispatch(addWallToRoom({ side: "back", status: true, roomType: "parking", id: "" }));
 
-    store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'commonToilet', id: '' }))
-    store.dispatch(addWallToRoom({ side: 'back', status: true, roomType: 'commonToilet', id: '' }))
-    store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'commonToilet', id: '' }))
-    store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'drawing', id: '' }))
-    store.dispatch(addWallToRoom({ side: 'back', status: false, roomType: 'drawing', id: '' }))
-    store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'sitout', id: '' }))
-    store.dispatch(addWallToRoom({ side: 'right', status: true, roomType: 'extraBath', id: 'nw' }))
-    store.dispatch(addWallToRoom({ side: 'front', status: true, roomType: 'extraBath', id: 'nw' }))
-    store.dispatch(addWallToRoom({ side: 'left', status: true, roomType: 'extraBath', id: 'nw' }))
+    store.dispatch(addWallToRoom({ side: "left", status: true, roomType: "commonToilet", id: "" }));
+    store.dispatch(addWallToRoom({ side: "back", status: true, roomType: "commonToilet", id: "" }));
+    store.dispatch(addWallToRoom({ side: "front", status: true, roomType: "commonToilet", id: "" }));
+    store.dispatch(addWallToRoom({ side: "front", status: true, roomType: "drawing", id: "" }));
+    store.dispatch(addWallToRoom({ side: "back", status: false, roomType: "drawing", id: "" }));
+    store.dispatch(addWallToRoom({ side: "right", status: true, roomType: "sitout", id: "" }));
+    store.dispatch(addWallToRoom({ side: "right", status: true, roomType: "extraBath", id: "nw" }));
+    store.dispatch(addWallToRoom({ side: "front", status: true, roomType: "extraBath", id: "nw" }));
+    store.dispatch(addWallToRoom({ side: "left", status: true, roomType: "extraBath", id: "nw" }));
 
-    store.dispatch(updateWall({ id: 'kitchen-se-left', openingLength: 0.4 * kitchenBreadth, hasOpening: true }))
-    store.dispatch(updateWall({ id: 'sitout-sw-right', openingLength: 0.5 * sitoutBreadth, hasOpening: true }))
-    store.dispatch(updateWall({ id: 'pooja-ne-right', openingLength: 0.5 * sitoutBreadth, hasOpening: true }))
+    store.dispatch(updateWall({ id: "kitchen-se-left", openingLength: 0.4 * kitchenBreadth, hasOpening: true }));
+    store.dispatch(updateWall({ id: "sitout-sw-right", openingLength: 0.5 * sitoutBreadth, hasOpening: true }));
+    store.dispatch(updateWall({ id: "pooja-ne-right", openingLength: 0.5 * sitoutBreadth, hasOpening: true }));
 
     //Add Doors
-    store.dispatch(updateWall({ id: 'bedroom-nw-front', hasDoor: true }))
-    store.dispatch(updateWall({ id: 'bedroom-sw-left', hasDoor: true }))
+    store.dispatch(updateWall({ id: "bedroom-nw-front", hasDoor: true, doorPosition: { right: 10 } }));
 
-    store.dispatch(updateWall({ id: 'commonToilet-sw-left', hasDoor: true }))
-    store.dispatch(updateWall({ id: 'toilet-ne-right', hasDoor: false }))
-    store.dispatch(updateWall({ id: 'living-sw-front', hasDoor: false }))
-    store.dispatch(updateWall({ id: 'extraBath-nw-right', hasDoor: true }))
-    store.dispatch(updateWall({ id: 'extraBath-nw-left', hasDoor: true }))
+    store.dispatch(updateWall({ id: "bedroom-sw-left", hasDoor: true, doorPosition: { top: 10 } }));
+    store.dispatch(updateWall({ id: "bedroom-ne-front", hasDoor: true, doorPosition: { left: 10 } }));
+    store.dispatch(updateWall({ id: "commonToilet-sw-left", hasDoor: true }));
+    store.dispatch(updateWall({ id: "bedroom-sw-right", hasDoor: true }));
+    store.dispatch(updateWall({ id: "toilet-ne-right", hasDoor: false }));
+    store.dispatch(updateWall({ id: "living-sw-front", hasDoor: false }));
+    store.dispatch(updateWall({ id: "extraBath-nw-right", hasDoor: true }));
+    store.dispatch(updateWall({ id: "extraBath-nw-left", hasDoor: true }));
+    store.dispatch(updateWall({ id: "parking-sw-back", hasDoor: true }));
   }
 
   if (plotBreadth >= 41 && plotBreadth <= 45) {

@@ -14,12 +14,12 @@ export default function Wall({ id, position, length, thickness, side, door, adde
     else currStyle['right'] = position.right
 
     if (side === 'front' || side === 'back') {
-      currStyle['width'] = Math.ceil(length * scale)
+      currStyle["width"] = Math.floor(length * scale);
       currStyle['height'] = thickness
     } else {
-      currStyle['height'] = Math.ceil(length * scale)
-      currStyle['width'] = thickness
-    }
+      currStyle["height"] = Math.floor(length * scale);
+      currStyle["width"] = thickness;
+    } 
     setStyle(currStyle)
   }
   // console.log(doorPosition)
@@ -29,12 +29,12 @@ export default function Wall({ id, position, length, thickness, side, door, adde
   return (
     <>
       {added ? (
-        <div className='bg-cyan-900 border-[1px] border-black absolute z-50 hover:bg-green-400' style={style}>
+        <div className='bg-slate-800  absolute z-50 hover:bg-green-400' style={style}>
           {opening.includes && <Opening length={opening.length} position={opening.position} side={side} id={id} />}
-          {door.includes && <Door position={door.position} side={side} id={id} />}
+          {door.includes && <Door rotation={door.rotation} position={door.position} side={side} id={id} />}
           {/* {window.includes && <WindowComp position={window.position} side={side} />} */}
         </div>
       ) : null}
     </>
-  )
+  );
 }

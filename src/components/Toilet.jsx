@@ -11,47 +11,47 @@ export default function Toilet({ id }) {
   const [breadth, setBreadth] = useState(0)
   const [type, setType] = useState(0)
   const [rotation, setRotation] = useState(0)
-  const { scale, facing } = useSelector((state) => state.plot)
-  const { selectedRoom } = useSelector((state) => state.rooms)
-  const [style, setStyle] = useState({})
-  const [isActive, setIsActive] = useState(false)
-  const [bgNum, setBgNum] = useState(4)
-  const dispatch = useDispatch()
-  const [hovered, setHovered] = useState(false)
+  const { scale, facing, icons } = useSelector((state) => state.plot);
+  const { selectedRoom } = useSelector((state) => state.rooms);
+  const [style, setStyle] = useState({});
+  const [isActive, setIsActive] = useState(false);
+  const [bgNum, setBgNum] = useState(4);
+  const dispatch = useDispatch();
+  const [hovered, setHovered] = useState(false);
   const handleDelete = () => {
-    dispatch(removeRoomFromPlot({ position: id, roomType: 'toilet' }))
-  }
+    dispatch(removeRoomFromPlot({ position: id, roomType: "toilet" }));
+  };
   useEffect(() => {
-    setType(currentToilet.type)
-  }, [currentToilet])
+    setType(currentToilet.type);
+  }, [currentToilet]);
 
   const handleDeSelect = (e) => {
-    e.preventDefault()
-    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
-    setIsActive(false)
-  }
+    e.preventDefault();
+    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }));
+    setIsActive(false);
+  };
   useEffect(() => {
-    if (type === 1) setBgNum(4)
-    if (type === 2) setBgNum(3)
-    if (type === 3) setBgNum(1)
-  }, [type])
+    if (type === 1) setBgNum(4);
+    if (type === 2) setBgNum(3);
+    if (type === 3) setBgNum(1);
+  }, [type]);
   const makeStyle = () => {
-    const currStyle = {}
-    currStyle['width'] = Math.floor(length * scale)
-    currStyle['height'] = Math.floor(breadth * scale)
-    currStyle['rotate'] = `${rotation}deg`
+    const currStyle = {};
+    currStyle["width"] = Math.floor(length * scale);
+    currStyle["height"] = Math.floor(breadth * scale);
+    currStyle["rotate"] = `${rotation}deg`;
     if (rotation) {
-      currStyle['transform'] = `translate(-50%,-50%)`
+      currStyle["transform"] = `translate(-50%,-50%)`;
     }
     if (isActive && selectedRoom.id === id) {
-      currStyle['zIndex'] = 42
-      currStyle['backgroundColor'] = 'rgba(250,150,150,0.8)'
+      currStyle["zIndex"] = 40;
+      currStyle["backgroundColor"] = "#FFF";
     } else {
-      currStyle['zIndex'] = 10
-      currStyle['backgroundColor'] = '#D7E9F7'
+      currStyle["zIndex"] = 30;
+      currStyle["backgroundColor"] = icons ? "#fff" : "#D7E9F7";
     }
-    setStyle({ ...currStyle, ...currentToilet.position })
-  }
+    setStyle({ ...currStyle, ...currentToilet.position });
+  };
   useEffect(() => {
     setLength(currentToilet?.length)
     setBreadth(currentToilet?.breadth)
@@ -73,14 +73,11 @@ export default function Toilet({ id }) {
   }
 
   useEffect(() => {
-    makeStyle()
-  }, [length, breadth, location, selectedRoom, isActive, currentToilet, scale])
+    makeStyle();
+  }, [length, breadth, location, selectedRoom, isActive, currentToilet, scale, icons]);
 
   return (
     <div style={style} className='relative' onClick={handleClick} onContextMenu={handleDeSelect} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-      {selectedRoom.id && hovered && (
-        <AiFillCloseCircle size={32} className='text-red-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 top-0 z-[99]' onClick={handleDelete} />
-      )}
       {/* BG */}
       <div
         className='w-full h-full absolute top-0 left-0 bg-cover  -z-50'
@@ -111,5 +108,5 @@ export default function Toilet({ id }) {
         />
       ))}
     </div>
-  )
+  );
 }

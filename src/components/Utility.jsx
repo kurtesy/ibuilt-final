@@ -9,26 +9,26 @@ export default function Utility({ id }) {
   const [length, setLength] = useState(0)
   const [breadth, setBreadth] = useState(0)
   const [rotation, setRotation] = useState(0)
-  const { scale } = useSelector((state) => state.plot)
-  const { selectedRoom } = useSelector((state) => state.rooms)
-  const [style, setStyle] = useState({})
-  const [isActive, setIsActive] = useState(false)
+  const { scale, icons } = useSelector((state) => state.plot);
+  const { selectedRoom } = useSelector((state) => state.rooms);
+  const [style, setStyle] = useState({});
+  const [isActive, setIsActive] = useState(false);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const makeStyle = () => {
-    const currStyle = {}
-    currStyle['width'] = Math.floor(length * scale)
-    currStyle['height'] = Math.floor(breadth * scale)
-    currStyle['rotate'] = `${rotation}deg`
+    const currStyle = {};
+    currStyle["width"] = Math.floor(length * scale);
+    currStyle["height"] = Math.floor(breadth * scale);
+    currStyle["rotate"] = `${rotation}deg`;
     if (isActive && selectedRoom.id === id) {
-      currStyle['zIndex'] = 42
-      currStyle['backgroundColor'] = 'rgba(250,150,150,0.8)'
+      currStyle["zIndex"] = 40;
+      currStyle["backgroundColor"] = "#FFF";
     } else {
-      currStyle['zIndex'] = 10
-      currStyle['backgroundColor'] = '#fff'
+      currStyle["zIndex"] = 30;
+      currStyle["backgroundColor"] = icons ? "#fff" : "#b4f6ff";
     }
-    setStyle({ ...currStyle, ...currentUtility.position })
-  }
+    setStyle({ ...currStyle, ...currentUtility.position });
+  };
 
   const handleDeSelect = (e) => {
     e.preventDefault()
@@ -50,8 +50,8 @@ export default function Utility({ id }) {
     setRotation(currentUtility.rotated)
   }, [currentUtility])
   useEffect(() => {
-    makeStyle()
-  }, [length, breadth, location, selectedRoom, isActive, currentUtility])
+    makeStyle();
+  }, [length, breadth, location, selectedRoom, isActive, currentUtility, icons]);
   useEffect(() => {
     dispatch(
       updateRoomData({

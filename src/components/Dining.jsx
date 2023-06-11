@@ -10,72 +10,72 @@ export default function Dining({ id }) {
   const [length, setLength] = useState(6)
   const [breadth, setBreadth] = useState(10)
   const [rotation, setRotation] = useState(0)
-  const { scale, facing } = useSelector((state) => state.plot)
-  const { selectedRoom } = useSelector((state) => state.rooms)
-  const [style, setStyle] = useState({})
-  const [isActive, setIsActive] = useState(false)
-  const dispatch = useDispatch()
-  const [hovered, setHovered] = useState(false)
+  const { scale, facing, icons } = useSelector((state) => state.plot);
+  const { selectedRoom } = useSelector((state) => state.rooms);
+  const [style, setStyle] = useState({});
+  const [isActive, setIsActive] = useState(false);
+  const dispatch = useDispatch();
+  const [hovered, setHovered] = useState(false);
   const handleDelete = () => {
-    dispatch(removeRoomFromPlot({ position: id, roomType: 'dining' }))
-  }
+    dispatch(removeRoomFromPlot({ position: id, roomType: "dining" }));
+  };
   const makeStyle = () => {
-    const currStyle = {}
-    currStyle['width'] = Math.floor(length * scale)
-    currStyle['height'] = Math.floor(breadth * scale)
-    currStyle['rotate'] = `${rotation}deg`
+    const currStyle = {};
+    currStyle["width"] = Math.floor(length * scale);
+    currStyle["height"] = Math.floor(breadth * scale);
+    currStyle["rotate"] = `${rotation}deg`;
     if (isActive && selectedRoom.id === id) {
-      currStyle['zIndex'] = 42
-      currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
+      currStyle["zIndex"] = 40;
+      currStyle["backgroundColor"] = "#FFF";
     } else {
-      currStyle['zIndex'] = 10
-      currStyle['backgroundColor'] = '#B4F2E1'
+      currStyle["zIndex"] = 30;
+      currStyle["backgroundColor"] = icons ? "#fff" : "#B4F2E1";
     }
-    setStyle({ ...currStyle, ...currentDining.position })
-  }
+    setStyle({ ...currStyle, ...currentDining.position });
+  };
 
   useEffect(() => {
-    setLength(currentDining?.length)
-    setBreadth(currentDining?.breadth)
-  }, [currentDining])
+    setLength(currentDining?.length);
+    setBreadth(currentDining?.breadth);
+  }, [currentDining]);
   useEffect(() => {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'dining',
+        roomType: "dining",
         position: positions[facing.toString()][id.toString()]
         // position: { bottom: 0, right: 0 }
       })
-    )
-  }, [facing])
+    );
+  }, [facing]);
   const handleClick = (e) => {
-    e.stopPropagation()
-    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'dining' }))
-    setIsActive(true)
-  }
+    e.stopPropagation();
+    dispatch(setSelectedRoomId({ selectedId: id, roomType: "dining" }));
+    setIsActive(true);
+  };
   useEffect(() => {
-    setRotation(currentDining.rotated)
-  }, [currentDining])
+    setRotation(currentDining.rotated);
+  }, [currentDining]);
   useEffect(() => {
-    makeStyle()
-  }, [length, breadth, selectedRoom, isActive, currentDining, facing])
+    makeStyle();
+  }, [length, breadth, selectedRoom, isActive, currentDining, facing, icons]);
 
   useEffect(() => {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'dining',
+        roomType: "dining",
         length,
         breadth
       })
-    )
-  }, [length, breadth])
+    );
+  }, [length, breadth]);
 
   const handleDeSelect = (e) => {
-    e.preventDefault()
-    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
-    setIsActive(false)
-  }
+    e.preventDefault();
+    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }));
+    setIsActive(false);
+  };
   return (
     <div
       style={style}
@@ -84,9 +84,6 @@ export default function Dining({ id }) {
       onContextMenu={handleDeSelect}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}>
-      {selectedRoom.id && hovered && (
-        <AiFillCloseCircle size={32} className='text-red-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 top-0 z-[99]' onClick={handleDelete} />
-      )}
       <div className='absolute top-1/2 left-1/2 text-center text-xs   text-black p-1 '>
         DINING - {id.toUpperCase()}
         <br />
@@ -107,5 +104,5 @@ export default function Dining({ id }) {
         />
       ))}
     </div>
-  )
+  );
 }

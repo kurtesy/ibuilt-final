@@ -8,56 +8,56 @@ import { AiOutlineRotateRight } from 'react-icons/ai'
 export default function Parking({ id }) {
   const currentParking = useSelector((state) => state.rooms.parking)
 
-  const [length, setLength] = useState(6)
-  const [breadth, setBreadth] = useState(10)
-  const { scale, facing } = useSelector((state) => state.plot)
-  const { selectedRoom } = useSelector((state) => state.rooms)
-  const [style, setStyle] = useState({})
-  const [isActive, setIsActive] = useState(false)
+  const [length, setLength] = useState(currentParking.length);
+  const [breadth, setBreadth] = useState(currentParking.breadth);
+  const { scale, facing, icons } = useSelector((state) => state.plot);
+  const { selectedRoom } = useSelector((state) => state.rooms);
+  const [style, setStyle] = useState({});
+  const [isActive, setIsActive] = useState(false);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const makeStyle = () => {
-    const currStyle = {}
-    currStyle['width'] = Math.floor(length * scale)
-    currStyle['height'] = Math.floor(breadth * scale)
+    const currStyle = {};
+    currStyle["width"] = Math.floor(length * scale);
+    currStyle["height"] = Math.floor(breadth * scale);
 
     if (isActive && selectedRoom.id === id) {
-      currStyle['zIndex'] = 50
-      currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
+      currStyle["zIndex"] = 40;
+      currStyle["backgroundColor"] = "#FFF";
     } else {
-      currStyle['zIndex'] = 30
-      currStyle['backgroundColor'] = 'lightgray'
+      currStyle["zIndex"] = 30;
+      currStyle["backgroundColor"] = icons ? "#FFF" : "lightgray";
     }
-    setStyle({ ...currStyle, ...currentParking.position })
-  }
+    setStyle({ ...currStyle, ...currentParking.position });
+  };
   const handleDeSelect = (e) => {
-    e.preventDefault()
-    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
-    setIsActive(false)
-  }
+    e.preventDefault();
+    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }));
+    setIsActive(false);
+  };
   useEffect(() => {
-    setLength(currentParking?.length)
-    setBreadth(currentParking?.breadth)
-  }, [currentParking])
+    setLength(currentParking?.length);
+    setBreadth(currentParking?.breadth);
+  }, [currentParking]);
   useEffect(() => {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'parking',
+        roomType: "parking",
         position: positions[facing.toString()][id.toString()]
         // position: { bottom: 0, right: 0 }
       })
-    )
-  }, [facing])
+    );
+  }, [facing]);
   const handleClick = (e) => {
-    e.stopPropagation()
-    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'parking' }))
-    setIsActive(true)
-  }
+    e.stopPropagation();
+    dispatch(setSelectedRoomId({ selectedId: id, roomType: "parking" }));
+    setIsActive(true);
+  };
 
   useEffect(() => {
-    makeStyle()
-  }, [length, breadth, location, selectedRoom, isActive, currentParking, facing])
+    makeStyle();
+  }, [length, breadth, location, selectedRoom, isActive, currentParking, facing, icons]);
 
   useEffect(() => {
     dispatch(

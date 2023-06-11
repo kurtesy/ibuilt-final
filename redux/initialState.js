@@ -1,5 +1,5 @@
 export const initialState = {
-  currentPosition: '',
+  currentPosition: "",
   currentRoom: {},
   selectedRoom: { id: null, roomType: null },
   addedRooms: [],
@@ -7,7 +7,7 @@ export const initialState = {
   selectedIcon: { id: null, type: null, variant: null },
   bedRooms: [
     {
-      id: 'nw',
+      id: "nw",
       length: null,
       breadth: null,
       maxDim: 30,
@@ -21,7 +21,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -30,7 +30,8 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            rotation: "0deg",
+            type: "default"
           },
           opening: {
             includes: false,
@@ -40,7 +41,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -49,7 +50,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -59,7 +60,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -68,7 +69,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -78,7 +79,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -87,7 +88,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -98,7 +99,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'ne',
+      id: "ne",
       length: null,
       breadth: null,
       maxDim: 30,
@@ -108,7 +109,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -117,7 +118,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -127,7 +128,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -136,7 +137,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -146,7 +147,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -155,7 +156,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -165,7 +166,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -174,7 +175,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -185,7 +186,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'sw',
+      id: "sw",
       length: null,
       breadth: null,
       maxDim: 20,
@@ -195,7 +196,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -204,7 +205,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -214,7 +215,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -223,7 +224,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -233,7 +234,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -242,7 +243,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -252,7 +253,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -261,7 +262,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -272,7 +273,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'se',
+      id: "se",
       length: null,
       breadth: null,
       maxDim: 20,
@@ -282,7 +283,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -291,7 +292,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -301,7 +302,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -310,7 +311,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -320,7 +321,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -329,7 +330,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -339,7 +340,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -348,7 +349,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -361,7 +362,7 @@ export const initialState = {
   ],
   livingRooms: [
     {
-      id: 'nw',
+      id: "nw",
       length: null,
       breadth: null,
       maxDim: 30,
@@ -374,7 +375,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -383,7 +384,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -393,12 +394,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -407,7 +408,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -417,7 +418,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -426,7 +427,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -436,7 +437,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -445,7 +446,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -456,7 +457,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'ne',
+      id: "ne",
       length: null,
       breadth: null,
       maxDim: 30,
@@ -469,7 +470,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -478,7 +479,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -488,12 +489,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -502,7 +503,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -512,7 +513,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -521,7 +522,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -531,7 +532,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -540,7 +541,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -551,7 +552,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'sw',
+      id: "sw",
       length: null,
       breadth: null,
       maxDim: 30,
@@ -564,7 +565,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -573,7 +574,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -583,12 +584,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -597,7 +598,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -607,7 +608,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -616,7 +617,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -626,7 +627,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -635,7 +636,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -646,7 +647,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'se',
+      id: "se",
       length: null,
       breadth: null,
       maxDim: 30,
@@ -659,7 +660,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -668,7 +669,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -678,12 +679,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -692,7 +693,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -702,7 +703,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -711,7 +712,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -721,7 +722,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -730,7 +731,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -743,7 +744,7 @@ export const initialState = {
   ],
   toilets: [
     {
-      id: 'nw',
+      id: "nw",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -755,7 +756,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -764,7 +765,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -774,12 +775,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -788,7 +789,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -798,7 +799,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -807,7 +808,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -817,7 +818,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -826,7 +827,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -837,7 +838,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'ne',
+      id: "ne",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -848,7 +849,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -857,7 +858,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -867,12 +868,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -881,7 +882,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -891,7 +892,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -900,7 +901,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -910,7 +911,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -919,7 +920,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -930,7 +931,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'sw',
+      id: "sw",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -941,7 +942,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -950,7 +951,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -960,12 +961,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -974,7 +975,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -984,7 +985,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -993,7 +994,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -1003,7 +1004,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -1012,7 +1013,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -1023,7 +1024,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'se',
+      id: "se",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -1034,7 +1035,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -1043,7 +1044,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -1053,12 +1054,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -1067,7 +1068,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -1077,7 +1078,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -1086,7 +1087,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -1096,7 +1097,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -1105,7 +1106,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -1117,7 +1118,7 @@ export const initialState = {
     }
   ],
   commonToilet: {
-    id: '',
+    id: "",
     length: 6,
     breadth: 6,
     maxDim: 8,
@@ -1126,7 +1127,7 @@ export const initialState = {
     position: { top: 0, left: 0 },
     walls: [
       {
-        side: 'front',
+        side: "front",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1135,11 +1136,11 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         }
       },
       {
-        side: 'back',
+        side: "back",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1148,11 +1149,11 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         }
       },
       {
-        side: 'left',
+        side: "left",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1161,11 +1162,11 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         }
       },
       {
-        side: 'right',
+        side: "right",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1174,14 +1175,14 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         }
       }
     ]
   },
   balconies: [
     {
-      id: 'nw',
+      id: "nw",
       includes: false,
       maxDim: 15,
       minDim: 3,
@@ -1190,7 +1191,7 @@ export const initialState = {
       position: { right: 0, top: 0 }
     },
     {
-      id: 'ne',
+      id: "ne",
       includes: false,
       maxDim: 15,
       minDim: 3,
@@ -1199,7 +1200,7 @@ export const initialState = {
       position: { right: 0, top: 0 }
     },
     {
-      id: 'sw',
+      id: "sw",
       includes: false,
       maxDim: 15,
       minDim: 3,
@@ -1208,7 +1209,7 @@ export const initialState = {
       position: { left: 0, bottom: 0 }
     },
     {
-      id: 'se',
+      id: "se",
       includes: false,
       maxDim: 15,
       minDim: 3,
@@ -1218,7 +1219,7 @@ export const initialState = {
     }
   ],
   kitchen: {
-    id: '',
+    id: "",
     length: null,
     breadth: null,
     maxDim: 30,
@@ -1231,7 +1232,7 @@ export const initialState = {
     walls: [
       {
         added: false,
-        side: 'front',
+        side: "front",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1240,7 +1241,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1250,12 +1251,12 @@ export const initialState = {
         window: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         }
       },
       {
         added: false,
-        side: 'back',
+        side: "back",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1264,7 +1265,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1274,7 +1275,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'left',
+        side: "left",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1283,7 +1284,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1293,7 +1294,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'right',
+        side: "right",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1302,7 +1303,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1313,7 +1314,7 @@ export const initialState = {
     ]
   },
   utility: {
-    id: '',
+    id: "",
     type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
     length: 3,
     breadth: 3,
@@ -1325,7 +1326,7 @@ export const initialState = {
     walls: [
       {
         added: false,
-        side: 'front',
+        side: "front",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1334,7 +1335,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1344,12 +1345,12 @@ export const initialState = {
         window: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         }
       },
       {
         added: false,
-        side: 'back',
+        side: "back",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1358,7 +1359,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1368,7 +1369,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'left',
+        side: "left",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1377,7 +1378,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1387,7 +1388,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'right',
+        side: "right",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1396,7 +1397,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1407,7 +1408,7 @@ export const initialState = {
     ]
   },
   store: {
-    id: '',
+    id: "",
     type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
     length: 3,
     breadth: 3,
@@ -1419,7 +1420,7 @@ export const initialState = {
     walls: [
       {
         added: false,
-        side: 'front',
+        side: "front",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1428,7 +1429,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1438,12 +1439,12 @@ export const initialState = {
         window: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         }
       },
       {
         added: false,
-        side: 'back',
+        side: "back",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1452,7 +1453,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1462,7 +1463,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'left',
+        side: "left",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1471,7 +1472,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1481,7 +1482,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'right',
+        side: "right",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1490,7 +1491,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1501,7 +1502,7 @@ export const initialState = {
     ]
   },
   dining: {
-    id: '',
+    id: "",
     type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
     length: 8,
     breadth: 8,
@@ -1513,7 +1514,7 @@ export const initialState = {
     walls: [
       {
         added: false,
-        side: 'front',
+        side: "front",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1522,7 +1523,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1532,12 +1533,12 @@ export const initialState = {
         window: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         }
       },
       {
         added: false,
-        side: 'back',
+        side: "back",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1546,7 +1547,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1556,7 +1557,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'left',
+        side: "left",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1565,7 +1566,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1575,7 +1576,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'right',
+        side: "right",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1584,7 +1585,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1595,7 +1596,7 @@ export const initialState = {
     ]
   },
   drawing: {
-    id: '',
+    id: "",
     type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
     length: 8,
     breadth: 8,
@@ -1607,7 +1608,7 @@ export const initialState = {
     walls: [
       {
         added: false,
-        side: 'front',
+        side: "front",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1616,7 +1617,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1626,12 +1627,12 @@ export const initialState = {
         window: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         }
       },
       {
         added: false,
-        side: 'back',
+        side: "back",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1640,7 +1641,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1650,7 +1651,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'left',
+        side: "left",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1659,7 +1660,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1669,7 +1670,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'right',
+        side: "right",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1678,7 +1679,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1689,7 +1690,7 @@ export const initialState = {
     ]
   },
   commonToilet: {
-    id: '',
+    id: "",
     length: 6,
     breadth: 6,
     maxDim: 8,
@@ -1700,7 +1701,7 @@ export const initialState = {
     walls: [
       {
         added: false,
-        side: 'front',
+        side: "front",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1709,7 +1710,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1719,12 +1720,12 @@ export const initialState = {
         window: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         }
       },
       {
         added: false,
-        side: 'back',
+        side: "back",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1733,7 +1734,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1743,7 +1744,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'left',
+        side: "left",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1752,7 +1753,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1762,7 +1763,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'right',
+        side: "right",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1771,7 +1772,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1782,7 +1783,7 @@ export const initialState = {
     ]
   },
   pooja: {
-    id: '',
+    id: "",
     type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
     length: 8,
     breadth: 8,
@@ -1794,7 +1795,7 @@ export const initialState = {
     walls: [
       {
         added: false,
-        side: 'front',
+        side: "front",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1803,7 +1804,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1813,12 +1814,12 @@ export const initialState = {
         window: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         }
       },
       {
         added: false,
-        side: 'back',
+        side: "back",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1827,7 +1828,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1837,7 +1838,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'left',
+        side: "left",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1846,7 +1847,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1856,7 +1857,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'right',
+        side: "right",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1865,7 +1866,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1876,7 +1877,7 @@ export const initialState = {
     ]
   },
   media: {
-    id: '',
+    id: "",
     type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
     length: 10,
     breadth: 10,
@@ -1888,7 +1889,7 @@ export const initialState = {
     walls: [
       {
         added: false,
-        side: 'front',
+        side: "front",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1897,7 +1898,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1907,12 +1908,12 @@ export const initialState = {
         window: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         }
       },
       {
         added: false,
-        side: 'back',
+        side: "back",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1921,7 +1922,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1931,7 +1932,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'left',
+        side: "left",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1940,7 +1941,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1950,7 +1951,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'right',
+        side: "right",
         length: null,
         thickness: 6,
         direction: 1,
@@ -1959,7 +1960,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -1970,7 +1971,7 @@ export const initialState = {
     ]
   },
   stairCase: {
-    id: '',
+    id: "",
     type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
     length: 8,
     breadth: 8,
@@ -1982,7 +1983,7 @@ export const initialState = {
     walls: [
       {
         added: false,
-        side: 'front',
+        side: "front",
         length: null,
         thickness: 6,
         direction: 0,
@@ -1991,7 +1992,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -2001,12 +2002,12 @@ export const initialState = {
         window: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         }
       },
       {
         added: false,
-        side: 'back',
+        side: "back",
         length: null,
         thickness: 6,
         direction: 0,
@@ -2015,7 +2016,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -2025,7 +2026,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'left',
+        side: "left",
         length: null,
         thickness: 6,
         direction: 1,
@@ -2034,7 +2035,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -2044,7 +2045,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'right',
+        side: "right",
         length: null,
         thickness: 6,
         direction: 1,
@@ -2053,7 +2054,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -2064,7 +2065,7 @@ export const initialState = {
     ]
   },
   parking: {
-    id: '',
+    id: "",
     type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
     length: 8,
     breadth: 8,
@@ -2076,7 +2077,7 @@ export const initialState = {
     walls: [
       {
         added: false,
-        side: 'front',
+        side: "front",
         length: null,
         thickness: 6,
         direction: 0,
@@ -2085,7 +2086,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -2095,12 +2096,12 @@ export const initialState = {
         window: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         }
       },
       {
         added: false,
-        side: 'back',
+        side: "back",
         length: null,
         thickness: 6,
         direction: 0,
@@ -2109,7 +2110,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -2119,7 +2120,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'left',
+        side: "left",
         length: null,
         thickness: 6,
         direction: 1,
@@ -2128,7 +2129,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -2138,7 +2139,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'right',
+        side: "right",
         length: null,
         thickness: 6,
         direction: 1,
@@ -2147,7 +2148,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -2158,7 +2159,7 @@ export const initialState = {
     ]
   },
   sitout: {
-    id: '',
+    id: "",
     type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
     length: 8,
     breadth: 8,
@@ -2170,7 +2171,7 @@ export const initialState = {
     walls: [
       {
         added: false,
-        side: 'front',
+        side: "front",
         length: null,
         thickness: 6,
         direction: 0,
@@ -2179,7 +2180,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 50 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -2189,12 +2190,12 @@ export const initialState = {
         window: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         }
       },
       {
         added: false,
-        side: 'back',
+        side: "back",
         length: null,
         thickness: 6,
         direction: 0,
@@ -2203,7 +2204,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { right: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -2213,7 +2214,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'left',
+        side: "left",
         length: null,
         thickness: 6,
         direction: 1,
@@ -2222,7 +2223,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -2232,7 +2233,7 @@ export const initialState = {
       },
       {
         added: false,
-        side: 'right',
+        side: "right",
         length: null,
         thickness: 6,
         direction: 1,
@@ -2241,7 +2242,7 @@ export const initialState = {
         door: {
           includes: false,
           position: { top: 18 },
-          type: 'default'
+          type: "default"
         },
         opening: {
           includes: false,
@@ -2254,7 +2255,7 @@ export const initialState = {
 
   baths: [
     {
-      id: 'nw',
+      id: "nw",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -2266,7 +2267,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2275,7 +2276,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2285,12 +2286,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2299,7 +2300,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2309,7 +2310,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2318,7 +2319,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2328,7 +2329,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2337,7 +2338,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2348,7 +2349,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'ne',
+      id: "ne",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -2359,7 +2360,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2368,7 +2369,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2378,12 +2379,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2392,7 +2393,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2402,7 +2403,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2411,7 +2412,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2421,7 +2422,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2430,7 +2431,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2441,7 +2442,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'sw',
+      id: "sw",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -2452,7 +2453,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2461,7 +2462,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2471,12 +2472,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2485,7 +2486,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2495,7 +2496,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2504,7 +2505,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2514,7 +2515,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2523,7 +2524,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2534,7 +2535,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'se',
+      id: "se",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -2545,7 +2546,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2554,7 +2555,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2564,12 +2565,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2578,7 +2579,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2588,7 +2589,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2597,7 +2598,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2607,7 +2608,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2616,7 +2617,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2629,7 +2630,7 @@ export const initialState = {
   ],
   sitouts: [
     {
-      id: 'nw',
+      id: "nw",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -2641,7 +2642,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2650,7 +2651,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2660,12 +2661,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2674,7 +2675,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2684,7 +2685,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2693,7 +2694,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2703,7 +2704,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2712,7 +2713,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2723,7 +2724,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'ne',
+      id: "ne",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -2734,7 +2735,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2743,7 +2744,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2753,12 +2754,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2767,7 +2768,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2777,7 +2778,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2786,7 +2787,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2796,7 +2797,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2805,7 +2806,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2816,7 +2817,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'sw',
+      id: "sw",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -2827,7 +2828,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2836,7 +2837,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2846,12 +2847,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2860,7 +2861,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2870,7 +2871,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2879,7 +2880,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2889,7 +2890,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2898,7 +2899,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2909,7 +2910,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'se',
+      id: "se",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -2920,7 +2921,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2929,7 +2930,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2939,12 +2940,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -2953,7 +2954,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2963,7 +2964,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2972,7 +2973,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -2982,7 +2983,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -2991,7 +2992,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3004,7 +3005,7 @@ export const initialState = {
   ],
   stores: [
     {
-      id: 'nw',
+      id: "nw",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -3016,7 +3017,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3025,7 +3026,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3035,12 +3036,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3049,7 +3050,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3059,7 +3060,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3068,7 +3069,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3078,7 +3079,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3087,7 +3088,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3098,7 +3099,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'ne',
+      id: "ne",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -3109,7 +3110,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3118,7 +3119,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3128,12 +3129,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3142,7 +3143,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3152,7 +3153,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3161,7 +3162,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3171,7 +3172,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3180,7 +3181,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3191,7 +3192,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'sw',
+      id: "sw",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -3202,7 +3203,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3211,7 +3212,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3221,12 +3222,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3235,7 +3236,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3245,7 +3246,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3254,7 +3255,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3264,7 +3265,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3273,7 +3274,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3284,7 +3285,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'se',
+      id: "se",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -3295,7 +3296,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3304,7 +3305,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3314,12 +3315,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3328,7 +3329,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3338,7 +3339,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3347,7 +3348,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3357,7 +3358,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3366,7 +3367,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3379,7 +3380,7 @@ export const initialState = {
   ],
   corridors: [
     {
-      id: 'nw',
+      id: "nw",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -3391,7 +3392,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3400,7 +3401,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3410,12 +3411,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3424,7 +3425,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3434,7 +3435,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3443,7 +3444,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3453,7 +3454,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3462,7 +3463,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3473,7 +3474,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'ne',
+      id: "ne",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -3484,7 +3485,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3493,7 +3494,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3503,12 +3504,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3517,7 +3518,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3527,7 +3528,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3536,7 +3537,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3546,7 +3547,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3555,7 +3556,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3566,7 +3567,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'sw',
+      id: "sw",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -3577,7 +3578,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3586,7 +3587,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3596,12 +3597,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3610,7 +3611,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3620,7 +3621,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3629,7 +3630,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3639,7 +3640,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3648,7 +3649,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3659,7 +3660,7 @@ export const initialState = {
       ]
     },
     {
-      id: 'se',
+      id: "se",
       type: 0, // 0-none,1-wcOnly, 2-Wc+shower, 3-Full Bath
       length: null,
       breadth: null,
@@ -3670,7 +3671,7 @@ export const initialState = {
       walls: [
         {
           added: false,
-          side: 'front',
+          side: "front",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3679,7 +3680,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3689,12 +3690,12 @@ export const initialState = {
           window: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           }
         },
         {
           added: false,
-          side: 'back',
+          side: "back",
           length: null,
           thickness: 6,
           direction: 0,
@@ -3703,7 +3704,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { right: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3713,7 +3714,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'left',
+          side: "left",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3722,7 +3723,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3732,7 +3733,7 @@ export const initialState = {
         },
         {
           added: false,
-          side: 'right',
+          side: "right",
           length: null,
           thickness: 6,
           direction: 1,
@@ -3741,7 +3742,7 @@ export const initialState = {
           door: {
             includes: false,
             position: { top: 18 },
-            type: 'default'
+            type: "default"
           },
           opening: {
             includes: false,
@@ -3755,4 +3756,4 @@ export const initialState = {
   icons: [
     // type, variant, id
   ]
-}
+};

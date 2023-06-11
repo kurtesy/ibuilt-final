@@ -15,6 +15,7 @@ import useWindowSize from 'use-window-hook'
 import {FiRotateCw,FiRotateCcw} from 'react-icons/fi'
 import { setPlotRotation } from '../../redux/plot'
 import { useNavigate } from "react-router-dom";
+import IconToggler from "./IconToggler";
 export default function MainArea({ isSiderOpen }) {
   const [_, width] = useWindowSize()
   const [show, setShow] = useState(false)
@@ -86,6 +87,7 @@ export default function MainArea({ isSiderOpen }) {
       )} */}
       {plot.plotLength && plot.plotBreadth ? <Plot isSiderOpen={isSiderOpen} /> : null}
       <ModeToggler />
+      <IconToggler />
       <div className='absolute top-48 right-4 flex flex-col items-center text-red-500 gap-3' onMouseEnter={() => setExitHovered(true)} onMouseLeave={() => setExitHovered(false)}>
         <ImExit size={24} className={` hover:scale-110 cursor-pointer`} onClick={() => navigate("/")} />
         {exitHovered ? <div className=''>Exit the drawing</div> : null}

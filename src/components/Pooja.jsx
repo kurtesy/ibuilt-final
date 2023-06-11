@@ -10,62 +10,62 @@ export default function Pooja({ id }) {
   const [length, setLength] = useState(6)
   const [breadth, setBreadth] = useState(10)
   const [rotation, setRotation] = useState(0)
-  const { scale, facing } = useSelector((state) => state.plot)
-  const { selectedRoom } = useSelector((state) => state.rooms)
-  const [style, setStyle] = useState({})
-  const [isActive, setIsActive] = useState(false)
+  const { scale, facing, icons } = useSelector((state) => state.plot);
+  const { selectedRoom } = useSelector((state) => state.rooms);
+  const [style, setStyle] = useState({});
+  const [isActive, setIsActive] = useState(false);
 
-  const dispatch = useDispatch()
-  const [hovered, setHovered] = useState(false)
+  const dispatch = useDispatch();
+  const [hovered, setHovered] = useState(false);
   const handleDelete = () => {
-    dispatch(removeRoomFromPlot({ position: id, roomType: 'pooja' }))
-  }
+    dispatch(removeRoomFromPlot({ position: id, roomType: "pooja" }));
+  };
   const makeStyle = () => {
-    const currStyle = {}
-    currStyle['width'] = Math.floor(length * scale)
-    currStyle['height'] = Math.floor(breadth * scale)
-    currStyle['rotate'] = `${rotation}deg`
+    const currStyle = {};
+    currStyle["width"] = Math.floor(length * scale);
+    currStyle["height"] = Math.floor(breadth * scale);
+    currStyle["rotate"] = `${rotation}deg`;
     if (isActive && selectedRoom.id === id) {
-      currStyle['zIndex'] = 42
-      currStyle['backgroundColor'] = 'rgba(150,250,150,0.7)'
+      currStyle["zIndex"] = 40;
+      currStyle["backgroundColor"] = "#FFF";
     } else {
-      currStyle['zIndex'] = 10
-      currStyle['backgroundColor'] = '#FECD70'
+      currStyle["zIndex"] = 30;
+      currStyle["backgroundColor"] = icons ? "#fff" : "#FECD70";
     }
-    setStyle({ ...currStyle, ...currentPooja.position })
-  }
+    setStyle({ ...currStyle, ...currentPooja.position });
+  };
 
   const handleDeSelect = (e) => {
-    e.preventDefault()
-    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }))
-    setIsActive(false)
-  }
+    e.preventDefault();
+    dispatch(setSelectedRoomId({ selectedId: null, roomType: null }));
+    setIsActive(false);
+  };
   useEffect(() => {
-    setLength(currentPooja?.length)
-    setBreadth(currentPooja?.breadth)
-  }, [currentPooja])
+    setLength(currentPooja?.length);
+    setBreadth(currentPooja?.breadth);
+  }, [currentPooja]);
 
   useEffect(() => {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'pooja',
+        roomType: "pooja",
         position: positions[facing.toString()][id.toString()]
         // position: { bottom: 0, right: 0 }
       })
-    )
-  }, [facing])
+    );
+  }, [facing]);
   const handleClick = (e) => {
-    e.stopPropagation()
-    dispatch(setSelectedRoomId({ selectedId: id, roomType: 'pooja' }))
-    setIsActive(true)
-  }
+    e.stopPropagation();
+    dispatch(setSelectedRoomId({ selectedId: id, roomType: "pooja" }));
+    setIsActive(true);
+  };
   useEffect(() => {
-    setRotation(currentPooja.rotated)
-  }, [currentPooja])
+    setRotation(currentPooja.rotated);
+  }, [currentPooja]);
   useEffect(() => {
-    makeStyle()
-  }, [length, breadth, location, selectedRoom, isActive, currentPooja, facing])
+    makeStyle();
+  }, [length, breadth, location, selectedRoom, isActive, currentPooja, facing, icons]);
 
   // useEffect(() => {
   //   dispatch(
@@ -86,9 +86,6 @@ export default function Pooja({ id }) {
       onContextMenu={handleDeSelect}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}>
-      {selectedRoom.id && hovered && (
-        <AiFillCloseCircle size={32} className='text-red-500 cursor-pointer hover:scale-125 duration-300 ease-in-out absolute right-0 top-0 z-[99]' onClick={handleDelete} />
-      )}
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold translate-x-[-50%] translate-y-[-50%]'>
         <p style={{ fontSize: Math.max(10, Math.min(currentPooja.length, currentPooja.breadth) * 1.5) }}>
           PUJA - {id.toUpperCase()}
@@ -109,8 +106,7 @@ export default function Pooja({ id }) {
           opening={wall.opening}
           key={index}
         />
-        
       ))}
     </div>
-  )
+  );
 }
