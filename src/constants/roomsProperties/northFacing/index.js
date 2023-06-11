@@ -7286,52 +7286,49 @@ setTimeout(() => {
    }
   if(plotLength >= 57 && plotLength <= 59) //Breadth :57-59
     {
-        const bed1Length = builtLength * 0.29
-        const bed1Breadth = builtBreadth * 0.35
-        const bed2Length = builtLength * 0.25
+        
+        const bed2Length = builtLength * 0.27
         const bed2Breadth = builtBreadth * 0.52
         const bed3Length = builtLength * 0.245 
         const bed3Breadth = builtBreadth * 0.45  
         const bed4Length = builtLength * 0.27  
         const bed4Breadth = builtBreadth * 0.4            
-        const livingLength = builtLength * 0.28
-        const livingBreadth = builtBreadth * 0.35
-        const drawingLength = builtLength * 0.47
-        const drawingBreadth = builtBreadth * 0.29  
+        const livingLength = builtLength * 0.29
+        const livingBreadth = builtBreadth * 0.5
+        const drawingLength = builtLength * 0.355
+        const drawingBreadth = builtBreadth * 0.5  
         const kitchenLength = builtLength * 0.25
         const kitchenBreadth = builtBreadth * 0.39
         const poojaLength = builtLength * 0.08
         const poojaBreadth = builtBreadth * 0.10
-        const parkingLength = builtLength * 0.25
+        const parkingLength = builtLength * 0.23
         const parkingBreadth = builtBreadth * 0.25  
         const staircaseLength = builtLength * 0.28
-        const stairCaseBreadth = builtBreadth * 0.17
+        const stairCaseBreadth = builtBreadth * 0.21
         
-        const toilet2Length = builtLength * 0.08
-        const toilet2Breadth = builtBreadth * 0.15
         const toilet3Length = builtLength * 0.08
         const toilet3Breadth = builtBreadth * 0.22
         
         const commonToiletLength = builtLength * 0.15
         const commonToiletBreadth = builtBreadth * 0.17
-        const sitoutLength = builtLength * 0.10
+        const sitoutLength = builtLength * 0.15
         const sitoutBreadth = builtBreadth * 0.1
         const mediaLength = builtLength * 0.20
-        const mediaBreadth = builtBreadth * 0.25
-        const diningLength = builtLength * 0.19
-        const diningBreadth = builtBreadth * 0.20
+        const mediaBreadth = builtBreadth * 0.384
+        const diningLength = builtLength * 0.15
+        const diningBreadth = builtBreadth * 0.25
       
       const extraBathLength = builtLength * 0.15
       const extraBathBreadth = builtBreadth * 0.15
-      const extraBath1Length = builtLength * 0.10
-      const extraBath1Breadth = builtBreadth * 0.2
+      const extraBath1Length = builtLength * 0.08
+      const extraBath1Breadth = builtBreadth * 0.25
       const extraSitoutLength = builtLength * 0.08
       const extraSitoutBreadth = builtBreadth * 0.28
       const extraSitout1Length = builtLength * 0.08
       const extraSitout1Breadth = builtBreadth * 0.28
  
         //add rooms
-        store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'bedroom' }))
+        
         store.dispatch(addRoomToPlot({ position: 'nw', roomType: 'bedroom' }))
         store.dispatch(addRoomToPlot({ position: 'se', roomType: 'bedroom' }))
         store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'bedroom' }))
@@ -7340,8 +7337,7 @@ setTimeout(() => {
         store.dispatch(addRoomToPlot({ position: 'se', roomType: 'kitchen' }))
         store.dispatch(addRoomToPlot({ position: 'sw', roomType: 'staircase' }))
         store.dispatch(addRoomToPlot({ position: 'nw', roomType: 'parking' }))
-        store.dispatch(addRoomToPlot({ position: 'ne', roomType: 'toilet' }))
-        
+                
         store.dispatch(addRoomToPlot({ position: 'se', roomType: 'toilet' }))
         
         store.dispatch(addRoomToPlot({ position: 'se', roomType: 'commonToilet' }))
@@ -7358,14 +7354,6 @@ setTimeout(() => {
 
         store.dispatch(
           updateRoomData({
-            id: 'ne',
-            roomType: 'bedroom',
-            length: bed1Length,
-            breadth: bed1Breadth,
-            position: { top: 0, right:Math.floor(bed2Length)*(scale+1.5) }}))
-
-        store.dispatch(
-          updateRoomData({
             id: 'nw',
             roomType: 'bedroom',
             length: bed2Length,
@@ -7378,7 +7366,6 @@ setTimeout(() => {
             roomType: 'bedroom',
             length: bed3Length,
             breadth: bed3Breadth,
-            // position: { left: 0, bottom:0 }
             position: { left: 0, bottom:Math.floor(stairCaseBreadth*scale)-setbacks.front*scale }}))
 
         store.dispatch(
@@ -7395,7 +7382,7 @@ setTimeout(() => {
             roomType: 'living',
             length: livingLength,
             breadth: livingBreadth,
-            position: { left:Math.floor(bed3Length)*(scale)+setbacks.left*scale-20, bottom:0 }
+            position: { left:Math.floor(bed3Length)*(scale)+10, bottom:0 }
           }))
         }, 100);
         setTimeout(() => {
@@ -7405,7 +7392,7 @@ setTimeout(() => {
               roomType: 'drawing',
               length: drawingLength,
               breadth: drawingBreadth,
-              position: { top: Math.floor(bed1Breadth)*scale, left:Math.floor(kitchenLength)*(scale+1.5) }
+              position: { top: 0, left:Math.floor(kitchenLength+diningLength)*(scale)-15 }
               }))
          store.dispatch(
           updateRoomData({
@@ -7437,9 +7424,7 @@ setTimeout(() => {
             position: { bottom: 0, left:0 }
           })
         )
-        
-        store.dispatch(updateRoomData({ id: 'ne', roomType: 'toilet', length: toilet2Length, breadth: toilet2Breadth}))
-        
+              
         store.dispatch(updateRoomData({ id: 'se', roomType: 'toilet', length: toilet3Length, breadth: toilet3Breadth,
         position: { top:0, left:0 }}))
         store.dispatch(
@@ -7448,7 +7433,7 @@ setTimeout(() => {
             roomType: 'parking',
             length: parkingLength,
             breadth: parkingBreadth,
-            position:{right:Math.floor(livingLength*parseInt(scale-1.5)), bottom:0}
+            position:{right:Math.floor(bed4Length)*parseInt(scale)+setbacks.right*scale+15, bottom:0}
           })
         )
        
@@ -7471,7 +7456,7 @@ setTimeout(() => {
             roomType: 'sitout',
             length: sitoutLength,
             breadth: sitoutBreadth,
-            position: { right:0,bottom:Math.floor(bed4Length)*(scale+1.8) }
+            position: { top:0,left:Math.floor(kitchenLength+diningLength)*(scale) }
           })
         )
 
@@ -7482,7 +7467,7 @@ setTimeout(() => {
             roomType: 'media',
             length: mediaLength,
             breadth: mediaBreadth,
-            position: { right:Math.floor(bed1Length)*(scale)-setbacks.right*scale+18, bottom:Math.floor(parkingBreadth)*scale-setbacks.front*scale }
+            position: { right:Math.floor(bed4Length)*(scale)+18, bottom:Math.floor(parkingBreadth)*scale-setbacks.front*scale }
             
            }))
        
@@ -7504,7 +7489,7 @@ setTimeout(() => {
               roomType: 'extraBath',
               length: extraBathLength,
               breadth: extraBathBreadth,
-              position: {top:Math.floor(setbacks.back*2+extraSitout1Breadth+extraBath1Breadth)*scale+9-setbacks.back*scale+18, right:0 }})) 
+              position: {top:Math.floor(setbacks.back+extraSitout1Breadth+extraBath1Breadth)*scale-9, right:0 }})) 
               
               store.dispatch(
                 updateRoomData({
@@ -7512,7 +7497,7 @@ setTimeout(() => {
                   roomType: 'extraBath',
                   length: extraBath1Length,
                   breadth: extraBath1Breadth,
-                  position: {top:Math.floor(setbacks.back*2+extraSitout1Breadth)*scale, right:0 }})) 
+                  position: {top:Math.floor(setbacks.back+extraSitout1Breadth)*scale, right:0 }})) 
 
                   store.dispatch(
                     updateRoomData({
@@ -7520,7 +7505,7 @@ setTimeout(() => {
                       roomType: 'extraSitout',
                       length: extraSitoutLength,
                       breadth:extraSitoutBreadth,
-                      position: {top:Math.floor(setbacks.back*2+extraSitout1Breadth+extraBath1Breadth+extraBathBreadth)*scale+9-setbacks.back*scale+18, right:0 }})) 
+                      position: {top:Math.floor(setbacks.back+extraSitout1Breadth+extraBath1Breadth+extraBathBreadth)*scale, right:0 }})) 
 
 
                   store.dispatch(
@@ -7529,7 +7514,7 @@ setTimeout(() => {
                       roomType: 'extraSitout',
                       length: extraSitout1Length,
                       breadth:extraSitout1Breadth,
-                      position: {top:Math.floor(setbacks.back*2)*scale, right:0 }})) 
+                      position: {top:Math.floor(setbacks.back)*scale+15, right:0 }})) 
     }, 100);
 
           //Add walls
