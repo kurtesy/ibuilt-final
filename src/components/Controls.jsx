@@ -16,12 +16,6 @@ export default function Controls({ plotref }) {
       <div className='w-full h-[1px] bg-primaryCyan my-2' />
       <ModeToggler />
       <div className='w-full h-[1px] bg-primaryCyan my-2' />
-      {/* RESET */}
-      <ResetButton />
-      <div className='w-full h-[1px] bg-primaryCyan my-2' />
-      {/* EXIT */}
-      <ExitButton />
-      <div className='w-full h-[1px] bg-primaryCyan my-2' />
       {/* ROTATIONS */}
       <RotationsButtons />
       <div className='w-full h-[1px] bg-primaryCyan my-2' />
@@ -30,6 +24,12 @@ export default function Controls({ plotref }) {
       <div className='w-full h-[1px] bg-primaryCyan my-2' />
       {/* SAVE PDF */}
       <SaveAsPdfButton plotref={plotref} />
+      <div className='w-full h-[1px] bg-primaryCyan my-2' />
+        {/* RESET */}
+        <ResetButton />
+      <div className='w-full h-[1px] bg-primaryCyan my-2' />
+      {/* EXIT */}
+      <ExitButton />
     </div>
   );
 }
