@@ -13,27 +13,30 @@ import IconsList from './IconsList'
 import WallControls from './WallControls'
 import { removeAllRooms } from '../../redux/rooms'
 import { unstable_batchedUpdates } from 'react-dom'
+import { setEditingExisting } from "../../redux/plot";
 export default function Sider({ isSiderOpen }) {
   // premium controls tobe implemented
-  const [premium, setPremium] = useState(true)
-  const dispatch = useDispatch()
-  const { darkMode } = useSelector((state) => state.app)
-  const { selectedRoom, addedRooms } = useSelector((state) => state.rooms)
-  const { builtBreadth, builtLength, facing, type, plotLength, plotBreadth } = useSelector((state) => state.plot)
+  const [premium, setPremium] = useState(true);
+  const dispatch = useDispatch();
+  const { darkMode } = useSelector((state) => state.app);
+  const { selectedRoom, addedRooms } = useSelector((state) => state.rooms);
+  const { builtBreadth, builtLength, facing, type, plotLength, plotBreadth } = useSelector((state) => state.plot);
   useEffect(() => {
     unstable_batchedUpdates(() => {
-      generatePlot(builtLength, builtBreadth, facing, type)
-    })
-  }, [builtLength, builtBreadth, plotLength, plotBreadth, facing, type])
-  const [selection, setSelection] = useState('')
+      generatePlot(builtLength, builtBreadth, facing, type);
+    });
+  }, [builtLength, builtBreadth, plotLength, plotBreadth, facing, type]);
+  const [selection, setSelection] = useState("");
 
   const handleEditPlan = () => {
-    setSelection('edit')
-  }
+    setSelection("edit");
+    dispatch(setEditingExisting({ editingExisting: true }));
+  };
   const createNewPlan = () => {
-    dispatch(removeAllRooms())
-    setSelection('edit')
-  }
+    dispatch(removeAllRooms());
+    setSelection("edit");
+    dispatch(setEditingExisting({ editingExisting: false }));
+  };
 
   return (
     <div

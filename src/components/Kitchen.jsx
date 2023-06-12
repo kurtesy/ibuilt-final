@@ -5,13 +5,13 @@ import Wall from './Wall'
 import Utility from './Utility'
 import { positions } from '../constants/facingAndPosition'
 import Store from './Store'
-import { AiFillCloseCircle } from 'react-icons/ai'
+import kitchenLShape from "../assets/kitchen/kitchenLShape.svg";
 export default function Kitchen({ id }) {
-  const currentKitchen = useSelector((state) => state.rooms.kitchen)
+  const currentKitchen = useSelector((state) => state.rooms.kitchen);
 
-  const [length, setLength] = useState(6)
-  const [breadth, setBreadth] = useState(10)
-  const [rotation, setRotation] = useState(0)
+  const [length, setLength] = useState(6);
+  const [breadth, setBreadth] = useState(10);
+  const [rotation, setRotation] = useState(0);
   const { scale, facing, icons } = useSelector((state) => state.plot);
   const { selectedRoom } = useSelector((state) => state.rooms);
   const [style, setStyle] = useState({});
@@ -89,6 +89,7 @@ export default function Kitchen({ id }) {
       onContextMenu={handleDeSelect}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}>
+      {icons ? <img src={kitchenLShape} alt='dining_table' className='w-full h-full' /> : ""}
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold translate-x-[-50%] translate-y-[-50%]'>
         <p style={{ fontSize: Math.max(14, Math.min(currentKitchen.length, currentKitchen.breadth)) * 0.8 }}>
           KITCHEN - {id.toUpperCase()}

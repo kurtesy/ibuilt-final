@@ -7,8 +7,8 @@ import {} from "../assets/doors/D1_BACK_R.svg";
 import D1_FRONT_L from "../assets/doors/D1_FRONT_L.svg";
 import D1_FRONT_R from "../assets/doors/D1_FRONT_R.svg";
 
-import D1_BACK_L from "../assets/doors/D1_FRONT_L.svg";
-import D1_BACK_R from "../assets/doors/D1_FRONT_R.svg";
+import D1_BACK_L from "../assets/doors/D1_BACK_L.svg";
+import D1_BACK_R from "../assets/doors/D1_BACK_R.svg";
 
 import D1_LEFT_B from "../assets/doors/D1_LEFT_B.svg";
 import D1_LEFT_T from "../assets/doors/D1_LEFT_T.svg";

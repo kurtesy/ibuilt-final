@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedRoomId, updateRoomData, setRoomRotation } from '../../redux/rooms'
 import Wall from './Wall'
 import { positions } from '../constants/facingAndPosition'
-
-import { AiOutlineRotateRight } from 'react-icons/ai'
+import defaultCarColoured from "../assets/parking/defaultCarColoured.svg";
+import { AiOutlineRotateRight } from "react-icons/ai";
 export default function Parking({ id }) {
-  const currentParking = useSelector((state) => state.rooms.parking)
+  const currentParking = useSelector((state) => state.rooms.parking);
 
   const [length, setLength] = useState(currentParking.length);
   const [breadth, setBreadth] = useState(currentParking.breadth);
@@ -63,15 +63,16 @@ export default function Parking({ id }) {
     dispatch(
       updateRoomData({
         id,
-        roomType: 'parking',
+        roomType: "parking",
         length,
         breadth
       })
-    )
-  }, [length, breadth])
+    );
+  }, [length, breadth]);
 
   return (
     <div style={style} className={`bg-bathFullType13 absolute cursor-pointer `} onClick={handleClick} onContextMenu={handleDeSelect}>
+      {icons ? <img src={defaultCarColoured} alt='sitout_flooring' className='w-full h-full' /> : ""}
       <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold translate-x-[-50%] translate-y-[-50%]'>
         <p style={{ fontSize: Math.max(12, Math.min(currentParking.length, currentParking.breadth)) * 0.8 }}>
           PARKING - {id.toUpperCase()}
@@ -94,5 +95,5 @@ export default function Parking({ id }) {
         />
       ))}
     </div>
-  )
+  );
 }

@@ -4,6 +4,7 @@ import { removeRoomFromPlot, setSelectedRoomId, updateRoomData } from "../../red
 import Wall from "./Wall";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { positions } from "../constants/facingAndPosition";
+import dining6Chairs from "../assets/dining/dining_6chairs.svg";
 export default function Dining({ id }) {
   const currentDining = useSelector((state) => state.rooms.dining);
 
@@ -84,6 +85,7 @@ export default function Dining({ id }) {
       onContextMenu={handleDeSelect}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}>
+      {icons ? <img src={dining6Chairs} alt='dining_table' className='w-full h-full' /> : ""}
       <div className='absolute top-1/2 left-1/2 text-center text-xs   text-black p-1 '>
         DINING - {id.toUpperCase()}
         <br />

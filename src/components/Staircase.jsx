@@ -117,6 +117,7 @@ export default function Staircase({ id }) {
           {currentStaircase.length} X {currentStaircase.breadth}
         </p>
       </div>
+
       {currentStaircase.walls.map((wall, index) => (
         <Wall
           id={`stairCase-${id}-${wall.side}`}

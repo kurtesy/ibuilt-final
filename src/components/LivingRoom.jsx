@@ -6,7 +6,7 @@ import { removeRoomFromPlot, setCurrentPosition, setSelectedRoomId, updateRoomDa
 import Wall from "./Wall";
 import CommonToilet from "./CommonToilet";
 import { positions } from "../constants/facingAndPosition";
-import { AiFillCloseCircle } from "react-icons/ai";
+import defaultSofa from "../assets/living/sofaDefault.svg";
 export default function LivingRoom({ id }) {
   const currentLivingroom = useSelector((state) => state.rooms.livingRooms.filter((room) => room.id === id)[0]);
   const { facing, icons } = useSelector((state) => state.plot);
@@ -76,14 +76,8 @@ export default function LivingRoom({ id }) {
   // }, [builtBreadth, builtLength])
 
   return (
-    <div
-      style={style}
-      className='absolute cursor-pointer bg-woodenFlooring'
-      id={id}
-      onClick={handleClick}
-      onContextMenu={handleDeSelect}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}>
+    <div style={style} className='absolute cursor-pointer ' id={id} onClick={handleClick} onContextMenu={handleDeSelect} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+      {icons ? <img src={defaultSofa} alt='dining_table' className='w-full h-[80%] ' /> : ""}
       <div className='absolute top-1/3 left-1/3 text-center text-black p-2 font-semibold'>
         <p style={{ fontSize: Math.min(16, Math.min(currentLivingroom.length, currentLivingroom.breadth) * 1.1) }}>
           LIVING - {id.toUpperCase()}

@@ -10,6 +10,7 @@ const initialState = {
   scale: 25,
   rotation: 0,
   icons: false,
+  editingExisting: false,
   setbacks: {
     front: 4.6,
     back: 1.6,
@@ -106,6 +107,9 @@ const plotSlice = createSlice({
     },
     resetPlot: (state) => {
       return initialState;
+    },
+    setEditingExisting: (state, action) => {
+      state.editingExisting = action.payload.editingExisting;
     }
   }
 });
@@ -126,6 +130,7 @@ export const {
   setPlotRotation,
   setSetBacks,
   resetPlot,
-  toggleIcons
+  toggleIcons,
+  setEditingExisting
 } = plotSlice.actions;
 export default plotSlice.reducer;

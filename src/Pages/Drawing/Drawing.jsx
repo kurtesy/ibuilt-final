@@ -17,7 +17,7 @@ export default function Drawing() {
   const [currentWidth, setCurrentWidth] = useState(width)
   const { plotLength, plotBreadth, isGenerating } = useSelector((state) => state.plot)
   const [isSiderOpen, setIsSiderOpen] = useState(false)
-
+const { darkMode } = useSelector((state) => state.app);
   useEffect(() => {
     setCurrentWidth(width)
   }, [width])
@@ -25,13 +25,13 @@ export default function Drawing() {
 
   return (
     <>
-      <div className='h-full w-full'>
+      <div className={`h-full w-full ${darkMode ? "bg-slate-800" : ""}`}>
         {plotLength && plotBreadth ? (
           <>
             {plotLength && plotBreadth && width >= 1024 ? <Sider isSiderOpen={isSiderOpen} /> : null}
             {width >= 1024 ? (
               <button
-                className={`absolute text-primaryLime font-bold transition-all top-[50%] bg-slate-900 h-12 cursor-pointer z-50  ease-in-out ${isSiderOpen ? 'left-[400px]' : 'left-0'}`}
+                className={`absolute text-primaryLime font-bold transition-all top-[50%] bg-slate-900 h-12 cursor-pointer z-50  ease-in-out ${isSiderOpen ? "left-[400px]" : "left-0"}`}
                 onClick={() => setIsSiderOpen((prev) => !prev)}>
                 {isSiderOpen ? <BsChevronCompactLeft /> : <BsChevronCompactRight />}
               </button>
@@ -42,5 +42,5 @@ export default function Drawing() {
         {/* <Loader /> */}
       </div>
     </>
-  )
+  );
 }

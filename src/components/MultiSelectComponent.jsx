@@ -22,6 +22,8 @@ export default function MultiSelectComponent({ isSiderOpen }) {
   const inActiveClass = `bg-slate-900 rounded-md flex items-center text-primaryLime justify-end gap-2 h-8 px-2 font-thin`
   const activeClass = `bg-primaryLime rounded-md flex items-center text-slate-900 justify-end gap-2 h-8 px-2 font-bold`
   const ref = useRef(null)
+  const { editingExisting } = useSelector((state) => state.plot);
+  const [options, setOptions] = useState([]);
   // useEffect(() => {
   //   setData(addedRooms)
   // }, [addedRooms])
@@ -52,13 +54,13 @@ export default function MultiSelectComponent({ isSiderOpen }) {
   //   dispatch(setSelectedRoomId({ selectedId: position, roomType }))
   // }
 
-  console.log('index==>' + index)
+  console.log("index==>" + index);
   useEffect(() => {
-    if (index >= options.length) setReverse(true)
-    if (index <= 2) setReverse(false)
-  }, [index])
+    if (index >= options.length) setReverse(true);
+    if (index <= 2) setReverse(false);
+  }, [index]);
 
-  const options = [
+  const list = [
     { label: "Bedroom", value: "bedroom" },
     { label: "Livingroom", value: "living" },
     { label: "Kitchen", value: "kitchen" },
@@ -81,7 +83,13 @@ export default function MultiSelectComponent({ isSiderOpen }) {
     // { label: 'Lift', value: 'lift' },
     // { label: 'Duct/Shaft', value: 'duct' }
   ];
-
+  useEffect(() => {
+    if (editingExisting && selectedRoom) {
+      setOptions(list.slice(-3));
+    } else {
+      setOptions(list);
+    }
+  }, [editingExisting, selectedRoom]);
   const [rooms, setRooms] = useState([])
   const [currentRoom, setCurrentRoom] = useState('')
   const [active, setActive] = useState(false)

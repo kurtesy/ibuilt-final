@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSelectedRoomId, updateRoomData, setRoomRotation, removeRoomFromPlot } from "../../redux/rooms";
 import Wall from "./Wall";
 import { positions } from "../constants/facingAndPosition";
-
-import { AiFillCloseCircle, AiOutlineRotateRight } from "react-icons/ai";
+import defaultOrangeFlooring from "../assets/sitout/defaultOrangeFlooring.svg";
 export default function Staircase({ id }) {
   const currentSitout = useSelector((state) => state.rooms.sitout);
 
@@ -82,6 +81,7 @@ export default function Staircase({ id }) {
       onContextMenu={handleDeSelect}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}>
+      {icons ? <img src={defaultOrangeFlooring} alt='sitout_flooring' className='w-full h-full' /> : ""}
       <div className='absolute top-1/3 left-1/4 text-center text-black p-2 font-semibold'>
         <p style={{ fontSize: Math.min(14, Math.min(currentSitout.length, currentSitout.breadth) * 1.4) }}>
           SIT-OUT - {id.toUpperCase()}
