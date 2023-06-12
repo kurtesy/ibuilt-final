@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setSelectedRoomId, updateRoomData, setRoomRotation, removeRoomFromPlot } from '../../redux/rooms'
-import Wall from './Wall'
-import { positions } from '../constants/facingAndPosition'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedRoomId, updateRoomData, setRoomRotation, removeRoomFromPlot } from "../../redux/rooms";
+import Wall from "./Wall";
+import { positions } from "../constants/facingAndPosition";
 
-import { AiFillCloseCircle, AiOutlineRotateRight } from 'react-icons/ai'
+import { AiFillCloseCircle, AiOutlineRotateRight } from "react-icons/ai";
 export default function Staircase({ id }) {
-  const currentSitout = useSelector((state) => state.rooms.sitout)
+  const currentSitout = useSelector((state) => state.rooms.sitout);
 
-  const [length, setLength] = useState(6)
-  const [breadth, setBreadth] = useState(10)
+  const [length, setLength] = useState(6);
+  const [breadth, setBreadth] = useState(10);
   const { scale, facing, icons } = useSelector((state) => state.plot);
   const { selectedRoom } = useSelector((state) => state.rooms);
   const [style, setStyle] = useState({});

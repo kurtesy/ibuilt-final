@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { removeRoomFromPlot, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
-import { positions } from '../constants/facingAndPosition'
-import Wall from './Wall'
-import Toilet from './Toilet'
-import Wardrobe from './Wardrobe'
-import Balcony from './Balcony'
-import { AiFillCloseCircle } from 'react-icons/ai'
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { removeRoomFromPlot, setSelectedRoomId, updateRoomData } from "../../redux/rooms";
+import { positions } from "../constants/facingAndPosition";
+import Wall from "./Wall";
+import Toilet from "./Toilet";
+import Wardrobe from "./Wardrobe";
+import Balcony from "./Balcony";
+import { AiFillCloseCircle } from "react-icons/ai";
 // import { saveBedRoom } from '../helpers/outputControls'
 export default function Bedroom({ id }) {
-  const currentBedroom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === id)[0])
-  const currentToilet = useSelector((state) => state.rooms.toilets.filter((room) => room.id === id)[0])
+  const currentBedroom = useSelector((state) => state.rooms.bedRooms.filter((room) => room.id === id)[0]);
+  const currentToilet = useSelector((state) => state.rooms.toilets.filter((room) => room.id === id)[0]);
   const { facing, icons } = useSelector((state) => state.plot);
   const [length, setLength] = useState(0);
   const [breadth, setBreadth] = useState(0);

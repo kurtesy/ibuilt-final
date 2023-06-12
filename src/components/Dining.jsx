@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { removeRoomFromPlot, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
-import Wall from './Wall'
-import { AiFillCloseCircle } from 'react-icons/ai'
-import { positions } from '../constants/facingAndPosition'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { removeRoomFromPlot, setSelectedRoomId, updateRoomData } from "../../redux/rooms";
+import Wall from "./Wall";
+import { AiFillCloseCircle } from "react-icons/ai";
+import { positions } from "../constants/facingAndPosition";
 export default function Dining({ id }) {
-  const currentDining = useSelector((state) => state.rooms.dining)
+  const currentDining = useSelector((state) => state.rooms.dining);
 
-  const [length, setLength] = useState(6)
-  const [breadth, setBreadth] = useState(10)
-  const [rotation, setRotation] = useState(0)
+  const [length, setLength] = useState(6);
+  const [breadth, setBreadth] = useState(10);
+  const [rotation, setRotation] = useState(0);
   const { scale, facing, icons } = useSelector((state) => state.plot);
   const { selectedRoom } = useSelector((state) => state.rooms);
   const [style, setStyle] = useState({});

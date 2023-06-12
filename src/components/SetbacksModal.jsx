@@ -32,18 +32,18 @@ export default function SetbacksModal({ dimensions, setShow, setLoading }) {
   return (
     <div className='absolute bg-[#d9fc3599] top-12 left-20 p-3 shadow-lg rounded-lg flex flex-col gap-3 shadow-gray-500'>
       <div className='flex w-full gap-3'>
-        <InputWithLabel label='Front' value={front} setValue={setFront} min={0} max={7} disabled={disabled} />
-        <InputWithLabel label='Back' value={back} setValue={setBack} min={0} max={7} disabled={disabled} />
+        <InputWithLabel label='Front' value={front} setValue={setFront} min={0} max={15} disabled={disabled} />
+        <InputWithLabel label='Back' value={back} setValue={setBack} min={0} max={15} disabled={disabled} />
       </div>
       <div className='flex w-full gap-3'>
-        <InputWithLabel label='Left' value={left} setValue={setLeft} min={0} max={7} disabled={disabled} />
-        <InputWithLabel label='Right' value={right} setValue={setRight} min={0} max={7} disabled={disabled} />
+        <InputWithLabel label='Left' value={left} setValue={setLeft} min={0} max={15} disabled={disabled} />
+        <InputWithLabel label='Right' value={right} setValue={setRight} min={0} max={15} disabled={disabled} />
       </div>
       <div className='h-[2px] bg-slate-800 w-full' />
       <BHKSelector />
       {/* <PlotDetails /> */}
       <div className='w-full flex items-center justify-center'>
-        <button className='bg-gradient-to-tl from-gray-900 to-green-600 h-8 w-[50%] rounded-lg shadow-2xl shadow-primaryLime' onClick={generatePlot}>
+        <button className='bg-gradient-to-tl from-gray-900 to-green-500 h-8 w-[50%] rounded-lg shadow-2xl shadow-primaryLime' onClick={generatePlot}>
           GO!
         </button>
       </div>

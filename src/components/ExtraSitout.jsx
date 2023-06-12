@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import locationMap from '../constants/locationMapping'
-import { removeRoomFromPlot, setCurrentPosition, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
-import Wall from './Wall'
-import { AiFillCloseCircle } from 'react-icons/ai'
-import { positions } from '../constants/facingAndPosition'
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import locationMap from "../constants/locationMapping";
+import { removeRoomFromPlot, setCurrentPosition, setSelectedRoomId, updateRoomData } from "../../redux/rooms";
+import Wall from "./Wall";
+import { AiFillCloseCircle } from "react-icons/ai";
+import { positions } from "../constants/facingAndPosition";
 export default function ExtraSitout({ id }) {
-  const currentRoom = useSelector((state) => state.rooms.sitouts.filter((room) => room.id === id)[0])
-  const { facing } = useSelector((state) => state.plot)
+  const currentRoom = useSelector((state) => state.rooms.sitouts.filter((room) => room.id === id)[0]);
+  const { facing } = useSelector((state) => state.plot);
   const [length, setLength] = useState(6);
   const [breadth, setBreadth] = useState(10);
   const { scale, builtLength, builtBreadth, icons } = useSelector((state) => state.plot);

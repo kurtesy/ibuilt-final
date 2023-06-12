@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import locationMap from '../constants/locationMapping'
-import { removeRoomFromPlot, setCurrentPosition, setSelectedRoomId, updateRoomData } from '../../redux/rooms'
-import Wall from './Wall'
-import CommonToilet from './CommonToilet'
-import { positions } from '../constants/facingAndPosition'
-import { AiFillCloseCircle } from 'react-icons/ai'
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import locationMap from "../constants/locationMapping";
+import { removeRoomFromPlot, setCurrentPosition, setSelectedRoomId, updateRoomData } from "../../redux/rooms";
+import Wall from "./Wall";
+import CommonToilet from "./CommonToilet";
+import { positions } from "../constants/facingAndPosition";
+import { AiFillCloseCircle } from "react-icons/ai";
 export default function LivingRoom({ id }) {
-  const currentLivingroom = useSelector((state) => state.rooms.livingRooms.filter((room) => room.id === id)[0])
+  const currentLivingroom = useSelector((state) => state.rooms.livingRooms.filter((room) => room.id === id)[0]);
   const { facing, icons } = useSelector((state) => state.plot);
   const [length, setLength] = useState(0);
   const [breadth, setBreadth] = useState(0);

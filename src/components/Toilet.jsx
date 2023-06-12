@@ -86,8 +86,8 @@ export default function Toilet({ id }) {
         // type=2 half bath =>4
         // type=3 fullbath =>2
       />
-      <div className='absolute top-1/2 left-1/2 text-center text-black p-2 font-semibold translate-y-[-50%]'>
-        <p style={{ fontSize: Math.max(10, Math.min(currentToilet.length, currentToilet.breadth) * 1.1) }}>
+      <div className='absolute top-1/2 left-1/3 text-center text-black p-2 font-semibold translate-y-[-50%]'>
+        <p style={{ fontSize: Math.max(5, Math.min(currentToilet.length, currentToilet.breadth) * 1.5 ) }}>
           TOILET - {id.toUpperCase()}
           <br />
           {currentToilet.length} X {currentToilet.breadth}

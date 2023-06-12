@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   type: "2BHK",
@@ -128,4 +128,4 @@ export const {
   resetPlot,
   toggleIcons
 } = plotSlice.actions;
-export default plotSlice.reducer
+export default plotSlice.reducer;

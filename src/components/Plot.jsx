@@ -1,81 +1,81 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import Built from './Built'
-import { BsChevronBarDown, BsChevronBarUp, BsChevronBarLeft, BsChevronBarRight } from 'react-icons/bs'
-import plot, { changeScale, decreaseScale, setBuiltup } from '../../redux/plot'
-import Staircase from '../components/Staircase'
-import CommonToilet from '../components/CommonToilet'
-import Sitout from '../components/Sitout'
-import Parking from '../components/Parking'
-import Corridor from '../components/Corridor'
-import ExtraBath from '../components/ExtraBath'
-import ExtraSitout from '../components/ExtraSitout'
-import { generatePlot } from '../constants/rooms'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Built from "./Built";
+import { BsChevronBarDown, BsChevronBarUp, BsChevronBarLeft, BsChevronBarRight } from "react-icons/bs";
+import plot, { changeScale, decreaseScale, setBuiltup } from "../../redux/plot";
+import Staircase from "../components/Staircase";
+import CommonToilet from "../components/CommonToilet";
+import Sitout from "../components/Sitout";
+import Parking from "../components/Parking";
+import Corridor from "../components/Corridor";
+import ExtraBath from "../components/ExtraBath";
+import ExtraSitout from "../components/ExtraSitout";
+import { generatePlot } from "../constants/rooms";
 
 const facings = {
   N: {
-    opposite: 'S',
-    right: 'W',
-    left: 'E'
+    opposite: "S",
+    right: "W",
+    left: "E"
   },
   S: {
-    opposite: 'N',
-    right: 'E',
-    left: 'W'
+    opposite: "N",
+    right: "E",
+    left: "W"
   },
   E: {
-    opposite: 'W',
-    right: 'N',
-    left: 'S'
+    opposite: "W",
+    right: "N",
+    left: "S"
   },
   W: {
-    opposite: 'E',
-    right: 'S',
-    left: 'N'
+    opposite: "E",
+    right: "S",
+    left: "N"
   }
-}
+};
 
 export default function Plot({ isSiderOpen, plotref }) {
-  const { plotLength, plotBreadth, scale, setbacks, facing, type, rotation, builtLength, builtBreadth } = useSelector((state) => state.plot)
-  const [zoomLevel, setZoomLevel] = useState(25)
-  const { addedRooms } = useSelector((state) => state.rooms)
-  const [selectedItems, setSelectedItems] = useState([])
-  const { darkMode } = useSelector((state) => state.app)
-  const dispatch = useDispatch()
+  const { plotLength, plotBreadth, scale, setbacks, facing, type, rotation, builtLength, builtBreadth } = useSelector((state) => state.plot);
+  const [zoomLevel, setZoomLevel] = useState(25);
+  const { addedRooms } = useSelector((state) => state.rooms);
+  const [selectedItems, setSelectedItems] = useState([]);
+  const { darkMode } = useSelector((state) => state.app);
+  const dispatch = useDispatch();
 
   // const smallerScale=plotLength*plotBreadth<700?35:zoomLevel
 
   useEffect(() => {
-    setSelectedItems(addedRooms)
-  }, [addedRooms])
+    setSelectedItems(addedRooms);
+  }, [addedRooms]);
   useEffect(() => {
     if (plotLength && plotBreadth) {
-      const builtLength = parseFloat(plotLength) - parseFloat(setbacks.left) - parseFloat(setbacks.right)
-      const builtBreadth = parseFloat(plotBreadth) - parseFloat(setbacks.front) - parseFloat(setbacks.back)
-      dispatch(setBuiltup({ builtLength, builtBreadth }))
+      const builtLength = parseFloat(plotLength) - parseFloat(setbacks.left) - parseFloat(setbacks.right);
+      const builtBreadth = parseFloat(plotBreadth) - parseFloat(setbacks.front) - parseFloat(setbacks.back);
+      dispatch(setBuiltup({ builtLength, builtBreadth }));
     }
-  }, [plotLength, plotBreadth, setbacks, scale])
+  }, [plotLength, plotBreadth, setbacks, scale]);
 
   useEffect(() => {
-    dispatch(changeScale({ scale: zoomLevel }))
-  }, [zoomLevel])
+    dispatch(changeScale({ scale: zoomLevel }));
+  }, [zoomLevel]);
 
   function handleWheel(event) {
-    console.log(event.deltaY)
-    if (event.deltaY > 0) setZoomLevel((prev) => prev - 1)
-    else setZoomLevel((prev) => prev + 1)
+    console.log(event.deltaY);
+    if (event.deltaY > 0) setZoomLevel((prev) => prev - 1);
+    else setZoomLevel((prev) => prev + 1);
   }
   useEffect(() => {
-    let currentWindowWidth = isSiderOpen ? window.innerWidth - 400 : window.innerWidth
+    let currentWindowWidth = isSiderOpen ? window.innerWidth - 400 : window.innerWidth;
     if (plotBreadth * scale >= window.innerHeight) {
-      const currentScale = Math.floor((window.innerHeight - 80) / plotBreadth)
-      dispatch(changeScale({ scale: currentScale }))
+      const currentScale = Math.floor((window.innerHeight - 80) / plotBreadth);
+      dispatch(changeScale({ scale: currentScale }));
     }
     if (plotLength * scale >= currentWindowWidth) {
-      const currentScale = Math.floor(currentWindowWidth / plotLength)
-      dispatch(changeScale({ scale: currentScale }))
+      const currentScale = Math.floor(currentWindowWidth / plotLength);
+      dispatch(changeScale({ scale: currentScale }));
     }
-  }, [plotLength, plotBreadth, scale])
+  }, [plotLength, plotBreadth, scale]);
   return (
     <div
       className={`z-40 shadow-xl shadow-black absolute ${isSiderOpen ? "" : ""} ${darkMode ? "bg-white" : "bg-green-100"} `}
