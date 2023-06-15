@@ -8,7 +8,7 @@ export default function Home() {
     <div className='w-full h-full overflow-hidden'>
       <Navbar />
       {/* HERO */}
-      <section className='w-full h-full bg-[#090827]'>
+      <section className='w-full h-full bg-white'>
         <div className='w-full h-full flex items-center justify-around px-6 gap-3'>
           <div className='flex items-start px-24 flex-col gap-4  w-1/2'>
             <div className='text-3xl text-slate-200  font-bold'>Build yourself a home with iBuiltup</div>

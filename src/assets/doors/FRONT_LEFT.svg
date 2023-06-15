@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 316.11 158.92">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: gray;
+      }
+
+      .cls-2 {
+        stroke-width: 1.2px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3 {
+        stroke-width: .5px;
+      }
+    </style>
+  </defs>
+  <g id="_Ñëîé_1" data-name="Ñëîé 1">
+    <g>
+      <rect class="cls-1" y="131.85" width="79.19" height="23.39" transform="translate(79.19 287.08) rotate(180)"/>
+      <rect class="cls-1" x="236.92" y="131.85" width="79.19" height="23.39" transform="translate(553.04 287.08) rotate(180)"/>
+      <rect class="cls-2" x="88.37" y=".6" width="7.97" height="131.3"/>
+      <path class="cls-3" d="m227.64,131.9C227.64,59.38,168.86.6,96.34.6"/>
+      <rect class="cls-2" x="73.27" y="128.76" width="13.81" height="3.08" transform="translate(160.34 260.61) rotate(180)"/>
+      <rect class="cls-2" x="73.27" y="155.24" width="13.81" height="3.08" transform="translate(160.34 313.56) rotate(180)"/>
+      <polygon class="cls-2" points="88.36 131.85 88.36 138.79 90.93 138.79 90.93 155.24 88.36 155.24 79.19 155.24 79.19 131.85 88.36 131.85"/>
+      <rect class="cls-2" x="229.05" y="128.76" width="13.81" height="3.08"/>
+      <rect class="cls-2" x="229.05" y="155.24" width="13.81" height="3.08"/>
+      <polygon class="cls-2" points="227.77 131.85 227.77 138.79 225.2 138.79 225.2 155.24 227.77 155.24 236.94 155.24 236.94 131.85 227.77 131.85"/>
+    </g>
+  </g>
+</svg>
