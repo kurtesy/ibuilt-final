@@ -976,15 +976,12 @@ function generateTypeA() {
     const kitchenLength = builtLength * 0.35;
     const kitchenBreadth = builtBreadth * 0.21;
     const poojaLength = builtLength * 0.15;
-    const poojaBreadth = builtBreadth * 0.12;
+    const poojaBreadth = builtBreadth * 0.10;
     const parkingLength = builtLength * 0.35;
     const parkingBreadth = builtBreadth * 0.25;
     const staircaseLength = builtLength * 0.4;
     const stairCaseBreadth = builtBreadth * 0.16;
-    const toilet1Length = builtLength * 0.0;
-    const toilet1Breadth = builtBreadth * 0.0;
-    const toilet2Length = builtLength * 0.31;
-    const toilet2Breadth = builtBreadth * 0.11;
+    
     const sitoutLength = builtLength * 0.15;
     const sitoutBreadth = builtBreadth * 0.2;
     const commonToiletLength = builtLength * 0.16;
@@ -1150,7 +1147,7 @@ function generateTypeA() {
         updateRoomData({
           id: "se",
           roomType: "commonToilet",
-          position: { top: Math.floor(bed1Breadth + bed3Breadth) * parseInt(scale), right: 0 }
+          position: { top: Math.floor(bed2Breadth +poojaBreadth) * parseInt(scale)+setbacks.back*scale, left: 0 }
         })
       );
     }, 100);
@@ -1160,7 +1157,7 @@ function generateTypeA() {
         updateRoomData({
           id: "se",
           roomType: "dining",
-          position: { top: Math.floor(bed1Breadth + bed3Breadth) * parseInt(scale), right: 0 }
+          position: { top: Math.floor(bed1Breadth + bed3Breadth) * parseInt(scale), right:0 }
         })
       );
       store.dispatch(
@@ -1196,7 +1193,7 @@ function generateTypeA() {
     store.dispatch(addWallToRoom({ side: "back", status: true, roomType: "parking", id: "" }));
     store.dispatch(addWallToRoom({ side: "front", status: false, roomType: "living", id: "sw" }));
 
-    store.dispatch(addWallToRoom({ side: "left", status: true, roomType: "commonToilet", id: "" }));
+    store.dispatch(addWallToRoom({ side: "right", status: true, roomType: "commonToilet", id: "" }));
     store.dispatch(addWallToRoom({ side: "back", status: true, roomType: "commonToilet", id: "" }));
     store.dispatch(addWallToRoom({ side: "front", status: true, roomType: "commonToilet", id: "" }));
     store.dispatch(addWallToRoom({ side: "front", status: true, roomType: "drawing", id: "" }));
@@ -1215,7 +1212,7 @@ function generateTypeA() {
     store.dispatch(updateWall({ id: "bedroom-ne-front", hasDoor: true, doorPosition: 275 }));
     store.dispatch(updateWall({ id: "bedroom-sw-left", hasDoor: true }));
 
-    store.dispatch(updateWall({ id: "commonToilet-sw-left", hasDoor: true }));
+    store.dispatch(updateWall({ id: "commonToilet-sw-right", hasDoor:true}));
     store.dispatch(updateWall({ id: "toilet-ne-right", hasDoor: false }));
     store.dispatch(updateWall({ id: "living-sw-front", hasDoor: false }));
     store.dispatch(updateWall({ id: "extraBath-nw-right", hasDoor: true }));
