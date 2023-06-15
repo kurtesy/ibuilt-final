@@ -85,9 +85,9 @@ export default function Plot({ isSiderOpen, plotref }) {
       id='plot'>
       {/* outer walls */}
       {/* top */}
-      <div className='w-full h-[6px] bg-cyan-800 z-[65] absolute top-0 left-0 text-green-800'>
+      <div className='w-full h-[6px] bg-cyan-800 z-[65] absolute top-0 left-0 text-blue-800'>
         <div className='w-full flex items-center justify-center  absolute -top-5'>
-          <div>{facings[`${facing}`].opposite}</div>
+          <div className="text-blue-900 font-semibold">{facings[`${facing}`].opposite}</div>
         </div>
         <div className='h-[2px] absolute top-[-28px] bg-green-800' style={{ width: plotLength * scale }} />
 
@@ -100,7 +100,7 @@ export default function Plot({ isSiderOpen, plotref }) {
       {/* bottom */}
       <div className='w-full h-[6px] bg-cyan-800 z-[65] absolute bottom-0 left-0 text-red-500'>
         <div className='w-full flex items-center justify-center font-bold text-primaryLime'>
-          <div>{facing}</div>
+          <div className="text-blue-800 font-semibold">{facing}</div>
         </div>
         {setbacks.left != 0 && setbacks.right != 0 ? (
           <>

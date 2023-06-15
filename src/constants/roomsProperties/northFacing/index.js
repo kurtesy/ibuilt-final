@@ -1021,7 +1021,7 @@ function generateTypeA() {
           roomType: "bedroom",
           length: bed4Length,
           breadth: bed4Breadth,
-          position: { left: 0, bottom: Math.floor(parkingBreadth) * scale - setbacks.front * scale + 16 }
+          position: { left: 0, bottom: Math.floor((parkingBreadth) * scale - setbacks.front * scale + 16) }
         })
       );
     }, 100);

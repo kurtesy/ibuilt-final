@@ -74,7 +74,7 @@ export default function Sider({ isSiderOpen }) {
                   <DirectionControls />
                   <DimensionControls />
                   <WallControls />
-                  <IconsList />
+                  {/* <IconsList /> */}
                 </>
               )}
             </>
