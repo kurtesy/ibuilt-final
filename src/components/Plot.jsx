@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Built from "./Built";
+import Ruler from './Ruler';
+
 import { BsChevronBarDown, BsChevronBarUp, BsChevronBarLeft, BsChevronBarRight } from "react-icons/bs";
 import plot, { changeScale, decreaseScale, setBuiltup } from "../../redux/plot";
 import Staircase from "../components/Staircase";
@@ -36,10 +38,15 @@ const facings = {
 };
 
 export default function Plot({ isSiderOpen, plotref }) {
-  const { plotLength, plotBreadth, scale, setbacks, facing, type, rotation, builtLength, builtBreadth } = useSelector((state) => state.plot);
+  const { plotLength, plotBreadth, scale, setbacks, facing, type, rotation, builtLength, builtBreadth, isRuler } = useSelector((state) => state.plot);
   const [zoomLevel, setZoomLevel] = useState(25);
   const { addedRooms } = useSelector((state) => state.rooms);
   const [selectedItems, setSelectedItems] = useState([]);
+
+  const [rulerStart, setRulerStart] = useState({ X: -1, Y: -1 });
+  const [rulerEnd, setRulerEnd] = useState({ X: -1, Y: -1 });
+  const [clickCount, setClickCount] = useState(0);
+
   const { darkMode } = useSelector((state) => state.app);
   const dispatch = useDispatch();
 
@@ -65,6 +72,29 @@ export default function Plot({ isSiderOpen, plotref }) {
     if (event.deltaY > 0) setZoomLevel((prev) => prev - 1);
     else setZoomLevel((prev) => prev + 1);
   }
+
+  const rulerDraw = (event) => {
+    if (!isRuler) {
+      return
+    }
+    if (clickCount == 0) {
+      setRulerStart({ X: event.clientX, Y: event.clientY })
+      setClickCount(clickCount + 1)
+    }
+    else {
+      setRulerEnd({ X: event.clientX, Y: event.clientY })
+      setClickCount(0)
+    }
+    console.log(event)
+  }
+
+  const handleRuler = (event) => {
+    if (!isRuler) {
+      return
+    }
+    setRulerEnd({ X: event.clientX, Y: event.clientY })
+  }
+
   useEffect(() => {
     let currentWindowWidth = isSiderOpen ? window.innerWidth - 400 : window.innerWidth;
     if (plotBreadth * scale >= window.innerHeight) {
@@ -81,10 +111,13 @@ export default function Plot({ isSiderOpen, plotref }) {
       className={`z-40 shadow-xl shadow-black absolute ${isSiderOpen ? "" : ""} ${darkMode ? "bg-white" : "bg-green-100"} `}
       style={{ width: plotLength * scale, height: plotBreadth * scale, rotate: `${rotation}deg` }}
       // onWheel={handleWheel}
+      onMouseDown={rulerDraw}
+      onMouseMove={clickCount == 1 ? handleRuler : null}
       ref={plotref}
       id='plot'>
       {/* outer walls */}
       {/* top */}
+      {isRuler ? <Ruler rulerStart={rulerStart} rulerEnd={rulerEnd} /> : <></>}
       <div className='w-full h-[6px] bg-cyan-800 z-[65] absolute top-0 left-0 text-blue-800'>
         <div className='w-full flex items-center justify-center  absolute -top-5'>
           <div className="text-blue-900 font-semibold">{facings[`${facing}`].opposite}</div>

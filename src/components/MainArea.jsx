@@ -16,6 +16,7 @@ import { setPlotRotation } from "../../redux/plot";
 import { useNavigate } from "react-router-dom";
 import IconToggler from "./IconToggler";
 import Controls from "./Controls";
+import NewControls from "./NewControls";
 export default function MainArea({ isSiderOpen }) {
   const [_, width] = useWindowSize();
   const [show, setShow] = useState(false);
@@ -68,6 +69,7 @@ export default function MainArea({ isSiderOpen }) {
           <FiRotateCcw size={32} className='absolute top-15 right-12 cursor-pointer' onClick={handleRotateCcw} />
           <FiRotateCw size={32} className='absolute top-15 right-4 cursor-pointer' onClick={handleRotateCw} /> */}
           <Controls plotref={plotref} />
+          <NewControls plotref={plotref} />
           {/* <ZoomControls /> */}
         </>
       ) : null}

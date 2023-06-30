@@ -20,7 +20,9 @@ const initialState = {
   builtLength: 0,
   builtBreadth: 0,
   builtArea: 0,
-  rooms: { nw: [], ne: [], sw: [], se: [] }
+  rooms: { nw: [], ne: [], sw: [], se: [] },
+  isResize: true,
+  isRuler: false,
 };
 
 const plotSlice = createSlice({
@@ -110,7 +112,13 @@ const plotSlice = createSlice({
     },
     setEditingExisting: (state, action) => {
       state.editingExisting = action.payload.editingExisting;
-    }
+    },
+    toggleResizeDrag: (state) => {
+      state.isResize = !state.isResize;
+    },
+    toggleRuler: (state) => {
+      state.isRuler = !state.isRuler;
+    },
   }
 });
 export const {
@@ -131,6 +139,8 @@ export const {
   setSetBacks,
   resetPlot,
   toggleIcons,
-  setEditingExisting
+  setEditingExisting,
+  toggleResizeDrag,
+  toggleRuler
 } = plotSlice.actions;
 export default plotSlice.reducer;
