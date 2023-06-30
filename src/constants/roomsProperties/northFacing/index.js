@@ -2554,7 +2554,7 @@ function generateTypeA() {
   if (plotBreadth >= 60 && plotBreadth <= 62) {
     //d Breadth range = 62-65
     //bedroom3
-    const bed1Length = builtLength * 0.42;
+    const bed1Length = builtLength * 0.40;
     const bed1Breadth = builtBreadth * 0.26;
 
     const bed3Length = builtLength * 0.45;
@@ -2572,7 +2572,7 @@ function generateTypeA() {
     const parkingLength = builtLength * 0.4;
     const parkingBreadth = builtBreadth * 0.18;
     const staircaseLength = builtLength * 0.5;
-    const stairCaseBreadth = builtBreadth * 0.2;
+    const stairCaseBreadth = builtBreadth * 0.18;
 
     const commonToiletLength = builtLength * 0.2;
     const commonToiletBreadth = builtBreadth * 0.15;
@@ -2587,7 +2587,7 @@ function generateTypeA() {
     const extraBath1Length = builtLength * 0.3;
     const extraBath1Breadth = builtBreadth * 0.14;
     const extraBath2Length = builtLength * 0.3;
-    const extraBath2Breadth = builtBreadth * 0.09;
+    const extraBath2Breadth = builtBreadth * 0.125;
 
     //add rooms
     store.dispatch(addRoomToPlot({ position: "ne", roomType: "bedroom" }));
@@ -2734,7 +2734,7 @@ function generateTypeA() {
           roomType: "extraBath",
           length: extraBath2Length,
           breadth: extraBath2Breadth,
-          position: { right: 0, top: Math.floor(bed1Breadth + bed3Breadth) * scale + 15 }
+          position: { right: 0, top: Math.floor(bed1Breadth + bed3Breadth) * scale+6 }
         })
       );
       store.dispatch(
@@ -2799,7 +2799,7 @@ function generateTypeA() {
     store.dispatch(updateWall({ id: "bedroom-sw-back", hasDoor: true, doorPosition: 140 }));
 
     store.dispatch(updateWall({ id: "extraBath-sw-left", hasDoor: true }));
-    store.dispatch(updateWall({ id: "extraBath-se-left", hasDoor: true }));
+    store.dispatch(updateWall({ id: "extraBath-se-front", hasDoor: true }));
     store.dispatch(updateWall({ id: "extraBath-nw-left", hasDoor: true }));
     store.dispatch(updateWall({ id: "commonToilet-left", hasDoor: true }));
   }
