@@ -77,9 +77,10 @@ export default function Plot({ isSiderOpen, plotref }) {
     if (!isRuler) {
       return
     }
+    setClickCount(clickCount + 1)
     if (clickCount == 0) {
       setRulerStart({ X: event.clientX, Y: event.clientY })
-      setClickCount(clickCount + 1)
+      setRulerEnd({ X: event.clientX, Y: event.clientY })
     }
     else {
       setRulerEnd({ X: event.clientX, Y: event.clientY })
