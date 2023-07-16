@@ -3,8 +3,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateOpening } from '../../redux/rooms'
 import Draggable from 'react-draggable'
-import { Resizable } from 're-resizable'
-import { SizeMe } from "react-sizeme";
+import { Rnd } from "react-rnd";
 
 
 export default function Opening({ id, length, position, side }) {
@@ -133,20 +132,22 @@ export default function Opening({ id, length, position, side }) {
   return (
     <>
       {
-        isResize ? <Resizable
-
-          style={style}
-          className={`absolute ${selected ? 'bg-amber-500' : 'bg-white'}`}
-          data-tooltip-id="opening-tt" data-tooltip-content={`${selected}`}
-          onClick={hanldeSelect}
-          onContextMenu={() => setSelected(false)}
-          onKeyDown={handleKeyDown}
-          size={{ height: resizeDim.height, width: resizeDim.width }}
-          onResizeStop={onResize}
-          boundsByDirection={true}
+        isResize ? <Rnd
+          style={dragStyle}
+          disableDragging={true}
           bounds="parent"
-          enable={{ top: true, right: false, bottom: true, left: false, topRight: false, bottomRight: false, bottomLeft: false, topLeft: false }}>
-        </Resizable> :
+          enableResizing={{ top: dragAxis == 'y', right: dragAxis == 'x', bottom: dragAxis == 'y', left: dragAxis == 'x', topRight: false, bottomRight: false, bottomLeft: false, topLeft: false }}
+        >
+          <div
+            tabIndex={0}
+            className={`absolute ${selected ? 'bg-amber-500' : 'bg-white'}`}
+            style={style}
+            data-tooltip-id="opening-tt" data-tooltip-content={`${selected}`}
+            onClick={hanldeSelect}
+            onContextMenu={() => setSelected(false)}
+            onKeyDown={handleKeyDown}
+          ></div>
+        </Rnd> :
           <Draggable
             axis={dragAxis}
             bounds={"parent"}
@@ -167,3 +168,8 @@ export default function Opening({ id, length, position, side }) {
     </>
   )
 }
+
+const dragStyle = {
+  border: "solid 1px #ddd",
+  background: "#f0f0f0"
+};

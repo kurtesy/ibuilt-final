@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Built from "./Built";
-import Ruler from './Ruler';
+import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import Built from "./Built"
+import Ruler from './Ruler'
 
-import { BsChevronBarDown, BsChevronBarUp, BsChevronBarLeft, BsChevronBarRight } from "react-icons/bs";
-import plot, { changeScale, decreaseScale, setBuiltup } from "../../redux/plot";
-import Staircase from "../components/Staircase";
-import CommonToilet from "../components/CommonToilet";
-import Sitout from "../components/Sitout";
-import Parking from "../components/Parking";
-import Corridor from "../components/Corridor";
-import ExtraBath from "../components/ExtraBath";
-import ExtraSitout from "../components/ExtraSitout";
-import { generatePlot } from "../constants/rooms";
+import { BsChevronBarDown, BsChevronBarUp, BsChevronBarLeft, BsChevronBarRight } from "react-icons/bs"
+import plot, { changeScale, decreaseScale, setBuiltup } from "../../redux/plot"
+import Staircase from "../components/Staircase"
+import CommonToilet from "../components/CommonToilet"
+import Sitout from "../components/Sitout"
+import Parking from "../components/Parking"
+import Corridor from "../components/Corridor"
+import ExtraBath from "../components/ExtraBath"
+import ExtraSitout from "../components/ExtraSitout"
+import { generatePlot } from "../constants/rooms"
 
 const facings = {
   N: {
@@ -35,42 +35,42 @@ const facings = {
     right: "S",
     left: "N"
   }
-};
+}
 
 export default function Plot({ isSiderOpen, plotref }) {
-  const { plotLength, plotBreadth, scale, setbacks, facing, type, rotation, builtLength, builtBreadth, isRuler } = useSelector((state) => state.plot);
-  const [zoomLevel, setZoomLevel] = useState(25);
-  const { addedRooms } = useSelector((state) => state.rooms);
-  const [selectedItems, setSelectedItems] = useState([]);
+  const { plotLength, plotBreadth, scale, setbacks, facing, type, rotation, builtLength, builtBreadth, isRuler } = useSelector((state) => state.plot)
+  const [zoomLevel, setZoomLevel] = useState(25)
+  const { addedRooms } = useSelector((state) => state.rooms)
+  const [selectedItems, setSelectedItems] = useState([])
 
-  const [rulerStart, setRulerStart] = useState({ X: -1, Y: -1 });
-  const [rulerEnd, setRulerEnd] = useState({ X: -1, Y: -1 });
-  const [clickCount, setClickCount] = useState(0);
+  const [rulerStart, setRulerStart] = useState({ X: window.innerWidth / 2, Y: window.innerHeight / 2 })
+  const [rulerEnd, setRulerEnd] = useState({ X: window.innerWidth / 2 + 50, Y: window.innerHeight / 2 })
+  const [clickCount, setClickCount] = useState(0)
 
-  const { darkMode } = useSelector((state) => state.app);
-  const dispatch = useDispatch();
+  const { darkMode } = useSelector((state) => state.app)
+  const dispatch = useDispatch()
 
   // const smallerScale=plotLength*plotBreadth<700?35:zoomLevel
 
   useEffect(() => {
-    setSelectedItems(addedRooms);
-  }, [addedRooms]);
+    setSelectedItems(addedRooms)
+  }, [addedRooms])
   useEffect(() => {
     if (plotLength && plotBreadth) {
-      const builtLength = parseFloat(plotLength) - parseFloat(setbacks.left) - parseFloat(setbacks.right);
-      const builtBreadth = parseFloat(plotBreadth) - parseFloat(setbacks.front) - parseFloat(setbacks.back);
-      dispatch(setBuiltup({ builtLength, builtBreadth }));
+      const builtLength = parseFloat(plotLength) - parseFloat(setbacks.left) - parseFloat(setbacks.right)
+      const builtBreadth = parseFloat(plotBreadth) - parseFloat(setbacks.front) - parseFloat(setbacks.back)
+      dispatch(setBuiltup({ builtLength, builtBreadth }))
     }
-  }, [plotLength, plotBreadth, setbacks, scale]);
+  }, [plotLength, plotBreadth, setbacks, scale])
 
   useEffect(() => {
-    dispatch(changeScale({ scale: zoomLevel }));
-  }, [zoomLevel]);
+    dispatch(changeScale({ scale: zoomLevel }))
+  }, [zoomLevel])
 
   function handleWheel(event) {
-    console.log(event.deltaY);
-    if (event.deltaY > 0) setZoomLevel((prev) => prev - 1);
-    else setZoomLevel((prev) => prev + 1);
+    console.log(event.deltaY)
+    if (event.deltaY > 0) setZoomLevel((prev) => prev - 1)
+    else setZoomLevel((prev) => prev + 1)
   }
 
   const rulerDraw = (event) => {
@@ -85,7 +85,7 @@ export default function Plot({ isSiderOpen, plotref }) {
       setRulerEnd({ X: event.clientX, Y: event.clientY })
       setClickCount(0)
     }
-    console.log(event)
+    event.stopPropagation()
   }
 
   const handleRuler = (event) => {
@@ -96,20 +96,30 @@ export default function Plot({ isSiderOpen, plotref }) {
   }
 
   useEffect(() => {
-    let currentWindowWidth = isSiderOpen ? window.innerWidth - 400 : window.innerWidth;
+    let currentWindowWidth = isSiderOpen ? window.innerWidth - 400 : window.innerWidth
     if (plotBreadth * scale >= window.innerHeight) {
-      const currentScale = Math.floor((window.innerHeight - 80) / plotBreadth);
-      dispatch(changeScale({ scale: currentScale }));
+      const currentScale = Math.floor((window.innerHeight - 80) / plotBreadth)
+      dispatch(changeScale({ scale: currentScale }))
     }
     if (plotLength * scale >= currentWindowWidth) {
-      const currentScale = Math.floor(currentWindowWidth / plotLength);
-      dispatch(changeScale({ scale: currentScale }));
+      const currentScale = Math.floor(currentWindowWidth / plotLength)
+      dispatch(changeScale({ scale: currentScale }))
     }
-  }, [plotLength, plotBreadth, scale]);
+  }, [plotLength, plotBreadth, scale])
+
+  useEffect(() => {
+    if (!isRuler) {
+      const rulerText = document.getElementById("ruler_text")
+      if (rulerText) {
+        rulerText.remove()
+      }
+    }
+  }, [isRuler])
+
   return (
     <div
       className={`z-40 shadow-xl shadow-black absolute ${isSiderOpen ? "" : ""} ${darkMode ? "bg-white" : "bg-green-100"} `}
-      style={{ width: plotLength * scale, height: plotBreadth * scale, rotate: `${rotation}deg` }}
+      style={{ width: plotLength * scale, height: plotBreadth * scale, rotate: `${rotation}deg`, cursor: isRuler ? "cell" : "" }}
       // onWheel={handleWheel}
       onMouseDown={rulerDraw}
       onMouseMove={clickCount == 1 ? handleRuler : null}
@@ -117,7 +127,8 @@ export default function Plot({ isSiderOpen, plotref }) {
       id='plot'>
       {/* outer walls */}
       {/* top */}
-      {isRuler ? <Ruler rulerStart={rulerStart} rulerEnd={rulerEnd} /> : <></>}
+      {isRuler}
+      {isRuler && <Ruler rulerStart={rulerStart} rulerEnd={rulerEnd} />}
       <div className='w-full h-[6px] bg-cyan-800 z-[65] absolute top-0 left-0 text-blue-800'>
         <div className='w-full flex items-center justify-center  absolute -top-5'>
           <div className="text-blue-900 font-semibold">{facings[`${facing}`].opposite}</div>
@@ -180,5 +191,5 @@ export default function Plot({ isSiderOpen, plotref }) {
       {selectedItems?.map((item, index) => item.roomType === "extraBath" && <ExtraBath id={item.position} key={index} />)}
       {selectedItems?.map((item, index) => item.roomType === "extraSitout" && <ExtraSitout id={item.position} key={index} />)}
     </div>
-  );
+  )
 }

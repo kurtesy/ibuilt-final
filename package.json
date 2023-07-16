@@ -23,6 +23,7 @@
     "react-particles": "^2.9.3",
     "react-redux": "^8.0.5",
     "react-resizable": "^3.0.5",
+    "react-rnd": "^10.4.1",
     "react-router-dom": "^6.11.2",
     "react-sizeme": "^3.0.2",
     "react-spinners": "^0.13.8",

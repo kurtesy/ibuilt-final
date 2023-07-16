@@ -19,6 +19,8 @@ export default function Door({ side, position, }) {
 
   const [rotation, setRotation] = useState(0);
   const [dragAxis, setDragAxis] = useState('y')
+  const [style, setStyle] = useState({})
+  const [resizeDim, setResizeDim] = useState({})
 
   const doors = {
     front: {
@@ -44,7 +46,7 @@ export default function Door({ side, position, }) {
   }, [side]);
 
   const pointerDragStart = (event) => {
-    if (!isResize && ['left', 'right'].includes(side)) {
+    if (['left', 'right'].includes(side)) {
       setDragAxis('y')
     }
     else {
@@ -53,7 +55,7 @@ export default function Door({ side, position, }) {
 
   }
   const pointerDragEnd = (event) => {
-    if (!isResize && ['left', 'right'].includes(side)) {
+    if (['left', 'right'].includes(side)) {
       moveVertical(event)
     }
     else {
@@ -103,3 +105,8 @@ export default function Door({ side, position, }) {
     </>
   );
 }
+
+const dragStyle = {
+  border: "solid 1px #ddd",
+  background: "#f0f0f0"
+};
